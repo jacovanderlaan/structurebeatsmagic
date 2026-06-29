@@ -160,6 +160,15 @@
   .flow .fcol ul{margin:0;padding-left:1.05rem;color:var(--ink-soft);font-size:.92rem}
   .flow .fcol li{margin:.3rem 0}
   .flow .fa{color:var(--gold);font-size:1.6rem;font-weight:700;text-align:center}
+
+  /* building blocks (sovereignty) */
+  .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem}
+  .block{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);border-left:3px solid var(--accent)}
+  .block .bk{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+  .block h3{margin:0 0 .5rem;font-size:1.1rem}
+  .block p{margin:0;color:var(--ink-soft);font-size:.93rem}
+  .block .eu{display:inline-block;margin-top:.6rem;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.05em}
+  .sov-lede strong{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -169,7 +178,8 @@
     <a class="brand" href="/">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
     <nav class="main">
       <a href="#principles">Principles</a>
-      <a href="#implementations">Implementations</a>
+      <a href="#stack">Stack</a>
+      <a href="#building-blocks">Sovereignty</a>
       <a href="#samples">Proof</a>
       <a href="#writing">Writing</a>
       <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises →</a>
@@ -311,6 +321,49 @@
       </div>
     </div>
     <p class="stack-note">A calendar entry, a photo's location, a CRM contact and a book highlight stop being four separate apps — and become one fact the system can reason over.</p>
+  </div>
+</section>
+
+<!-- BUILDING BLOCKS / SOVEREIGNTY -->
+<section id="building-blocks">
+  <div class="wrap">
+    <div class="section-eyebrow">The foundation</div>
+    <h2 class="section-title">Building blocks: where your data lives, and who controls it</h2>
+    <p class="section-lede sov-lede">A powerful personal system is worthless if you don't <strong>own and protect</strong> what's in it. Sovereignty, privacy, and backup aren't an afterthought — they're the foundation everything else sits on. The governance discipline, applied to your own life.</p>
+    <div class="blocks">
+      <div class="block">
+        <div class="bk">Jurisdiction</div>
+        <h3>EU, not US, by choice</h3>
+        <p>Where data lives is a legal decision, not just a technical one. I keep mine with a long-established German provider, under EU jurisdiction and GDPR — not on US infrastructure by default.</p>
+        <span class="eu">🇪🇺 EU-hosted</span>
+      </div>
+      <div class="block">
+        <div class="bk">Encryption</div>
+        <h3>Encrypted by sensitivity</h3>
+        <p>Match the lock to the value. Sensitive data is <strong>client-side encrypted</strong> before it ever leaves the machine; low-sensitivity bulk goes encrypted-at-rest. Encrypt deliberately, not blindly.</p>
+      </div>
+      <div class="block">
+        <div class="bk">Backup</div>
+        <h3>Off-site, encrypted, automatic</h3>
+        <p>Versioned, deduplicated, client-side-encrypted backups to EU object storage — so a lost laptop is an inconvenience, never a catastrophe.</p>
+      </div>
+      <div class="block">
+        <div class="bk">Cold copy</div>
+        <h3>A spare drive you carry</h3>
+        <p>Cloud isn't enough. An encrypted physical copy on spare SSDs, kept with you, means you're never one outage — or one account lockout — away from your own data.</p>
+      </div>
+      <div class="block">
+        <div class="bk">Sync</div>
+        <h3>Your phone, aligned — no middleman</h3>
+        <p>Phone and laptop stay in sync <strong>directly</strong>, device-to-device, without handing the data to a cloud you don't control. Captured on the go, present everywhere.</p>
+      </div>
+      <div class="block">
+        <div class="bk">Control</div>
+        <h3>You hold the keys</h3>
+        <p>The point of every block above: you — not a vendor — own the data, the encryption keys, and the ability to keep it that way. That's sovereignty.</p>
+      </div>
+    </div>
+    <p class="stack-note">Each is a <strong>building block</strong>. Stack them and you get something rare: a powerful, AI-ready personal system you actually own — private, portable, and resilient by design.</p>
   </div>
 </section>
 
