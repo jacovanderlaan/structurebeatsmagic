@@ -70,6 +70,14 @@ voice — keep them visually and tonally consistent.
   colour. Section titles large and tight (`letter-spacing:-.02em`).
 - **Formula styling:** navy pill, gold arrow + gold result.
 
+### Generating the infographics (ChatGPT)
+Every infographic is generated in ChatGPT, **one concept per image** — never a dense
+numbered multi-panel sheet. If an image comes back as a grid or with panel numbers,
+it's wrong for this site — regenerate as a single concept, no numbering. The reusable
+ChatGPT master prompt and the per-slot briefs are kept **private** (input, not
+publication) in the vault, not in this repo:
+`D:/vault/personal/career/2-active/positioning/2026-06-29_infographic-image-briefs-chatgpt.md`.
+
 ### IMAGE RULE (important — frequently violated)
 **Never stack two `<figure>` elements back-to-back without a substantial text
 block (≈25+ words: a paragraph, card grid, or list) between them.** Two images
@@ -162,3 +170,15 @@ touching looks like a dump and kills rhythm.
   `DOMAIN.md`). Interim: github.io / 301 to jacovanderlaan.com until cutover.
 - Private assets (e.g. first-party venue photos in the travel sample) stay
   gitignored — never commit personal photos that aren't meant to publish.
+
+### Asset hygiene — published-only repo (input vs publication)
+- **Only assets referenced by the live site belong in `assets/`.** Unused images
+  (unreferenced infographics, source photos, ChatGPT outputs you didn't place) do
+  **not** live in this public repo.
+- **Move, don't delete** unused images to the private staging area:
+  `W:/data/products/mdde/output/articles/images/sbm-unused/` (see its README). They
+  stay reproducible; the public repo stays clean and free of personal photos.
+- Audit before committing: every file in `assets/` should be reachable by a
+  `src=`/`url()` in some `.html`/`.css`. Anything else is an orphan — stage it out.
+- The line: **publication is public (this repo), input/working is private** (the
+  vault for prompts/drafts, the W: workspace for source images).
