@@ -80,6 +80,7 @@
       <div class="tg">What it runs</div>
       <a href="#applications">Applications</a>
       <a href="#stack">The data stack</a>
+      <a href="#method">The method, step by step</a>
       <a href="#tools">Everyday tools wired in</a>
     </div>
     <div class="toc-group">
@@ -514,6 +515,28 @@ booked via [[Ortigia 2022]] — see [[hotel-quality]].</pre>
       <div class="tool"><div class="tn">MotherDuck Flight Plans</div><div class="tr">AI-built pipelines</div><p>Describe a pipeline in plain language and let AI assemble it — ingest, sync, alert — no plumbing code. Structure + AI + rules, made practical.</p></div>
     </div>
     <p class="stack-note">The point isn't the tools — it's that the gap between "enterprise data platform" and "what one person can run" has collapsed. Structure is now affordable for everyone willing to build it.</p>
+  </div>
+</section>
+
+<!-- METHOD: THE DATA-ARCHITECTURE DISCIPLINE -->
+<section id="method">
+  <div class="wrap">
+    <div class="section-eyebrow">The discipline underneath</div>
+    <h2 class="section-title">The method, step by step</h2>
+    <p class="section-lede">This is the part most "second brain" advice skips: the actual data-architecture method — twenty-five years of it — that turns a pile of files into a system you can trust. Model the business once; generate everything else. Build quality in, not on. Leave a trail. The same discipline that runs banks, applied to a personal vault.</p>
+    <figure class="bleed">
+      <img src="../assets/visual-guides-1-5.png" alt="Step-by-step visual guides: from Kimball to metadata, business-oriented data modeling, entity-first modeling, 3NF to stars, and model-driven migrations" loading="lazy" />
+      <figcaption>Part one — the foundation: from Kimball to metadata, business-oriented and entity-first modelling, 3NF → stars, and model-driven migrations. Model the business once in metadata; generate the rest.</figcaption>
+    </figure>
+    <figure class="bleed">
+      <img src="../assets/visual-guides-6-10.png" alt="Step-by-step visual guides: model-driven data quality, data breadcrumbs, context-aware lineage, access views as the contract, and logical to physical generation" loading="lazy" />
+      <figcaption>Part two — trust &amp; delivery: model-driven data quality, data breadcrumbs, context-aware lineage, access views as the contract, and logical → physical generation. Quality and provenance are designed in, not bolted on.</figcaption>
+    </figure>
+    <figure class="bleed">
+      <img src="../assets/visual-guides-11-15.png" alt="Step-by-step visual guides: dual SCD2 time travel, deduplication, historizing without a natural key, semantic vs technical lineage, and declarative metadata-driven pipelines" loading="lazy" />
+      <figcaption>Part three — time &amp; automation: dual-SCD2 time travel, deterministic deduplication, historizing without a natural key, semantic vs technical lineage, and declarative metadata-driven pipelines. Code is generated; metadata is the source.</figcaption>
+    </figure>
+    <p class="stack-note">You don't need all of this for a personal vault — but it's <em>why</em> the vault holds up. The methods that keep enterprise data correct are the same ones that keep your own data answerable.</p>
   </div>
 </section>
 
