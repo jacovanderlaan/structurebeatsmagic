@@ -127,6 +127,22 @@
   .post .post-face{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
   .post h3{margin:.5rem 0 .5rem;font-size:1.2rem;line-height:1.25;color:var(--ink)}
   .post p{margin:0;color:var(--ink-soft);font-size:.95rem;font-style:italic}
+
+  /* why next-level */
+  .nl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+  .nl-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
+  .nl-card.nl-accent{border:1.5px solid var(--accent)}
+  .nl-k{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+  .nl-card p{margin:0;color:var(--ink-soft);font-size:.97rem}
+  .nl-foot{max-width:60ch;margin:2.2rem auto 0;text-align:center;color:var(--ink-soft);font-size:1.05rem}
+
+  /* influences */
+  .infl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem}
+  .book{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem;box-shadow:var(--shadow)}
+  .book .t{font-weight:700;font-size:1rem;color:var(--ink)}
+  .book .a{font-size:.85rem;color:var(--ink-faint);margin:.15rem 0 .5rem}
+  .book .why{font-size:.9rem;color:var(--ink-soft);margin:0}
+  .infl-note{text-align:center;color:var(--ink-faint);font-size:.9rem;margin-top:1.8rem}
 </style>
 </head>
 <body>
@@ -195,6 +211,30 @@
       <img src="assets/sbm-toy-vs-instrument.svg" alt="Without structure AI is a toy; with structure it becomes an instrument" loading="lazy" />
       <figcaption>Without structure, AI is a toy: impressive once, unreliable twice. With structure, it becomes an instrument.</figcaption>
     </figure>
+  </div>
+</section>
+
+<!-- WHY NEXT-LEVEL -->
+<section id="next-level">
+  <div class="wrap">
+    <div class="section-eyebrow">Why this is next-level</div>
+    <h2 class="section-title">Notes organize. Architecture personalizes.</h2>
+    <p class="section-lede">Storing notes is where most "second brain" advice stops. To make AI actually act <em>for</em> you — with focus — it needs a <strong>model of you</strong>: your history, your desires, your lessons learned, and what you want to <em>exclude</em>. That's an architecture problem, not a prompting trick.</p>
+    <div class="nl-grid">
+      <div class="nl-card">
+        <div class="nl-k">A modeled self</div>
+        <p>History, desires, and hard-won lessons captured as <strong>structured data</strong> — not left to whatever the model happens to remember this session.</p>
+      </div>
+      <div class="nl-card nl-accent">
+        <div class="nl-k">Interests <span style="color:var(--gold)">&amp; anti-interests</span></div>
+        <p>Focus comes from the <strong>negative space</strong>. Define what you're <em>not</em> interested in — your anti-preferences — and the AI filters to what matters. Most "personalization" only models the positives; the exclusions are where real focus lives.</p>
+      </div>
+      <div class="nl-card">
+        <div class="nl-k">A real assistant</div>
+        <p>Generic AI suggests the famous landmark. A system that knows you avoid high-tourism places simply won't — because the preference is <strong>modeled data and a rule</strong>, not a hope.</p>
+      </div>
+    </div>
+    <p class="nl-foot">This needs a solid data model, sound architecture, and the right application of AI — with rules, skills, and document structure. It's the difference between a chatbot that forgets you and an assistant that's grounded in who you actually are. <strong>That's the next level — and it's exactly the discipline I bring.</strong></p>
   </div>
 </section>
 
@@ -303,6 +343,34 @@
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- INFLUENCES -->
+<section id="influences">
+  <div class="wrap">
+    <div class="section-eyebrow">Standing on shoulders</div>
+    <h2 class="section-title">The thinking behind the thesis</h2>
+    <p class="section-lede">This didn't appear from nowhere. It's the convergence of two libraries I've spent years in — the <em>why &amp; systems</em> thinkers and the <em>data-architecture</em> canon — applied to the AI era.</p>
+
+    <div style="margin-bottom:1.5rem">
+      <div class="nl-k" style="text-align:center;margin-bottom:1rem">Purpose, systems &amp; the way we work</div>
+      <div class="infl">
+        <div class="book"><div class="t">Start With Why</div><div class="a">Simon Sinek</div><p class="why">Lead with the why, not the what. The thesis starts from purpose; the formula is just how.</p></div>
+        <div class="book"><div class="t">Designing Your Life</div><div class="a">Bill Burnett &amp; Dave Evans</div><p class="why">Don't plan — prototype. Build experiments, not five-year plans. The method behind every system here.</p></div>
+        <div class="book"><div class="t">Getting Things Done</div><div class="a">David Allen</div><p class="why">Productivity as a system with trusted structure — not willpower, not tips.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="nl-k" style="text-align:center;margin-bottom:1rem">Data architecture — the discipline</div>
+      <div class="infl">
+        <div class="book"><div class="t">The Data Warehouse Toolkit</div><div class="a">Ralph Kimball</div><p class="why">Dimensional modelling — structure that makes data answerable.</p></div>
+        <div class="book"><div class="t">Building the Data Warehouse</div><div class="a">Bill Inmon</div><p class="why">The architecture spine: source → integration → delivery.</p></div>
+        <div class="book"><div class="t">Data Vault 2.0</div><div class="a">Dan Linstedt</div><p class="why">Auditable, governed, scalable modelling — the banker's discipline in data form.</p></div>
+      </div>
+    </div>
+    <p class="infl-note">A living list — drawn from a personal library of 271 books and counting.</p>
   </div>
 </section>
 
