@@ -195,6 +195,27 @@
   .intent .ik{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
   .intent h3{margin:0 0 .6rem;font-size:1.25rem}
   .intent p{margin:0;color:var(--ink-soft)}
+
+  /* validation loop */
+  .loop2{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem}
+  .lp{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;box-shadow:var(--shadow);position:relative}
+  .lp .ln{font-size:13px;font-weight:800;color:var(--gold)}
+  .lp h4{margin:.3rem 0 .4rem;font-size:1.02rem}
+  .lp p{margin:0;color:var(--ink-soft);font-size:.9rem}
+  .loop-note{text-align:center;max-width:58ch;margin:2rem auto 0;color:var(--ink-soft);font-size:1.02rem}
+  .loop-note strong{color:var(--ink)}
+
+  /* applications grid (compact) */
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem}
+  .app{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+  .app .an{font-weight:700;font-size:.95rem;color:var(--ink)}
+  .app p{margin:.2rem 0 0;color:var(--ink-soft);font-size:.85rem}
+
+  /* own-your-data callout */
+  .own{background:linear-gradient(135deg,#0f172a,#13324a);color:#fff;border-radius:var(--radius);padding:2.4rem;text-align:center;box-shadow:var(--shadow);margin-top:1.5rem}
+  .own h3{color:#fff;font-size:1.4rem;margin:.2rem 0 .8rem}
+  .own p{color:#c4d0e0;max-width:56ch;margin:0 auto;font-size:1.02rem}
+  .own .tag2{display:inline-block;margin-top:1rem;color:var(--gold);font-weight:700;font-size:.9rem}
 </style>
 </head>
 <body>
@@ -318,6 +339,55 @@
       <div class="ik">Intentions vs. realization</div>
       <h3>Not just what you prefer — where you intend to go</h3>
       <p>Document your <strong>intentions</strong> with AI, and the system can reflect them back against what your data shows actually happened — direction versus reality, gently. Not a scorecard, not pass/fail — a mirror that helps you steer. Your modeled self holds taste <em>and</em> intent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATION & CONTINUOUS IMPROVEMENT -->
+<section id="validation">
+  <div class="wrap">
+    <div class="section-eyebrow">The quality layer</div>
+    <h2 class="section-title">Trust comes from checking, not hoping</h2>
+    <p class="section-lede">AI generates; it also gets things wrong. The difference between a toy and a system is that a system <strong>validates its own output</strong> — continuously — and keeps improving. This is the discipline most "AI productivity" never mentions.</p>
+    <div class="loop2">
+      <div class="lp"><div class="ln">1 · Generate</div><h4>AI produces</h4><p>Drafts, enrichments, classifications, recommendations — fast and at scale.</p></div>
+      <div class="lp"><div class="ln">2 · Validate</div><h4>Check against known context</h4><p>Plausibility checks: was I really there then? Do I know this vendor? Is this date possible? Cross-check every datapoint against what's already true.</p></div>
+      <div class="lp"><div class="ln">3 · Flag, don't guess</div><h4>Surface the doubt</h4><p>On a mismatch, the system flags it for review instead of confidently inventing — catching OCR errors, mis-dated scans, misclassifications.</p></div>
+      <div class="lp"><div class="ln">4 · Improve</div><h4>Refine the rules</h4><p>Review the auto-generated results, fix what's wrong, and improve the rules themselves. The system gets more trustworthy over time.</p></div>
+    </div>
+    <p class="loop-note">It's a <strong>double loop</strong>: rules check the output, and the checks themselves get reviewed and improved. Borrowed straight from data-quality engineering — and the reason the output stays reliable as the system grows. <strong>You must check the auto-generated results.</strong> Continuously.</p>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications">
+  <div class="wrap">
+    <div class="section-eyebrow">What it actually runs</div>
+    <h2 class="section-title">Applications, already in the vault</h2>
+    <p class="section-lede">Not a roadmap — what's running today. Dozens of small, connected applications on one foundation, each turning a source into something useful.</p>
+    <div class="apps">
+      <div class="app"><div class="an">Daily-note enrichment</div><p>Auto-fills each day from 20+ data sources.</p></div>
+      <div class="app"><div class="an">Cascade roll-ups</div><p>Day → week → month → quarter → year, generated.</p></div>
+      <div class="app"><div class="an">Photo / DAM pipeline</div><p>EXIF + sidecars → geo-indexed, tagged library.</p></div>
+      <div class="app"><div class="an">Location intelligence</div><p>Timeline → "at work / at the gym / on a trip" via rules.</p></div>
+      <div class="app"><div class="an">Finance importers</div><p>Transactions structured, classified, validated.</p></div>
+      <div class="app"><div class="an">Health pipeline</div><p>Steps, sleep, workouts from the phone, folded in.</p></div>
+      <div class="app"><div class="an">Scan routing</div><p>Receipts/docs OCR'd and filed to the right day.</p></div>
+      <div class="app"><div class="an">Trip intelligence</div><p>Trips derived from your own data — beyond TripIt.</p></div>
+      <div class="app"><div class="an">CRM / relationships</div><p>People &amp; interactions as structured context.</p></div>
+      <div class="app"><div class="an">Reading highlights</div><p>Readwise → a queryable idea corpus.</p></div>
+      <div class="app"><div class="an">Travel curation</div><p>Taste-scored venues, first-party photos, a live site.</p></div>
+      <div class="app"><div class="an">AI movie library</div><p>Recommends from taste + films seen.</p></div>
+      <div class="app"><div class="an">Task validation + publish</div><p>Checked tasks synced out to calendar.</p></div>
+      <div class="app"><div class="an">Publishing engine</div><p>Vault → sites &amp; documents, portable.</p></div>
+    </div>
+
+    <!-- OWN YOUR DATA -->
+    <div class="own">
+      <div class="ce" style="color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">The non-negotiable</div>
+      <h3>It's your data. Keep it that way.</h3>
+      <p>Every block here is chosen to be <strong>independent</strong> — not locked to a big-tech vendor who changes the API, the price, or the rules without asking. The deliberate direction: step by step, reduce dependence on Google Drive, Google Photos and OneDrive, and move to building blocks you control. Convenience today isn't worth losing your own data tomorrow.</p>
+      <span class="tag2">Independent building blocks &gt; vendor lock-in</span>
     </div>
   </div>
 </section>
