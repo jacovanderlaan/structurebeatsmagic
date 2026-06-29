@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Structure Beats Magic — Knowledge Management, re-architected for the AI era</title>
+<meta name="description" content="The magic isn't in the model — it's in the structure you give it. A thesis on Knowledge Management re-architected for AI: Structure + Data + AI + Rules + Skills → Systems. Proven on personal data, applied in business." />
+<meta property="og:title" content="Structure Beats Magic" />
+<meta property="og:description" content="Knowledge Management, re-architected for the AI era. Structure + Data + AI + Rules + Skills → Systems." />
+<meta property="og:type" content="website" />
+<style>
+  :root{
+    --bg:#f7f8fa; --surface:#fff; --ink:#0f172a; --ink-soft:#475569; --ink-faint:#94a3b8;
+    --accent:#2563eb; --accent-dk:#1e40af; --gold:#b88a1b; --line:#e2e8f0; --navy:#0f172a;
+    --maxw:1080px; --radius:16px; --shadow:0 10px 30px rgba(15,23,42,.07);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-dk)}
+
+  header.site{position:sticky;top:0;z-index:10;background:rgba(247,248,250,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-weight:700;font-size:18px;color:var(--ink)}
+  .brand span{color:var(--accent)}
+  nav.main a{color:var(--ink-soft);margin-left:22px;font-size:15px;font-weight:500}
+  nav.main a:hover{color:var(--ink)}
+  .nav-cta{background:var(--accent);color:#fff !important;padding:.5rem .9rem;border-radius:8px;font-weight:600}
+  .nav-cta:hover{background:var(--accent-dk)}
+  @media(max-width:720px){nav.main a:not(.nav-cta){display:none}}
+
+  .hero{padding:6rem 0 4rem;text-align:center}
+  .hero .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.08;letter-spacing:-.02em;margin:1rem auto;max-width:14ch}
+  .hero .lede{font-size:1.25rem;color:var(--ink-soft);max-width:46ch;margin:0 auto 2rem}
+  .formula{display:inline-block;background:var(--navy);color:#fff;padding:1rem 1.5rem;border-radius:var(--radius);font-size:1.05rem;font-weight:600;letter-spacing:.01em;box-shadow:var(--shadow)}
+  .formula .op{color:var(--ink-faint);margin:0 .3rem}
+  .formula .arrow{color:var(--gold);margin:0 .4rem}
+  .formula .result{color:var(--gold)}
+  .cta-row{margin-top:2.2rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .btn{padding:.7rem 1.3rem;border-radius:10px;font-weight:600;font-size:15px;display:inline-block}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-dk)}
+  .btn-ghost{color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  section{padding:4rem 0;border-top:1px solid var(--line)}
+  .section-eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);text-align:center}
+  h2.section-title{font-size:clamp(1.6rem,3.5vw,2.3rem);text-align:center;letter-spacing:-.01em;margin:.6rem auto 1rem;max-width:20ch}
+  .section-lede{text-align:center;color:var(--ink-soft);max-width:54ch;margin:0 auto 3rem;font-size:1.08rem}
+
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
+  .card .k{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .card h3{margin:.5rem 0 .4rem;font-size:1.15rem}
+  .card p{margin:0;color:var(--ink-soft);font-size:.97rem}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  @media(max-width:760px){.two{grid-template-columns:1fr}}
+  .impl{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
+  .impl .tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .impl h3{margin:.4rem 0 .8rem;font-size:1.35rem}
+  .impl ul{margin:.8rem 0 0;padding-left:1.1rem;color:var(--ink-soft)}
+  .impl li{margin:.45rem 0}
+  .impl .proof{margin-top:1rem;font-size:.9rem;color:var(--ink-faint);font-style:italic}
+
+  .bankers{background:var(--navy);color:#e6edf6;border-radius:var(--radius);padding:2.2rem;margin-top:1.5rem}
+  .bankers h3{color:#fff;margin:.2rem 0 1rem;font-size:1.3rem}
+  .bankers .bb{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  @media(max-width:760px){.bankers .bb{grid-template-columns:1fr}}
+  .bankers .col .h{font-weight:700;color:var(--gold);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+  .bankers p{color:#c4d0e0;margin:.3rem 0;font-size:.97rem}
+  .bankers .punch{margin-top:1.4rem;font-size:1.05rem;color:#fff;border-top:1px solid #243349;padding-top:1.2rem}
+
+  .samples{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+  .sample{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
+  .sample .badge{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+  .sample h3{margin:.4rem 0 .5rem;font-size:1.15rem}
+  .sample p{color:var(--ink-soft);font-size:.95rem;margin:0 0 .8rem}
+
+  .enterprise{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:var(--radius);padding:3rem 2.5rem;text-align:center;box-shadow:var(--shadow)}
+  .enterprise h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:.3rem auto 1rem;max-width:22ch}
+  .enterprise p{color:#c4d0e0;max-width:50ch;margin:0 auto 1.8rem;font-size:1.08rem}
+  .enterprise .btn-gold{background:var(--gold);color:#1a1505}
+  .enterprise .btn-gold:hover{background:#a87d18}
+
+  footer{padding:3rem 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-faint);font-size:14px}
+  footer .formula-mini{color:var(--ink-soft);font-weight:600;margin-bottom:.6rem}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <nav class="main">
+      <a href="#principles">Principles</a>
+      <a href="#implementations">Implementations</a>
+      <a href="#samples">Proof</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero wrap">
+  <div class="eyebrow">Knowledge Management, re-architected for the AI era</div>
+  <h1>The magic isn't in the model. It's in the structure you give it.</h1>
+  <p class="lede">An old discipline — knowledge management — rebuilt on today's stack. Get the structure right and good output stops being luck. It becomes repeatable.</p>
+  <div class="formula">
+    Structure <span class="op">+</span> Data <span class="op">+</span> AI <span class="op">+</span> Rules <span class="op">+</span> Skills <span class="arrow">→</span> <span class="result">Systems</span>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#principles">See the principles</a>
+    <a class="btn btn-ghost" href="#samples">See it working</a>
+  </div>
+</div>
+
+<!-- UNIVERSAL PRINCIPLES -->
+<section id="principles">
+  <div class="wrap">
+    <div class="section-eyebrow">Universal principles</div>
+    <h2 class="section-title">The same architecture, at every scale</h2>
+    <p class="section-lede">A second brain and a data warehouse are the same shape: <strong>source → integration → delivery</strong> — raw, cleaned, published. These principles don't change between a person and an organisation. Only the data does.</p>
+    <div class="principles">
+      <div class="card"><div class="k">Structure</div><h3>Context lives in the structure</h3><p>Not in the prompt, not in the meeting. A connected, well-shaped knowledge base is what makes the rest work.</p></div>
+      <div class="card"><div class="k">Data</div><h3>Records you own, made readable</h3><p>Archive becomes <em>source</em> the moment something can query it. The information is usually already there — unread.</p></div>
+      <div class="card"><div class="k">AI</div><h3>The commodity layer</h3><p>The model is roughly the same for everyone. It's leverage, not the moat. Rent the AI; own the structure.</p></div>
+      <div class="card"><div class="k">Rules</div><h3>The missing word</h3><p>Everyone says "data + AI". Rules are what make output reliable and explainable: generate, validate against known context, flag don't guess.</p></div>
+      <div class="card"><div class="k">Skills</div><h3>Repeatable capability</h3><p>Codified workflows and know-how, so a result is engineered — not improvised once and lost.</p></div>
+      <div class="card" style="border-color:var(--gold)"><div class="k" style="color:var(--gold)">Systems</div><h3>The payoff</h3><p>Structure + data + AI + rules + skills compounds into a system — the difference between a toy and an instrument.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATIONS -->
+<section id="implementations">
+  <div class="wrap">
+    <div class="section-eyebrow">Two implementations</div>
+    <h2 class="section-title">Proven on a life. Applied in a business.</h2>
+    <p class="section-lede">The thesis isn't borrowed — it's lived. The same formula runs at personal scale (proof in the life) and organisational scale (proof in the work).</p>
+    <div class="two">
+      <div class="impl">
+        <div class="tag">Personal scale — proof in the life</div>
+        <h3>Your own knowledge, finally queryable</h3>
+        <ul>
+          <li>A decade of trips reconstructed from photo GPS</li>
+          <li>155,000 photos turned into a geo-indexed, searchable map</li>
+          <li>271 owned books turned into a queryable corpus</li>
+          <li>Mail, highlights, calendar — one connected, AI-readable brain</li>
+        </ul>
+        <p class="proof">Not aspirational. Built, running, and the evidence the method is real.</p>
+      </div>
+      <div class="impl">
+        <div class="tag">Organisational scale — proof in the work</div>
+        <h3>Governed system quality, beyond the enterprise</h3>
+        <ul>
+          <li>25 years of data architecture as the blueprint</li>
+          <li>Structure carries the context, so the meeting becomes the <em>merge</em></li>
+          <li>Validation &amp; rules built in — reliable <em>because</em> engineered</li>
+          <li>The discipline learned at the banks, brought to mid-sized teams</li>
+        </ul>
+        <p class="proof">Bank-grade governance without bank-sized overhead.</p>
+      </div>
+    </div>
+
+    <!-- BANKERS VS BUILDERS -->
+    <div class="bankers">
+      <div class="section-eyebrow" style="color:var(--gold);text-align:left">The wedge</div>
+      <h3>Bankers vs. Builders</h3>
+      <div class="bb">
+        <div class="col">
+          <div class="h">The banker's discipline</div>
+          <p>Governance, validation, explainability, control you can keep — the standards that make a system trustworthy and auditable. Most mid-sized organisations are told this is enterprise-only, too heavy, too slow.</p>
+        </div>
+        <div class="col">
+          <div class="h">The builder's leverage</div>
+          <p>Structure, generated tools, AI on a solid foundation — speed without the chaos. Most "move fast" teams skip the governance and pay for it later in drift and distrust.</p>
+        </div>
+      </div>
+      <p class="punch">The thesis brings <strong>both</strong> to medium-sized organisations: bank-grade governed quality <em>and</em> builder-grade speed. You don't have to choose between trustworthy and fast — structure is what lets you have both.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLES -->
+<section id="samples">
+  <div class="wrap">
+    <div class="section-eyebrow">Proof, not slides</div>
+    <h2 class="section-title">Sample systems that demonstrate the solution</h2>
+    <p class="section-lede">Live demonstrations — real data, real structure, real output. The recipe is here for free. The kitchen is where the work happens.</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="badge">Live demo · curation</div>
+        <h3>Travel curation engine</h3>
+        <p>A DuckDB "brain" — sources, taste rubric, evidence — that scores venues and publishes a static site that grounds every recommendation in first-party, GPS-matched photos.</p>
+        <a href="#">Visit the demo →</a>
+      </div>
+      <div class="sample">
+        <div class="badge">Pattern · publishing</div>
+        <h3>A brain that publishes itself</h3>
+        <p>One source of truth in a database; a website derived from it at build time. No CMS, no runtime database, no drift.</p>
+        <a href="#">Read the write-up →</a>
+      </div>
+      <div class="sample">
+        <div class="badge">Pattern · personal data</div>
+        <h3>Your photos are already a map</h3>
+        <p>155k photos, the metadata already present, turned into a queryable geography — and matched to the places a guide recommends.</p>
+        <a href="#">Read the write-up →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTERPRISE ROUTE -->
+<section>
+  <div class="wrap">
+    <div class="enterprise">
+      <div class="section-eyebrow" style="color:var(--gold)">For enterprises</div>
+      <h2>When you're ready to build the foundation, not buy the magic box</h2>
+      <p>High-value advisory and engagements for organisations serious about governed, AI-ready knowledge systems. Senior, hands-on, and selective — engagements, not day-rates.</p>
+      <a class="btn btn-gold" href="https://jacovanderlaan.com">Jaco van der Laan · Systems &amp; Data →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
