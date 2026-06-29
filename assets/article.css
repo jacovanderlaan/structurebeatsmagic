@@ -1,0 +1,44 @@
+:root{
+  --bg:#f7f8fa; --surface:#fff; --ink:#0f172a; --ink-soft:#475569; --ink-faint:#94a3b8;
+  --accent:#2563eb; --accent-dk:#1e40af; --gold:#b88a1b; --line:#e2e8f0; --navy:#0f172a;
+  --maxw:720px; --radius:16px; --shadow:0 10px 30px rgba(15,23,42,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:18px/1.7 "Inter","Segoe UI",system-ui,-apple-system,sans-serif}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-dk)}
+
+header.site{position:sticky;top:0;z-index:10;background:rgba(247,248,250,.85);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.site .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:700;font-size:18px;color:var(--ink)}
+.brand span{color:var(--accent)}
+.back{font:600 13px/1 "Inter",system-ui,sans-serif;color:var(--accent)}
+
+main.article{padding:3.5rem 24px 2rem}
+.article .eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0}
+.article h1{font-size:clamp(2rem,5vw,2.8rem);line-height:1.12;letter-spacing:-.02em;margin:.6rem 0 .8rem}
+.article .subtitle{font-size:1.2rem;color:var(--ink-soft);margin:0 0 1rem;font-style:italic}
+.article .byline{font-size:.9rem;color:var(--ink-faint);border-bottom:1px solid var(--line);padding-bottom:1.5rem;margin-bottom:2rem}
+
+article h2{font-size:1.05rem;font-family:"Inter",system-ui,sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--ink-faint);margin:2.8rem 0 1rem;font-weight:700}
+article h3{font-size:1.3rem;margin:2rem 0 .8rem;letter-spacing:-.01em}
+article p{margin:0 0 1.2rem}
+article strong{color:var(--ink)}
+article em{color:var(--ink-soft)}
+article hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+article a{border-bottom:1px solid rgba(37,99,235,.25)}
+
+.article-cta{margin:3.5rem 0 1rem;padding-top:2rem;border-top:1px solid var(--line);text-align:center}
+.article-cta .formula-mini{color:var(--ink-soft);font-weight:600;margin-bottom:1.2rem;font-size:.95rem}
+.btn{display:inline-block;padding:.6rem 1.1rem;border-radius:10px;font-weight:600;font-size:14px;
+  background:var(--accent);color:#fff !important;margin:.25rem;border-bottom:none !important}
+.btn:hover{background:var(--accent-dk)}
+.btn-ghost{background:transparent;color:var(--ink) !important;border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent) !important}
+
+footer{padding:3rem 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-faint);font-size:14px;margin-top:2rem}

@@ -118,6 +118,15 @@
   .fit .col h3{margin:0 0 .8rem;font-size:1.1rem}
   .fit .col ul{margin:0;padding-left:1.1rem;color:var(--ink-soft)}
   .fit .col li{margin:.5rem 0}
+
+  /* writing / articles */
+  .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+  .post{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.6rem;box-shadow:var(--shadow);color:inherit;transition:transform .15s,border-color .15s}
+  .post:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
+  .post .post-face{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+  .post h3{margin:.5rem 0 .5rem;font-size:1.2rem;line-height:1.25;color:var(--ink)}
+  .post p{margin:0;color:var(--ink-soft);font-size:.95rem;font-style:italic}
 </style>
 </head>
 <body>
@@ -198,12 +207,12 @@
     <div class="two">
       <div class="impl">
         <div class="tag">Personal scale — proof in the life</div>
-        <h3>Your own knowledge, finally queryable</h3>
+        <h3>Your own knowledge &amp; productivity, as a system</h3>
         <ul>
-          <li>A decade of trips reconstructed from photo GPS</li>
           <li>155,000 photos turned into a geo-indexed, searchable map</li>
           <li>271 owned books turned into a queryable corpus</li>
           <li>Mail, highlights, calendar — one connected, AI-readable brain</li>
+          <li>Life-hacking, GTD &amp; personal productivity — built as <em>systems</em>, not tips</li>
         </ul>
         <p class="proof">Not aspirational. Built, running, and the evidence the method is real.</p>
       </div>
@@ -214,7 +223,7 @@
           <li>25 years of data architecture as the blueprint</li>
           <li>Structure carries the context, so the meeting becomes the <em>merge</em></li>
           <li>Validation &amp; rules built in — reliable <em>because</em> engineered</li>
-          <li>The discipline learned at the banks, brought to mid-sized teams</li>
+          <li>The discipline learned at the banks, spoken in the language of builders</li>
         </ul>
         <p class="proof">Bank-grade governance without bank-sized overhead.</p>
       </div>
@@ -223,18 +232,18 @@
     <!-- BANKERS VS BUILDERS -->
     <div class="bankers">
       <div class="section-eyebrow" style="color:var(--gold);text-align:left">The wedge</div>
-      <h3>Bankers vs. Builders</h3>
+      <h3>Bankers and Builders speak different languages. I speak both.</h3>
       <div class="bb">
         <div class="col">
           <div class="h">The banker's discipline</div>
-          <p>Governance, validation, explainability, control you can keep — the standards that make a system trustworthy and auditable. Most mid-sized organisations are told this is enterprise-only, too heavy, too slow.</p>
+          <p>Governance, validation, explainability, control you can keep — the standards that make a system trustworthy and auditable. Learned over 25 years where it isn't optional.</p>
         </div>
         <div class="col">
           <div class="h">The builder's leverage</div>
-          <p>Structure, generated tools, AI on a solid foundation — speed without the chaos. Most "move fast" teams skip the governance and pay for it later in drift and distrust.</p>
+          <p>Structure, generated tools, AI on a solid foundation — speed without the chaos. The way things actually get shipped.</p>
         </div>
       </div>
-      <p class="punch">The thesis brings <strong>both</strong> to medium-sized organisations: bank-grade governed quality <em>and</em> builder-grade speed. You don't have to choose between trustworthy and fast — structure is what lets you have both.</p>
+      <p class="punch">Most people live in one camp and distrust the other. The work is <strong>translation</strong>: bringing bank-grade discipline into the way builders deliver — so a serious team, beyond the enterprise, gets governance and speed instead of choosing one. Structure is the shared language.</p>
     </div>
   </div>
 </section>
@@ -250,19 +259,19 @@
         <div class="badge">Live demo · curation</div>
         <h3>Travel curation engine</h3>
         <p>A DuckDB "brain" — sources, taste rubric, evidence — that scores venues and publishes a static site that grounds every recommendation in first-party, GPS-matched photos.</p>
-        <a href="#">Visit the demo →</a>
+        <a href="https://github.com/jacovanderlaan/ai/tree/main/travel-curation">See how it's built →</a>
       </div>
       <div class="sample">
         <div class="badge">Pattern · publishing</div>
         <h3>A brain that publishes itself</h3>
         <p>One source of truth in a database; a website derived from it at build time. No CMS, no runtime database, no drift.</p>
-        <a href="#">Read the write-up →</a>
+        <a href="articles/a-brain-that-publishes-itself.html">Read the write-up →</a>
       </div>
       <div class="sample">
         <div class="badge">Pattern · personal data</div>
         <h3>Your photos are already a map</h3>
         <p>155k photos, the metadata already present, turned into a queryable geography — and matched to the places a guide recommends.</p>
-        <a href="#">Read the write-up →</a>
+        <a href="articles/your-photos-are-already-a-map.html">Read the write-up →</a>
       </div>
     </div>
   </div>
@@ -293,6 +302,19 @@
           <li>You want a vendor to own your stack so you don't have to understand it.</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="wrap">
+    <div class="section-eyebrow">Writing</div>
+    <h2 class="section-title">Practical pieces on structure, knowledge &amp; AI</h2>
+    <p class="section-lede">The recipe, free. Each piece takes one real, working system and shows the method behind it — so you can build your own.</p>
+    <div class="posts">
+      <a class="post" href="articles/your-photos-are-already-a-map.html"><span class="post-face">For knowledge workers</span><h3>Your Photos Are Already a Map (You Just Can&#x27;t Query Them Yet)</h3><p>I turned 155,000 photos into a queryable, geo-indexed library. The work wasn&#x27;t taking pictures. It was reading the metadata I already had.</p></a>
+      <a class="post" href="articles/a-brain-that-publishes-itself.html"><span class="post-face">For builders &amp; teams</span><h3>A Brain That Publishes Itself</h3><p>One source of truth in a database, a website derived from it at build time. No CMS, no runtime database, no drift.</p></a>
     </div>
   </div>
 </section>

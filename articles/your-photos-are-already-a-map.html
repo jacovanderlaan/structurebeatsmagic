@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Your Photos Are Already a Map (You Just Can&#x27;t Query Them Yet) — Structure Beats Magic</title>
+<meta name="description" content="I turned 155,000 photos into a queryable, geo-indexed library. The work wasn&#x27;t taking pictures. It was reading the metadata I already had."/>
+<meta property="og:title" content="Your Photos Are Already a Map (You Just Can&#x27;t Query Them Yet)"/>
+<meta property="og:description" content="I turned 155,000 photos into a queryable, geo-indexed library. The work wasn&#x27;t taking pictures. It was reading the metadata I already had."/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="../assets/sbm-og-card.svg"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For knowledge workers</p>
+  <h1>Your Photos Are Already a Map (You Just Can&#x27;t Query Them Yet)</h1>
+  <p class="subtitle">I turned 155,000 photos into a queryable, geo-indexed library. The work wasn&#x27;t taking pictures. It was reading the metadata I already had.</p>
+  <div class="byline">By Jaco van der Laan · 2026-06-29</div>
+  <article>
+  <p><em>I turned 155,000 photos into a queryable, geo-indexed library. The work wasn't taking pictures. It was reading the metadata I already had.</em></p>
+<hr/>
+<h2>The folder I couldn't ask anything</h2>
+<p>I have about 155,000 photos. Fifty years of them, from scanned 1970s prints to last week's phone shots, all sitting in a tidy folder tree organised by year and month. By any normal standard, that's <em>managed</em>. Backed up, sorted, named. A model citizen of a photo collection.</p>
+<p>And I couldn't ask it a single useful question.</p>
+<p>"Show me every photo I took within walking distance of that restaurant in Ortigia." "Which of these were taken in Sicily versus Sardinia?" "How many photos do I actually have from the 2018 trips?" None of it. The folder knew the <em>date</em> a file was created and nothing else I could act on. Fifty years of where I'd been, what I'd seen, who I was with — and the only thing the system could tell me was the filename.</p>
+<p>That's the quiet failure of a photo library. It looks like an asset. It behaves like a drawer.</p>
+<h2>Archive versus source, again</h2>
+<p>This is the same trap I keep walking into, in my own systems and in every organisation I've worked with. You treat the records you've piled up as <em>archive</em> — kept, in case — when they're actually <em>source</em> — readable, at scale, to answer questions you haven't asked yet.</p>
+<p>The difference is never the content. It's whether anything can read it.</p>
+<p>A folder of images is archive. The same images as rows in a table — each with a location, a place name, the tags already attached, the time — are source. Identical photos. Completely different asset. One is a thing you keep. The other is a thing you can <em>use</em>. And as with my <a href="#">bookshelf</a> and my <a href="#">decade of trips</a>, the surprise was that I didn't have to create the information. It was already there. I just hadn't pointed anything at it.</p>
+<h2>The data was hiding in plain sight</h2>
+<p>Here's the part that's almost funny. My first attempt to read the collection came back nearly empty. The location data — gone. Tags — gone. Almost every photo looked like it carried nothing but a timestamp. I nearly concluded the collection was a write-off, that the metadata had been stripped years ago in some migration.</p>
+<p>It hadn't. I was reading the wrong place.</p>
+<p>Every photo had its real metadata sitting in small companion files right next to it — the GPS, the tags, the authorship, the camera details — written there during an earlier migration and never folded back into the images. My first reader only looked <em>inside</em> the image files. The actual gold was in the files beside them, which I'd been walking straight past. The moment I read the companions instead, the collection lit up: tags on 89% of photos, location on far more than I expected, decades of structure that had been one directory-listing away the whole time.</p>
+<p>The lesson generalises hard, and it's cost me before: <strong>before you decide the data isn't there, make sure you're reading where it actually lives.</strong> "We don't have that data" is, more often than anyone admits, "we didn't open the right file."</p>
+<h2>The 8% that became 81%</h2>
+<p>Reading the companions got me real GPS on a big chunk of the library — but not all of it. Plenty of older photos, and plenty of everyday ones, had a time but no location. So I reached for a second source I already owned: my own location history. If I know <em>when</em> a photo was taken, and I have a near-minute-by-minute record of <em>where I was</em>, I can place the photo by matching the two on time.</p>
+<p>Simple idea. One vicious detail.</p>
+<p>The location history is stored in universal time. The photo's clock is <em>local wall-clock</em> — whatever the camera thought the time was, wherever I was standing. At home those are an hour apart and nobody notices. But on a road trip through the American West, the photo says "noon" meaning local noon, while my location history's "noon" is nine hours away in Amsterdam time. Match them naively and you don't get a small error — you place the photo on the wrong continent. My Oregon hikes would have landed in the Netherlands.</p>
+<p>The fix was to stop assuming a timezone and start <em>deriving</em> it: figure out roughly where each trip was from the data itself, infer the offset from that, and let the two clocks line up before matching. Once that was right, the everyday gap closed dramatically — tens of thousands of previously locationless photos snapped onto the map, each one placed within a few minutes of where I actually stood.</p>
+<p>By the end: of 155,000 photos, 125,000 carried a location and 122,000 resolved to a named place. A collection that had effectively <em>no</em> queryable geography became one where four out of five photos know where they were taken. None of it from new pictures. All of it from two records I already had, finally pointed at each other.</p>
+<h2>The honest, boring middle</h2>
+<p>Two failures worth naming, because a pipeline that hides them is lying.</p>
+<p><strong>The everyday photos resisted.</strong> My location-matching leaned on trips to work out the timezone — and most location-less photos aren't from trips, they're from ordinary days at home. Those I could only place coarsely, and many I left unplaced rather than guess. I'd rather have a known gap than a confident wrong answer. The travel photos — the ones I actually wanted — matched beautifully, because trips are exactly where the trip-based logic works. The system is honest about where it's strong.</p>
+<p><strong>The first version of the naming step nearly killed the machine.</strong> Turning coordinates into place names meant comparing every located photo against a global list of cities. My first attempt did it the obvious, naive way and spilled over 300 gigabytes of scratch data before collapsing, half an hour in. The rewrite — collapse the photos to distinct locations first, only compare each against nearby cities — did the same job in six seconds. Same result, four orders of magnitude apart. The naive version wasn't <em>wrong</em>; it just didn't respect the shape of the data. Most performance problems are like that.</p>
+<p>Read the companions, match the two clocks correctly, name the places without melting the machine. That's the whole middle.</p>
+<h2>What you get when the folder can talk</h2>
+<p>Now the collection is a table, and the table is the product. Not any single photo — the <em>set</em>, sitting where one query can reach all of it at once.</p>
+<p>The first thing I did was the question I'd wanted for years. I had a curated little guide to places to eat and stay in a Sicilian town, and a separate pile of 155,000 photos. I asked the two to meet: <em>for each recommended venue, do I have a photo I took within 150 metres of it?</em> Forty-eight matches came back — my own photos, from a trip three years ago, standing 60 metres from restaurants the guide recommends. Not stock imagery. Not someone else's idea of the place. Mine. Proof I was there, automatically attached to the recommendation.</p>
+<p>That's the difference between a travel page that <em>looks</em> generic and one that's <em>grounded</em> — and the grounding cost me nothing to produce, because the photos already existed. The folder could finally answer the question. It always had the answer. It just couldn't speak.</p>
+<h2>The move, every time</h2>
+<p>Three systems now, same shape. A <a href="#">bookshelf</a> that became a knowledge base. A <a href="#">decade of trips</a> that became a database. And now fifty years of photos that became a map. Each time I expected the hard part to be <em>making</em> something — writing summaries, tagging, curating. Each time the hard part was <em>extraction</em>: getting records I already owned out of the shape that hid them and into the shape that could be read.</p>
+<p>The records were never the problem. The shape was.</p>
+<p>Your photos are the same. They're not an archive of where you've been. They're a map of it — already drawn, already detailed, sitting one read away from being a thing you can actually ask. The pictures aren't the asset. The structure you can finally query is.</p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

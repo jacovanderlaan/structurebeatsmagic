@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+"""
+Build SBM article pages from markdown drafts -> articles/*.html + a writing index.
+
+Source of truth = the markdown drafts (you keep writing in markdown). This script
+renders them into styled static HTML that matches the hub. "A brain that publishes
+itself", applied to the hub's own writing.
+
+Usage:
+    python build_articles.py
+    SBM_DRAFTS="W:/.../drafts" python build_articles.py   # override source
+
+Drafts must have YAML frontmatter with at least `title`; optional `subtitle`,
+`face`, `created`. Only files listed in ARTICLES (or, if empty, all dated drafts
+matching the SBM series) are published — so unrelated drafts in the folder stay
+private.
+"""
+from __future__ import annotations
+
+import os
+import re
+import html
+from pathlib import Path
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
+HERE = Path(__file__).parent
+DRAFTS = Path(os.environ.get(
+    "SBM_DRAFTS",
+    "W:/data/products/mdde/output/articles/drafts",
+))
+OUT = HERE / "articles"
+
+# Explicit allow-list: only these drafts publish to the SBM hub (filename stem).
+# Keeps the shared drafts folder from leaking unrelated/MDDE pieces.
+ARTICLES = [
+    "2026-06-29_Your-Photos-Are-Already-a-Map",
+    "2026-06-29_A-Brain-That-Publishes-Itself",
+]
+
+CSS = "../assets/article.css"
+
+
+def split_frontmatter(text: str) -> tuple[dict, str]:
+    if text.startswith("---"):
+        end = text.find("\n---", 3)
+        if end != -1:
+            fm_raw = text[3:end].strip()
+            body = text[end + 4:].lstrip("\n")
+            meta = {}
+            if yaml:
+                try:
+                    meta = yaml.safe_load(fm_raw) or {}
+                except Exception:
+                    meta = {}
+            return meta, body
+    return {}, text
+
+
+def md_to_html(md: str) -> str:
+    """Minimal, dependency-free markdown -> HTML for our article style.
+
+    Supports: # ## ### headings, **bold**, *italic*, [text](url), --- rules,
+    paragraphs. Deliberately small — our drafts use a narrow markdown subset.
+    """
+    # strip the leading H1 (we render title from frontmatter) + leading italic lede
+    lines = md.split("\n")
+    out: list[str] = []
+    para: list[str] = []
+
+    def flush():
+        if para:
+            joined = " ".join(para).strip()
+            if joined:
+                out.append(f"<p>{inline(joined)}</p>")
+            para.clear()
+
+    def inline(s: str) -> str:
+        s = html.escape(s, quote=False)
+        s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
+        s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
+        s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
+        return s
+
+    first_h1_skipped = False
+    for ln in lines:
+        st = ln.strip()
+        if not st:
+            flush()
+            continue
+        if st.startswith("# ") and not first_h1_skipped:
+            first_h1_skipped = True
+            continue
+        if st == "---":
+            flush()
+            out.append("<hr/>")
+            continue
+        if st.startswith("### "):
+            flush(); out.append(f"<h3>{inline(st[4:])}</h3>"); continue
+        if st.startswith("## "):
+            flush(); out.append(f"<h2>{inline(st[3:])}</h2>"); continue
+        if st.startswith("# "):
+            flush(); out.append(f"<h2>{inline(st[2:])}</h2>"); continue
+        para.append(st)
+    flush()
+    return "\n".join(out)
+
+
+PAGE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>{title} — Structure Beats Magic</title>
+<meta name="description" content="{subtitle}"/>
+<meta property="og:title" content="{title}"/>
+<meta property="og:description" content="{subtitle}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="../assets/sbm-og-card.svg"/>
+<link rel="stylesheet" href="{css}"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">{face}</p>
+  <h1>{title}</h1>
+  <p class="subtitle">{subtitle}</p>
+  <div class="byline">By Jaco van der Laan{date}</div>
+  <article>
+  {body}
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
+"""
+
+
+def face_label(meta: dict) -> str:
+    f = str(meta.get("face", ""))
+    if f.lower().startswith("b2c"):
+        return "For knowledge workers"
+    if f.lower().startswith("b2b"):
+        return "For builders &amp; teams"
+    return "Structure Beats Magic"
+
+
+def main() -> None:
+    OUT.mkdir(exist_ok=True)
+    cards = []
+    for stem in ARTICLES:
+        src = DRAFTS / f"{stem}.md"
+        if not src.exists():
+            print(f"  ! missing draft: {src}")
+            continue
+        meta, body = split_frontmatter(src.read_text(encoding="utf-8"))
+        title = str(meta.get("title", stem)).strip().strip('"')
+        subtitle = str(meta.get("subtitle", "")).strip().strip('"')
+        created = str(meta.get("created", "")).strip().strip("'\"")
+        date = f" · {created}" if created else ""
+        slug = re.sub(r"^\d{4}-\d{2}-\d{2}_", "", stem).lower()
+        out_path = OUT / f"{slug}.html"
+        out_path.write_text(PAGE.format(
+            title=html.escape(title, quote=True),
+            subtitle=html.escape(subtitle, quote=True),
+            face=face_label(meta),
+            date=date,
+            body=md_to_html(body),
+            css=CSS,
+        ), encoding="utf-8")
+        print(f"  + articles/{slug}.html")
+        cards.append((created, title, subtitle, f"articles/{slug}.html", face_label(meta)))
+
+    # write a snippet the homepage can include (manual paste or future include)
+    cards.sort(reverse=True)
+    snip = []
+    for _d, title, subtitle, href, face in cards:
+        snip.append(
+            f'      <a class="post" href="{href}">'
+            f'<span class="post-face">{face}</span>'
+            f'<h3>{html.escape(title)}</h3>'
+            f'<p>{html.escape(subtitle)}</p></a>'
+        )
+    (OUT / "_cards.html").write_text("\n".join(snip), encoding="utf-8")
+    print(f"  + articles/_cards.html ({len(cards)} cards)")
+
+
+if __name__ == "__main__":
+    main()

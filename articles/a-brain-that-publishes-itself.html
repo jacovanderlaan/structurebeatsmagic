@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>A Brain That Publishes Itself — Structure Beats Magic</title>
+<meta name="description" content="One source of truth in a database, a website derived from it at build time. No CMS, no runtime database, no drift."/>
+<meta property="og:title" content="A Brain That Publishes Itself"/>
+<meta property="og:description" content="One source of truth in a database, a website derived from it at build time. No CMS, no runtime database, no drift."/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="../assets/sbm-og-card.svg"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>A Brain That Publishes Itself</h1>
+  <p class="subtitle">One source of truth in a database, a website derived from it at build time. No CMS, no runtime database, no drift.</p>
+  <div class="byline">By Jaco van der Laan · 2026-06-29</div>
+  <article>
+  <p><em>One source of truth in a database, a website derived from it at build time. No CMS, no runtime database, no drift.</em></p>
+<hr/>
+<h2>Two worlds that shouldn't touch</h2>
+<p>I had a curation engine and I needed a website. The engine lives in a database — venues, the evidence behind each recommendation, a scoring model, the photos I'd matched to each place. The website needed to be cheap, fast, and crawlable. And the obvious ways to connect the two are all bad.</p>
+<p>Put the database behind the website and you're running a server forever, for content that changes once a week. Copy the content into the website by hand and you've created two sources of truth that will drift apart by the second edit. Reach for a CMS and you've added a third system that owns a copy of everything and a monthly bill to match.</p>
+<p>The data world (where the thinking happens — SQL, scoring, the messy enrichment) and the web world (where the publishing happens) are genuinely different ecosystems. The mistake is letting them marry. What you want is one clean seam between them, crossed in exactly one direction.</p>
+<h2>The brain is the source; the site is a view</h2>
+<p>So I made a rule and held it: <strong>the database is the single source of truth, and everything on the site is derived from it at build time.</strong> Nothing the visitor sees is authored in the website. It's all a projection of the brain, regenerated on every publish.</p>
+<p>The seam is a single build-time step: a small script runs the queries and writes one plain data file. The site reads that file and nothing else. The database never goes near the web toolchain; the web toolchain never learns SQL. One script, crossing the gap once, in one direction.</p>
+<p>That gives you a property that's worth more than it sounds: the published site is <em>reproducible from source on a clean machine</em>. Wipe everything, rebuild the brain from its inputs, run the export, build the site — and you get byte-for-byte the same thing. There is no precious hand-tuned state living only in production, because production <em>is</em> a build artefact. If you can't delete it and regenerate it, you don't understand it.</p>
+<h2>The discipline that makes it work</h2>
+<p>The honest part is the constraint this imposes, and it's a good constraint. Because the site is regenerated from the brain every time, anything you change <em>only</em> in the published output is lost on the next build. There's no editing the live page. If you want a change, you change the source — the data, or the inputs that draft from it — and rebuild.</p>
+<p>That sounds like a limitation until you've lived the alternative. The alternative is a website where someone fixed a typo directly in production two years ago, and now nobody can safely regenerate the site because they'll lose edits no one wrote down. Drift. The slow divergence between what your system <em>says</em> is true and what's actually deployed. The build-from-source rule makes drift structurally impossible: there is only one place to make a change, so there is only one truth.</p>
+<p>The cost is real — a change needs a rebuild, not a live edit — and for editorial content on a weekly cadence, that cost is nothing. You trade per-request flexibility you don't need for reproducibility you can't get any other way.</p>
+<h2>Provenance is part of the data, not the decoration</h2>
+<p>One more thing the brain owns that a CMS would fumble: honesty about sources. A recommendation links to a booking only where a real partnership exists — otherwise the page shows an honest "no link yet" rather than a fabricated one. A photo is <em>mine</em> where I actually took one nearby, ranked above generic stock, and credited as my own. None of that is presentation logic bolted on at the end. It travels with the data, out of the same export, because provenance is a fact about the venue, not a styling choice. When the source of truth carries its own provenance, the published page can't quietly launder it.</p>
+<h2>The shape, not the stack</h2>
+<p>I'm deliberately not naming the database, the site generator, or the host, because the moment you fixate on those you've missed it. Swap any of them. The pattern survives, because the pattern isn't the tools — it's the <em>shape</em>:</p>
+<p><strong>One source of truth. One build-time seam. A published artefact you can always throw away and regenerate.</strong></p>
+<p>That's the same move as every other system I trust. The <a href="#">photos that became a queryable map</a> and the <a href="#">books that became a knowledge base</a> are both <em>brains</em> — structured sources you can ask questions of. This is just what happens when one of those brains needs to face the public: it doesn't get copied into a website. It <em>projects</em> one, on demand, from the truth it already holds.</p>
+<p>A brain that publishes itself. The structure does the work; the site is only its shadow.</p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
