@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Your Bookshelf Is Already a Knowledge Base (You Just Can&#x27;t Query It Yet) — Structure Beats Magic</title>
+<meta name="description" content="I turned 271 books I own into 13.8 million words of queryable text. The work wasn&#x27;t reading. It was extraction."/>
+<meta property="og:title" content="Your Bookshelf Is Already a Knowledge Base (You Just Can&#x27;t Query It Yet)"/>
+<meta property="og:description" content="I turned 271 books I own into 13.8 million words of queryable text. The work wasn&#x27;t reading. It was extraction."/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="../assets/sbm-og-card.svg"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Structure Beats Magic</p>
+  <h1>Your Bookshelf Is Already a Knowledge Base (You Just Can&#x27;t Query It Yet)</h1>
+  <p class="subtitle">I turned 271 books I own into 13.8 million words of queryable text. The work wasn&#x27;t reading. It was extraction.</p>
+  <div class="byline">By Jaco van der Laan · 2026-06-29</div>
+  
+  <article>
+  <p><em>I turned 271 books I own into 13.8 million words of queryable text. The work wasn't reading. It was extraction.</em></p>
+<hr/>
+<h2>The shelf I couldn't ask anything</h2>
+<p>I own a lot of books on how to model data. Inmon on the data lakehouse. Linstedt and Olschimke on Data Vault 2.0. David C. Hay's <em>Data Model Patterns</em>. Kimball. Snowflake, dbt, observability, data quality. Years of buying the canon, one title at a time, because each one had a piece of the argument I was trying to assemble for myself.</p>
+<p>And I had read almost none of them across each other.</p>
+<p>That's the quiet failure of a personal library. Each book is a sealed room. You can be <em>in</em> one at a time. You cannot stand in the hallway and ask all of them the same question at once — "where do these authors disagree about what a 'business key' is?" — because the books don't talk, and neither does the reader they live in. They're an archive. Stuff I kept. Not a source I could query.</p>
+<p>The thing that finally forced the issue was mundane: my e-reader app announced it was shutting down. The familiar way of getting a book I'd bought onto my own disk was disappearing, with a date attached. I had a narrow window to either hold my own copies of the books I'd paid for — or quietly lose the ability to.</p>
+<p>So I sat down to solve "back up the books I own," and I came out the other side with something I hadn't planned: my entire bookshelf as a single, queryable knowledge base.</p>
+<h2>Archive versus source</h2>
+<p>This is the same trap I keep finding in my own systems, and in every organisation I've worked in. You treat the records you've accumulated as <em>archive</em> — things you keep, in case — when they're actually <em>source</em> — things you can read, at scale, to answer questions you haven't asked yet.</p>
+<p>The difference is never the content. The difference is whether anything can read it.</p>
+<p>A book sitting in a proprietary reader is archive. The same book as plain text in a folder, sitting next to 270 others, is source. Identical words. Completely different asset. One is a thing you own; the other is a thing you can <em>use</em>. The whole move — the only move, really — is getting from the first to the second.</p>
+<p>And here's the part that surprised me: I didn't have to write anything. No summaries, no notes, no re-reading. The knowledge was already there, paid for, on my shelf. The work wasn't <em>authoring</em>. It was <em>extraction</em>. (If that phrasing sounds familiar, it's the same lesson I hit turning <a href="#">a decade of daily notes into a trip database</a> — the records were already structured; I just hadn't pointed anything at them.)</p>
+<h2>The honest, boring middle</h2>
+<p>I'll be deliberately vague about the mechanics, because the mechanics aren't the point and some of them are specific to a fight with one particular app. The ground rule was simple and worth stating: these are books I bought, freed for my own use, kept on my own disk — not shared, not redistributed. The interesting question was never "can I get the bytes." It was "what's the <em>shape</em> that makes them useful." So here's the shape.</p>
+<p>Three steps. Each book goes: <strong>own the file → free the text → normalise to plain markdown.</strong> Out the other end: one `.md` file per book, named `Author - Title`, all in one folder. 84 megabytes. 13.8 million words. Two hundred and seventy-one books.</p>
+<p>The honest part is the failures, and there were two kinds worth naming.</p>
+<p><strong>Format matters more than you'd think.</strong> I assumed I could extract text from the print-ready files — the ones that look like the page. Wrong. Those render the page as <em>images</em>: beautiful, and completely opaque to a machine. Twenty-one characters of real text in five pages. The reflowable format — the one that looks worse to a human — carries the actual text, cleanly. The lesson generalises hard: <em>the version that looks best to you is often the version that's useless to a machine.</em> Fidelity for the eye and fidelity for the query are different axes, and people reach for the wrong one constantly.</p>
+<p><strong>Some sources just won't come.</strong> Of my downloads, a chunk were in an older format whose protection I couldn't lift. Re-fetching them didn't help — the supplier only had the old version. So they failed, predictably, every time. I logged exactly which ones, set them aside, and moved on. A pipeline that pretends it captured everything is lying; a pipeline that tells you precisely what it dropped is trustworthy. I'd rather have 271 books and a known gap than a vague "most of them."</p>
+<p>That's the whole middle. Own, free, normalise — and keep a receipt for what didn't make it.</p>
+<h2>What you get when the shelf can talk</h2>
+<p>Now the folder exists, and the folder is the product. Not any single book — the <em>set</em>, sitting where one thing can read all of it at once.</p>
+<p>I pointed an AI assistant at it. The questions I'd never been able to ask my own library suddenly answered themselves:</p>
+<p>- <em>Across every data-modelling author I own, where do they actually disagree about the same concept?</em> - <em>Summarise the three positions on temporal/bi-temporal modelling and tell me which one each author would defend.</em> - <em>I'm about to talk to someone who wrote one of these — what's their core argument, in their words, and where do I push back?</em></p>
+<p>None of that is a feature of any reading app. It's a property of the <em>corpus</em> — of having freed the text and put it somewhere a model can range over the whole thing at once. The app gave me 271 sealed rooms. The folder gives me the hallway.</p>
+<p>This is the formula I keep coming back to, and it's not magic: <strong>structure plus data plus AI gives you intelligence.</strong> The AI is the least interesting term. The data was always there. The thing that unlocked it was the unglamorous, almost clerical act of giving it <em>structure a machine could enter</em> — one consistent format, one folder, one place. The intelligence was waiting on the structure, not the model.</p>
+<h2>The part that isn't about books</h2>
+<p>I do this for organisations, and it's always the same shape. Walk into a bank's data function and the shelf is enormous: years of data dictionaries, model documentation, policy PDFs, regulatory submissions, the email threads where the <em>real</em> definition of a "customer" was actually decided. All of it owned. Almost none of it queryable. When the regulator asks "where did this number come from and who agreed the rule," the answer lives in 271 sealed rooms and nobody can stand in the hallway.</p>
+<p>Everyone in that building wants to talk about the AI. Almost nobody has done the boring work first — turning the archive into a source: one shape, one place a machine can enter, and an honest account of what's missing. Skip that, and the AI just hallucinates confidently over a library it can't actually read. Do it, and the same questions I asked my bookshelf become the questions a risk team has been unable to answer for years.</p>
+<p>My bookshelf is the smallest possible version of that project — a weekend, one person, a deadline. But it taught me, again, the thing I already believed: the magic isn't the model. The magic is structure. The books were always there. I just finally gave them a shape I could ask a question of.</p>
+<p>That's the whole job, scaled up or down. Most organisations are sitting on a far richer shelf than mine and reaching straight for the AI. The order is backwards. Give the archive a shape a machine can enter, be honest about what's missing — <em>then</em> point the model at it. The intelligence was already in the building.</p>
+<hr/>
+<p><em>This is a sibling to <a href="#">Your Trips Are Already Structured Data</a> — same lesson, different pile of records. If your own systems are full of "archive" you've never been able to query, that's not a tooling problem. It's a structure problem — and it's the one I help organisations fix.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

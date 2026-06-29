@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>A Planner That Knows Where You&#x27;ve Already Been — Structure Beats Magic</title>
+<meta name="description" content="Part 2: The same structured trip data that fed my sister&#x27;s site also tells me where to go next — scored by what I love, what I&#x27;d never touch, and what I&#x27;ve already worn out."/>
+<meta property="og:title" content="A Planner That Knows Where You&#x27;ve Already Been"/>
+<meta property="og:description" content="Part 2: The same structured trip data that fed my sister&#x27;s site also tells me where to go next — scored by what I love, what I&#x27;d never touch, and what I&#x27;ve already worn out."/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="../assets/sbm-og-card.svg"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Structure Beats Magic</p>
+  <h1>A Planner That Knows Where You&#x27;ve Already Been</h1>
+  <p class="subtitle">Part 2: The same structured trip data that fed my sister&#x27;s site also tells me where to go next — scored by what I love, what I&#x27;d never touch, and what I&#x27;ve already worn out.</p>
+  <div class="byline">By Jaco van der Laan · 2026-06-29</div>
+  
+  <article>
+  <p><em>Part 2: The same structured trip data that fed my sister's site also tells me where to go next — scored by what I love, what I'd never touch, and what I've already worn out.</em></p>
+<hr/>
+<h2>The recommendation problem, in travel form</h2>
+<p>In <a href="#">Part 1</a> I turned a decade of daily notes and tens of thousands of photos into a structured trip database — trip, day, activity, place — without writing a single new trip report. That solved the <em>backward</em> problem: what have we done.</p>
+<p>This part is the <em>forward</em> one: where should we go next. And travel planners get this consistently, almost comically, wrong. Ask a typical "AI trip planner" for a Greek island and it suggests Santorini — the single most overcrowded island in the Aegean, the exact thing I wrote "avoid" next to in my own notes. It matched on <em>Greek island</em>. It had no idea what I'd refuse.</p>
+<p>That's the same failure I've written about before in a different domain: personalization is built on one verb, <em>like</em>, and has no representation for <em>never</em>. A planner worth trusting needs three inputs, not one — what you love, what you'd never touch, and what you've already done to death. I had all three sitting in structured form. So I wired them together.</p>
+<h2>Three signals, all already on disk</h2>
+<p><strong>What I love</strong> lives in a preferences file I'd maintained for other reasons — scored destination types and countries. Islands 0.95. National parks 0.95. Cities with water 0.95. Cultural cities 0.9. Not vibes — numbers.</p>
+<p><strong>What I'd never touch</strong> was hiding in the <em>notes</em> field of that same file: "avoid overcrowded islands like Santorini/Mykonos." A loader mines those "avoid…" cues and stores Santorini and Mykonos as explicit <strong>negative</strong> preferences — not low scores, vetoes.</p>
+<p><strong>What I've already done</strong> I don't have to declare at all — it's derivable. Part 1's trip database already knows every country and city I've set foot in. A second pass aggregates it: France 18 times, Italy 16, the United States 15, across 29 countries and 642 places. Home (Netherlands, Rotterdam, Amsterdam) is filtered out — it's not a "destination." Everything visited is marked <em>revisit-OK</em>, because having been somewhere shouldn't ban it; it should just stop the planner from pitching Sicily to me as a thrilling discovery.</p>
+<p>Three tables. None of them written from scratch for the planner — two already existed, one is derived from data I built in Part 1. That reuse is not a coincidence. It's what a real backbone buys you.</p>
+<h2>Affinity: a score, then a veto</h2>
+<p>For any candidate destination, the planner computes an affinity score. Matching positive preferences lift it. Priority lifts it — a bucket-list flag counts more than a passing "medium." Already-visited nudges it down a little (revisit, not new). And an anti-preference doesn't nudge — it <em>slams</em> the score down, because it's a veto wearing the costume of a weight.</p>
+<p>Run it across my wishlist and the ranking comes out exactly right:</p>
+<p>``` 1.00  New Zealand (bucket_list) 0.89  Milos      (Islands, high)   ⚠ avoid: Santorini; Mykonos 0.89  Naxos      (Islands, high)   ⚠ avoid: Santorini; Mykonos 0.89  Folegandros(Islands, high)   ⚠ avoid: Santorini; Mykonos 0.75  Taiwan     (country, medium) ```</p>
+<p>New Zealand tops it — bucket-list, national parks, the whole profile lights up. The non-touristy Greek islands cluster just behind, each carrying the Santorini/Mykonos caveat as a visible flag, not a buried assumption. The planner is reasoning with my actual taste, including the half most systems can't represent.</p>
+<h2>Then — and only then — the model</h2>
+<p>Here's where AI finally earns its place, after all the structure has done its work. For the top candidate, the planner assembles a <strong>facts-only brief</strong>: the destination, why it's on my list, the avoid-notes, my matching preferences, the actual travel books on my shelf (Kinfolk's <em>Slower Ways to See the World</em>, Lonely Planet's hiking guide), and a novelty check against where I've been. Then a writer model turns that brief into a pitch and a loose day-by-day outline — in my voice, under a grounding contract that forbids inventing specific venues, prices, or opening hours. Suggestions are framed as suggestions. The avoid-list is honoured.</p>
+<p>The model writes the <em>prose</em>. It does not choose the destination, invent the preferences, or decide what I've already seen. By the time it's invoked, every judgement that needs to be <em>mine</em> has already been made — deterministically, from my own data. The model is the last mile, not the engine.</p>
+<p>That ordering is the entire trick. Most "AI planners" lead with the model and bolt facts on afterward, which is why they hallucinate a hotel and pitch you Santorini. Lead with the structure — scored preferences, mined vetoes, derived exclusions — and the model inherits good judgement instead of having to fake it.</p>
+<h2>Why the same backbone serves three masters</h2>
+<p>Step back and look at what one DuckDB file now does. The <em>visited</em> side exports curated trips to my sister's site. The <em>same</em> trip records derive the exclusions for the <em>wishlist</em> side. The <em>same</em> scored preferences that rank the wishlist could just as well curate a "places we haven't been but want to" page on my own site. One model, one voice, three consumers: the exchange, the planner, and the eventual site.</p>
+<p>I didn't plan three products. I built one honest structure and the products fell out of it. That's the quiet compounding return of getting the shape right: you stop building features and start <em>deriving</em> them.</p>
+<h2>The line, again</h2>
+<p>The model in this story writes maybe a hundred words of itinerary. Everything that makes those hundred words <em>trustworthy</em> happens before it runs — in the scored preferences, the mined anti-preferences, the exclusions derived from a decade of trips. <strong>The magic isn't in the model. It's in the structure you give it.</strong></p>
+<p>A travel planner that knows where you've already been, and what you'd never choose, isn't a smarter model. It's the same model, finally handed the structure it needed to stop guessing. Your trips were always structured data. Read forward, they don't just tell you where you went. They tell you where to go.</p>
+<p><em>Part 1 turned the past into a queryable backbone. Part 2 pointed it at the future. The constant across both: nothing here was magic. It was structure — and structure is the part you can actually build.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

@@ -336,3 +336,13 @@
 .cap .row span{color:var(--ink-soft)}
 .cap-naming{font-family:ui-monospace,Consolas,monospace;font-size:.9rem;background:#0f172a;color:#cfe0ef;border-radius:8px;padding:.6rem .9rem;display:inline-block;margin:.3rem 0}
 .cap-naming b{color:var(--gold)}
+
+/* about / personal strip */
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center}
+@media(max-width:760px){.about{grid-template-columns:1fr}}
+.about .about-photos{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.about .about-photos img{width:100%;height:170px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.about .about-photos img.tall{grid-row:span 2;height:100%}
+.about h2{font-size:clamp(1.5rem,3vw,2rem);margin:0 0 .8rem;letter-spacing:-.01em}
+.about p{color:var(--ink-soft);margin:0 0 1rem}
+.about .sig{font-weight:700;color:var(--ink)}
