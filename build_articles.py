@@ -43,6 +43,7 @@ ARTICLES = [
     "2026-06-29_Your-Trips-Are-Already-Structured-Data-Part-2",
     "2026-06-28_The-Filter-Youre-Missing-Anti-Interests",
     "2026-06-28_What-Youre-Not-Is-Also-Who-You-Are",
+    "2026-06-29_Stop-Prompting-Start-Directing",
     "2026-06-29_A-Brain-That-Publishes-Itself",
 ]
 
