@@ -231,7 +231,18 @@
   .ecol li{margin:.3rem 0}
   .ea{display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:1.5rem;font-weight:700}
   .share-note{text-align:center;max-width:60ch;margin:1.8rem auto 0;color:var(--ink-soft);font-size:1rem}
-</style>
+
+  /* play / lego */
+  .play{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
+  @media(max-width:760px){.play{grid-template-columns:1fr}}
+  .play .pt h3{font-size:1.5rem;margin:0 0 .8rem;letter-spacing:-.01em}
+  .play .pt p{color:var(--ink-soft);margin:0 0 1rem}
+  .play .pt .em{color:var(--ink);font-weight:600}
+  .bricks{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1.5rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .brick{padding:.55rem .9rem;border-radius:8px;font-size:.82rem;font-weight:700;color:#fff}
+  .b1{background:#2563eb}.b2{background:#b88a1b}.b3{background:#0f172a}.b4{background:#3b82f6}.b5{background:#1e40af}.b6{background:#475569}
+  .play-flow{text-align:center;margin-top:2rem;color:var(--ink-soft);font-size:1.05rem}
+  .play-flow strong{color:var(--ink)}</style>
 </head>
 <body>
 
@@ -324,6 +335,29 @@
       </div>
     </div>
     <p class="nl-foot">This needs a solid data model, sound architecture, and the right application of AI — with rules, skills, and document structure. It's the difference between a chatbot that forgets you and an assistant that's grounded in who you actually are. <strong>That's the next level — and it's exactly the discipline I bring.</strong></p>
+  </div>
+</section>
+
+<!-- PLAY / LEGO -->
+<section id="play">
+  <div class="wrap">
+    <div class="section-eyebrow">The mindset</div>
+    <h2 class="section-title">Play with the blocks first</h2>
+    <div class="play">
+      <div class="pt">
+        <h3>Like Lego — snap, try, rebuild.</h3>
+        <p>You don't plan a Lego model into existence; you <span class="em">play</span> with the bricks until something works. Data and AI are the same. The fastest way to learn what's possible is to <span class="em">tinker in your own life</span> — low stakes, instant feedback, real data you care about.</p>
+        <p>Every demo here started as play: a curious "could I…?" on a weekend. The personal sphere is the safest, richest sandbox there is.</p>
+        <p>And here's the move: <span class="em">in parallel</span>, the blocks that prove themselves at home get applied — step by step — in business and across organisations. Same bricks, bigger build.</p>
+      </div>
+      <div class="bricks">
+        <span class="brick b1">photos</span><span class="brick b2">rules</span><span class="brick b3">duckdb</span>
+        <span class="brick b4">calendar</span><span class="brick b5">AI</span><span class="brick b6">scans</span>
+        <span class="brick b2">taste</span><span class="brick b3">location</span><span class="brick b1">health</span>
+        <span class="brick b5">skills</span><span class="brick b4">finance</span><span class="brick b6">backup</span>
+      </div>
+    </div>
+    <p class="play-flow"><strong>Play personally → prove the block → apply in business.</strong> Curiosity at home becomes capability at work.</p>
   </div>
 </section>
 
