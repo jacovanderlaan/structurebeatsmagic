@@ -169,6 +169,32 @@
   .block p{margin:0;color:var(--ink-soft);font-size:.93rem}
   .block .eu{display:inline-block;margin-top:.6rem;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.05em}
   .sov-lede strong{color:var(--ink)}
+
+  /* personal domains (icon cards) */
+  .domains{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.1rem}
+  .domain{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);text-align:center;transition:transform .15s,border-color .15s}
+  .domain:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .domain .ic{width:46px;height:46px;margin:0 auto .9rem;display:block;color:var(--accent)}
+  .domain h3{margin:0 0 .4rem;font-size:1.08rem}
+  .domain p{margin:0;color:var(--ink-soft);font-size:.9rem}
+  .domain .fav{display:block;margin-top:.7rem;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold)}
+
+  /* system components */
+  .comp-hero{background:var(--navy);color:#e6edf6;border-radius:var(--radius);padding:2.4rem;margin-bottom:1.5rem;text-align:center;box-shadow:var(--shadow)}
+  .comp-hero .ce{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+  .comp-hero h3{color:#fff;font-size:1.4rem;margin:.2rem 0 .8rem}
+  .comp-hero p{color:#c4d0e0;max-width:54ch;margin:0 auto;font-size:1rem}
+  .cascade{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 0}
+  .cascade span{background:#13324a;color:#cfe0ef;border-radius:8px;padding:.4rem .8rem;font-size:.8rem;font-weight:600}
+  .cascade i{color:var(--gold);font-style:normal;font-weight:700}
+  .sources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+  .src{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.3rem;box-shadow:var(--shadow)}
+  .src .sh{font-weight:700;font-size:1rem;color:var(--ink)}
+  .src p{margin:.35rem 0 0;color:var(--ink-soft);font-size:.9rem}
+  .intent{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--radius);padding:1.8rem;margin-top:1.5rem;box-shadow:var(--shadow)}
+  .intent .ik{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+  .intent h3{margin:0 0 .6rem;font-size:1.25rem}
+  .intent p{margin:0;color:var(--ink-soft)}
 </style>
 </head>
 <body>
@@ -265,6 +291,37 @@
   </div>
 </section>
 
+<!-- SYSTEM COMPONENTS -->
+<section id="components">
+  <div class="wrap">
+    <div class="section-eyebrow">The system, in practice</div>
+    <h2 class="section-title">The components that make it work</h2>
+    <p class="section-lede">Principles are nothing without the pieces that carry them. These are the building blocks I actually run — and the spine that ties them together.</p>
+
+    <div class="comp-hero">
+      <div class="ce">The spine</div>
+      <h3>The daily note — your life, written by your data</h3>
+      <p>One note per day, largely <strong>auto-filled from your own data</strong> — where you were, what you spent, what you captured, how you slept. Then it rolls up, automatically, from day to week to month to year. A living record you barely have to write.</p>
+      <div class="cascade"><span>Day</span><i>→</i><span>Week</span><i>→</i><span>Month</span><i>→</i><span>Quarter</span><i>→</i><span>Year</span></div>
+    </div>
+
+    <div class="sources-grid">
+      <div class="src"><div class="sh">🏦 Bank transactions</div><p>A spending record is a life record — where you went, what you did, who you saw. One of the richest, most honest signals you own.</p></div>
+      <div class="src"><div class="sh">📄 Scans</div><p>Receipts and documents (e.g. via a scan app) quietly reconstruct what actually happened on a day — captured, not remembered.</p></div>
+      <div class="src"><div class="sh">📍 Location history</div><p>Your movements over years. With rules, raw coordinates become meaning: <em>at work</em>, <em>at the gym</em>, <em>on a trip</em> — context, automatically.</p></div>
+      <div class="src"><div class="sh">❤️ Health data</div><p>Steps, sleep, workouts from your phone (Health Connect) — the body's side of the story, folded into the same daily record.</p></div>
+      <div class="src"><div class="sh">✈️ Trips</div><p>Trip management reimagined — the useful idea behind apps like TripIt, rebuilt on your own data so you own it instead of renting it.</p></div>
+      <div class="src"><div class="sh">📸 Photos &amp; more</div><p>Photos, mail, calendar, highlights — every source a thread; the daily note is where they're woven together.</p></div>
+    </div>
+
+    <div class="intent">
+      <div class="ik">Intentions vs. realization</div>
+      <h3>Not just what you prefer — where you intend to go</h3>
+      <p>Document your <strong>intentions</strong> with AI, and the system can reflect them back against what your data shows actually happened — direction versus reality, gently. Not a scorecard, not pass/fail — a mirror that helps you steer. Your modeled self holds taste <em>and</em> intent.</p>
+    </div>
+  </div>
+</section>
+
 <!-- THE STACK -->
 <section id="stack">
   <div class="wrap">
@@ -321,6 +378,47 @@
       </div>
     </div>
     <p class="stack-note">A calendar entry, a photo's location, a CRM contact and a book highlight stop being four separate apps — and become one fact the system can reason over.</p>
+  </div>
+</section>
+
+<!-- PERSONAL DOMAINS -->
+<section id="domains">
+  <div class="wrap">
+    <div class="section-eyebrow">Personal productivity, by domain</div>
+    <h2 class="section-title">One method, every corner of life</h2>
+    <p class="section-lede">The same structure-first approach turns each area of life from a pile of stuff into a system that knows your taste — and your favourites.</p>
+    <div class="domains">
+      <div class="domain">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8l3.9 4.5-2.2 2.2-1.6-.4a.5.5 0 0 0-.5.8l1.6 2 2 1.6a.5.5 0 0 0 .8-.5l-.4-1.6 2.2-2.2 4.5 3.9a.5.5 0 0 0 .8-.5Z"/></svg>
+        <h3>Travel</h3>
+        <p>Trips reconstructed from photo GPS; recommendations filtered to your taste, not the tourist trail.</p>
+        <span class="fav">Favourites that fit you</span>
+      </div>
+      <div class="domain">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L8 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4l-1.5-2Z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        <h3>Photos</h3>
+        <p>155,000 images turned into a searchable, geo-indexed map of where you've been.</p>
+        <span class="fav">Your whole life, queryable</span>
+      </div>
+      <div class="domain">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 5-7"/></svg>
+        <h3>Finance</h3>
+        <p>Transactions structured and validated — spending you can actually see and reason about.</p>
+        <span class="fav">Clarity, not spreadsheets</span>
+      </div>
+      <div class="domain">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg>
+        <h3>Movie library</h3>
+        <p>AI that recommends films from your taste and what you've already seen — not generic "popular now".</p>
+        <span class="fav">Worth your evening</span>
+      </div>
+      <div class="domain">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6 .9-4.3 4.2 1 6L12 17l-5.4 2.6 1-6L3.3 9.4l6-.9L12 3Z"/></svg>
+        <h3>Favourites</h3>
+        <p>Across every area — your interests <em>and</em> anti-interests captured, so the system always knows what's truly <em>you</em>.</p>
+        <span class="fav">A modeled taste</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -441,6 +539,12 @@
         <h3>Your photos are already a map</h3>
         <p>155k photos, the metadata already present, turned into a queryable geography — and matched to the places a guide recommends.</p>
         <a href="articles/your-photos-are-already-a-map.html">Read the write-up →</a>
+      </div>
+      <div class="sample">
+        <div class="badge">Live demo · taste</div>
+        <h3>AI movie library</h3>
+        <p>Recommends films from your taste and the list of what you've already seen — focus from a modeled preference, not generic "popular now".</p>
+        <a href="#next-level">How the modelling works →</a>
       </div>
     </div>
   </div>
