@@ -98,6 +98,17 @@ def md_to_html(md: str) -> str:
             flush()
             out.append("<hr/>")
             continue
+        # figure shortcode:  [[figure: filename.png | optional caption]]
+        if st.startswith("[[figure:") and st.endswith("]]"):
+            flush()
+            inner = st[len("[[figure:"):-2].strip()
+            fn, _, cap = inner.partition("|")
+            fn = fn.strip()
+            cap = cap.strip()
+            cap_html = f"<figcaption>{inline(cap)}</figcaption>" if cap else ""
+            out.append(f'<figure class="article-fig"><img src="../assets/{fn}" '
+                       f'alt="{cap or fn}" loading="lazy"/>{cap_html}</figure>')
+            continue
         if st.startswith("### "):
             flush(); out.append(f"<h3>{inline(st[4:])}</h3>"); continue
         if st.startswith("## "):
@@ -119,7 +130,7 @@ PAGE = """<!doctype html>
 <meta property="og:title" content="{title}"/>
 <meta property="og:description" content="{subtitle}"/>
 <meta property="og:type" content="article"/>
-<meta property="og:image" content="../assets/sbm-og-card.svg"/>
+<meta property="og:image" content="{og_image}"/>
 <link rel="stylesheet" href="{css}"/>
 </head>
 <body>
@@ -132,6 +143,7 @@ PAGE = """<!doctype html>
   <h1>{title}</h1>
   <p class="subtitle">{subtitle}</p>
   <div class="byline">By Jaco van der Laan{date}</div>
+  {hero}
   <article>
   {body}
   </article>
@@ -171,11 +183,23 @@ def main() -> None:
         date = f" · {created}" if created else ""
         slug = re.sub(r"^\d{4}-\d{2}-\d{2}_", "", stem).lower()
         out_path = OUT / f"{slug}.html"
+        # optional hero image: frontmatter `hero_image:` (filename in assets/),
+        # with optional `hero_caption:`. Rendered after the byline.
+        hero = ""
+        hi = str(meta.get("hero_image", "")).strip().strip("'\"")
+        if hi:
+            cap = str(meta.get("hero_caption", "")).strip().strip("'\"")
+            cap_html = f'<figcaption>{html.escape(cap)}</figcaption>' if cap else ""
+            hero = (f'<figure class="article-hero"><img src="../assets/{hi}" '
+                    f'alt="{html.escape(title, quote=True)}" loading="eager"/>{cap_html}</figure>')
+        og_image = f"../assets/{hi}" if hi else "../assets/sbm-og-card.svg"
         out_path.write_text(PAGE.format(
             title=html.escape(title, quote=True),
             subtitle=html.escape(subtitle, quote=True),
             face=face_label(meta),
             date=date,
+            hero=hero,
+            og_image=og_image,
             body=md_to_html(body),
             css=CSS,
         ), encoding="utf-8")

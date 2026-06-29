@@ -42,3 +42,13 @@ article a{border-bottom:1px solid rgba(37,99,235,.25)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent) !important}
 
 footer{padding:3rem 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-faint);font-size:14px;margin-top:2rem}
+
+/* article hero image */
+.article-hero{margin:1.5rem 0 2.5rem}
+.article-hero img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(15,23,42,.07)}
+.article-hero figcaption{font-size:.85rem;color:var(--ink-faint);margin-top:.7rem;text-align:center;line-height:1.5}
+
+/* inline article figure (in-body, shortcode) */
+.article-fig{margin:2.5rem 0}
+.article-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(15,23,42,.07)}
+.article-fig figcaption{font-size:.85rem;color:var(--ink-faint);margin-top:.7rem;text-align:center;line-height:1.5}
