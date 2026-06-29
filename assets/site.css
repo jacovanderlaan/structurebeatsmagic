@@ -326,3 +326,13 @@
 .toc-title{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;text-align:center}
 
 .hero-proof{max-width:54ch;margin:1.4rem auto 0;color:var(--ink-soft);font-size:1.02rem;font-weight:500}
+
+/* capture types */
+.captures{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.cap{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.3rem;box-shadow:var(--shadow)}
+.cap .cgrp{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.cap .row{display:flex;gap:.5rem;margin:.35rem 0;font-size:.9rem}
+.cap .row code{font-family:ui-monospace,Consolas,monospace;color:var(--accent);font-size:.82rem;flex:0 0 92px}
+.cap .row span{color:var(--ink-soft)}
+.cap-naming{font-family:ui-monospace,Consolas,monospace;font-size:.9rem;background:#0f172a;color:#cfe0ef;border-radius:8px;padding:.6rem .9rem;display:inline-block;margin:.3rem 0}
+.cap-naming b{color:var(--gold)}
