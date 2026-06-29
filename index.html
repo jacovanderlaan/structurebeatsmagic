@@ -8,6 +8,8 @@
 <meta property="og:title" content="Structure Beats Magic" />
 <meta property="og:description" content="Knowledge Management, re-architected for the AI era. Structure + Data + AI + Rules + Skills → Systems." />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
 <style>
   :root{
     --bg:#f7f8fa; --surface:#fff; --ink:#0f172a; --ink-soft:#475569; --ink-faint:#94a3b8;
@@ -88,6 +90,34 @@
 
   footer{padding:3rem 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-faint);font-size:14px}
   footer .formula-mini{color:var(--ink-soft);font-weight:600;margin-bottom:.6rem}
+
+  /* figures / images */
+  figure{margin:2.5rem 0 0}
+  figure.bleed{margin:2.5rem auto 0;max-width:920px}
+  figure img{width:100%;height:auto;display:block;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line)}
+  figure figcaption{text-align:center;color:var(--ink-faint);font-size:.85rem;margin-top:.7rem}
+  .hero-figure{margin:2.5rem auto 0;max-width:760px}
+  .hero-figure img{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow)}
+
+  /* inline pipeline diagram */
+  .pipe{display:flex;align-items:stretch;gap:0;justify-content:center;flex-wrap:wrap;margin:2.5rem 0 0}
+  .pipe .stage{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem;text-align:center;box-shadow:var(--shadow)}
+  .pipe .stage .n{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  .pipe .stage h4{margin:.4rem 0 .3rem;font-size:1.05rem;color:var(--accent)}
+  .pipe .stage p{margin:0;font-size:.88rem;color:var(--ink-soft)}
+  .pipe .arrow{display:flex;align-items:center;color:var(--gold);font-size:1.6rem;font-weight:700;padding:0 .6rem}
+  @media(max-width:680px){.pipe{flex-direction:column}.pipe .arrow{transform:rotate(90deg);padding:.3rem 0}}
+  .pipe .scales{flex-basis:100%;text-align:center;color:var(--ink-faint);font-size:.85rem;margin-top:1rem}
+
+  /* who it's for / not for */
+  .fit{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}
+  @media(max-width:680px){.fit{grid-template-columns:1fr}}
+  .fit .col{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;box-shadow:var(--shadow)}
+  .fit .col.yes{border-top:3px solid var(--accent)}
+  .fit .col.no{border-top:3px solid var(--ink-faint)}
+  .fit .col h3{margin:0 0 .8rem;font-size:1.1rem}
+  .fit .col ul{margin:0;padding-left:1.1rem;color:var(--ink-soft)}
+  .fit .col li{margin:.5rem 0}
 </style>
 </head>
 <body>
@@ -99,6 +129,7 @@
       <a href="#principles">Principles</a>
       <a href="#implementations">Implementations</a>
       <a href="#samples">Proof</a>
+      <a href="#writing">Writing</a>
       <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises →</a>
     </nav>
   </div>
@@ -116,6 +147,9 @@
     <a class="btn btn-primary" href="#principles">See the principles</a>
     <a class="btn btn-ghost" href="#samples">See it working</a>
   </div>
+  <figure class="hero-figure">
+    <img src="assets/sbm-hero.svg" alt="Structure Beats Magic — the magic isn't in the model, it's in the structure you give it" loading="lazy" />
+  </figure>
 </div>
 
 <!-- UNIVERSAL PRINCIPLES -->
@@ -124,6 +158,16 @@
     <div class="section-eyebrow">Universal principles</div>
     <h2 class="section-title">The same architecture, at every scale</h2>
     <p class="section-lede">A second brain and a data warehouse are the same shape: <strong>source → integration → delivery</strong> — raw, cleaned, published. These principles don't change between a person and an organisation. Only the data does.</p>
+
+    <div class="pipe">
+      <div class="stage"><div class="n">Source</div><h4>Raw</h4><p>The records you already have — notes, files, mail, data — wherever they live.</p></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="n">Integration</div><h4>Cleaned &amp; structured</h4><p>Shaped, validated against rules, made consistent and queryable.</p></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="n">Delivery</div><h4>Published</h4><p>Answers, pages, decisions — output you can trust because it's engineered.</p></div>
+      <div class="scales">The same three steps run at every scale — a person, a team, an organisation.</div>
+    </div>
+
     <div class="principles">
       <div class="card"><div class="k">Structure</div><h3>Context lives in the structure</h3><p>Not in the prompt, not in the meeting. A connected, well-shaped knowledge base is what makes the rest work.</p></div>
       <div class="card"><div class="k">Data</div><h3>Records you own, made readable</h3><p>Archive becomes <em>source</em> the moment something can query it. The information is usually already there — unread.</p></div>
@@ -132,6 +176,16 @@
       <div class="card"><div class="k">Skills</div><h3>Repeatable capability</h3><p>Codified workflows and know-how, so a result is engineered — not improvised once and lost.</p></div>
       <div class="card" style="border-color:var(--gold)"><div class="k" style="color:var(--gold)">Systems</div><h3>The payoff</h3><p>Structure + data + AI + rules + skills compounds into a system — the difference between a toy and an instrument.</p></div>
     </div>
+
+    <figure class="bleed">
+      <img src="assets/sbm-formula.svg" alt="The formula: Structure + Data + AI + Rules + Skills leads to Systems, with Rules as the climax" loading="lazy" />
+      <figcaption>Everyone says “data + AI.” The missing word — the one that makes output reliable and explainable — is <strong>rules</strong>.</figcaption>
+    </figure>
+
+    <figure class="bleed">
+      <img src="assets/sbm-toy-vs-instrument.svg" alt="Without structure AI is a toy; with structure it becomes an instrument" loading="lazy" />
+      <figcaption>Without structure, AI is a toy: impressive once, unreliable twice. With structure, it becomes an instrument.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -209,6 +263,35 @@
         <h3>Your photos are already a map</h3>
         <p>155k photos, the metadata already present, turned into a queryable geography — and matched to the places a guide recommends.</p>
         <a href="#">Read the write-up →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="fit">
+  <div class="wrap">
+    <div class="section-eyebrow">A readiness filter, not a funnel</div>
+    <h2 class="section-title">Who this is for — and who it isn't</h2>
+    <p class="section-lede">Structure rewards the willing. The method works for people and teams ready to build a foundation — and genuinely doesn't for those looking for a magic box.</p>
+    <div class="fit">
+      <div class="col yes">
+        <h3>This is for you if…</h3>
+        <ul>
+          <li>You want results that are <strong>repeatable</strong>, not lucky one-offs.</li>
+          <li>You'll invest in structure up front to buy speed and trust later.</li>
+          <li>You value output you can <strong>explain and defend</strong>, not just generate.</li>
+          <li>You're a builder — individual or mid-sized team — ready to own your data, AI and process.</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h3>This isn't for you if…</h3>
+        <ul>
+          <li>You want a magic box that thinks for you with zero setup.</li>
+          <li>You're chasing the newest model instead of fixing the foundation.</li>
+          <li>You won't commit to rules, validation, and a little discipline.</li>
+          <li>You want a vendor to own your stack so you don't have to understand it.</li>
+        </ul>
       </div>
     </div>
   </div>
