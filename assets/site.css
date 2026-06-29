@@ -289,3 +289,19 @@
 .access .node{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;font-size:.85rem;font-weight:600;box-shadow:var(--shadow)}
 .access .node.core{background:var(--navy);color:#fff;border-color:var(--navy)}
 .access .ax{color:var(--gold);font-weight:700}
+
+/* curated sources + personas */
+.csrc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.csrc .c{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem;box-shadow:var(--shadow)}
+.csrc .c .ch{font-weight:700;font-size:.97rem;color:var(--ink)}
+.csrc .c p{margin:.25rem 0 0;font-size:.88rem;color:var(--ink-soft)}
+.persona-arch{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1rem}
+@media(max-width:680px){.persona-arch{grid-template-columns:1fr}}
+.parch{border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
+.parch.eng{background:var(--surface);border:1px solid var(--line)}
+.parch.per{background:#0f172a;color:#e6edf6;border:1px solid #13324a}
+.parch h4{margin:0 0 .6rem;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+.parch.eng h4{color:var(--accent)} .parch.per h4{color:var(--gold)}
+.parch ul{margin:0;padding-left:1.1rem;font-size:.92rem}
+.parch.eng ul{color:var(--ink-soft)} .parch.per ul{color:#c4d0e0}
+.parch li{margin:.3rem 0}
