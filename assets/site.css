@@ -278,3 +278,14 @@
 .code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.82rem;line-height:1.55;background:#0f172a;color:#cfe0ef;border-radius:10px;padding:1.1rem 1.3rem;overflow-x:auto}
 .code .key{color:#8fb3d9}.code .val{color:#cfe0ef}.code .hl{color:var(--gold)}.code .cm{color:#6b86a3}
 .code .tag2{color:#7dd3a8}
+
+/* working environment */
+.env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem}
+.env{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
+.env .ek{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.env h3{margin:0 0 .5rem;font-size:1.1rem}
+.env p{margin:0;color:var(--ink-soft);font-size:.92rem}
+.access{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.access .node{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;font-size:.85rem;font-weight:600;box-shadow:var(--shadow)}
+.access .node.core{background:var(--navy);color:#fff;border-color:var(--navy)}
+.access .ax{color:var(--gold);font-weight:700}
