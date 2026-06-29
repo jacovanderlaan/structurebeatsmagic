@@ -23,8 +23,7 @@
   <div class="byline">By Jaco van der Laan · 2026-06-29</div>
   
   <article>
-  <p><em>Part 1: I turned ten years of daily notes and 1,128 photos into a curated trip database — without writing a single new trip report.</em></p>
-<hr/>
+  <hr/>
 <h2>The thing I didn't have to write</h2>
 <p>My sister Annemarie runs a travel site she's genuinely proud of — <a href="https://www.keepwandering.com">keepwandering.com</a>. It's not a blog. Under the hood it's a real content model: trips, experiences, places, a full geography hierarchy, all related so one café in Rome can surface on its city page, its country page, and inside three different trip itineraries at once. Fifty-one trips. Three hundred and eighty-one experiences. Structure, not a stream.</p>
 <p>We've travelled a lot of those trips together — some with our mother, earlier ones with our father. So when she asked whether I could feed <em>my</em> side of our shared trips into her site, the obvious answer was: sit down and write them up.</p>
@@ -42,7 +41,9 @@
 <h2>The extractor, and the honest part</h2>
 <p>The extractor walks a trip's day-folders, reads each daily note, and pulls the structure out. The interesting wrinkle: my notes have changed format over the years. A 2022 note records a day as tables — <em>Places Visited</em> (address, start, end), <em>Calendar events</em> (the lodging check-outs live here). A 2026 note is richer and more narrative — a <em>Planned activities</em> table, an accommodation block, an auto-generated location trail from photo EXIF.</p>
 <p>So the extractor handles <strong>both schemas</strong>. It tries the rich format first, falls back to the structured tables, and — this is the part I care about most — <strong>logs what it couldn't parse</strong>. When it hits a day it can't read, it says so:</p>
-<p>``` days=18 activities=91 places≈69 ⚠ unparsed (1): - 2026-05-30: daily note present but no parseable activities ```</p>
+<p>``` days=18 activities=91 places≈69 ⚠ unparsed (1):</p>
+<ul><li>2026-05-30: daily note present but no parseable activities</li></ul>
+<p>```</p>
 <p>That line is not an apology. It's the feature. A system that silently skips what it can't handle will quietly lie to you about coverage. One that <em>names the gap</em> keeps you honest about what you actually have. I'd rather ship "55 activities and here's the one day I missed" than "55 activities" with no idea what fell on the floor.</p>
 <p>Run it on our Sicily 2022 trip: <strong>8 days, 55 activities, 19 places.</strong> Run it on France this June: <strong>18 days, 91 activities, 69 places</strong>, travellers correctly read as Jaco and Annemarie, flagged as a shared trip. No prose written. All of it extracted.</p>
 <h2>Photos: the filename already knew</h2>

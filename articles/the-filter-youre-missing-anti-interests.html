@@ -23,8 +23,7 @@
   <div class="byline">By Jaco van der Laan · 2026-06-28</div>
   
   <article>
-  <p><em>Personalization knows what you like. It has no idea what you'd never touch — and that gap is where the noise lives.</em></p>
-<hr/>
+  <hr/>
 <h2>The recommendation that gives the game away</h2>
 <p>Every personalization system you use is built on a single verb: <em>like</em>. It watches what you click, infers what you're into, and serves you more of it. Spotify, your feed, your news app, the AI assistant drafting your morning brief — all of them optimize for one question: <strong>what does this person want?</strong></p>
 <p>None of them ask the opposite question: <strong>what would this person never want?</strong></p>
@@ -39,7 +38,11 @@
 <p>I maintain a personal knowledge system that enriches my daily notes — weather, news, "on this day," interest-matched picks. The selection is driven by a config of scored interests: city trips 0.95, data engineering high, botanical gardens 0.9, 80s Italo disco, arthouse film. Standard positive model.</p>
 <p>The first time the news enrichment ran, it dutifully surfaced a football transfer and a Formula 1 crash. Both scored fine on a naive relevance pass — they're "major news," they're "local," they're "trending." And both are things I have <strong>zero</strong> interest in and never will. The positive model had no way to know that. It only knew <em>like</em>, and these weren't disliked enough on any axis to fall below threshold. They were simply <em>off-limits</em> — a distinction the system couldn't represent.</p>
 <p>So I added the half that was missing. A small file, `anti-interests.yaml`:</p>
-<p>```yaml anti_interests: - category: musicals reason: "Not the style — too song-driven a format" scope: always - category: professional-sport-events reason: "No interest in arena/stadium events" scope: always ```</p>
+<p>```yaml anti_interests:</p>
+<ul><li>category: musicals</li></ul>
+<p>reason: "Not the style — too song-driven a format" scope: always</p>
+<ul><li>category: professional-sport-events</li></ul>
+<p>reason: "No interest in arena/stadium events" scope: always ```</p>
 <p>Three fields do the whole job: a <strong>category</strong>, a <strong>reason</strong> (so future-me remembers why), and a <strong>scope</strong> (`always`, or conditional — "travel-only", "work-context"). The scope matters more than it looks: some things are anti-interests <em>in one context and not another</em>. I don't want sport in my news digest, but I'm not blanket-banning the word everywhere.</p>
 <p>Now the rule is explicit. Any candidate — news item, recommended article, generated suggestion — gets matched against interests for a score, and then <strong>vetoed</strong> if it hits an in-scope anti-interest, regardless of how well it scored. The football transfer never reaches me. Not because it scored low. Because it was ruled out.</p>
 <h2>Anti-interests are the cheaper half of the model</h2>

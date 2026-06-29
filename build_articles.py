@@ -76,8 +76,16 @@ def md_to_html(md: str) -> str:
     lines = md.split("\n")
     out: list[str] = []
     para: list[str] = []
+    bullets: list[str] = []
+
+    def flush_bullets():
+        if bullets:
+            items = "".join(f"<li>{inline(b)}</li>" for b in bullets)
+            out.append(f"<ul>{items}</ul>")
+            bullets.clear()
 
     def flush():
+        flush_bullets()
         if para:
             joined = " ".join(para).strip()
             if joined:
@@ -87,11 +95,14 @@ def md_to_html(md: str) -> str:
     def inline(s: str) -> str:
         s = html.escape(s, quote=False)
         s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
-        s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
+        # Bold first (non-greedy, so a paragraph that is entirely **bold** and
+        # contains *italic* inside still matches), then italic on what remains.
+        s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
         s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
         return s
 
     first_h1_skipped = False
+    lede_checked = False
     for ln in lines:
         st = ln.strip()
         if not st:
@@ -100,6 +111,14 @@ def md_to_html(md: str) -> str:
         if st.startswith("# ") and not first_h1_skipped:
             first_h1_skipped = True
             continue
+        # Skip a leading italic lede paragraph (`*...*` on its own) right after the
+        # H1 — it duplicates the frontmatter subtitle, which we render separately.
+        if (first_h1_skipped and not lede_checked and not out and not para
+                and st.startswith("*") and st.endswith("*")
+                and not st.startswith("**")):
+            lede_checked = True
+            continue
+        lede_checked = True
         if st == "---":
             flush()
             out.append("<hr/>")
@@ -121,6 +140,13 @@ def md_to_html(md: str) -> str:
             flush(); out.append(f"<h2>{inline(st[3:])}</h2>"); continue
         if st.startswith("# "):
             flush(); out.append(f"<h2>{inline(st[2:])}</h2>"); continue
+        # bullet list item: "- text" or "* text" (not "**bold**")
+        if (st.startswith("- ") or (st.startswith("* ") and not st.startswith("**"))):
+            if para:
+                flush()  # close any open paragraph before starting the list
+            bullets.append(st[2:].strip())
+            continue
+        flush_bullets()  # a non-bullet line ends any open list
         para.append(st)
     flush()
     return "\n".join(out)

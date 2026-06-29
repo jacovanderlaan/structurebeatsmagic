@@ -23,8 +23,7 @@
   <div class="byline">By Jaco van der Laan · 2026-06-29</div>
   
   <article>
-  <p><em>One source of truth in a database, a website derived from it at build time. No CMS, no runtime database, no drift.</em></p>
-<hr/>
+  <hr/>
 <h2>Two worlds that shouldn't touch</h2>
 <p>I had a curation engine and I needed a website. The engine lives in a database — venues, the evidence behind each recommendation, a scoring model, the photos I'd matched to each place. The website needed to be cheap, fast, and crawlable. And the obvious ways to connect the two are all bad.</p>
 <p>Put the database behind the website and you're running a server forever, for content that changes once a week. Copy the content into the website by hand and you've created two sources of truth that will drift apart by the second edit. Reach for a CMS and you've added a third system that owns a copy of everything and a monthly bill to match.</p>

@@ -28,6 +28,8 @@ article h2{font-size:1.05rem;font-family:"Inter",system-ui,sans-serif;text-trans
   letter-spacing:.08em;color:var(--ink-faint);margin:2.8rem 0 1rem;font-weight:700}
 article h3{font-size:1.3rem;margin:2rem 0 .8rem;letter-spacing:-.01em}
 article p{margin:0 0 1.2rem}
+article ul{margin:0 0 1.2rem;padding-left:1.4rem}
+article li{margin:0 0 .5rem;line-height:1.65}
 article strong{color:var(--ink)}
 article em{color:var(--ink-soft)}
 article hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
