@@ -216,6 +216,21 @@
   .own h3{color:#fff;font-size:1.4rem;margin:.2rem 0 .8rem}
   .own p{color:#c4d0e0;max-width:56ch;margin:0 auto;font-size:1.02rem}
   .own .tag2{display:inline-block;margin-top:1rem;color:var(--gold);font-weight:700;font-size:.9rem}
+
+  /* exchange / sharing */
+  .exch{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:stretch;margin-top:1rem}
+  @media(max-width:680px){.exch{grid-template-columns:1fr}.exch .ea{transform:rotate(90deg)}}
+  .ecol{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
+  .ecol.inb{border-top:3px solid var(--accent)}
+  .ecol.outb{border-top:3px solid var(--gold)}
+  .ecol .eh{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+  .ecol.inb .eh{color:var(--accent)} .ecol.outb .eh{color:var(--gold)}
+  .ecol h3{margin:0 0 .5rem;font-size:1.15rem}
+  .ecol p{margin:0 0 .6rem;color:var(--ink-soft);font-size:.93rem}
+  .ecol ul{margin:0;padding-left:1.05rem;color:var(--ink-soft);font-size:.9rem}
+  .ecol li{margin:.3rem 0}
+  .ea{display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:1.5rem;font-weight:700}
+  .share-note{text-align:center;max-width:60ch;margin:1.8rem auto 0;color:var(--ink-soft);font-size:1rem}
 </style>
 </head>
 <body>
@@ -389,6 +404,45 @@
       <p>Every block here is chosen to be <strong>independent</strong> — not locked to a big-tech vendor who changes the API, the price, or the rules without asking. The deliberate direction: step by step, reduce dependence on Google Drive, Google Photos and OneDrive, and move to building blocks you control. Convenience today isn't worth losing your own data tomorrow.</p>
       <span class="tag2">Independent building blocks &gt; vendor lock-in</span>
     </div>
+  </div>
+</section>
+
+<!-- EXCHANGE & SHARING -->
+<section id="exchange">
+  <div class="wrap">
+    <div class="section-eyebrow">Across boundaries</div>
+    <h2 class="section-title">Exchange: how data comes in, and how you share it out</h2>
+    <p class="section-lede">A private system still has to meet the world. The trick is a clean, deliberate boundary — a controlled <strong>inbound</strong> for what comes in, and a <strong>publication layer</strong> for what goes out — so your private core stays private and only what you choose is shared.</p>
+    <div class="exch">
+      <div class="ecol inb">
+        <div class="eh">Inbound — ingest</div>
+        <h3>A controlled front door</h3>
+        <p>Everything enters through a known landing zone, not straight into the core:</p>
+        <ul>
+          <li>Phone captures, scans, exports, photos</li>
+          <li>Validated &amp; routed before it's trusted</li>
+          <li>One place to watch, clean, and onboard new data</li>
+        </ul>
+      </div>
+      <div class="ea">↔</div>
+      <div class="ecol outb">
+        <div class="eh">Outbound — the publication layer</div>
+        <h3>Share on purpose, not by accident</h3>
+        <p>A separate, generated layer for what leaves the core — read-only, portable, opt-in:</p>
+        <ul>
+          <li>Sites &amp; documents published from the brain</li>
+          <li>Per-item visibility — private by default, shared by choice</li>
+          <li>A read-only copy, so the source is never exposed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="intent" style="border-left-color:var(--accent)">
+      <div class="ik" style="color:var(--accent)">Shared activities</div>
+      <h3>Traveling together, sharing what matters — and nothing more</h3>
+      <p>Two people on the same trip don't need to merge their whole lives — just the slice that's shared. The publication layer makes that natural: export exactly the trip, the itinerary, the photos you both want — to a travel companion, a partner, a family member — while the rest of each person's system stays entirely their own. <strong>Selective sharing, not a shared account.</strong></p>
+    </div>
+    <p class="share-note">Inbound and outbound are the same idea from two sides: a deliberate boundary that lets a sovereign personal system still collaborate — without surrendering control of the whole.</p>
   </div>
 </section>
 
