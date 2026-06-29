@@ -258,7 +258,17 @@
   .brick{padding:.55rem .9rem;border-radius:8px;font-size:.82rem;font-weight:700;color:#fff}
   .b1{background:#2563eb}.b2{background:#b88a1b}.b3{background:#0f172a}.b4{background:#3b82f6}.b5{background:#1e40af}.b6{background:#475569}
   .play-flow{text-align:center;margin-top:2rem;color:var(--ink-soft);font-size:1.05rem}
-  .play-flow strong{color:var(--ink)}</style>
+  .play-flow strong{color:var(--ink)}
+
+  /* intelligence systems */
+  .intel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem}
+  .isys{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);border-top:3px solid var(--accent)}
+  .isys .it{font-weight:700;font-size:1.08rem;color:var(--ink)}
+  .isys .ist{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:.3rem 0 .5rem}
+  .isys p{margin:0;color:var(--ink-soft);font-size:.92rem}
+  .st-built{color:#15803d}.st-progress{color:var(--accent)}.st-vision{color:var(--ink-faint)}
+  .intel-note{text-align:center;max-width:60ch;margin:2rem auto 0;color:var(--ink-soft);font-size:1rem}
+  .intel-note strong{color:var(--ink)}</style>
 </head>
 <body>
 
@@ -409,6 +419,24 @@
       <h3>Not just what you prefer — where you intend to go</h3>
       <p>Document your <strong>intentions</strong> with AI, and the system can reflect them back against what your data shows actually happened — direction versus reality, gently. Not a scorecard, not pass/fail — a mirror that helps you steer. Your modeled self holds taste <em>and</em> intent.</p>
     </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE SYSTEMS -->
+<section id="intelligence">
+  <div class="wrap">
+    <div class="section-eyebrow">The bigger picture</div>
+    <h2 class="section-title">Intelligence systems I'm building</h2>
+    <p class="section-lede">The same pattern — curate sources, structure them, let AI extract &amp; validate — applied to whole domains of life. Each turns a pile of raw history into something you can actually <em>ask</em>.</p>
+    <div class="intel">
+      <div class="isys"><div class="it">People Intelligence</div><div class="ist st-progress">In progress</div><p>Years of WhatsApp, mail and CRM history → a structured picture of relationships: who, when, what was said, what matters.</p></div>
+      <div class="isys"><div class="it">Content Intelligence</div><div class="ist st-progress">In progress</div><p>Zettelkasten for the AI age — curated sources → AI-extracted knowledge highlights → validated → building blocks for writing &amp; talks.</p></div>
+      <div class="isys"><div class="it">Email Intelligence</div><div class="ist st-progress">In progress</div><p>Sender-centric: classify every sender signal-vs-noise, auto-generate filters, turn an overflowing inbox into a managed source.</p></div>
+      <div class="isys"><div class="it">Marketing Intelligence</div><div class="ist st-vision">Emerging</div><p>A 245k-message newsletter/promo archive mined with DuckDB + AI + rules — what the market is actually saying, over years.</p></div>
+      <div class="isys"><div class="it">Trip Intelligence</div><div class="ist st-built">Built</div><p>Daily notes + curated photos → a trips database → curated trip data you can share with a travel companion. Live.</p></div>
+      <div class="isys"><div class="it">Curated Sources</div><div class="ist st-progress">The umbrella</div><p>The overarching concept binding them: which sources (people, orgs, mail, reading) deserve trust — scored, then routed into the right system.</p></div>
+    </div>
+    <p class="intel-note">Different domains, <strong>one method</strong>. Structure the sources, apply AI with rules, validate the output — and a lifetime of scattered data becomes a set of systems that compound.</p>
   </div>
 </section>
 
