@@ -271,3 +271,10 @@
 .drx{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem}
 .drx .drk{font-weight:800;color:var(--accent);font-size:.95rem}
 .drx p{margin:.2rem 0 0;font-size:.82rem;color:var(--ink-soft)}
+
+/* obsidian / frontmatter / dataview */
+.fm-demo{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1rem;align-items:start}
+@media(max-width:760px){.fm-demo{grid-template-columns:1fr}}
+.code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.82rem;line-height:1.55;background:#0f172a;color:#cfe0ef;border-radius:10px;padding:1.1rem 1.3rem;overflow-x:auto}
+.code .key{color:#8fb3d9}.code .val{color:#cfe0ef}.code .hl{color:var(--gold)}.code .cm{color:#6b86a3}
+.code .tag2{color:#7dd3a8}

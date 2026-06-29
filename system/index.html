@@ -129,6 +129,71 @@
   </div>
 </section>
 
+<!-- VIEWING THE VAULT -->
+<section id="viewing">
+  <div class="wrap">
+    <div class="section-eyebrow">Seeing it</div>
+    <h2 class="section-title">Reading the vault with Obsidian</h2>
+    <p class="section-lede">A pile of markdown files becomes a navigable knowledge base in <strong>Obsidian</strong> — links between notes, a graph of how everything connects, and live views built from the data itself. The same plain files an AI reads, you read as a connected web.</p>
+
+    <div class="fm-demo">
+      <div class="vcard">
+        <div class="vk">Frontmatter</div>
+        <h3>Structured data on every note</h3>
+        <p>A small block at the top of each file turns prose into <em>data</em>: typed fields the system can filter, sort and validate. This is what makes a note queryable instead of just readable.</p>
+        <pre class="code"><span class="cm">---</span>
+<span class="key">type:</span> <span class="val">agreement</span>
+<span class="key">vendor:</span> <span class="val">Hetzner</span>
+<span class="key">amount_eur:</span> <span class="hl">4.20</span>
+<span class="key">cycle:</span> <span class="val">monthly</span>
+<span class="key">status:</span> <span class="val">active</span>
+<span class="key">tags:</span> <span class="tag2">[backup, eu, infra]</span>
+<span class="cm">---</span></pre>
+      </div>
+      <div class="vcard">
+        <div class="vk">Dataview</div>
+        <h3>Live views, not manual lists</h3>
+        <p>Instead of hand-maintaining a table, you <em>query</em> the frontmatter — and the view stays current as the notes change. A list of active agreements, this month's transactions, every unresolved action: generated, never stale.</p>
+        <pre class="code"><span class="cm">```dataview</span>
+<span class="key">TABLE</span> vendor, amount_eur, cycle
+<span class="key">FROM</span> <span class="val">#agreement</span>
+<span class="key">WHERE</span> status = <span class="val">"active"</span>
+<span class="key">SORT</span> amount_eur <span class="key">DESC</span>
+<span class="cm">```</span></pre>
+      </div>
+    </div>
+    <p class="loop-note">Frontmatter makes notes <strong>data</strong>; Dataview makes that data <strong>visible</strong>; the AI layer makes it <strong>actionable</strong>. Three views of the same structured files — for the eye, for the query, and for the assistant.</p>
+
+    <div style="margin-top:1.8rem">
+      <div class="nl-k" style="text-align:center;margin-bottom:1rem">Plugins that earn their place</div>
+      <div class="apps">
+        <div class="app"><div class="an">Folder Notes</div><p>Each folder gets an index note named after itself — so a folder is also a page, not just a container.</p></div>
+        <div class="app"><div class="an">Dataview</div><p>Live tables &amp; lists queried from frontmatter across the whole vault.</p></div>
+        <div class="app"><div class="an">Bases</div><p>Grid views that query structured notes across every domain — a database feel over plain files.</p></div>
+        <div class="app"><div class="an">Templates</div><p>Consistent structure for recurring note kinds — daily notes, decisions, captures.</p></div>
+      </div>
+      <p class="intel-note">The principle behind every plugin choice: it must add <strong>structure or visibility</strong>, never just decoration. Plain files stay the source of truth; plugins are how you see and steer them.</p>
+    </div>
+
+    <div class="vault" style="margin-top:1.8rem">
+      <div class="vcard">
+        <div class="vk">Links — the connective tissue</div>
+        <h3>Notes that point to each other</h3>
+        <p>Every <code>[[wikilink]]</code> between notes is a deliberate connection — this venue relates to that trip, this person to that project. Over time the links matter more than the notes: they encode <em>how things relate</em>, which is exactly the knowledge that usually lives only in your head.</p>
+        <pre class="code"><span class="cm"># in a trip note</span>
+Dinner at [[Don Camillo]] with [[Annemarie]],
+booked via [[Ortigia 2022]] — see [[hotel-quality]].</pre>
+      </div>
+      <div class="vcard">
+        <div class="vk">The graph &amp; AI</div>
+        <h3>Links are a knowledge graph the AI can walk</h3>
+        <p>Obsidian draws those links as a <strong>graph</strong> — a map of your whole knowledge. The same links are gold for AI: when Claude Code works in the vault, a wikilink tells it exactly which related note to open next. It doesn't have to guess what's relevant — <strong>you've already drawn the path</strong>. Structured links turn a folder of files into a traversable graph for both human and machine.</p>
+      </div>
+    </div>
+    <p class="loop-note">A graph is just structure made visible — and structure is what lets an AI navigate your knowledge instead of hallucinating around it. <strong>Every link you make is a hint you leave for your future assistant.</strong></p>
+  </div>
+</section>
+
 <!-- VALIDATION & CONTINUOUS IMPROVEMENT -->
 <section id="validation">
   <div class="wrap">
