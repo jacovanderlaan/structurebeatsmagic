@@ -31,7 +31,23 @@
   nav.main a:hover{color:var(--ink)}
   .nav-cta{background:var(--accent);color:#fff !important;padding:.5rem .9rem;border-radius:8px;font-weight:600}
   .nav-cta:hover{background:var(--accent-dk)}
-  @media(max-width:720px){nav.main a:not(.nav-cta){display:none}}
+  /* hamburger (CSS-only, checkbox toggle — no JS) */
+  .nav-toggle{display:none}
+  .burger{display:none;cursor:pointer;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+  .burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;margin:4px 0;transition:.2s}
+  @media(max-width:720px){
+    .burger{display:block}
+    nav.main{position:fixed;top:64px;left:0;right:0;background:var(--surface);
+      border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
+      padding:.5rem 0;box-shadow:var(--shadow);display:none}
+    nav.main a{margin:0;padding:.9rem 24px;font-size:16px;border-bottom:1px solid var(--line)}
+    nav.main a:last-child{border-bottom:none}
+    .nav-cta{margin:.6rem 24px;text-align:center;border-radius:8px}
+    .nav-toggle:checked ~ nav.main{display:flex}
+    .nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+    .nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  }
 
   .hero{padding:6rem 0 4rem;text-align:center}
   .hero .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
@@ -249,8 +265,12 @@
 <header class="site">
   <div class="wrap">
     <a class="brand" href="/">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
     <nav class="main">
       <a href="#principles">Principles</a>
+      <a href="#play">Play</a>
+      <a href="#components">Components</a>
       <a href="#stack">Stack</a>
       <a href="#building-blocks">Sovereignty</a>
       <a href="#samples">Proof</a>
@@ -805,5 +825,12 @@
   </div>
 </footer>
 
+<script>
+  // Close the mobile menu after tapping a link.
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
 </body>
 </html>
