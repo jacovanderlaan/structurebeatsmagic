@@ -37,13 +37,15 @@
 <h2>A worked example, from a system I actually run</h2>
 <p>I maintain a personal knowledge system that enriches my daily notes — weather, news, "on this day," interest-matched picks. The selection is driven by a config of scored interests: city trips 0.95, data engineering high, botanical gardens 0.9, 80s Italo disco, arthouse film. Standard positive model.</p>
 <p>The first time the news enrichment ran, it dutifully surfaced a football transfer and a Formula 1 crash. Both scored fine on a naive relevance pass — they're "major news," they're "local," they're "trending." And both are things I have <strong>zero</strong> interest in and never will. The positive model had no way to know that. It only knew <em>like</em>, and these weren't disliked enough on any axis to fall below threshold. They were simply <em>off-limits</em> — a distinction the system couldn't represent.</p>
-<p>So I added the half that was missing. A small file, `anti-interests.yaml`:</p>
-<p>```yaml anti_interests:</p>
-<ul><li>category: musicals</li></ul>
-<p>reason: "Not the style — too song-driven a format" scope: always</p>
-<ul><li>category: professional-sport-events</li></ul>
-<p>reason: "No interest in arena/stadium events" scope: always ```</p>
-<p>Three fields do the whole job: a <strong>category</strong>, a <strong>reason</strong> (so future-me remembers why), and a <strong>scope</strong> (`always`, or conditional — "travel-only", "work-context"). The scope matters more than it looks: some things are anti-interests <em>in one context and not another</em>. I don't want sport in my news digest, but I'm not blanket-banning the word everywhere.</p>
+<p>So I added the half that was missing. A small file, <code>anti-interests.yaml</code>:</p>
+<pre><code>anti_interests:
+  - category: musicals
+    reason: "Not the style — too song-driven a format"
+    scope: always
+  - category: professional-sport-events
+    reason: "No interest in arena/stadium events"
+    scope: always</code></pre>
+<p>Three fields do the whole job: a <strong>category</strong>, a <strong>reason</strong> (so future-me remembers why), and a <strong>scope</strong> (<code>always</code>, or conditional — "travel-only", "work-context"). The scope matters more than it looks: some things are anti-interests <em>in one context and not another</em>. I don't want sport in my news digest, but I'm not blanket-banning the word everywhere.</p>
 <p>Now the rule is explicit. Any candidate — news item, recommended article, generated suggestion — gets matched against interests for a score, and then <strong>vetoed</strong> if it hits an in-scope anti-interest, regardless of how well it scored. The football transfer never reaches me. Not because it scored low. Because it was ruled out.</p>
 <h2>Anti-interests are the cheaper half of the model</h2>
 <p>The reason this works so well is an asymmetry most people miss.</p>
@@ -51,14 +53,14 @@
 <p>So you get a wildly favorable trade: a tiny, low-maintenance file kills a large fraction of your noise. You are not trying to model all of human interest. You're drawing a few bright lines around the stuff that should never get through. <strong>Cheap to write, expensive to omit.</strong></p>
 <p>And there's a second-order benefit: the <em>reason</em> field turns the filter into a record of self-knowledge. Six months later you can read <em>why</em> you ruled something out — and notice when a reason has gone stale. (Mine had "cruises" pencilled in as an anti-interest; then I genuinely got curious about a specific kind of cruise. The explicit list made the contradiction visible, so I could nuance it instead of silently fighting my own filter. A buried preference can't do that.)</p>
 <h2>This is the "NOT" clause every personal system is missing</h2>
-<p>If you think in queries, the point lands immediately. Personalization has spent two decades perfecting the `WHERE interest MATCHES …` clause and almost completely ignored the `AND category NOT IN (anti_interests)` clause. Both are part of the same statement. A query with only the positive half returns everything plausible and drowns you. The negative half is what makes the result <em>yours</em>.</p>
+<p>If you think in queries, the point lands immediately. Personalization has spent two decades perfecting the <code>WHERE interest MATCHES …</code> clause and almost completely ignored the <code>AND category NOT IN (anti_interests)</code> clause. Both are part of the same statement. A query with only the positive half returns everything plausible and drowns you. The negative half is what makes the result <em>yours</em>.</p>
 <p>It generalizes past your own feed. Any system that filters or generates <em>for</em> a person — a RAG pipeline choosing what context to load, an agent deciding what to surface, a recommender ranking options — improves the moment you give it an explicit negative filter to apply <em>after</em> relevance scoring. Structure the taste as two halves: <strong>what to match toward</strong> and <strong>what to veto</strong>. The veto is declarative, auditable, and human-owned. It's a rule, not a guess.</p>
 <p>That's the deeper pattern. We try to make systems smarter by improving their guesses. Often the bigger win is letting a human state a few firm rules the guessing must obey. Relevance is a model's job. <strong>Knowing what you'd never want is yours</strong> — so write it down and make the system honor it.</p>
 <h2>Start your list today</h2>
-<p>You don't need a pipeline to get the benefit. Open a file. Write the heading `anti-interests`. List the ten categories of thing you are reliably, permanently not interested in — and next to each, one line on <em>why</em>. That file is now the most efficient noise filter you own, and it'll pay off in every system you can feed it to.</p>
+<p>You don't need a pipeline to get the benefit. Open a file. Write the heading <code>anti-interests</code>. List the ten categories of thing you are reliably, permanently not interested in — and next to each, one line on <em>why</em>. That file is now the most efficient noise filter you own, and it'll pay off in every system you can feed it to.</p>
 <p>Personalization will keep getting better at telling you what you like. It's on you to tell it what you don't.</p>
 <hr/>
-<p><em>Drawn from a real personal-knowledge system, where an `anti-interests.yaml` filter sits downstream of interest scoring across news curation, daily-note highlights, and reading pipelines.</em></p>
+<p><em>Drawn from a real personal-knowledge system, where an <code>anti-interests.yaml</code> filter sits downstream of interest scoring across news curation, daily-note highlights, and reading pipelines.</em></p>
   </article>
   <div class="article-cta">
     <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>

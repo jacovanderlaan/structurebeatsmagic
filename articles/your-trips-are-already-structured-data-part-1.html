@@ -30,25 +30,27 @@
 <p>I didn't write a single one. I didn't have to. The trips were already there — as structured data — scattered across a system I'd been keeping for years. The work wasn't <em>authoring</em>. It was <em>extraction</em>. And that distinction is the whole point.</p>
 <h2>Where the data already lived</h2>
 <p>For about a decade I've kept a daily note for every day. Not a diary — an index. Each day's note carries, in plain markdown, the things that happened: places visited with timestamps, lodging check-ins, transactions, a location trail. Some days are rich, some are three lines. But they're <em>consistent enough</em> to parse.</p>
-<p>Separately, I have the photos. Tens of thousands, on disk, in a file-system-first library — `private/&lt;year&gt;/&lt;year-month&gt;/` — each named with the moment it was taken: `20220405_130415.jpg`. The filename <strong>is</strong> a timestamp.</p>
+<p>Separately, I have the photos. Tens of thousands, on disk, in a file-system-first library — <code>private/&lt;year&gt;/&lt;year-month&gt;/</code> — each named with the moment it was taken: <code>20220405_130415.jpg</code>. The filename <strong>is</strong> a timestamp.</p>
 <p>Two piles of material I'd been accumulating without ever thinking of them as a database. That's the trap, and it's a common one: you treat your own records as <em>archive</em> — stuff you keep — when they're actually <em>source</em> — stuff you can query. The difference is whether anything reads them.</p>
 <p>So I built the thing that reads them.</p>
 <h2>The shape: trip → day → activity → place</h2>
 <p>The model is boring on purpose. A trip has days. A day has activities. An activity may point at a place. Places are reusable — the same hotel can appear across three trips. Photos link to days and activities by time. That's it.</p>
-<p>``` dim_trip ── dim_trip_day ── fact_activity ── dim_place │               │ └─ photos linked by capture-time ┘ ```</p>
-<p>Anyone who's done dimensional modelling will recognise this instantly: it's a fact table (`fact_activity`, grain = one activity on one day) hanging off conformed dimensions. I didn't reach for that because it's clever. I reached for it because it's the shape that lets you ask questions later — "every restaurant we visited in Sicily", "which days have no photos", "places visited more than once" — without rewriting anything.</p>
+<pre><code>dim_trip ── dim_trip_day ── fact_activity ── dim_place
+                  │               │
+                  └─ photos linked by capture-time ┘</code></pre>
+<p>Anyone who's done dimensional modelling will recognise this instantly: it's a fact table (<code>fact_activity</code>, grain = one activity on one day) hanging off conformed dimensions. I didn't reach for that because it's clever. I reached for it because it's the shape that lets you ask questions later — "every restaurant we visited in Sicily", "which days have no photos", "places visited more than once" — without rewriting anything.</p>
 <p>The store is a single DuckDB file. No server, no schema migration ceremony. One file you can copy, query, and throw away.</p>
 <h2>The extractor, and the honest part</h2>
 <p>The extractor walks a trip's day-folders, reads each daily note, and pulls the structure out. The interesting wrinkle: my notes have changed format over the years. A 2022 note records a day as tables — <em>Places Visited</em> (address, start, end), <em>Calendar events</em> (the lodging check-outs live here). A 2026 note is richer and more narrative — a <em>Planned activities</em> table, an accommodation block, an auto-generated location trail from photo EXIF.</p>
 <p>So the extractor handles <strong>both schemas</strong>. It tries the rich format first, falls back to the structured tables, and — this is the part I care about most — <strong>logs what it couldn't parse</strong>. When it hits a day it can't read, it says so:</p>
-<p>``` days=18 activities=91 places≈69 ⚠ unparsed (1):</p>
-<ul><li>2026-05-30: daily note present but no parseable activities</li></ul>
-<p>```</p>
+<pre><code>days=18 activities=91 places≈69
+  ⚠ unparsed (1):
+     - 2026-05-30: daily note present but no parseable activities</code></pre>
 <p>That line is not an apology. It's the feature. A system that silently skips what it can't handle will quietly lie to you about coverage. One that <em>names the gap</em> keeps you honest about what you actually have. I'd rather ship "55 activities and here's the one day I missed" than "55 activities" with no idea what fell on the floor.</p>
 <p>Run it on our Sicily 2022 trip: <strong>8 days, 55 activities, 19 places.</strong> Run it on France this June: <strong>18 days, 91 activities, 69 places</strong>, travellers correctly read as Jaco and Annemarie, flagged as a shared trip. No prose written. All of it extracted.</p>
 <h2>Photos: the filename already knew</h2>
 <p>Linking photos to activities sounds like the hard part — computer vision, GPS clustering, the works. It mostly wasn't.</p>
-<p>Android names every photo `YYYYMMDD_HHMMSS`. The daily note records activities with local times. So linking a photo to what we were doing is, at its core, matching two clocks: find the activity nearest in time to when the shutter fired. The linker reads each photo's capture moment — from the filename first, then a sidecar, then EXIF, then file date, whichever exists — and attaches it to the right day and, when the times are close enough, the right activity. One representative photo per day gets flagged.</p>
+<p>Android names every photo <code>YYYYMMDD_HHMMSS</code>. The daily note records activities with local times. So linking a photo to what we were doing is, at its core, matching two clocks: find the activity nearest in time to when the shutter fired. The linker reads each photo's capture moment — from the filename first, then a sidecar, then EXIF, then file date, whichever exists — and attaches it to the right day and, when the times are close enough, the right activity. One representative photo per day gets flagged.</p>
 <p>Sicily: <strong>1,128 photos linked across 8 days.</strong> France: <strong>2,196 across 18.</strong> And here's the lesson that cut a whole stage out of the plan — I'd assumed I needed to run the photos through my full asset-management pipeline first, to generate metadata sidecars, before anything could link them. I didn't. The filename carried the timestamp all along. The structure I needed was already <em>in the data</em>; I just had to read it instead of regenerating it.</p>
 <h2>Then the messy-but-necessary cleanup</h2>
 <p>Extraction gives you raw truth, and raw truth is messy. The 2022 notes recorded lodging as three separate lines — <em>Check-in: Villa Mallandrino</em>, <em>Check-out: Villa Mallandrino</em>, <em>Stay at Villa Mallandrino</em> — which, taken literally, becomes three different "places." The address rows came through as raw strings with no city attached.</p>

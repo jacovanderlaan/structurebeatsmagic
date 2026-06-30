@@ -36,7 +36,11 @@
 <h2>Affinity: a score, then a veto</h2>
 <p>For any candidate destination, the planner computes an affinity score. Matching positive preferences lift it. Priority lifts it — a bucket-list flag counts more than a passing "medium." Already-visited nudges it down a little (revisit, not new). And an anti-preference doesn't nudge — it <em>slams</em> the score down, because it's a veto wearing the costume of a weight.</p>
 <p>Run it across my wishlist and the ranking comes out exactly right:</p>
-<p>``` 1.00  New Zealand (bucket_list) 0.89  Milos      (Islands, high)   ⚠ avoid: Santorini; Mykonos 0.89  Naxos      (Islands, high)   ⚠ avoid: Santorini; Mykonos 0.89  Folegandros(Islands, high)   ⚠ avoid: Santorini; Mykonos 0.75  Taiwan     (country, medium) ```</p>
+<pre><code>1.00  New Zealand (bucket_list)
+0.89  Milos      (Islands, high)   ⚠ avoid: Santorini; Mykonos
+0.89  Naxos      (Islands, high)   ⚠ avoid: Santorini; Mykonos
+0.89  Folegandros(Islands, high)   ⚠ avoid: Santorini; Mykonos
+0.75  Taiwan     (country, medium)</code></pre>
 <p>New Zealand tops it — bucket-list, national parks, the whole profile lights up. The non-touristy Greek islands cluster just behind, each carrying the Santorini/Mykonos caveat as a visible flag, not a buried assumption. The planner is reasoning with my actual taste, including the half most systems can't represent.</p>
 <h2>Then — and only then — the model</h2>
 <p>Here's where AI finally earns its place, after all the structure has done its work. For the top candidate, the planner assembles a <strong>facts-only brief</strong>: the destination, why it's on my list, the avoid-notes, my matching preferences, the actual travel books on my shelf (Kinfolk's <em>Slower Ways to See the World</em>, Lonely Planet's hiking guide), and a novelty check against where I've been. Then a writer model turns that brief into a pitch and a loose day-by-day outline — in my voice, under a grounding contract that forbids inventing specific venues, prices, or opening hours. Suggestions are framed as suggestions. The avoid-list is honoured.</p>

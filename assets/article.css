@@ -54,3 +54,14 @@ footer{padding:3rem 0;border-top:1px solid var(--line);text-align:center;color:v
 .article-fig{margin:2.5rem 0}
 .article-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(15,23,42,.07)}
 .article-fig figcaption{font-size:.85rem;color:var(--ink-faint);margin-top:.7rem;text-align:center;line-height:1.5}
+
+/* code — inline spans and fenced blocks (ASCII diagrams, CLI output) */
+article code{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  font-size:.88em;background:#eef1f6;color:var(--ink);padding:.12em .38em;border-radius:5px;
+  border:1px solid var(--line)}
+article pre{background:#0f172a;color:#e2e8f0;border:1px solid var(--line);border-radius:12px;
+  padding:1.1rem 1.25rem;margin:2rem 0;overflow-x:auto;line-height:1.55;
+  box-shadow:0 10px 30px rgba(15,23,42,.07)}
+article pre code{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  font-size:.85rem;background:none;color:inherit;padding:0;border:0;border-radius:0;
+  white-space:pre;display:block}

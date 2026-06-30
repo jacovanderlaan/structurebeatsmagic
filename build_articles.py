@@ -93,18 +93,46 @@ def md_to_html(md: str) -> str:
             para.clear()
 
     def inline(s: str) -> str:
+        # Pull inline-code spans (`code`) out first so their contents are never
+        # touched by the bold/italic/link passes, then restore as <code>.
+        spans: list[str] = []
+
+        def _stash(m: "re.Match") -> str:
+            spans.append(html.escape(m.group(1), quote=False))
+            return f"\x00{len(spans) - 1}\x00"
+
+        s = re.sub(r"`([^`]+)`", _stash, s)
         s = html.escape(s, quote=False)
         s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
         # Bold first (non-greedy, so a paragraph that is entirely **bold** and
         # contains *italic* inside still matches), then italic on what remains.
         s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
         s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
+        s = re.sub(r"\x00(\d+)\x00", lambda m: f"<code>{spans[int(m.group(1))]}</code>", s)
         return s
 
     first_h1_skipped = False
     lede_checked = False
+    in_code = False
+    code: list[str] = []
     for ln in lines:
         st = ln.strip()
+        # fenced code block: ``` ... ``` — capture lines verbatim, preserving
+        # whitespace/newlines (ASCII diagrams, CLI output). No inline formatting.
+        if st.startswith("```"):
+            if in_code:
+                code_html = html.escape("\n".join(code), quote=False)
+                out.append(f"<pre><code>{code_html}</code></pre>")
+                code.clear()
+                in_code = False
+            else:
+                flush()
+                lede_checked = True
+                in_code = True
+            continue
+        if in_code:
+            code.append(ln)
+            continue
         if not st:
             flush()
             continue
@@ -148,6 +176,9 @@ def md_to_html(md: str) -> str:
             continue
         flush_bullets()  # a non-bullet line ends any open list
         para.append(st)
+    if in_code:  # unclosed fence — emit what we captured rather than drop it
+        code_html = html.escape("\n".join(code), quote=False)
+        out.append(f"<pre><code>{code_html}</code></pre>")
     flush()
     return "\n".join(out)
 
