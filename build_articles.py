@@ -49,6 +49,14 @@ ARTICLES = [
 
 CSS = "../assets/article.css"
 
+# Canonical base for sitemap URLs. The custom domain still 301-redirects to
+# jacovanderlaan.com (DNS cutover pending), so the live site is the github.io
+# URL. After the cutover, set this to "https://structurebeatsmagic.com".
+BASE_URL = os.environ.get(
+    "SBM_BASE_URL",
+    "https://jacovanderlaan.github.io/structurebeatsmagic",
+).rstrip("/")
+
 
 def split_frontmatter(text: str) -> tuple[dict, str]:
     if text.startswith("---"):
@@ -281,6 +289,40 @@ def main() -> None:
         )
     (OUT / "_cards.html").write_text("\n".join(snip), encoding="utf-8")
     print(f"  + articles/_cards.html ({len(cards)} cards)")
+
+    write_sitemap(cards)
+
+
+def write_sitemap(cards: list) -> None:
+    """Regenerate sitemap.xml from the published pages, so it stays current.
+
+    Lists the hub + section pages + every published article. Excludes 404.html
+    and the _cards.html fragment. Article lastmod uses its `created` date.
+    """
+    # known article lastmod by relative href
+    art_dates = {href: (d or "") for d, _t, _s, href, _f in cards}
+    urls: list[tuple[str, str]] = []  # (relative path, lastmod)
+
+    # top-level + section pages (no reliable date -> omit lastmod)
+    for rel in ["", "system/", "intelligence/", "influences/"]:
+        urls.append((rel, ""))
+
+    # published articles, sorted newest first
+    for href in sorted(art_dates, key=lambda h: art_dates[h], reverse=True):
+        urls.append((href, art_dates[href]))
+
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for rel, lastmod in urls:
+        loc = f"{BASE_URL}/{rel}" if rel else f"{BASE_URL}/"
+        parts.append("  <url>")
+        parts.append(f"    <loc>{html.escape(loc)}</loc>")
+        if lastmod:
+            parts.append(f"    <lastmod>{html.escape(lastmod)}</lastmod>")
+        parts.append("  </url>")
+    parts.append("</urlset>")
+    (HERE / "sitemap.xml").write_text("\n".join(parts) + "\n", encoding="utf-8")
+    print(f"  + sitemap.xml ({len(urls)} urls, base {BASE_URL})")
 
 
 if __name__ == "__main__":
