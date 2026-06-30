@@ -136,9 +136,13 @@ touching looks like a dump and kills rhythm.
   `figure.article-fig` from `assets/`. Subject to the image rule above (text
   between figures).
 - Markdown subset supported: `#/##/###`, `**bold**` (may contain `*italic*`),
-  `*italic*`, `[links](url)`, `---` rules, `-`/`*` bullet lists, figure shortcode.
-- Rebuild after edits: `python build_articles.py` (writes `articles/*.html` +
-  `_cards.html` for the homepage Writing strip).
+  `*italic*`, `[links](url)`, `---` rules, `-`/`*` bullet lists, figure shortcode,
+  inline code `` `like this` ``, and fenced code blocks ```` ``` ````. Fenced
+  blocks render verbatim (`<pre><code>`) — whitespace and newlines preserved, so
+  ASCII diagrams and CLI/log output keep their alignment; no inline formatting is
+  applied inside them. Use a fence for anything that must be monospaced.
+- Rebuild after edits: `python build_articles.py` (writes `articles/*.html`,
+  `_cards.html` for the homepage Writing strip, and regenerates `sitemap.xml`).
 
 ## 6. SEO & metadata
 
@@ -153,8 +157,20 @@ touching looks like a dump and kills rhythm.
   SEO *and* what an LLM reads). Captions add context; alt describes the image.
 - **Images:** `loading="lazy"` on everything except an above-the-fold hero
   (`loading="eager"`). Keep infographic PNGs reasonably sized.
-- **Crawlability:** keep `robots.txt` + `sitemap.xml` current when pages are
-  added; clean human-readable URLs (no query strings).
+- **Crawlability — welcome bots, don't block them.** This is a public thesis/hub
+  site; being found, indexed and *cited* (by search engines **and** AI answer
+  engines) is the point, not a threat. `robots.txt` allows all crawlers and
+  explicitly welcomes the AI ones (GPTBot, ClaudeBot, CCBot, Google-Extended,
+  PerplexityBot, Applebot-Extended). Privacy is controlled by *what we publish*
+  (no personal data — see asset hygiene), never by blocking readers. Clean
+  human-readable URLs (no query strings). See ADR-060 for the full rationale.
+- **Sitemap is generated, not hand-kept.** `build_articles.py` regenerates
+  `sitemap.xml` on every build (hub + section pages + articles, with article
+  `lastmod`). The canonical base is the `BASE_URL` constant in the builder — it
+  points at the live `github.io` URL today and must change to
+  `https://structurebeatsmagic.com` *after* the DNS cutover (the custom domain
+  currently 301-redirects to jacovanderlaan.com). `robots.txt`'s `Sitemap:` line
+  needs the same swap.
 - **Internal links:** cross-link articles to each other, to `/system`, and the
   enterprise CTA to `jacovanderlaan.com` — a connected site is stronger for both
   readers and ranking. Outbound/affiliate-style links get `rel` as appropriate.
