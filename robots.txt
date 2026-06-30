@@ -29,6 +29,5 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-# After the DNS cutover (structurebeatsmagic.com -> GitHub Pages), change the
-# Sitemap URL below to https://structurebeatsmagic.com/sitemap.xml
-Sitemap: https://jacovanderlaan.github.io/structurebeatsmagic/sitemap.xml
+# DNS cutover completed 2026-06-30: structurebeatsmagic.com -> GitHub Pages.
+Sitemap: https://structurebeatsmagic.com/sitemap.xml

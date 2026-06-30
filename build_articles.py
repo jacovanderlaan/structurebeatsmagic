@@ -49,12 +49,12 @@ ARTICLES = [
 
 CSS = "../assets/article.css"
 
-# Canonical base for sitemap URLs. The custom domain still 301-redirects to
-# jacovanderlaan.com (DNS cutover pending), so the live site is the github.io
-# URL. After the cutover, set this to "https://structurebeatsmagic.com".
+# Canonical base for sitemap URLs. DNS cutover completed 2026-06-30: the custom
+# domain structurebeatsmagic.com now resolves directly to GitHub Pages (apex
+# A-records 185.199.108-111.153 + www CNAME), so it is the live canonical home.
 BASE_URL = os.environ.get(
     "SBM_BASE_URL",
-    "https://jacovanderlaan.github.io/structurebeatsmagic",
+    "https://structurebeatsmagic.com",
 ).rstrip("/")
 
 
