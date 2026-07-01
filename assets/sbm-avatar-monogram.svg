@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Structure Beats Magic — SBM">
+  <!-- Medium publication AVATAR alt (monogram, square, 1000px, shows as circle). -->
+  <!-- Brand palette: navy #0f172a · off-white #f7f8fa · accent #2563eb · gold #b88a1b -->
+  <defs><clipPath id="round2"><circle cx="500" cy="500" r="500"/></clipPath></defs>
+  <g clip-path="url(#round2)">
+    <rect width="1000" height="1000" fill="#0f172a"/>
+    <!-- baseline the letters sit on = structure -->
+    <rect x="240" y="630" width="520" height="20" rx="10" fill="#2563eb" opacity="0.35"/>
+    <text x="500" y="582" text-anchor="middle"
+          font-family="Georgia, 'Times New Roman', serif" font-size="380" font-weight="700"
+          letter-spacing="-16" fill="#f7f8fa">SBM</text>
+    <!-- gold accent bar: the payoff structure earns -->
+    <rect x="375" y="668" width="250" height="26" rx="13" fill="#b88a1b"/>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Structure Beats Magic">
+  <!-- Medium publication LOGO (name + transparent background, wide). -->
+  <!-- Brand palette: navy #0f172a · accent #2563eb · gold #b88a1b -->
+  <!-- NO background rect = transparent. -->
+
+  <!-- Mark: compact 3x3 ordered grid with one gold block (the payoff) -->
+  <g>
+    <rect x="40"  y="60"  width="66" height="66" rx="12" fill="#0f172a"/>
+    <rect x="118" y="60"  width="66" height="66" rx="12" fill="#2563eb"/>
+    <rect x="196" y="60"  width="66" height="66" rx="12" fill="#0f172a" opacity="0.35"/>
+    <rect x="40"  y="138" width="66" height="66" rx="12" fill="#2563eb" opacity="0.6"/>
+    <rect x="118" y="138" width="66" height="66" rx="12" fill="#b88a1b"/>
+    <rect x="196" y="138" width="66" height="66" rx="12" fill="#0f172a"/>
+    <rect x="40"  y="216" width="66" height="66" rx="12" fill="#0f172a" opacity="0.35"/>
+    <rect x="118" y="216" width="66" height="66" rx="12" fill="#0f172a"/>
+    <rect x="196" y="216" width="66" height="66" rx="12" fill="#2563eb" opacity="0.6"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="310" y="150" font-family="Georgia, 'Times New Roman', serif"
+        font-size="82" font-weight="700" letter-spacing="-2" fill="#0f172a">Structure</text>
+  <text x="310" y="240" font-family="Georgia, 'Times New Roman', serif"
+        font-size="82" font-weight="700" letter-spacing="-2" fill="#0f172a">Beats <tspan fill="#b88a1b">Magic</tspan></text>
+</svg>

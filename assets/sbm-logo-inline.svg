@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 220" width="1600" height="220" role="img" aria-label="Structure Beats Magic">
+  <!-- LOGO alt: single-line wordmark (transparent). For wide/header placement. -->
+  <!-- Brand palette: navy #0f172a · accent #2563eb · gold #b88a1b -->
+  <!-- Compact 3x3 mark -->
+  <g>
+    <rect x="30"  y="40"  width="44" height="44" rx="9" fill="#0f172a"/>
+    <rect x="82"  y="40"  width="44" height="44" rx="9" fill="#2563eb"/>
+    <rect x="134" y="40"  width="44" height="44" rx="9" fill="#0f172a" opacity="0.35"/>
+    <rect x="30"  y="92"  width="44" height="44" rx="9" fill="#2563eb" opacity="0.6"/>
+    <rect x="82"  y="92"  width="44" height="44" rx="9" fill="#b88a1b"/>
+    <rect x="134" y="92"  width="44" height="44" rx="9" fill="#0f172a"/>
+    <rect x="30"  y="144" width="44" height="44" rx="9" fill="#0f172a" opacity="0.35"/>
+    <rect x="82"  y="144" width="44" height="44" rx="9" fill="#0f172a"/>
+    <rect x="134" y="144" width="44" height="44" rx="9" fill="#2563eb" opacity="0.6"/>
+  </g>
+  <!-- Single-line wordmark -->
+  <text x="210" y="140" font-family="Georgia, 'Times New Roman', serif"
+        font-size="86" font-weight="700" letter-spacing="-2" fill="#0f172a">Structure Beats <tspan fill="#b88a1b">Magic</tspan></text>
+</svg>

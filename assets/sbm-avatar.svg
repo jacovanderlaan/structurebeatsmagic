@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Structure Beats Magic">
+  <!-- Medium publication AVATAR (square, 1000px, shows as a circle). -->
+  <!-- Brand palette: navy #0f172a · off-white #f7f8fa · accent #2563eb · gold #b88a1b -->
+  <defs><clipPath id="round"><circle cx="500" cy="500" r="500"/></clipPath></defs>
+  <g clip-path="url(#round)">
+    <rect width="1000" height="1000" fill="#0f172a"/>
+    <!-- Ordered grid of blocks; most calm, ONE gold = the payoff structure earns.
+         Structure (order) with the single bright result. -->
+    <g>
+      <!-- row 1 -->
+      <rect x="180" y="180" width="140" height="140" rx="24" fill="#f7f8fa" opacity="0.92"/>
+      <rect x="360" y="180" width="140" height="140" rx="24" fill="#2563eb"/>
+      <rect x="540" y="180" width="140" height="140" rx="24" fill="#f7f8fa" opacity="0.55"/>
+      <rect x="720" y="180" width="100" height="140" rx="24" fill="#2563eb" opacity="0.7"/>
+      <!-- row 2 -->
+      <rect x="180" y="360" width="140" height="140" rx="24" fill="#2563eb" opacity="0.7"/>
+      <rect x="360" y="360" width="140" height="140" rx="24" fill="#b88a1b"/>
+      <rect x="540" y="360" width="140" height="140" rx="24" fill="#f7f8fa" opacity="0.92"/>
+      <rect x="720" y="360" width="100" height="140" rx="24" fill="#f7f8fa" opacity="0.4"/>
+      <!-- row 3 -->
+      <rect x="180" y="540" width="140" height="140" rx="24" fill="#f7f8fa" opacity="0.55"/>
+      <rect x="360" y="540" width="140" height="140" rx="24" fill="#f7f8fa" opacity="0.92"/>
+      <rect x="540" y="540" width="140" height="140" rx="24" fill="#2563eb"/>
+      <rect x="720" y="540" width="100" height="140" rx="24" fill="#2563eb" opacity="0.5"/>
+      <!-- row 4 -->
+      <rect x="180" y="720" width="140" height="100" rx="24" fill="#2563eb" opacity="0.5"/>
+      <rect x="360" y="720" width="140" height="100" rx="24" fill="#f7f8fa" opacity="0.55"/>
+      <rect x="540" y="720" width="140" height="100" rx="24" fill="#f7f8fa" opacity="0.35"/>
+      <rect x="720" y="720" width="100" height="100" rx="24" fill="#2563eb" opacity="0.7"/>
+    </g>
+  </g>
+</svg>
