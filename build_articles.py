@@ -28,9 +28,16 @@ except ImportError:
     yaml = None
 
 HERE = Path(__file__).parent
+# SBM article source home (moved 2026-07-01 out of the shared mdde-drafts folder
+# into the SBM product tree). Published pieces live in _published/, work-in-progress
+# in _drafts/. Both are scanned so the ARTICLES allow-list can reference either.
 DRAFTS = Path(os.environ.get(
     "SBM_DRAFTS",
-    "W:/data/products/mdde/output/articles/drafts",
+    "W:/systems/products/sbm/articles/_published",
+))
+DRAFTS_WIP = Path(os.environ.get(
+    "SBM_DRAFTS_WIP",
+    "W:/systems/products/sbm/articles/_drafts",
 ))
 OUT = HERE / "articles"
 
@@ -245,8 +252,13 @@ def main() -> None:
     for stem in ARTICLES:
         src = DRAFTS / f"{stem}.md"
         if not src.exists():
-            print(f"  ! missing draft: {src}")
-            continue
+            # fall back to the work-in-progress folder for not-yet-promoted pieces
+            wip = DRAFTS_WIP / f"{stem}.md"
+            if wip.exists():
+                src = wip
+            else:
+                print(f"  ! missing draft: {src}")
+                continue
         meta, body = split_frontmatter(src.read_text(encoding="utf-8"))
         title = str(meta.get("title", stem)).strip().strip('"')
         subtitle = str(meta.get("subtitle", "")).strip().strip('"')
