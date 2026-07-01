@@ -78,6 +78,26 @@ ChatGPT master prompt and the per-slot briefs are kept **private** (input, not
 publication) in the vault, not in this repo:
 `D:/vault/personal/career/2-active/positioning/2026-06-29_infographic-image-briefs-chatgpt.md`.
 
+### Naming & catalog (VERPLICHT — geen UUID's)
+Images komen uit ChatGPT met **UUID-namen** (`6678c568-….png`) — die zijn onvindbaar
+en niet te documenteren. **Hernoem ELKE image meteen bij het plaatsen** naar:
+
+**`<article-slug>-<rol>.png`** — rol = `hero` voor de openings-image, dan `01`, `02`, …
+op leesvolgorde. Slug = artikel-bestandsnaam zonder `.html` (`index` → `home`).
+Voorbeeld: `the-filter-youre-missing-anti-interests-hero.png`, `…-01.png`.
+
+Workflow bij een nieuwe image:
+1. **Genereren** (ChatGPT, één concept per image — zie hierboven).
+2. **Hernoemen** naar de conventie VÓÓR je 'm in de HTML zet (nooit de UUID laten staan).
+3. **Plaatsen** volgens de IMAGE RULE (één figure per tekstblok, niet stacken).
+4. **Catalogiseren**: regel toevoegen aan `assets/IMAGE-CATALOG.md` (bestand + korte
+   beschrijving van wat de infographic toont). Zo weet je later wat elke image is.
+5. **Ongebruikte** naar `W:/…/images/sbm-unused/` (public repo = alleen gepubliceerde images).
+
+⚠️ Als je UUID-named PNGs in `assets/` ziet = niet-gecatalogiseerd → hernoemen +
+in de catalog zetten. Audit: `ls assets/*.png | grep -E '[0-9a-f]{8}-[0-9a-f]{4}'`
+moet leeg zijn. (Bulk-rename van 20 legacy-UUID's gedaan 2026-07-01.)
+
 ### IMAGE RULE (important — frequently violated)
 **Never stack two `<figure>` elements back-to-back without a substantial text
 block (≈25+ words: a paragraph, card grid, or list) between them.** Two images

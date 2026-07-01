@@ -21,7 +21,7 @@
   <h1>The Filter You&#x27;re Missing: Why Your System Needs Anti-Interests</h1>
   <p class="subtitle">Personalization knows what you like. It has no idea what you&#x27;d never touch — and that gap is where the noise lives.</p>
   <div class="byline">By Jaco van der Laan · 2026-06-28</div>
-  
+  <figure class="article-hero"><img src="../assets/the-filter-youre-missing-anti-interests-hero.png" alt="Key Takeaways: Anti-Interests in Action. Less of what drains you, more of what fuels you — that's how you create a life by design." loading="eager"/><figcaption>Remove what doesn&#x27;t matter and you make space for what does: an anti-interests filter turns &quot;what drains you&quot; into room for &quot;what fuels your best work.&quot;</figcaption></figure>
   <article>
   <hr/>
 <h2>The recommendation that gives the game away</h2>
@@ -34,6 +34,7 @@
 <p>That generosity is precisely the failure mode. Most of what gets recommended to you isn't wrong because the system doesn't know your interests — it's wrong because the system <strong>fills gaps with plausible-but-unwanted matches</strong>. The category technically fits. The tag overlaps. The embedding is close. And it's still something you'd never, ever choose.</p>
 <p>You cannot fix this by tuning the positive model harder. A better "like" predictor still says yes-by-default in the ambiguous zone. The only thing that reliably kills a plausible-but-unwanted recommendation is a rule that says: <em>this category — no. Always. Regardless of how well it matched.</em></p>
 <p>That's an anti-interest. It's not a low score. It's a <strong>veto</strong>.</p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-01.png" alt="Anti-Interests Cheat Sheet: Filter, Focus, Conserve, Progress, Review — a simple guide to protect your time, energy and focus every day." loading="lazy"/><figcaption>The veto in five moves: filter out what doesn&#x27;t align, protect focus, conserve energy, invest it where it moves you forward, and review the list as you grow.</figcaption></figure>
 <h2>A worked example, from a system I actually run</h2>
 <p>I maintain a personal knowledge system that enriches my daily notes — weather, news, "on this day," interest-matched picks. The selection is driven by a config of scored interests: city trips 0.95, data engineering high, botanical gardens 0.9, 80s Italo disco, arthouse film. Standard positive model.</p>
 <p>The first time the news enrichment ran, it dutifully surfaced a football transfer and a Formula 1 crash. Both scored fine on a naive relevance pass — they're "major news," they're "local," they're "trending." And both are things I have <strong>zero</strong> interest in and never will. The positive model had no way to know that. It only knew <em>like</em>, and these weren't disliked enough on any axis to fall below threshold. They were simply <em>off-limits</em> — a distinction the system couldn't represent.</p>
@@ -47,6 +48,7 @@
     scope: always</code></pre>
 <p>Three fields do the whole job: a <strong>category</strong>, a <strong>reason</strong> (so future-me remembers why), and a <strong>scope</strong> (<code>always</code>, or conditional — "travel-only", "work-context"). The scope matters more than it looks: some things are anti-interests <em>in one context and not another</em>. I don't want sport in my news digest, but I'm not blanket-banning the word everywhere.</p>
 <p>Now the rule is explicit. Any candidate — news item, recommended article, generated suggestion — gets matched against interests for a score, and then <strong>vetoed</strong> if it hits an in-scope anti-interest, regardless of how well it scored. The football transfer never reaches me. Not because it scored low. Because it was ruled out.</p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-02.png" alt="Common mistakes (and how to avoid them): use &quot;no&quot; as a filter, not a wall; say no with intention; keep the list short and clear; review regularly; focus on what matters." loading="lazy"/><figcaption>The failure modes are predictable: a &quot;no&quot; used as a wall shuts down possibility, while a &quot;no&quot; used as a filter lets what matters flow through. Keep the list short, revisit it, and aim it at what you want more of.</figcaption></figure>
 <h2>Anti-interests are the cheaper half of the model</h2>
 <p>The reason this works so well is an asymmetry most people miss.</p>
 <p>Your <strong>positive</strong> interests are high-dimensional, fuzzy, and always shifting. Capturing them fully is genuinely hard — that's why recommendation engines are entire research fields. But your <strong>anti</strong>-interests are small, stable, and sharp. You can probably write the most important ten in five minutes, and they'll still be true in five years. Musicals, certain sports, MLM pitches, celebrity gossip, crypto-hype — the list of things you've <em>firmly</em> ruled out is short and barely moves.</p>
@@ -58,9 +60,11 @@
 <p>That's the deeper pattern. We try to make systems smarter by improving their guesses. Often the bigger win is letting a human state a few firm rules the guessing must obey. Relevance is a model's job. <strong>Knowing what you'd never want is yours</strong> — so write it down and make the system honor it.</p>
 <h2>Start your list today</h2>
 <p>You don't need a pipeline to get the benefit. Open a file. Write the heading <code>anti-interests</code>. List the ten categories of thing you are reliably, permanently not interested in — and next to each, one line on <em>why</em>. That file is now the most efficient noise filter you own, and it'll pay off in every system you can feed it to.</p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-03.png" alt="Your anti-interests worksheet: set aside 20 minutes, look at your past, identify the patterns, write your anti-interests, and use it as your filter — with a ten-line list to fill in." loading="lazy"/><figcaption>Twenty minutes, ten lines. Review what drained you, spot the patterns, and write them down — the guiding questions on the right turn a blank page into a working filter.</figcaption></figure>
 <p>Personalization will keep getting better at telling you what you like. It's on you to tell it what you don't.</p>
 <hr/>
 <p><em>Drawn from a real personal-knowledge system, where an <code>anti-interests.yaml</code> filter sits downstream of interest scoring across news curation, daily-note highlights, and reading pipelines.</em></p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-04.png" alt="Your 30-day anti-interests action plan: week 1 discover, week 2 apply the filter daily, week 3 protect your time and energy, week 4 review and refine — with the benefits you'll experience." loading="lazy"/><figcaption>If you want a runway rather than a single sitting: discover in week one, apply the filter daily in week two, protect your time in week three, and refine in week four — small, consistent choices that compound.</figcaption></figure>
   </article>
   <div class="article-cta">
     <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
