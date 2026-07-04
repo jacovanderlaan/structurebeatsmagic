@@ -173,9 +173,20 @@ W:/systems/products/sbm/articles/
   folder-note and it stays private. (The detailed working files are separate `.md`
   files in the folder; the sections are the at-a-glance summary.) Mirrors the vault's
   protected manual-sections rule.
-- **Frontmatter:** `title` (required), `subtitle`, `face` (`B2C…`/`B2B…` → audience
-  label), `created`, optional `hero_image` + `hero_caption` (filename in the
-  article's `assets/`).
+- **Frontmatter (aligned with the MDDE article schema):**
+  - *Rendered by the builder:* `title` (required), `subtitle`, `face`
+    (`B2C…`/`B2B…` → audience eyebrow), `created`, optional `hero_image` +
+    `hero_caption` (filename in the article's `assets/`).
+  - *SBM routing (not rendered):* `brand`, `series`, `type`
+    (`signature`/`reflection`/`announcement`), `companion_to` (a slug),
+    `canonical_home`.
+  - *Publication tracking (not rendered; same field names as MDDE so one tracker
+    spans both):* `tags`, `categories`, `topic`, `slug`, `url` (the live
+    structurebeatsmagic.com URL), and `medium` / `substack` / `wp_id` /
+    `wp_status` / `last_synced_at` — `null` for now (SBM is GitHub Pages), ready
+    to fill when an article is cross-posted or pushed to WordPress.
+  - The builder ignores every field except the rendered set, so extra tracking
+    fields never leak into the HTML.
 - **Do NOT** repeat the subtitle as an italic lede in the body — the builder strips a
   leading `*italic*` lede, but just omit the duplicate.
 - **Figure shortcode:** `[[figure: filename.png | caption]]` — filename is the image
