@@ -20,6 +20,7 @@ from __future__ import annotations
 import os
 import re
 import html
+import shutil
 from pathlib import Path
 
 try:
@@ -28,31 +29,38 @@ except ImportError:
     yaml = None
 
 HERE = Path(__file__).parent
-# SBM article source home (moved 2026-07-01 out of the shared mdde-drafts folder
-# into the SBM product tree). Published pieces live in _published/, work-in-progress
-# in _drafts/. Both are scanned so the ARTICLES allow-list can reference either.
-DRAFTS = Path(os.environ.get(
-    "SBM_DRAFTS",
-    "W:/systems/products/sbm/articles/_published",
-))
-DRAFTS_WIP = Path(os.environ.get(
-    "SBM_DRAFTS_WIP",
-    "W:/systems/products/sbm/articles/_drafts",
+# SBM article source home. Folder-per-article (2026-07-04): each published article
+# is a folder under ARTICLES_ROOT whose name is the slug, containing:
+#   <slug>/<slug>.md      the folder-note = the article source (frontmatter + body)
+#   <slug>/assets/*       this article's images (hero + infographics)
+#   <slug>/notes|actions|comments.md   private working files (NOT published)
+# The builder copies each article's assets/ into the repo assets/ at build time,
+# so repo assets/ is a build output — no more hand-managed drift.
+ARTICLES_ROOT = Path(os.environ.get(
+    "SBM_ARTICLES_ROOT",
+    "W:/systems/products/sbm/articles",
 ))
 OUT = HERE / "articles"
+ASSETS = HERE / "assets"
 
-# Explicit allow-list: only these drafts publish to the SBM hub (filename stem).
-# Keeps the shared drafts folder from leaking unrelated/MDDE pieces.
+# Private-section convention: the folder-note is one markdown document. Everything
+# publishes EXCEPT a fixed set of working sections at the bottom. As soon as the
+# builder hits the first of these (case-insensitive ## heading), it stops
+# publishing — the rest is a private notes/actions/comments summary. Mirrors the
+# vault's protected manual-sections rule.
+PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
+
+# Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
-    "2026-07-04_Why-Structure-Beats-Magic",
-    "2026-06-29_Your-Photos-Are-Already-a-Map",
-    "2026-06-29_Your-Bookshelf-Is-Already-a-Knowledge-Base",
-    "2026-06-29_Your-Trips-Are-Already-Structured-Data-Part-1",
-    "2026-06-29_Your-Trips-Are-Already-Structured-Data-Part-2",
-    "2026-06-28_The-Filter-Youre-Missing-Anti-Interests",
-    "2026-06-28_What-Youre-Not-Is-Also-Who-You-Are",
-    "2026-06-29_Stop-Prompting-Start-Directing",
-    "2026-06-29_A-Brain-That-Publishes-Itself",
+    "why-structure-beats-magic",
+    "your-photos-are-already-a-map",
+    "your-bookshelf-is-already-a-knowledge-base",
+    "your-trips-are-already-structured-data-part-1",
+    "your-trips-are-already-structured-data-part-2",
+    "the-filter-youre-missing-anti-interests",
+    "what-youre-not-is-also-who-you-are",
+    "stop-prompting-start-directing",
+    "a-brain-that-publishes-itself",
 ]
 
 CSS = "../assets/article.css"
@@ -80,6 +88,23 @@ def split_frontmatter(text: str) -> tuple[dict, str]:
                     meta = {}
             return meta, body
     return {}, text
+
+
+def strip_private_sections(body: str) -> str:
+    """Cut the body at the first private working section.
+
+    The folder-note is one markdown document; everything publishes except the
+    trailing working sections (## Notes, ## Actions, ## Comments, ## Briefs).
+    We stop at the first such ## heading so those never reach the published HTML.
+    """
+    lines = body.split("\n")
+    for i, ln in enumerate(lines):
+        st = ln.strip()
+        if st.startswith("## "):
+            name = st[3:].strip().rstrip(":").lower()
+            if name in PRIVATE_SECTIONS:
+                return "\n".join(lines[:i]).rstrip() + "\n"
+    return body
 
 
 def md_to_html(md: str) -> str:
@@ -251,25 +276,40 @@ def face_label(meta: dict) -> str:
     return "Structure Beats Magic"
 
 
+def copy_article_assets(slug: str) -> int:
+    """Copy an article folder's assets/* into the repo assets/ (build output).
+
+    Makes repo assets/ a derived artifact — the source of truth for an article's
+    images is <slug>/assets/. Returns the number of files copied.
+    """
+    src_dir = ARTICLES_ROOT / slug / "assets"
+    if not src_dir.is_dir():
+        return 0
+    ASSETS.mkdir(exist_ok=True)
+    n = 0
+    for f in sorted(src_dir.iterdir()):
+        if f.is_file():
+            shutil.copy2(f, ASSETS / f.name)
+            n += 1
+    return n
+
+
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     cards = []
-    for stem in ARTICLES:
-        src = DRAFTS / f"{stem}.md"
+    for slug in ARTICLES:
+        folder = ARTICLES_ROOT / slug
+        src = folder / f"{slug}.md"
         if not src.exists():
-            # fall back to the work-in-progress folder for not-yet-promoted pieces
-            wip = DRAFTS_WIP / f"{stem}.md"
-            if wip.exists():
-                src = wip
-            else:
-                print(f"  ! missing draft: {src}")
-                continue
+            print(f"  ! missing folder-note: {src}")
+            continue
+        copied = copy_article_assets(slug)
         meta, body = split_frontmatter(src.read_text(encoding="utf-8"))
-        title = str(meta.get("title", stem)).strip().strip('"')
+        body = strip_private_sections(body)
+        title = str(meta.get("title", slug)).strip().strip('"')
         subtitle = str(meta.get("subtitle", "")).strip().strip('"')
         created = str(meta.get("created", "")).strip().strip("'\"")
         date = f" · {created}" if created else ""
-        slug = re.sub(r"^\d{4}-\d{2}-\d{2}_", "", stem).lower()
         out_path = OUT / f"{slug}.html"
         # optional hero image: frontmatter `hero_image:` (filename in assets/),
         # with optional `hero_caption:`. Rendered after the byline.
@@ -291,7 +331,7 @@ def main() -> None:
             body=md_to_html(body),
             css=CSS,
         ), encoding="utf-8")
-        print(f"  + articles/{slug}.html")
+        print(f"  + articles/{slug}.html  ({copied} assets)")
         cards.append((created, title, subtitle, f"articles/{slug}.html", face_label(meta)))
 
     # write a snippet the homepage can include (manual paste or future include)
