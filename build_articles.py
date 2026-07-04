@@ -44,6 +44,7 @@ OUT = HERE / "articles"
 # Explicit allow-list: only these drafts publish to the SBM hub (filename stem).
 # Keeps the shared drafts folder from leaking unrelated/MDDE pieces.
 ARTICLES = [
+    "2026-07-04_Why-Structure-Beats-Magic",
     "2026-06-29_Your-Photos-Are-Already-a-Map",
     "2026-06-29_Your-Bookshelf-Is-Already-a-Knowledge-Base",
     "2026-06-29_Your-Trips-Are-Already-Structured-Data-Part-1",

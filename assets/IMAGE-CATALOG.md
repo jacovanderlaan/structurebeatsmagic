@@ -13,6 +13,9 @@
 
 ## Per artikel
 
+### why-structure-beats-magic
+- `why-structure-beats-magic-hero.png` — "A System You Can Count On" (person aan bureau kijkt uit op een pad; links de magie-kant boeken STORIES/MUSIC/AI + hoed/gitaar/luck/genius/hope, rechts whiteboard capture→organise→retrieve→use + PLAN/HABITS/SYSTEMS/RESULTS; onderbalk stories/music/AI/focus/system/results)
+
 ### a-brain-that-publishes-itself
 - `a-brain-that-publishes-itself-hero.png` — "Built on Structure. Driven by Insight. Outputs That Multiply." (closed-loop content-systeem: capture→structure→AI→publish→learn)
 - `a-brain-that-publishes-itself-01.png` — "The Publishing Engine" (ideas→knowledge graph→templates→AI→content→formats: newsletter/LinkedIn/blog/book/podcast)

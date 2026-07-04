@@ -8,7 +8,7 @@
 <meta property="og:title" content="A Planner That Knows Where You&#x27;ve Already Been"/>
 <meta property="og:description" content="Part 2: The same structured trip data that fed my sister&#x27;s site also tells me where to go next — scored by what I love, what I&#x27;d never touch, and what I&#x27;ve already worn out."/>
 <meta property="og:type" content="article"/>
-<meta property="og:image" content="../assets/your-trips-are-already-structured-data-part-2-hero.png"/>
+<meta property="og:image" content="../assets/72b361c1-a2c6-40c8-a9d4-7f56047ad706.png"/>
 <link rel="stylesheet" href="../assets/article.css"/>
 </head>
 <body>
@@ -21,7 +21,7 @@
   <h1>A Planner That Knows Where You&#x27;ve Already Been</h1>
   <p class="subtitle">Part 2: The same structured trip data that fed my sister&#x27;s site also tells me where to go next — scored by what I love, what I&#x27;d never touch, and what I&#x27;ve already worn out.</p>
   <div class="byline">By Jaco van der Laan · 2026-06-29</div>
-  <figure class="article-hero"><img src="../assets/your-trips-are-already-structured-data-part-2-hero.png" alt="A Planner That Knows Where You&#x27;ve Already Been" loading="eager"/><figcaption>Illustrative: what the backbone unlocks once it points forward. Patterns in where you&#x27;ve been, trends in how you travel, the places you actually love — and, from all three, recommendations grounded in your real taste instead of a stranger&#x27;s guess. The numbers here are demo data; the structure underneath is the point.</figcaption></figure>
+  <figure class="article-hero"><img src="../assets/72b361c1-a2c6-40c8-a9d4-7f56047ad706.png" alt="A Planner That Knows Where You&#x27;ve Already Been" loading="eager"/><figcaption>Illustrative: what the backbone unlocks once it points forward. Patterns in where you&#x27;ve been, trends in how you travel, the places you actually love — and, from all three, recommendations grounded in your real taste instead of a stranger&#x27;s guess. The numbers here are demo data; the structure underneath is the point.</figcaption></figure>
   <article>
   <hr/>
 <h2>The recommendation problem, in travel form</h2>
@@ -49,7 +49,7 @@
 <h2>Why the same backbone serves three masters</h2>
 <p>Step back and look at what one DuckDB file now does. The <em>visited</em> side exports curated trips to my sister's site. The <em>same</em> trip records derive the exclusions for the <em>wishlist</em> side. The <em>same</em> scored preferences that rank the wishlist could just as well curate a "places we haven't been but want to" page on my own site. One model, one voice, three consumers: the exchange, the planner, and the eventual site.</p>
 <p>I didn't plan three products. I built one honest structure and the products fell out of it. That's the quiet compounding return of getting the shape right: you stop building features and start <em>deriving</em> them.</p>
-<figure class="article-fig"><img src="../assets/your-trips-are-already-structured-data-part-2-01.png" alt="Illustrative: the whole series in one frame. Scattered trip data flows in, becomes a connected knowledge graph, that graph yields insights, and the insights feed better decisions about where to go next — collect, connect, understand, improve, repeat. One system, many consumers. The numbers are demo data; the loop is the point." loading="lazy"/><figcaption>Illustrative: the whole series in one frame. Scattered trip data flows in, becomes a connected knowledge graph, that graph yields insights, and the insights feed better decisions about where to go next — collect, connect, understand, improve, repeat. One system, many consumers. The numbers are demo data; the loop is the point.</figcaption></figure>
+<figure class="article-fig"><img src="../assets/826bda5e-fa9f-4afb-8d7a-761c88cabb62.png" alt="Illustrative: the whole series in one frame. Scattered trip data flows in, becomes a connected knowledge graph, that graph yields insights, and the insights feed better decisions about where to go next — collect, connect, understand, improve, repeat. One system, many consumers. The numbers are demo data; the loop is the point." loading="lazy"/><figcaption>Illustrative: the whole series in one frame. Scattered trip data flows in, becomes a connected knowledge graph, that graph yields insights, and the insights feed better decisions about where to go next — collect, connect, understand, improve, repeat. One system, many consumers. The numbers are demo data; the loop is the point.</figcaption></figure>
 <h2>The line, again</h2>
 <p>The model in this story writes maybe a hundred words of itinerary. Everything that makes those hundred words <em>trustworthy</em> happens before it runs — in the scored preferences, the mined anti-preferences, the exclusions derived from a decade of trips. <strong>The magic isn't in the model. It's in the structure you give it.</strong></p>
 <p>A travel planner that knows where you've already been, and what you'd never choose, isn't a smarter model. It's the same model, finally handed the structure it needed to stop guessing. Your trips were always structured data. Read forward, they don't just tell you where you went. They tell you where to go.</p>
