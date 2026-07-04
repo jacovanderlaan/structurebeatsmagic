@@ -5,21 +5,17 @@
       <stop offset="1" stop-color="#1e293b"/>
     </linearGradient>
   </defs>
-  <!-- rounded dark tile — sibling of jacovanderlaan.com, SBM's own blue+gold -->
+  <!-- rounded dark tile -->
   <rect width="64" height="64" rx="14" fill="url(#bg)"/>
-  <!-- 3x3 structural grid; the centre cell is gold = structure resolves to the payoff -->
-  <g>
-    <!-- row 1 -->
-    <rect x="12" y="12" width="11" height="11" rx="2.5" fill="#2563eb"/>
-    <rect x="26.5" y="12" width="11" height="11" rx="2.5" fill="#1e3a8a"/>
-    <rect x="41" y="12" width="11" height="11" rx="2.5" fill="#2563eb"/>
-    <!-- row 2 -->
-    <rect x="12" y="26.5" width="11" height="11" rx="2.5" fill="#1e3a8a"/>
-    <rect x="26.5" y="26.5" width="11" height="11" rx="2.5" fill="#b88a1b"/>
-    <rect x="41" y="26.5" width="11" height="11" rx="2.5" fill="#1e3a8a"/>
-    <!-- row 3 -->
-    <rect x="12" y="41" width="11" height="11" rx="2.5" fill="#2563eb"/>
-    <rect x="26.5" y="41" width="11" height="11" rx="2.5" fill="#1e3a8a"/>
-    <rect x="41" y="41" width="11" height="11" rx="2.5" fill="#2563eb"/>
-  </g>
+  <!-- structure stacking up to the payoff: a broad base, a middle, and a gold cap.
+       Reads as "blocks build into a system" — the SBM thesis, not a generic grid. -->
+  <!-- base row (widest, the foundation) -->
+  <rect x="13" y="41" width="12" height="10" rx="2.5" fill="#2563eb"/>
+  <rect x="27" y="41" width="12" height="10" rx="2.5" fill="#1e3a8a"/>
+  <rect x="41" y="41" width="10" height="10" rx="2.5" fill="#2563eb"/>
+  <!-- middle row (narrower, offset in) -->
+  <rect x="20" y="29" width="12" height="10" rx="2.5" fill="#1e3a8a"/>
+  <rect x="34" y="29" width="12" height="10" rx="2.5" fill="#2563eb"/>
+  <!-- top: the single gold block = the payoff, structure resolved to a system -->
+  <rect x="27" y="17" width="12" height="10" rx="2.5" fill="#b88a1b"/>
 </svg>
