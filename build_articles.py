@@ -52,6 +52,7 @@ PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
 
 # Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
+    "your-notes-are-brain-cells",
     "why-structure-beats-magic",
     "your-photos-are-already-a-map",
     "your-bookshelf-is-already-a-knowledge-base",
