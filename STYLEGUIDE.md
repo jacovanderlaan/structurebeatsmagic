@@ -139,30 +139,52 @@ touching looks like a dump and kills rhythm.
   frontmatter, never double blanks; no hard-wrapping mid-sentence (one line per
   paragraph) in `.md` drafts.
 
-## 5. Writing → articles pipeline
+## 5. Writing → articles pipeline (folder-per-article, since 2026-07-04)
 
-- Drafts live in `W:/data/products/mdde/output/articles/drafts/` (PDR-067; O:
-  dropped). Source of truth is the markdown; `build_articles.py` renders styled
-  HTML.
-- **Allow-list:** only stems listed in `ARTICLES` in `build_articles.py` publish —
-  keeps unrelated/MDDE drafts private.
-- **Frontmatter:** `title` (required), `subtitle`, `face` (`B2C…`/`B2B…` →
-  audience label), `created`, optional `hero_image` + `hero_caption` (filename in
-  `assets/`).
-- **Do NOT** repeat the subtitle as an italic lede in the body — the builder
-  renders the subtitle separately and now strips a leading `*italic*` lede, but
-  don't rely on it; just omit the duplicate.
-- **Figure shortcode:** `[[figure: filename.png | caption]]` — renders a captioned
-  `figure.article-fig` from `assets/`. Subject to the image rule above (text
-  between figures).
-- Markdown subset supported: `#/##/###`, `**bold**` (may contain `*italic*`),
-  `*italic*`, `[links](url)`, `---` rules, `-`/`*` bullet lists, figure shortcode,
-  inline code `` `like this` ``, and fenced code blocks ```` ``` ````. Fenced
-  blocks render verbatim (`<pre><code>`) — whitespace and newlines preserved, so
-  ASCII diagrams and CLI/log output keep their alignment; no inline formatting is
-  applied inside them. Use a fence for anything that must be monospaced.
-- Rebuild after edits: `python build_articles.py` (writes `articles/*.html`,
-  `_cards.html` for the homepage Writing strip, and regenerates `sitemap.xml`).
+Each published article is a **folder** on `W:/systems/products/sbm/articles/`, named
+by its slug (= the published HTML filename). Everything for one article lives together
+— text, images, and private working files. See ADR-066 for the rationale and the
+runbook `sbm-hub-site-publish.md` for the step-by-step.
+
+```
+W:/systems/products/sbm/articles/
+  <slug>/
+    <slug>.md          ← folder-note = the article source (frontmatter + body)
+    assets/*.png       ← THIS article's images (hero + infographics)
+    briefs.md          ← ChatGPT image-briefs for this article   (NOT published)
+    notes.md           ← working notes                           (NOT published)
+    actions.md         ← open actions                            (NOT published)
+    comments.md        ← feedback / comments                     (NOT published)
+  _drafts/             ← WIP pieces, still flat (not yet folderised)
+  _migrated-flat-backup/  ← the pre-2026-07-04 flat sources (archive; safe to keep)
+```
+
+- **Source of truth = the folder-note markdown.** `build_articles.py` (in the repo)
+  scans the article folders and renders styled HTML.
+- **Assets are a BUILD OUTPUT.** The builder copies each `<slug>/assets/*` into the
+  repo `assets/` at build time. Do **not** hand-place article images in the repo —
+  put them in the article folder's `assets/` and rebuild. This structurally prevents
+  the renamed-asset / stale-reference drift bug.
+- **Allow-list:** only slugs listed in `ARTICLES` in `build_articles.py` publish.
+- **Private-section convention (what publishes):** the folder-note is one markdown
+  document. Everything publishes **except** a fixed set of trailing working sections:
+  `## Notes`, `## Actions`, `## Comments`, `## Briefs`. The builder cuts the body at
+  the first such heading — so you can keep a status summary at the bottom of the
+  folder-note and it stays private. (The detailed working files are separate `.md`
+  files in the folder; the sections are the at-a-glance summary.) Mirrors the vault's
+  protected manual-sections rule.
+- **Frontmatter:** `title` (required), `subtitle`, `face` (`B2C…`/`B2B…` → audience
+  label), `created`, optional `hero_image` + `hero_caption` (filename in the
+  article's `assets/`).
+- **Do NOT** repeat the subtitle as an italic lede in the body — the builder strips a
+  leading `*italic*` lede, but just omit the duplicate.
+- **Figure shortcode:** `[[figure: filename.png | caption]]` — filename is the image
+  in this article's `assets/`. Subject to the no-stacked-figures image rule.
+- Markdown subset: `#/##/###`, `**bold**` (may contain `*italic*`), `*italic*`,
+  `[links](url)`, `---` rules, `-`/`*` bullet lists, figure shortcode, inline code
+  `` `like this` ``, and fenced code blocks ```` ``` ```` (verbatim `<pre><code>`).
+- Rebuild after edits: `python build_articles.py` (copies assets, writes
+  `articles/*.html`, `_cards.html`, regenerates `sitemap.xml`).
 
 ## 6. SEO & metadata
 
