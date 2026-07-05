@@ -201,9 +201,26 @@ W:/systems/products/sbm/articles/
 
 - **Per page:** unique `<title>` (`Page — Structure Beats Magic`), `<meta
   name="description">` (~150 chars, benefit-led, no keyword stuffing), Open Graph
-  (`og:title`, `og:description`, `og:type`, `og:image`) and `twitter:card =
-  summary_large_image`.
+  (`og:title`, `og:description`, `og:type`, `og:url`, `og:site_name`, `og:image`)
+  and the full Twitter Card set (`twitter:card = summary_large_image`, title,
+  description, image).
 - **og:image:** the page's hero (articles) or `assets/sbm-og-card.svg` (default).
+  Emitted as an **absolute** URL (`{BASE_URL}/assets/…`) — relative OG images
+  don't resolve when the page is shared.
+- **Author + identity (added 2026-07-05).** Every article carries
+  `<meta name="author" content="Jaco van der Laan">`, `article:author`,
+  `article:published_time` (from frontmatter `created`), and a **JSON-LD
+  `Article` schema** whose `author` is a `Person` linked via `sameAs` to
+  jacovanderlaan.com + LinkedIn + Medium. The hub (`index.html`) carries a
+  `WebSite` + `Person` JSON-LD as the **anchor entity**. This is what makes the
+  articles show up — and be attributed to Jaco — when someone Googles his name.
+  All of it is builder-generated (`build_article_jsonld()` + the `PAGE`
+  template); do not hand-add it per file.
+- **Canonical URL on every page** (`<link rel="canonical">`, absolute, built from
+  `BASE_URL`). This is the **original-home signal** that makes cross-posting to
+  Medium safe — without it, a syndicated copy can outrank the source. Required by
+  the canonical-first syndication decision (**ADR-062**); see the runbook
+  `publish-article-canonical-first.md`.
 - **Headings:** exactly one `<h1>` per page (the article/section title); real
   heading hierarchy, no skipped levels — it's read by both crawlers and AI.
 - **Alt text on every image** — descriptive and specific (it's accessibility *and*
@@ -219,11 +236,11 @@ W:/systems/products/sbm/articles/
   human-readable URLs (no query strings). See ADR-060 for the full rationale.
 - **Sitemap is generated, not hand-kept.** `build_articles.py` regenerates
   `sitemap.xml` on every build (hub + section pages + articles, with article
-  `lastmod`). The canonical base is the `BASE_URL` constant in the builder — it
-  points at the live `github.io` URL today and must change to
-  `https://structurebeatsmagic.com` *after* the DNS cutover (the custom domain
-  currently 301-redirects to jacovanderlaan.com). `robots.txt`'s `Sitemap:` line
-  needs the same swap.
+  `lastmod`). The canonical base is the `BASE_URL` constant in the builder —
+  since the DNS cutover (2026-07-01) it is `https://structurebeatsmagic.com`, and
+  the same base feeds every canonical/og:url/JSON-LD URL. `robots.txt`'s
+  `Sitemap:` line uses the same host. Override with the `SBM_BASE_URL` env-var
+  only for local preview builds.
 - **Internal links:** cross-link articles to each other, to `/system`, and the
   enterprise CTA to `jacovanderlaan.com` — a connected site is stronger for both
   readers and ranking. Outbound/affiliate-style links get `rel` as appropriate.
