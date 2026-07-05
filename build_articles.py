@@ -20,6 +20,7 @@ from __future__ import annotations
 import os
 import re
 import html
+import json
 import shutil
 from pathlib import Path
 
@@ -232,15 +233,27 @@ PAGE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>{title} — Structure Beats Magic</title>
 <meta name="description" content="{subtitle}"/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="{canonical}"/>
 <meta property="og:title" content="{title}"/>
 <meta property="og:description" content="{subtitle}"/>
 <meta property="og:type" content="article"/>
-<meta property="og:image" content="{og_image}"/>
+<meta property="og:url" content="{canonical}"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="{og_image_abs}"/>
+<meta property="article:author" content="Jaco van der Laan"/>{published_meta}
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="{title}"/>
+<meta name="twitter:description" content="{subtitle}"/>
+<meta name="twitter:image" content="{og_image_abs}"/>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
 <link rel="stylesheet" href="{css}"/>
+<script type="application/ld+json">
+{json_ld}
+</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -266,6 +279,46 @@ PAGE = """<!doctype html>
   <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
 </body></html>
 """
+
+
+def build_article_jsonld(title: str, subtitle: str, canonical: str,
+                         image_abs: str, created: str) -> str:
+    """Build a JSON-LD Article schema block.
+
+    The author is a Person entity linked (via sameAs) to Jaco's other public
+    profiles, so Google can unify "Jaco van der Laan" across sites and rank
+    these articles for name searches. publisher = the SBM brand. datePublished
+    is emitted only when known.
+    """
+    author = {
+        "@type": "Person",
+        "name": "Jaco van der Laan",
+        "url": "https://jacovanderlaan.com",
+        "sameAs": [
+            "https://jacovanderlaan.com",
+            "https://www.linkedin.com/in/jacovanderlaan",
+            "https://medium.com/@jacovanderlaan",
+        ],
+    }
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": subtitle,
+        "image": image_abs,
+        "author": author,
+        "publisher": {
+            "@type": "Organization",
+            "name": "Structure Beats Magic",
+            "url": BASE_URL,
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+        "url": canonical,
+    }
+    if created:
+        data["datePublished"] = created
+        data["dateModified"] = created
+    return json.dumps(data, indent=2, ensure_ascii=False)
 
 
 def face_label(meta: dict) -> str:
@@ -321,14 +374,25 @@ def main() -> None:
             cap_html = f'<figcaption>{html.escape(cap)}</figcaption>' if cap else ""
             hero = (f'<figure class="article-hero"><img src="../assets/{hi}" '
                     f'alt="{html.escape(title, quote=True)}" loading="eager"/>{cap_html}</figure>')
-        og_image = f"../assets/{hi}" if hi else "../assets/sbm-og-card.svg"
+        # SEO: canonical URL, absolute OG image, author + publish-date metadata,
+        # and JSON-LD Article schema. The canonical is what makes syndication
+        # (Medium etc.) safe — it tells Google this site is the original home.
+        canonical = f"{BASE_URL}/articles/{slug}.html"
+        og_image_abs = (f"{BASE_URL}/assets/{hi}" if hi
+                        else f"{BASE_URL}/assets/sbm-og-card.svg")
+        published_meta = (f'\n<meta property="article:published_time" content="{created}"/>'
+                          if created else "")
+        json_ld = build_article_jsonld(title, subtitle, canonical, og_image_abs, created)
         out_path.write_text(PAGE.format(
             title=html.escape(title, quote=True),
             subtitle=html.escape(subtitle, quote=True),
             face=face_label(meta),
             date=date,
             hero=hero,
-            og_image=og_image,
+            canonical=canonical,
+            og_image_abs=og_image_abs,
+            published_meta=published_meta,
+            json_ld=json_ld,
             body=md_to_html(body),
             css=CSS,
         ), encoding="utf-8")
