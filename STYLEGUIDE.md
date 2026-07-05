@@ -227,6 +227,20 @@ W:/systems/products/sbm/articles/
   SEO *and* what an LLM reads). Captions add context; alt describes the image.
 - **Images:** `loading="lazy"` on everything except an above-the-fold hero
   (`loading="eager"`). Keep infographic PNGs reasonably sized.
+- **⚠️ AI-image integrity — VERIFY BEFORE PUBLISH (mandatory gate).** Every
+  AI-generated infographic must be *looked at* before it ships, because image
+  generators routinely produce **garbled/fake text** (misspelled labels, broken
+  logos like "Linkedln", nonsense on notebook/laptop screens, mangled diagram
+  nodes) — fatal on a site whose whole argument is *structure and quality*.
+  Check each image for: (1) fake/garbled/misspelled text in any label, screen,
+  logo or prop; (2) **brand colour** — accent must be blue `#2563eb`, payoff gold
+  `#b88a1b`; **green is off-brand** and must not be an accent; (3) factual nits
+  in rendered data (author names, ratios, place labels); (4) AI artefacts
+  (distorted hands/faces, warped UI, style clash with the flat-vector house
+  look). If text can't be rendered cleanly, prefer **no text** (blank screens,
+  unlabelled spines) over fake text. The 5 Jul 2026 audit
+  (`W:/systems/products/sbm/design/image-audit-2026-07-05.md`) is the baseline;
+  regenerate flagged images from the brand-colour brief before reuse.
 - **Crawlability — welcome bots, don't block them.** This is a public thesis/hub
   site; being found, indexed and *cited* (by search engines **and** AI answer
   engines) is the point, not a threat. `robots.txt` allows all crawlers and
