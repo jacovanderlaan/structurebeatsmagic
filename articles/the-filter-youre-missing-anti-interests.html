@@ -12,13 +12,13 @@
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://structurebeatsmagic.com/articles/the-filter-youre-missing-anti-interests.html"/>
 <meta property="og:site_name" content="Structure Beats Magic"/>
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/the-filter-youre-missing-anti-interests-hero.png"/>
 <meta property="article:author" content="Jaco van der Laan"/>
 <meta property="article:published_time" content="2026-06-28"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Filter You&#x27;re Missing: Why Your System Needs Anti-Interests"/>
 <meta name="twitter:description" content="The systems piece: give your AI a veto list — the &#x27;NOT&#x27; clause every personalization pipeline is missing. (Its companion, What You&#x27;re Not Is Also Who You Are, is about what that list does to you.)"/>
-<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/the-filter-youre-missing-anti-interests-hero.png"/>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
@@ -30,7 +30,7 @@
   "@type": "Article",
   "headline": "The Filter You're Missing: Why Your System Needs Anti-Interests",
   "description": "The systems piece: give your AI a veto list — the 'NOT' clause every personalization pipeline is missing. (Its companion, What You're Not Is Also Who You Are, is about what that list does to you.)",
-  "image": "https://structurebeatsmagic.com/assets/sbm-og-card.svg",
+  "image": "https://structurebeatsmagic.com/assets/the-filter-youre-missing-anti-interests-hero.png",
   "author": {
     "@type": "Person",
     "name": "Jaco van der Laan",
@@ -66,7 +66,7 @@
   <h1>The Filter You&#x27;re Missing: Why Your System Needs Anti-Interests</h1>
   <p class="subtitle">The systems piece: give your AI a veto list — the &#x27;NOT&#x27; clause every personalization pipeline is missing. (Its companion, What You&#x27;re Not Is Also Who You Are, is about what that list does to you.)</p>
   <div class="byline">By Jaco van der Laan · 2026-06-28</div>
-  
+  <figure class="article-hero"><img src="../assets/the-filter-youre-missing-anti-interests-hero.png" alt="The Filter You&#x27;re Missing: Why Your System Needs Anti-Interests" loading="eager"/><figcaption>Two filters, not one. Candidates fall into the funnel; the first filter matches what you like — and lets too much through. The second, the one most systems are missing, is the veto: what you&#x27;d never touch. Relevance is the model&#x27;s job; knowing what you&#x27;d never want is yours.</figcaption></figure>
   <article>
   <hr/>
 <h2>The recommendation that gives the game away</h2>
@@ -79,6 +79,7 @@
 <p>That generosity is precisely the failure mode. Most of what gets recommended to you isn't wrong because the system doesn't know your interests — it's wrong because the system <strong>fills gaps with plausible-but-unwanted matches</strong>. The category technically fits. The tag overlaps. The embedding is close. And it's still something you'd never, ever choose.</p>
 <p>You cannot fix this by tuning the positive model harder. A better "like" predictor still says yes-by-default in the ambiguous zone. The only thing that reliably kills a plausible-but-unwanted recommendation is a rule that says: <em>this category — no. Always. Regardless of how well it matched.</em></p>
 <p>That's an anti-interest. It's not a low score. It's a <strong>veto</strong>.</p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-01.png" alt="In the ambiguous middle — where the model is neither sure you'll love it nor sure you won't — a "like" model defaults to *include*. That's where the plausible-but-unwanted match slips through: it scored well enough, and nothing was there to rule it out. Only a veto kills it." loading="lazy"/><figcaption>In the ambiguous middle — where the model is neither sure you'll love it nor sure you won't — a "like" model defaults to <em>include</em>. That's where the plausible-but-unwanted match slips through: it scored well enough, and nothing was there to rule it out. Only a veto kills it.</figcaption></figure>
 <h2>A worked example, from a system I actually run</h2>
 <p>I maintain a personal knowledge system that enriches my daily notes — weather, news, "on this day," interest-matched picks. The selection is driven by a config of scored interests: city trips 0.95, data engineering high, botanical gardens 0.9, 80s Italo disco, arthouse film. Standard positive model.</p>
 <p>The first time the news enrichment ran, it dutifully surfaced a football transfer and a Formula 1 crash. Both scored fine on a naive relevance pass — they're "major news," they're "local," they're "trending." And both are things I have <strong>zero</strong> interest in and never will. The positive model had no way to know that. It only knew <em>like</em>, and these weren't disliked enough on any axis to fall below threshold. They were simply <em>off-limits</em> — a distinction the system couldn't represent.</p>
@@ -96,9 +97,11 @@
 <p>The reason this works so well is an asymmetry most people miss.</p>
 <p>Your <strong>positive</strong> interests are high-dimensional, fuzzy, and always shifting. Capturing them fully is genuinely hard — that's why recommendation engines are entire research fields. But your <strong>anti</strong>-interests are small, stable, and sharp. You can probably write the most important ten in five minutes, and they'll still be true in five years. Musicals, certain sports, MLM pitches, celebrity gossip, crypto-hype — the list of things you've <em>firmly</em> ruled out is short and barely moves.</p>
 <p>So you get a wildly favorable trade: a tiny, low-maintenance file kills a large fraction of your noise. You are not trying to model all of human interest. You're drawing a few bright lines around the stuff that should never get through. <strong>Cheap to write, expensive to omit.</strong></p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-03.png" alt="The asymmetry that makes it worth it. Your positive interests are high-dimensional, shifting and hard to capture — a whole research field. Your anti-interests are small, stable and sharp: ten lines that stay true for years. A tiny file does outsized work." loading="lazy"/><figcaption>The asymmetry that makes it worth it. Your positive interests are high-dimensional, shifting and hard to capture — a whole research field. Your anti-interests are small, stable and sharp: ten lines that stay true for years. A tiny file does outsized work.</figcaption></figure>
 <p>And there's a second-order benefit: the <em>reason</em> field turns the filter into a record of self-knowledge. Six months later you can read <em>why</em> you ruled something out — and notice when a reason has gone stale. (Mine had "cruises" pencilled in as an anti-interest; then I genuinely got curious about a specific kind of cruise. The explicit list made the contradiction visible, so I could nuance it instead of silently fighting my own filter. A buried preference can't do that.)</p>
 <h2>This is the "NOT" clause every personal system is missing</h2>
 <p>If you think in queries, the point lands immediately. Personalization has spent two decades perfecting the <code>WHERE interest MATCHES …</code> clause and almost completely ignored the <code>AND category NOT IN (anti_interests)</code> clause. Both are part of the same statement. A query with only the positive half returns everything plausible and drowns you. The negative half is what makes the result <em>yours</em>.</p>
+<figure class="article-fig"><img src="../assets/the-filter-youre-missing-anti-interests-02.png" alt="Both halves are one statement. Everyone builds the positive clause — match what you like. Almost nobody writes the negative clause — exclude what you'd never touch. The missing half is what turns a generic result into yours." loading="lazy"/><figcaption>Both halves are one statement. Everyone builds the positive clause — match what you like. Almost nobody writes the negative clause — exclude what you'd never touch. The missing half is what turns a generic result into yours.</figcaption></figure>
 <p>It generalizes past your own feed. Any system that filters or generates <em>for</em> a person — a RAG pipeline choosing what context to load, an agent deciding what to surface, a recommender ranking options — improves the moment you give it an explicit negative filter to apply <em>after</em> relevance scoring. Structure the taste as two halves: <strong>what to match toward</strong> and <strong>what to veto</strong>. The veto is declarative, auditable, and human-owned. It's a rule, not a guess.</p>
 <p>That's the deeper pattern. We try to make systems smarter by improving their guesses. Often the bigger win is letting a human state a few firm rules the guessing must obey. Relevance is a model's job. <strong>Knowing what you'd never want is yours</strong> — so write it down and make the system honor it.</p>
 <h2>Start your list today</h2>
