@@ -258,6 +258,16 @@ W:/systems/products/sbm/articles/
 - **Internal links:** cross-link articles to each other, to `/system`, and the
   enterprise CTA to `jacovanderlaan.com` — a connected site is stronger for both
   readers and ranking. Outbound/affiliate-style links get `rel` as appropriate.
+- **⚠️ Link integrity — VERIFY BEFORE PUBLISH (mandatory gate).** Every internal
+  link, image `src`, and same-page `#anchor` must resolve. Cross-article links use
+  the **published `.html` filename** (e.g. `the-filter-youre-missing-anti-interests.html`),
+  NOT a source `.md` path or the old flat filename — those break after the
+  folder-per-article migration (this bit `companion_to` links). Run the link-check
+  after every build (page links → existing files, `src=` → existing assets,
+  `#anchor` → an `id` on the target page). Known false positives to ignore: bare
+  `/` (site root, resolves on Pages) and `_cards.html`'s article links (that file is
+  a fragment pasted into the homepage, so its hrefs are root-relative). Fix any real
+  break in the **source** folder-note, then rebuild — never patch the built HTML.
 - **GitHub Pages base path:** templates prefix internal asset/photo URLs with a
   base helper where needed; keep `CNAME` correct for the custom domain.
 - **Honesty = durable SEO.** No fabricated numbers, dates, or social proof.
