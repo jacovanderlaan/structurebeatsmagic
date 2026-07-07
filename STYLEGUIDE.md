@@ -68,7 +68,16 @@ voice — keep them visually and tonally consistent.
 
 - **Type:** Inter / system sans. Eyebrows are uppercase, letter-spaced, accent
   colour. Section titles large and tight (`letter-spacing:-.02em`).
-- **Formula styling:** navy pill, gold arrow + gold result.
+- **Formula styling:** light bordered card (surface bg, navy text, `--line`
+  border), gold arrow + gold "Systems" result. Same on desktop and mobile — it
+  must NOT be a dark pill (reads as the nav bar on phones).
+- **⚠️ Card grids — NO orphan/hanging card (publish check).** A row of cards must
+  fill its rows evenly: **N cards → pick columns that divide N.** 6 cards → 3×2,
+  4 cards → 2×2, 3 cards → 3×1. Do **not** use `repeat(auto-fit, minmax(...))`
+  for a fixed known count — it packs e.g. 4-per-row and leaves a lone card
+  dangling on the next row (the "3+1" / "4+2" gap). Pin `grid-template-columns:
+  repeat(<divisor>, 1fr)` with responsive step-downs (e.g. 3→2→1). When you
+  add or remove a card, re-check the column count still divides the total.
 
 ### Generating the infographics (ChatGPT)
 Every infographic is generated in ChatGPT, **one concept per image** — never a dense
