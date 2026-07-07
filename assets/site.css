@@ -82,7 +82,9 @@
   .btn-ghost{color:var(--ink);border:1.5px solid var(--line)}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-  section{padding:4rem 0;border-top:1px solid var(--line)}
+  /* scroll-margin-top offsets the 64px sticky header so an anchor jump (#writing,
+     #principles, …) lands with the section title in view, not hidden behind it. */
+  section{padding:4rem 0;border-top:1px solid var(--line);scroll-margin-top:80px}
   .section-eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);text-align:center}
   h2.section-title{font-size:clamp(1.6rem,3.5vw,2.3rem);text-align:center;letter-spacing:-.01em;margin:.6rem auto 1rem;max-width:20ch}
   .section-lede{text-align:center;color:var(--ink-soft);max-width:54ch;margin:0 auto 3rem;font-size:1.08rem}
