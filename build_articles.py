@@ -68,6 +68,8 @@ ARTICLES = [
     "what-youre-not-is-also-who-you-are",
     "stop-prompting-start-directing",
     "a-brain-that-publishes-itself",
+    "the-week-that-plans-itself",
+    "when-something-goes-wrong",
 ]
 
 CSS = "../assets/article.css"

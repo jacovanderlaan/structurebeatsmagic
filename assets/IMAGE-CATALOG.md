@@ -21,6 +21,21 @@
 - `a-brain-that-publishes-itself-01.png` — "The Publishing Engine" (ideas→knowledge graph→templates→AI→content→formats: newsletter/LinkedIn/blog/book/podcast)
 - `a-brain-that-publishes-itself-02.png` — brain met inputs (experiences/ideas/notes/reading/data) → outputs (article/blog/ebook/framework/diagrams)
 
+### the-week-that-plans-itself
+- `the-week-that-plans-itself-hero.png` — de plan·close·read-loop: calendar/weather/tasks → record (gouden check) → read-back (location/route/tasks), cyclisch. Labels "plan · close · read".
+- `the-week-that-plans-itself-01.png` — de 3 moves als cyclus: "plan forward" (tomorrow/day+2/+3 gedraft) → "RECORD OF DAYS" (MON-SUN) → "read the middle" (location/route/tasks); onder "close behind" (yesterday→leftover→today).
+- `the-week-that-plans-itself-02.png` — one source, one direction: "RECORD OF DAYS" → 3 projecties (calendar-reminder / mobile task-list / read-back note met kaart), "NO RETURN"-lijn. (Alt-variant met enkele centrale X = `sbm-unused/the-week-that-plans-itself-02-alt-clean-noreturn.png`.)
+
+### give-the-recipe-sell-the-kitchen
+- `give-the-recipe-sell-the-kitchen-hero.png` — de recept-kaart (blauw, "the recipe — free", vliegend/deelbaar) → warme kitchen (gold, "the kitchen — the work"). Recept trekt aan; keuken = de waarde.
+- `give-the-recipe-sell-the-kitchen-01.png` — het onderscheid, tweekolom: RECIPE = what + why (genuinely useful / the ad / travels, blauw) vs KITCHEN = how done for real (judgement / context / different every time, gold). "Both are real."
+- `give-the-recipe-sell-the-kitchen-02.png` — de fork: EXPERT → A "SELL THE COOKBOOK" (framework→product→owned, cage) vs B "SELL THE KITCHEN" (build-with-team→transfer-by-design→open door→leave solid, gold).
+
+### when-something-goes-wrong
+- `when-something-goes-wrong-hero.png` — probleem (warning) → incident-file → status-rail (OPEN→IN-PROGRESS→WAITING→RESOLVED, gold op resolved) → dashboard-eye die er meerdere bewaakt + "RULE" peelt van de gesloten.
+- `when-something-goes-wrong-01.png` — anatomie van één incident-file: header-chips (COUNTERPARTY·CATEGORY·OPENED·DEADLINE·AMOUNT·REF·STATUS) + 4 secties (SITUATION/TIMELINE/POSITION/ACTIONS).
+- `when-something-goes-wrong-02.png` — improvement-loop: INCIDENT FILED→WORKED→CLOSED (gold check) → 2 arrows terug naar "STRUCTURE/CONVENTION" (rule/template + convention change) → NEW INCIDENT start verder vooruit.
+
 ### home (index.html)
 - `home-hero.png` — "The Difference Between Memory and Knowledge" (memory = losse post-its vs knowledge = verbonden graph; "structure turns scattered pieces into a system that thinks")
 
