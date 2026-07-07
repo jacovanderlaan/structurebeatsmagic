@@ -66,9 +66,13 @@
     .hero{padding:2.5rem 0 2.5rem}
     .hero h1{font-size:1.9rem;line-height:1.15;max-width:18ch}
     .hero .lede{font-size:1.08rem;max-width:34ch}
-    .formula{font-size:.9rem;padding:.7rem 1rem;line-height:1.9;max-width:100%}
-    .formula .op{margin:0 .15rem}
-    .formula .arrow{margin:0 .25rem}
+    /* Light bordered card instead of the dark pill, so the formula never reads
+       as the (dark) nav bar on a phone. Navy text on surface; gold stays payoff. */
+    .formula{background:var(--surface);color:var(--ink);border:1px solid var(--line);
+      box-shadow:none;font-size:.9rem;padding:.75rem 1rem;line-height:1.9;max-width:100%}
+    .formula .op{color:var(--ink-faint);margin:0 .15rem}
+    .formula .arrow{color:var(--gold);margin:0 .25rem}
+    .formula .result{color:var(--gold)}
   }
   .btn{padding:.7rem 1.3rem;border-radius:10px;font-weight:600;font-size:15px;display:inline-block}
   .btn-primary{background:var(--accent);color:#fff}
