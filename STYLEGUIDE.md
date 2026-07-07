@@ -204,7 +204,17 @@ W:/systems/products/sbm/articles/
   `[links](url)`, `---` rules, `-`/`*` bullet lists, figure shortcode, inline code
   `` `like this` ``, and fenced code blocks ```` ``` ```` (verbatim `<pre><code>`).
 - Rebuild after edits: `python build_articles.py` (copies assets, writes
-  `articles/*.html`, `_cards.html`, regenerates `sitemap.xml`).
+  `articles/*.html`, `_cards.html`, **injects the homepage card list into
+  `index.html`**, regenerates `sitemap.xml`).
+- **Homepage cards are auto-injected (since 2026-07-07).** The `#writing`
+  card grid in `index.html` used to be a hand-maintained copy that silently
+  drifted (new articles never appeared). Now the builder replaces everything
+  between `<!-- ARTICLE-CARDS:START ... -->` and `<!-- ARTICLE-CARDS:END -->`
+  with the freshly-built cards (newest-first by `created`). **Never hand-edit
+  between those markers** — edit the article frontmatter (`title`/`subtitle`/
+  `face`/`created`) and rebuild. One source, one direction — the homepage is a
+  projection of the articles, not a second copy. (The `articles/_cards.html`
+  fragment is still written too, for any other embed.)
 
 ## 6. SEO & metadata
 

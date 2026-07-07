@@ -443,7 +443,45 @@ def main() -> None:
     (OUT / "_cards.html").write_text("\n".join(snip), encoding="utf-8")
     print(f"  + articles/_cards.html ({len(cards)} cards)")
 
+    inject_homepage_cards(snip)
+
     write_sitemap(cards)
+
+
+def inject_homepage_cards(snip: list) -> None:
+    """Inject the freshly-built article cards into index.html between markers.
+
+    The homepage used to carry a hand-maintained copy of the card list, which
+    drifted out of sync (new articles never appeared). Now the cards live in
+    exactly one place — the article frontmatter — and are projected into the
+    homepage at build time between the ARTICLE-CARDS:START/END markers. Same
+    one-source, one-direction rule the site argues for. No markers -> no-op
+    with a warning (so a manual homepage still builds, just isn't updated).
+    """
+    index = OUT.parent / "index.html"
+    if not index.exists():
+        return
+    html_txt = index.read_text(encoding="utf-8")
+    start = "<!-- ARTICLE-CARDS:START"
+    end = "<!-- ARTICLE-CARDS:END -->"
+    i = html_txt.find(start)
+    j = html_txt.find(end)
+    if i == -1 or j == -1 or j < i:
+        print("  ! index.html: ARTICLE-CARDS markers not found — homepage cards NOT updated")
+        return
+    # keep the START marker comment line intact, replace everything up to END
+    start_line_end = html_txt.find("-->", i) + len("-->")
+    block = (
+        html_txt[i:start_line_end]
+        + "\n" + "\n".join(snip) + "\n      "
+        + end
+    )
+    new_html = html_txt[:i] + block + html_txt[j + len(end):]
+    if new_html != html_txt:
+        index.write_text(new_html, encoding="utf-8")
+        print(f"  + index.html (injected {len(snip)} homepage cards)")
+    else:
+        print("  = index.html (cards already current)")
 
 
 def write_sitemap(cards: list) -> None:
