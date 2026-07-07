@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Neural Metaphor · Concepts · Structure Beats Magic</title>
+<meta name="description" content="The whole architecture reads as a brain — atomic documents are neurons, frontmatter links are synapses, the vault is the brain, federation is brains talking, and each cell holds a memory." />
+<meta property="og:title" content="The Neural Metaphor · Structure Beats Magic" />
+<meta property="og:description" content="The whole architecture reads as a brain — atomic documents are neurons, frontmatter links are synapses, the vault is the brain, federation is brains talking, and each cell holds a memory." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
+  .c-where { font-size:15px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:1rem; margin-top:1.5rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#samples">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>The Neural Metaphor</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">The whole architecture reads as a brain — atomic documents are neurons, frontmatter links are synapses, the vault is the brain, federation is brains talking, and each cell holds a memory.</p>
+    <div class="c-body">
+<blockquote><p>The architecture isn't a database — it's a brain. Documents are cells; links are synapses.</p></blockquote>
+<p>The reason the whole family of concepts is named for a <em>brain</em> and not a database: the structure genuinely maps to how a brain is built. A database stores rows; a brain remembers, connects, and grows. Same underlying structure — a picture that stays.</p>
+<p>| Brain | Structure Beats Magic | |---|---| | <strong>Neuron</strong> (one cell, one memory) | [[concept-atomic-documents\|Atomic Document]] — one thing, indivisible, holding a memory | | <strong>Synapse</strong> (the wiring between cells) | [[concept-loosely-coupled-documents\|Loosely-coupled frontmatter links]] — <code>[[links]]</code>, <code>owner</code>, IDs | | <strong>The brain</strong> (all the cells together) | [[concept-document-vault\|The vault]] — the sovereign node | | <strong>Two brains talking</strong> | [[concept-federated-brains\|Federated Brains]] — synapses at the boundary, validated | | <strong>Memory</strong> (what a cell holds + how it strengthens) | the content of a document + its [[concept-document-change-log\|change-log]]; the system [[concept-the-compounding-brain\|compounds]] with use | | <strong>Learning / rewiring</strong> | new links, new rules, roll-ups — the brain rewires itself as you work |</p>
+<p><strong>Why it matters (not just pretty):</strong> the metaphor is a <em>design compass</em>. It tells you what good looks like — cells should be small and single-purpose (atomic), value lives in the connections not the pile (synapses over copies), and a brain that isn't used atrophies (a vault you don't tend stops compounding). It also makes the thesis land for a non-technical listener in one sentence: <em>"I'm building a second brain — literally: cells, wiring, memory — and teaching two of them to talk."</em> That's [[concept-structure-beats-magic]] you can picture.</p>
+<h2>Article potential</h2>
+<ul><li><strong>B2C (SBM):</strong> "Your Notes Are Brain Cells" — the metaphor as the through-line; atomic docs = neurons, links = synapses, the vault learns. Warm, memorable, thesis-level.</li><li><strong>B2C/method:</strong> "A Brain That Talks to Another Brain" — the neural metaphor extended to [[concept-federated-brains]] (the Annemarie story underneath).</li><li><strong>B2B (jacovanderlaan/MDDE):</strong> the same mapping for enterprise — atomic data products, metadata links, validated exchange = a nervous system for a data platform.</li></ul>
+    </div>
+    <p class="c-where"><strong>Where it lives:</strong> ties the System-architecture concepts together; strong article material (see below).</p>
+    
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

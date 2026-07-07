@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atomic Documents · Concepts · Structure Beats Magic</title>
+<meta name="description" content="One document is one thing — the indivisible unit you can share, version, validate and link without tearing it apart." />
+<meta property="og:title" content="Atomic Documents · Structure Beats Magic" />
+<meta property="og:description" content="One document is one thing — the indivisible unit you can share, version, validate and link without tearing it apart." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
+  .c-where { font-size:15px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:1rem; margin-top:1.5rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#samples">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>Atomic Documents</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">One document is one thing — the indivisible unit you can share, version, validate and link without tearing it apart.</p>
+    <div class="c-body">
+<blockquote><p>One document is one thing — the indivisible unit of the system.</p></blockquote>
+<p>A document holds exactly one idea, capture, or record — not a folder's worth of loosely-related notes crammed into one file. Atomicity is what makes everything else possible: an atomic document can be <strong>shared, versioned, validated, moved and linked as a whole</strong>, because it means one clean thing. This is the ground rule under [[concept-capture-types]] (each capture is atomic and typed) and under [[concept-federated-brains]] (you can only send a document across a boundary safely if it's a self-contained unit — a non-atomic file leaks unrelated context or can't be validated against one contract). Small, single-purpose, self-describing: the atom is the unit of trust.</p>
+<p><strong>The picture: atomic documents are brain cells.</strong> Each atomic document is a neuron — one thing, indivisible, holding a memory. The [[concept-loosely-coupled-documents|loosely-coupled frontmatter links]] are the synapses that wire them together; the vault is the brain those cells make up; and [[concept-federated-brains]] is many brains talking through synapses at the boundary. It's why the whole family of concepts is named for a <em>brain</em> rather than a database — a database stores rows, but a brain remembers, connects, and grows. Same structure; a picture that stays.</p>
+    </div>
+    <p class="c-where"><strong>Where it lives:</strong> the vault's capture conventions; foundational to Federated Brains (<code>D:/vault/personal/career/2-active/positioning/2026-07-04_federated-brains-research.md</code>).</p>
+    
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>
