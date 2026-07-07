@@ -1,41 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="The structure pyramid: raw data, metadata, entities, relationships, knowledge graph, understanding">
   <defs>
-    <linearGradient id="t1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93b4f5"/><stop offset="1" stop-color="#7ba3f2"/></linearGradient>
-    <linearGradient id="t2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f9bf0"/><stop offset="1" stop-color="#5a86ea"/></linearGradient>
-    <linearGradient id="t3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f79e6"/><stop offset="1" stop-color="#3f66db"/></linearGradient>
-    <linearGradient id="t4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f56cf"/><stop offset="1" stop-color="#2543bd"/></linearGradient>
-    <linearGradient id="t5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e3aa8"/><stop offset="1" stop-color="#182f8c"/></linearGradient>
-    <linearGradient id="t6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4a01e"/><stop offset="1" stop-color="#b88a1b"/></linearGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#1e293b" flood-opacity="0.18"/></filter>
+    <linearGradient id="t1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9cbaf7"/><stop offset="1" stop-color="#84a7f3"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7099f0"/><stop offset="1" stop-color="#5b85ea"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c76e5"/><stop offset="1" stop-color="#3c63d9"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f54cc"/><stop offset="1" stop-color="#2544ba"/></linearGradient>
+    <linearGradient id="t5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d38a6"/><stop offset="1" stop-color="#152c85"/></linearGradient>
+    <linearGradient id="t6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6a422"/><stop offset="1" stop-color="#b88a1b"/></linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1e293b" flood-opacity="0.16"/></filter>
   </defs>
 
-  <!-- Geometry: apex (600,70), base half-width 470 at y=850. 6 tiers, equal height 130, 4px gap.
-       Left/right edges interpolate linearly from apex to base → perfectly symmetric slopes.
-       x(y) offset from centre = 470 * (y-70)/(850-70). -->
+  <!-- Geometry: flat-topped pyramid. Apex top edge at y=96 half-width 92 (so
+       "UNDERSTANDING" fits); base at y=838 half-width 460. Six tiers, each 108 tall
+       with a 16px transparent gap between them, so the layers read as stacked.
+       half-width(y) = 92 + (460-92) * (y-96)/(838-96). -->
 
   <!-- soft ground shadow -->
-  <ellipse cx="600" cy="872" rx="430" ry="20" fill="#1e293b" opacity="0.10"/>
+  <ellipse cx="600" cy="864" rx="410" ry="16" fill="#1e293b" opacity="0.09"/>
 
-  <!-- Tier 6 — apex: UNDERSTANDING  (y 70..196, half-w 0..75.9) -->
-  <path d="M600,72 L676,196 L524,196 Z" fill="url(#t6)" filter="url(#soft)"/>
-  <!-- Tier 5 — KNOWLEDGE GRAPH (y 200..326, half-w 78.3..154.2) -->
-  <path d="M521.7,200 L678.3,200 L754.2,326 L445.8,326 Z" fill="url(#t5)" filter="url(#soft)"/>
-  <!-- Tier 4 — RELATIONSHIPS (y 330..456, half-w 156.6..232.5) -->
-  <path d="M443.4,330 L756.6,330 L832.5,456 L367.5,456 Z" fill="url(#t4)" filter="url(#soft)"/>
-  <!-- Tier 3 — ENTITIES (y 460..586, half-w 234.9..310.8) -->
-  <path d="M365.1,460 L834.9,460 L910.8,586 L289.2,586 Z" fill="url(#t3)" filter="url(#soft)"/>
-  <!-- Tier 2 — METADATA (y 590..716, half-w 313.2..389.1) -->
-  <path d="M286.8,590 L913.2,590 L989.1,716 L210.9,716 Z" fill="url(#t2)" filter="url(#soft)"/>
-  <!-- Tier 1 — base: RAW DATA (y 720..846, half-w 391.5..467.4) -->
-  <path d="M208.5,720 L991.5,720 L1067.4,846 L132.6,846 Z" fill="url(#t1)" filter="url(#soft)"/>
+  <!-- Tier 6 apex — UNDERSTANDING -->
+  <path d="M508.0,96 H692.0 L745.6,204 H454.4 Z" fill="url(#t6)" filter="url(#soft)"/>
+  <!-- Tier 5 — KNOWLEDGE GRAPH -->
+  <path d="M446.5,220 H753.5 L807.1,328 H392.9 Z" fill="url(#t5)" filter="url(#soft)"/>
+  <!-- Tier 4 — RELATIONSHIPS -->
+  <path d="M385.0,344 H815.0 L868.6,452 H331.4 Z" fill="url(#t4)" filter="url(#soft)"/>
+  <!-- Tier 3 — ENTITIES -->
+  <path d="M323.5,468 H876.5 L930.1,576 H269.9 Z" fill="url(#t3)" filter="url(#soft)"/>
+  <!-- Tier 2 — METADATA -->
+  <path d="M262.0,592 H938.0 L991.6,700 H208.4 Z" fill="url(#t2)" filter="url(#soft)"/>
+  <!-- Tier 1 base — RAW DATA -->
+  <path d="M200.5,716 H999.5 L1053.1,824 H146.9 Z" fill="url(#t1)" filter="url(#soft)"/>
 
-  <!-- Labels (centred on each tier) -->
-  <g fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="1.5">
-    <text x="600" y="182" font-size="19" letter-spacing="1">UNDERSTANDING</text>
-    <text x="600" y="297" font-size="28">KNOWLEDGE GRAPH</text>
-    <text x="600" y="427" font-size="30">RELATIONSHIPS</text>
-    <text x="600" y="557" font-size="30">ENTITIES</text>
-    <text x="600" y="687" font-size="30">METADATA</text>
-    <text x="600" y="817" font-size="30">RAW DATA</text>
+  <!-- Labels (centred on each tier band) -->
+  <g fill="#ffffff" text-anchor="middle" font-weight="700">
+    <text x="600" y="166" font-size="26" letter-spacing="2">UNDERSTANDING</text>
+    <text x="600" y="290" font-size="30" letter-spacing="1.5">KNOWLEDGE GRAPH</text>
+    <text x="600" y="414" font-size="31" letter-spacing="1.5">RELATIONSHIPS</text>
+    <text x="600" y="538" font-size="31" letter-spacing="1.5">ENTITIES</text>
+    <text x="600" y="662" font-size="31" letter-spacing="1.5">METADATA</text>
+    <text x="600" y="786" font-size="31" letter-spacing="1.5">RAW DATA</text>
   </g>
 </svg>
