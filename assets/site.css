@@ -63,7 +63,10 @@
   /* Mobile hero: the title wrapped to too many ragged lines and the formula pill
      spanned edge-to-edge, reading like a nav bar. Tighten both. */
   @media(max-width:600px){
-    .hero{padding:2.5rem 0 2.5rem}
+    .hero{padding:2.5rem 1rem 2.5rem}
+    /* eyebrow: the wide letter-spacing + uppercase ran into the screen edge and
+       broke awkwardly. Tighten spacing + cap width so it wraps cleanly, centred. */
+    .hero .eyebrow{font-size:11px;letter-spacing:.08em;max-width:26ch;margin:0 auto;line-height:1.4}
     .hero h1{font-size:1.9rem;line-height:1.15;max-width:18ch}
     .hero .lede{font-size:1.08rem;max-width:34ch}
     /* Light bordered card instead of the dark pill, so the formula never reads
