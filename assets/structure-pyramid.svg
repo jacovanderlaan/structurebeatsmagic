@@ -9,30 +9,36 @@
     <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1e293b" flood-opacity="0.16"/></filter>
   </defs>
 
-  <!-- Geometry: flat-topped pyramid. Apex top edge at y=96 half-width 92 (so
-       "UNDERSTANDING" fits); base at y=838 half-width 460. Six tiers, each 108 tall
-       with a 16px transparent gap between them, so the layers read as stacked.
-       half-width(y) = 92 + (460-92) * (y-96)/(838-96). -->
+  <!-- Geometry: pointed pyramid. Real apex point at (600,72); base at y=838
+       half-width 460. The gold apex tier is a true triangle (no text — a small
+       lightbulb icon marks "understanding"); the five lower tiers keep straight
+       edges on the same slope, each 108 tall with a 16px gap so they read stacked.
+       half-width(y) = 460 * (y-72)/(838-72). -->
 
   <!-- soft ground shadow -->
   <ellipse cx="600" cy="864" rx="410" ry="16" fill="#1e293b" opacity="0.09"/>
 
-  <!-- Tier 6 apex — UNDERSTANDING -->
-  <path d="M508.0,96 H692.0 L745.6,204 H454.4 Z" fill="url(#t6)" filter="url(#soft)"/>
-  <!-- Tier 5 — KNOWLEDGE GRAPH -->
-  <path d="M446.5,220 H753.5 L807.1,328 H392.9 Z" fill="url(#t5)" filter="url(#soft)"/>
-  <!-- Tier 4 — RELATIONSHIPS -->
-  <path d="M385.0,344 H815.0 L868.6,452 H331.4 Z" fill="url(#t4)" filter="url(#soft)"/>
-  <!-- Tier 3 — ENTITIES -->
-  <path d="M323.5,468 H876.5 L930.1,576 H269.9 Z" fill="url(#t3)" filter="url(#soft)"/>
-  <!-- Tier 2 — METADATA -->
-  <path d="M262.0,592 H938.0 L991.6,700 H208.4 Z" fill="url(#t2)" filter="url(#soft)"/>
-  <!-- Tier 1 base — RAW DATA -->
-  <path d="M200.5,716 H999.5 L1053.1,824 H146.9 Z" fill="url(#t1)" filter="url(#soft)"/>
+  <!-- Tier 6 apex — real point (UNDERSTANDING, icon only) (point y=72 -> base y=204 hw=79.2) -->
+  <path d="M600,72 L679.2,204 H520.8 Z" fill="url(#t6)" filter="url(#soft)"/>
+  <!-- Tier 5 — KNOWLEDGE GRAPH (y 220..328 | hw 88.8..153.6) -->
+  <path d="M511.2,220 H688.8 L753.6,328 H446.4 Z" fill="url(#t5)" filter="url(#soft)"/>
+  <!-- Tier 4 — RELATIONSHIPS (y 344..452 | hw 163.2..228.0) -->
+  <path d="M436.8,344 H763.2 L828.0,452 H372.0 Z" fill="url(#t4)" filter="url(#soft)"/>
+  <!-- Tier 3 — ENTITIES (y 468..576 | hw 237.6..302.4) -->
+  <path d="M362.4,468 H837.6 L902.4,576 H297.6 Z" fill="url(#t3)" filter="url(#soft)"/>
+  <!-- Tier 2 — METADATA (y 592..700 | hw 312.0..376.8) -->
+  <path d="M288.0,592 H912.0 L976.8,700 H223.2 Z" fill="url(#t2)" filter="url(#soft)"/>
+  <!-- Tier 1 base — RAW DATA (y 716..824 | hw 386.4..451.2) -->
+  <path d="M213.6,716 H986.4 L1051.2,824 H148.8 Z" fill="url(#t1)" filter="url(#soft)"/>
 
-  <!-- Labels (centred on each tier band) -->
+  <!-- apex icon: small lightbulb = "understanding" -->
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600,132 a22,22 0 0 1 13,39 q-4,4 -4,9 h-18 q0,-5 -4,-9 a22,22 0 0 1 13,-39 Z"/>
+    <path d="M591,185 h18 M594,194 h12"/>
+  </g>
+
+  <!-- Labels (centred on each lower tier band) -->
   <g fill="#ffffff" text-anchor="middle" font-weight="700">
-    <text x="600" y="164" font-size="22" letter-spacing="1">UNDERSTANDING</text>
     <text x="600" y="290" font-size="30" letter-spacing="1.5">KNOWLEDGE GRAPH</text>
     <text x="600" y="414" font-size="31" letter-spacing="1.5">RELATIONSHIPS</text>
     <text x="600" y="538" font-size="31" letter-spacing="1.5">ENTITIES</text>
