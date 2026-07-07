@@ -340,8 +340,9 @@ def copy_article_assets(slug: str) -> int:
     Makes repo assets/ a derived artifact — the source of truth for an article's
     images is <slug>/assets/. Returns the number of files copied.
     """
-    src_dir = ARTICLES_ROOT / slug / "assets"
-    if not src_dir.is_dir():
+    folder = resolve_article_folder(slug)
+    src_dir = (folder / "assets") if folder else None
+    if not src_dir or not src_dir.is_dir():
         return 0
     ASSETS.mkdir(exist_ok=True)
     n = 0
@@ -352,15 +353,38 @@ def copy_article_assets(slug: str) -> int:
     return n
 
 
+def resolve_article_folder(slug: str) -> Path | None:
+    """Find an article's source folder by slug.
+
+    Articles live either top-level (ARTICLES_ROOT/<slug>/) or, when part of a
+    series (ADR-067), as a numbered subfolder ARTICLES_ROOT/series/*/NN_<slug>/.
+    Returns the folder Path, or None if not found. Top-level wins if both exist.
+    """
+    top = ARTICLES_ROOT / slug
+    if (top / f"{slug}.md").exists():
+        return top
+    series_root = ARTICLES_ROOT / "series"
+    if series_root.is_dir():
+        for series_dir in series_root.iterdir():
+            if not series_dir.is_dir():
+                continue
+            for part_dir in series_dir.iterdir():
+                # numbered subfolder NN_<slug>
+                if part_dir.is_dir() and re.match(rf"^\d+_{re.escape(slug)}$", part_dir.name):
+                    if (part_dir / f"{slug}.md").exists():
+                        return part_dir
+    return None
+
+
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     cards = []
     for slug in ARTICLES:
-        folder = ARTICLES_ROOT / slug
-        src = folder / f"{slug}.md"
-        if not src.exists():
-            print(f"  ! missing folder-note: {src}")
+        folder = resolve_article_folder(slug)
+        if folder is None:
+            print(f"  ! missing folder-note for slug: {slug}")
             continue
+        src = folder / f"{slug}.md"
         copied = copy_article_assets(slug)
         meta, body = split_frontmatter(src.read_text(encoding="utf-8"))
         body = strip_private_sections(body)
