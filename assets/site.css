@@ -116,7 +116,10 @@
   .bankers p{color:#c4d0e0;margin:.3rem 0;font-size:.97rem}
   .bankers .punch{margin-top:1.4rem;font-size:1.05rem;color:#fff;border-top:1px solid #243349;padding-top:1.2rem}
 
-  .samples{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+  /* 4 sample cards -> a clean 2x2 grid on desktop (was auto-fit 3+1, which left a
+     gap). Single column on mobile. */
+  .samples{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  @media(max-width:640px){.samples{grid-template-columns:1fr}}
   .sample{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
   .sample .badge{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
   .sample h3{margin:.4rem 0 .5rem;font-size:1.15rem}
