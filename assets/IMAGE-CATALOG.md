@@ -31,6 +31,11 @@
 - `give-the-recipe-sell-the-kitchen-01.png` — het onderscheid, tweekolom: RECIPE = what + why (genuinely useful / the ad / travels, blauw) vs KITCHEN = how done for real (judgement / context / different every time, gold). "Both are real."
 - `give-the-recipe-sell-the-kitchen-02.png` — de fork: EXPERT → A "SELL THE COOKBOOK" (framework→product→owned, cage) vs B "SELL THE KITCHEN" (build-with-team→transfer-by-design→open door→leave solid, gold).
 
+### governing-what-your-ai-can-touch
+- `governing-what-your-ai-can-touch-hero.png` — enterprise governance-flow: enterprise data → policy enforcement engine (define rules → enforce → observe & improve) → AI agents/apps; "Trusted AI at Enterprise Scale" (least privilege, just in time).
+- `governing-what-your-ai-can-touch-01.png` — deny-wins precedence-gate: incoming action → check DENY (navy, deny wins → geblokkeerd) → check ALLOW (blauw → door); "No match → ask, don't assume" (gold).
+- `governing-what-your-ai-can-touch-02.png` — pre-fetch SSRF-guard: outbound URL → shield blokkeert raw-IP/loopback/link-local/internal (169.254.x, 127.0.0.1, 10.x), veilige public request gaat door; "the guard runs before the fetch, not after" (gold).
+
 ### when-something-goes-wrong
 - `when-something-goes-wrong-hero.png` — probleem (warning) → incident-file → status-rail (OPEN→IN-PROGRESS→WAITING→RESOLVED, gold op resolved) → dashboard-eye die er meerdere bewaakt + "RULE" peelt van de gesloten.
 - `when-something-goes-wrong-01.png` — anatomie van één incident-file: header-chips (COUNTERPARTY·CATEGORY·OPENED·DEADLINE·AMOUNT·REF·STATUS) + 4 secties (SITUATION/TIMELINE/POSITION/ACTIONS).
