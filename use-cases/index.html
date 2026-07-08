@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Use cases · Structure Beats Magic</title>
+<meta name="description" content="The method applied to real jobs — use cases where Structure Beats Magic lands on one concrete situation: real data, real structure, real output." />
+<meta property="og:title" content="Use cases · Structure Beats Magic" />
+<meta property="og:description" content="Proof, not slides — the thesis applied to concrete situations." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .uc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .uc { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:22px 24px; box-shadow:0 1px 2px rgba(15,23,42,.04); transition:box-shadow .15s ease, transform .15s ease; text-decoration:none; display:block; }
+  a.uc:hover { box-shadow:0 4px 14px rgba(15,23,42,.08); transform:translateY(-1px); }
+  .uc .uc-badge { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .uc .uc-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:8px; }
+  .uc .uc-sum { font-size:15px; color:var(--ink-soft); margin:0; }
+  @media (max-width:760px){ .uc-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup"><button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a><a href="../concepts/">Concepts</a>
+          <a href="../#play">Play</a><a href="../#why-structure">Why structure</a>
+        </span></span>
+      <span class="navgroup"><button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../use-cases/">Use cases</a><a href="../#about">About Jaco</a>
+        </span></span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="eyebrow">Proof, not slides</div>
+  <h1>Use cases</h1>
+  <p class="lede">A use case is the thesis landed on one concrete situation — real data, real structure, real output. Not a slide about what's possible; a working system you can see. Click any use case for the full picture.</p>
+</div>
+
+<section id="use-cases">
+  <div class="wrap">
+    <div class="section-eyebrow">Proof, not slides</div>
+    <h2 class="section-title">The method applied to a real job</h2>
+    <p class="section-lede">Each shows Structure Beats Magic working for one situation. The recipe is here for free; the kitchen is where the work happens.</p>
+<div class="uc-grid"><a class="uc" href="structured-trip-host.html"><div class="uc-name">The Structured Trip Host</div><p class="uc-sum">hosting group travel</p></a>
+<a class="uc" href="ai-movie-library.html"><div class="uc-badge">Live demo · taste</div><div class="uc-name">The AI Movie Library</div><p class="uc-sum">Recommends films from a model of my own taste and the list of what I've already seen — focus from a modeled preference, not a generic 'popular now'.</p></a>
+<a class="uc" href="travel-curation-engine.html"><div class="uc-badge">Live demo · curation</div><div class="uc-name">The Travel Curation Engine</div><p class="uc-sum">A DuckDB brain that scores places against my own taste and evidence, then publishes a static site where every recommendation is grounded in a photo I actually took.</p></a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

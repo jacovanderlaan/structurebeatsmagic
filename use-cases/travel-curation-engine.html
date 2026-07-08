@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Travel Curation Engine · Use cases · Structure Beats Magic</title>
+<meta name="description" content="A DuckDB brain that scores places against my own taste and evidence, then publishes a static site where every recommendation is grounded in a photo I actually took." />
+<meta property="og:title" content="The Travel Curation Engine · Structure Beats Magic" />
+<meta property="og:description" content="A DuckDB brain that scores places against my own taste and evidence, then publishes a static site where every recommendation is grounded in a photo I actually took." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .uc-detail { max-width:760px; }
+  .uc-crumb { font-size:14px; margin-bottom:1rem; }
+  .uc-chip { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); background:rgba(184,138,27,.10); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  .uc-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
+  .uc-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
+  .uc-cta { margin:1.5rem 0; }
+  .uc-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .uc-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .uc-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .uc-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup"><button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a><a href="../concepts/">Concepts</a>
+          <a href="../#play">Play</a><a href="../#why-structure">Why structure</a>
+        </span></span>
+      <span class="navgroup"><button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../use-cases/">Use cases</a><a href="../#about">About Jaco</a>
+        </span></span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="uc-crumb"><a href="./">&#8592; All use cases</a></div>
+  <div class="uc-chip">Live demo · curation</div>
+  <h1>The Travel Curation Engine</h1>
+</div>
+
+<section>
+  <div class="wrap uc-detail">
+    <div class="uc-body">
+<p><strong>Situation:</strong> everyone collects travel recommendations — a saved list here, a screenshot there, a friend's tip you half-remember. None of it is queryable, none of it is <em>yours</em> in any structured way, and when you actually plan a trip you start from scratch.</p>
+<p><strong>The method applied:</strong> put the whole thing in a structured brain. A DuckDB database holds the sources (guides, articles, my own trips), a taste rubric (what I love, what I'd never touch), and the evidence behind every recommendation — including my own GPS-matched photos. A scoring model ranks places against <em>my</em> preferences, not a generic "popular now". Then the site is derived from that database at build time: no CMS, no runtime database, no drift. Every recommendation on the page can point back to why it's there and, where possible, to a photo I actually took nearby.</p>
+<p><strong>Why it's a use case, not just a demo:</strong> it shows the full Structure-Beats-Magic loop on real, personal data. Curated sources feed a scored model; the machinery is shown, not hidden ("here's <em>why</em> this place ranks"); and the output is a published artefact you can throw away and regenerate. Swap the domain from travel to a client's product catalogue or knowledge base and the shape is identical.</p>
+<p><strong>What changes when structure is added:</strong> recommendations stop being a pile and become a defensible, personal, queryable system — one that gets better every trip instead of starting over.</p>
+    </div>
+    <div class="uc-cta"><a class="btn btn-primary" href="https://github.com/jacovanderlaan/ai/tree/main/travel-curation">See how it's built &#8594;</a></div>
+    <div class="uc-rel"><h3>Applies these concepts</h3><ul><li><a href="../concepts/curated-sources.html">Curated Sources</a></li><li><a href="../concepts/show-the-machinery.html">Show The Machinery</a></li><li><a href="../concepts/a-brain-that-publishes-itself.html">A Brain That Publishes Itself</a></li><li><a href="../concepts/derived-insight.html">Derived Insight</a></li></ul><h3>Related writing</h3><ul><li><a href="../articles/your-photos-are-already-a-map.html">Your Photos Are Already a Map (You Just Can't Query Them Yet)</a></li><li><a href="../articles/a-brain-that-publishes-itself.html">A Brain That Publishes Itself</a></li><li><a href="../articles/your-trips-are-already-structured-data-part-2.html">Your Trips Are Already Structured Data Part 2</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

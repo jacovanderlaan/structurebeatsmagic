@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Structured Trip Host · Use cases · Structure Beats Magic</title>
+<meta name="description" content="hosting group travel" />
+<meta property="og:title" content="The Structured Trip Host · Structure Beats Magic" />
+<meta property="og:description" content="hosting group travel" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .uc-detail { max-width:760px; }
+  .uc-crumb { font-size:14px; margin-bottom:1rem; }
+  .uc-chip { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); background:rgba(184,138,27,.10); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  .uc-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
+  .uc-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
+  .uc-cta { margin:1.5rem 0; }
+  .uc-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .uc-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .uc-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .uc-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup"><button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a><a href="../concepts/">Concepts</a>
+          <a href="../#play">Play</a><a href="../#why-structure">Why structure</a>
+        </span></span>
+      <span class="navgroup"><button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../use-cases/">Use cases</a><a href="../#about">About Jaco</a>
+        </span></span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="uc-crumb"><a href="./">&#8592; All use cases</a></div>
+  
+  <h1>The Structured Trip Host</h1>
+</div>
+
+<section>
+  <div class="wrap uc-detail">
+    <div class="uc-body">
+<p><strong>Situation:</strong> someone hosts a group trip — a tour leader, retreat organizer, small-group operator, or the person who plans the family reunion. They juggle a dozen people's needs in their head or a messy spreadsheet.</p>
+<p><strong>The method applied:</strong> take the personal trip-curation system already running (for myself and Annemarie) and generalize it from a pair to a group. Structure the participant knowledge deliberately, and the trip plans itself around everyone at once — and keeps improving while it runs.</p>
+<h2>The problem, as the job is done now</h2>
+<p>A group-travel host holds unstructured knowledge in their head: who's a difficult sleeper, who's vegetarian (and who of those is coeliac), who has a knee, who's been to Rome already, who quietly hates museums. It's un-queryable, forgotten between trips, and the trip is a compromise nobody chose. Every trip starts from zero. Not a planning problem — a <em>structure</em> problem.</p>
+<h2>The method: four loops</h2>
+<p>1. <strong>Intake → structured participant profiles.</strong> Each participant shares via a simple form: <em>interests</em>, <em>anti-interests</em> (a real veto, not a soft preference), <em>constraints</em> (diet, mobility, sleep, medical highlights, budget). One structured profile per person — not prose in an inbox. 2. <strong>Collection → a better plan.</strong> The itinerary is shaped by the group aggregate: activities scored by group affinity, anti-interests filtered out, constraints honored (room list knows the light sleeper; restaurant list knows the coeliac). Exactly what <code>plan_trip.py</code> already does, generalized from one companion to a group. 3. <strong>Daily feedback → continuous improvement.</strong> A one-tap daily form per participant feeds back; tomorrow's plan adjusts to today's signal. The trip <em>learns</em> as it runs. 4. <strong>Memories → automated group album.</strong> Photos from all participants pool into a structured, day-by-day group album; a shared online photobook / trip site is generated. Shared memory as an automatic byproduct of structure.</p>
+<h2>Why it's credible (proof, not slides)</h2>
+<p>Every loop already exists as running machinery in <code>C:/Repos/ai/travel-curation/</code> + <code>trips.duckdb</code>:</p>
+<ul><li><strong>Interests / anti-interests / exclusions:</strong> <code>dim_preference</code>, <code>fact_exclusion</code>, <code>derive_exclusions.py</code>, <code>load_preferences.py</code> (21 scored signals, anti-prefs, 642 place-exclusions).</li><li><strong>Group-shaped planning:</strong> <code>plan_trip.py</code> (affinity ranking, facts-only brief in-voice).</li><li><strong>Per-participant personalization + sharing:</strong> <code>map_place_annemarie</code>, <code>export_annemarie.py</code> — already personalizes/exports for one companion; the use case makes it N.</li><li><strong>Daily structure + photo linking:</strong> <code>dim_trip_day</code>, <code>fact_activity</code>, <code>bridge_activity_photo</code>, <code>link_trip_photos.py</code>.</li><li><strong>Shared album / trip site:</strong> Astro render layer (<code>site/pages/trips/</code>), photo web-optimization, built + HTTP-200 verified.</li><li><strong>Pilots:</strong> Sicily 2022 (8 days / 55 activities / 19 places / 1128 photos, shared) + France-Verdon 2026 (18 days / 91 activities / 69 places).</li></ul>
+<p>The use case is a <em>generalization of a proven personal system</em> — the brand promise made concrete.</p>
+<h2>Using this in workshops / training / demos</h2>
+<ul><li><strong>Demo:</strong> show the four loops on the real Sicily/France data — a credible, concrete "look what structure does."</li><li><strong>Workshop:</strong> hand participants a blank intake form and let them structure a trip they're planning; the anti-interests idea lands hardest live.</li><li><strong>Training:</strong> the loops teach the general method (capture as data → plan from the collection → learn from feedback → memory assembles itself) through a situation everyone recognizes.</li><li><strong>Positioning:</strong> a prospect who hosts trips sees their own job here and gets the whole thesis in one example.</li></ul>
+    </div>
+    
+    
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

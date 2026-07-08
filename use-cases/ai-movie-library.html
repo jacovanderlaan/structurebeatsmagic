@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The AI Movie Library · Use cases · Structure Beats Magic</title>
+<meta name="description" content="Recommends films from a model of my own taste and the list of what I&#x27;ve already seen — focus from a modeled preference, not a generic &#x27;popular now&#x27;." />
+<meta property="og:title" content="The AI Movie Library · Structure Beats Magic" />
+<meta property="og:description" content="Recommends films from a model of my own taste and the list of what I&#x27;ve already seen — focus from a modeled preference, not a generic &#x27;popular now&#x27;." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .uc-detail { max-width:760px; }
+  .uc-crumb { font-size:14px; margin-bottom:1rem; }
+  .uc-chip { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); background:rgba(184,138,27,.10); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  .uc-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
+  .uc-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
+  .uc-cta { margin:1.5rem 0; }
+  .uc-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .uc-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .uc-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .uc-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup"><button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a><a href="../concepts/">Concepts</a>
+          <a href="../#play">Play</a><a href="../#why-structure">Why structure</a>
+        </span></span>
+      <span class="navgroup"><button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../use-cases/">Use cases</a><a href="../#about">About Jaco</a>
+        </span></span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="uc-crumb"><a href="./">&#8592; All use cases</a></div>
+  <div class="uc-chip">Live demo · taste</div>
+  <h1>The AI Movie Library</h1>
+</div>
+
+<section>
+  <div class="wrap uc-detail">
+    <div class="uc-body">
+<p><strong>Situation:</strong> every streaming service recommends the same "popular now" to everyone, then buries the thing you'd actually love. It doesn't know your taste, it doesn't know what you've already seen, and it has no idea what you'd <em>never</em> watch.</p>
+<p><strong>The method applied:</strong> model the self. A structured record of what I've watched, what I loved, and — crucially — my <em>anti-interests</em> (the genres and tropes I'd never pick) becomes the input. The AI recommends from that modeled preference instead of a crowd average. The "not" list does as much work as the "yes" list: telling the system what to rule out sharpens every recommendation that remains.</p>
+<p><strong>Why it's a use case:</strong> it's the smallest, clearest demonstration of two named concepts working together — <strong>a modeled self</strong> (the AI needs a structured picture of <em>you</em> to be a real assistant) and <strong>anti-interests</strong> (defining what you're not is an act of focus). Same pattern as a business filtering leads, content, or suppliers: model the preference, encode the vetoes, let the structure do the sorting.</p>
+<p><strong>What changes when structure is added:</strong> recommendations go from generic to <em>mine</em> — because the model has a real, structured preference to reason over instead of a guess.</p>
+    </div>
+    
+    <div class="uc-rel"><h3>Applies these concepts</h3><ul><li><a href="../concepts/a-modeled-self.html">A Modeled Self</a></li><li><a href="../concepts/anti-interests.html">Anti Interests</a></li><li><a href="../concepts/curated-sources.html">Curated Sources</a></li><li><a href="../concepts/derived-insight.html">Derived Insight</a></li></ul><h3>Related writing</h3><ul><li><a href="../articles/what-youre-not-is-also-who-you-are.html">What You're Not Is Also Who You Are</a></li><li><a href="../articles/the-filter-youre-missing-anti-interests.html">The Filter You're Missing: Why Your System Needs Anti-Interests</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>
