@@ -70,6 +70,16 @@ ARTICLES = [
     "a-brain-that-publishes-itself",
     "the-week-that-plans-itself",
     "when-something-goes-wrong",
+    # --- "Your Knowledge, Structured for AI" 9-part series (2026-07-04) ---
+    "do-your-tags-even-help-the-ai",
+    "maps-beat-search-for-you-and-the-ai",
+    "skills-are-the-unit-that-compounds",
+    "build-your-first-skill",
+    "prompts-skills-plugins-mcp-which-tool-when",
+    "bring-your-ai-chat-history-under-structure",
+    "i-wired-twenty-data-sources-into-my-daily-notes",
+    "the-trip-that-plans-itself-around-everyone",
+    "see-your-life-on-a-timeline",
 ]
 
 CSS = "../assets/article.css"

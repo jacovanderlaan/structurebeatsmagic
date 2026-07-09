@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Build Your First Skill (Part 2: The Anatomy, Start to Finish) — Structure Beats Magic</title>
+<meta name="description" content="In Part 1 I claimed skills are the unit that compounds. This is the part where I hand you the recipe — the actual anatomy of a working skill, so you can build one today. I&#x27;ll show you a real one from my own system, line by line."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/build-your-first-skill.html"/>
+<meta property="og:title" content="Build Your First Skill (Part 2: The Anatomy, Start to Finish)"/>
+<meta property="og:description" content="In Part 1 I claimed skills are the unit that compounds. This is the part where I hand you the recipe — the actual anatomy of a working skill, so you can build one today. I&#x27;ll show you a real one from my own system, line by line."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/build-your-first-skill.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/None"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-04"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Build Your First Skill (Part 2: The Anatomy, Start to Finish)"/>
+<meta name="twitter:description" content="In Part 1 I claimed skills are the unit that compounds. This is the part where I hand you the recipe — the actual anatomy of a working skill, so you can build one today. I&#x27;ll show you a real one from my own system, line by line."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/None"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Build Your First Skill (Part 2: The Anatomy, Start to Finish)",
+  "description": "In Part 1 I claimed skills are the unit that compounds. This is the part where I hand you the recipe — the actual anatomy of a working skill, so you can build one today. I'll show you a real one from my own system, line by line.",
+  "image": "https://structurebeatsmagic.com/assets/None",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/build-your-first-skill.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/build-your-first-skill.html",
+  "datePublished": "2026-07-04",
+  "dateModified": "2026-07-04"
+}
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Build Your First Skill (Part 2: The Anatomy, Start to Finish)</h1>
+  <p class="subtitle">In Part 1 I claimed skills are the unit that compounds. This is the part where I hand you the recipe — the actual anatomy of a working skill, so you can build one today. I&#x27;ll show you a real one from my own system, line by line.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-04</div>
+  <figure class="article-hero"><img src="../assets/None" alt="Build Your First Skill (Part 2: The Anatomy, Start to Finish)" loading="eager"/><figcaption>None</figcaption></figure>
+  <article>
+  <h2>What we're building toward</h2>
+<p>A skill is a procedure the AI runs on command, the same way every time. In Claude Code, a skill is — and this is almost anticlimactic — <strong>a markdown file in a folder.</strong> No framework, no build step, no config. A file. That's the whole reason skills are worth doing: the barrier to writing one is a text editor.</p>
+<p>There are two forms, and you should know both before you start:</p>
+<ul><li><strong>Single-file:</strong> one file at <code>.claude/skills/&lt;name&gt;.md</code>, invoked as <code>/&lt;name&gt;</code>. Perfect for personal, repo-local skills. This is where you start.</li><li><strong>Plugin bundle:</strong> a folder with a manifest and one or more skills inside, meant for <em>sharing</em> a skill across projects or with a team. This is where you go later, only for the skills worth distributing.</li></ul>
+<p>We're building the first kind. It's the 90% case.</p>
+<hr/>
+<h2>The anatomy (six parts, in order)</h2>
+<p>Every good skill I've written has the same shape. Here it is as a checklist, then I'll show a real one:</p>
+<p>1. <strong>A title and a one-line purpose.</strong> State the <em>outcome</em>, not the mechanism. "Track tasks and route them into the vault" — not "a tool that uses the filesystem." 2. <strong>A context box</strong> (optional but powerful). Hard constraints, where the source-of-truth lives, and — critically — ⚠️ warnings about what <em>not</em> to do. This is where "don't use the old path, it's dead" lives. 3. <strong>A usage block.</strong> How it's invoked, the commands it supports, and two or three <em>real</em> examples using your actual vocabulary. Not <code>foo</code> and <code>bar</code> — your real domains. 4. <strong>A workflow.</strong> Numbered steps. Each step is an instruction to the AI, phrased as a command. This is the body. 5. <strong>Approval gates.</strong> Any step that writes, deletes, sends, or publishes says "propose and wait for approval." Read-only steps run free. This is the single most important safety habit. 6. <strong>Guardrails.</strong> What not to do, when to stop and ask, what's source-of-truth versus derived.</p>
+<p>That's the recipe. Everything else is judgment.</p>
+<hr/>
+<h2>A real skill, shown</h2>
+<p>Here's the skeleton of one of mine — a task-tracker that files reminders into my vault. I've trimmed it to the bones so you can see the shape, not the specifics:</p>
+<pre><code># Remind Skill
+
+Track tasks, questions, and things to remember — routed into the vault
+tasks-system. Tasks live as `action_`-captures in day-folders (the source
+of truth), surfaced by a dashboard. Tasks with a deadline also get a
+calendar event.
+
+&gt; Schema spec: &lt;path to the convention doc&gt;
+&gt; ⚠️ The old target paths are DEAD (pre-restructure). Do not resurrect them.
+
+## Usage
+
+    /remind [command] [args]
+
+Commands: task, question, subscription, export
+
+Examples:
+- /remind task "Call the dentist" due:2026-07-10 domain:health
+- /remind task "Request the refund" domain:business
+- /remind question "Target retirement age?" domain:finances
+
+## Workflow
+1. Parse the command and args.
+2. Determine the target day-folder from today's date (calendar spine).
+3. Write an `action_` capture with the right frontmatter.
+4. If there's a deadline, create the calendar event too.
+5. Confirm what was filed and where.</code></pre>
+<p>Read what's doing the work there. The purpose line states an <strong>outcome</strong> ("things you'll remember, filed where they belong"). The context box names the <strong>source of truth</strong> and flags a <strong>dead path</strong> so the AI never wanders back to it. The examples use <strong>real domains</strong> — health, business, finances — so the AI learns the shape from authentic cases. And the workflow is just <strong>numbered instructions</strong>, each one a thing to do.</p>
+<p>Notice what's <em>not</em> there: no code, no API wrangling, no cleverness. A skill is a well-organized instruction, not a program. If yours starts to look like software, you're overbuilding it.</p>
+<hr/>
+<h2>Build yours in four moves</h2>
+<p>Here's the actual procedure. Do it now, with a real annoyance you keep re-explaining to the AI.</p>
+<p><strong>1. Name the annoyance.</strong> What do you re-explain most? "Summarize this the way I like." "File this where it goes." "Check this against my rules." That recurring thing is your first skill. Give it a one-word name.</p>
+<p><strong>2. Create the file.</strong> Make <code>.claude/skills/&lt;name&gt;.md</code> in your project (or <code>~/.claude/skills/&lt;name&gt;.md</code> to have it everywhere). Write the title and the one-line purpose. Just those two lines. That's a working skill already — a thin one, but real.</p>
+<p><strong>3. Write the workflow as numbered steps.</strong> Pretend you're explaining the procedure to a competent new assistant who will do it forever. Each step is one instruction. Where a step could delete or send something, add "propose and wait for approval."</p>
+<p><strong>4. Add two real examples and one warning.</strong> Examples using your real vocabulary teach the shape. One ⚠️ warning about the mistake you'd hate — a wrong folder, a dead path, an overwritten section — makes it safe.</p>
+<p>Invoke it with <code>/&lt;name&gt;</code>. Watch it run your procedure instead of improvising one. That's the moment the tax stops.</p>
+<hr/>
+<h2>The mistakes I made so you don't have to</h2>
+<ul><li><strong>Writing documentation instead of instructions.</strong> A skill is a <em>prompt</em>, not a manual. If it reads like it's explaining to a human reader, cut it down to commands for the AI. Instruct; don't describe.</li><li><strong>No approval gates.</strong> My early skills happily wrote files without asking. Fine until the day one wrote to the wrong place. Now every destructive or outward-facing step waits for a yes. Non-negotiable.</li><li><strong>Placeholder examples.</strong> <code>foo</code>/<code>bar</code> examples teach the AI nothing about <em>your</em> world. Real domains, real paths, real vocabulary — every time.</li><li><strong>Building too big.</strong> Start with the thinnest version that works — title plus purpose — and grow it when it misfires. A skill improves in place; you don't need it perfect on day one.</li></ul>
+<hr/>
+<h2>The recipe is yours; the kitchen is the harder part</h2>
+<p>That's the whole recipe, given freely — because the anatomy of a skill genuinely is this simple, and gatekeeping it would be silly. You can build your first one this afternoon.</p>
+<p>Here's the honest line, though, and it's the same one that runs through everything I do. Knowing <em>how to write a skill</em> is the recipe. <strong>Building a coherent system of dozens of them — that stand on real structure, connect to real data, and compound instead of collide — is the kitchen.</strong> The recipe is a text file. The kitchen is a couple of years of decisions about how everything fits: the conventions the skills rely on, the data sources they read, the structure they file into. That part doesn't come from a template. It comes from designing the whole system to hold together.</p>
+<p>So take the recipe and go — build your first skill today, seriously. And when you find yourself with thirty of them and they've started to sprawl, that's the signal you've hit the kitchen: the point where it stops being about individual skills and starts being about the architecture underneath them.</p>
+<p>Next in the series: <strong>skills versus prompts versus plugins</strong> — the map, so you know which tool the moment calls for.</p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

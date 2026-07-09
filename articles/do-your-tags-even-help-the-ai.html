@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Do Your Tags Even Help the AI? (I Checked My Own Vault) — Structure Beats Magic</title>
+<meta name="description" content="Everyone tags their notes. I assumed it made my AI assistant faster at finding things. Then I actually measured it across ~17,000 files — and found that for the AI, the tags were mostly doing nothing the structure wasn&#x27;t already doing."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/do-your-tags-even-help-the-ai.html"/>
+<meta property="og:title" content="Do Your Tags Even Help the AI? (I Checked My Own Vault)"/>
+<meta property="og:description" content="Everyone tags their notes. I assumed it made my AI assistant faster at finding things. Then I actually measured it across ~17,000 files — and found that for the AI, the tags were mostly doing nothing the structure wasn&#x27;t already doing."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/do-your-tags-even-help-the-ai.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/None"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-04"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Do Your Tags Even Help the AI? (I Checked My Own Vault)"/>
+<meta name="twitter:description" content="Everyone tags their notes. I assumed it made my AI assistant faster at finding things. Then I actually measured it across ~17,000 files — and found that for the AI, the tags were mostly doing nothing the structure wasn&#x27;t already doing."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/None"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Do Your Tags Even Help the AI? (I Checked My Own Vault)",
+  "description": "Everyone tags their notes. I assumed it made my AI assistant faster at finding things. Then I actually measured it across ~17,000 files — and found that for the AI, the tags were mostly doing nothing the structure wasn't already doing.",
+  "image": "https://structurebeatsmagic.com/assets/None",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/do-your-tags-even-help-the-ai.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/do-your-tags-even-help-the-ai.html",
+  "datePublished": "2026-07-04",
+  "dateModified": "2026-07-04"
+}
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Do Your Tags Even Help the AI? (I Checked My Own Vault)</h1>
+  <p class="subtitle">Everyone tags their notes. I assumed it made my AI assistant faster at finding things. Then I actually measured it across ~17,000 files — and found that for the AI, the tags were mostly doing nothing the structure wasn&#x27;t already doing.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-04</div>
+  <figure class="article-hero"><img src="../assets/None" alt="Do Your Tags Even Help the AI? (I Checked My Own Vault)" loading="eager"/><figcaption>None</figcaption></figure>
+  <article>
+  <h2>The question I'd never actually tested</h2>
+<p>I run my whole life on a structured vault plus Claude. Tens of thousands of markdown files, a calendar spine, a four-level folder structure per domain, typed frontmatter on everything. And, on a lot of files, tags — <code>tags: [career, positioning, validation, ...]</code> — dutifully added, because that's what you do.</p>
+<p>The belief underneath the habit was simple: <strong>tags help the AI find things faster.</strong> More handles, better retrieval. It felt obviously true.</p>
+<p>Then a nagging thought: I'd never checked. So I did — I ran the numbers across the vault. The answer surprised me enough to write it down, because it turns out the question splits cleanly in two, and the two halves have <em>opposite</em> answers.</p>
+<hr/>
+<h2>Two questions wearing one coat</h2>
+<p>"Do tags help?" is really two questions:</p>
+<p>1. <strong>Do tags help the humans and the sites?</strong> — readers browsing, search engines indexing, related-post widgets on a published blog. 2. <strong>Do tags help <em>Claude</em> operate?</strong> — the AI finding, retrieving, and reasoning over my documents when it does actual work for me.</p>
+<p>For question 1 the answer is a clear <strong>yes</strong>, and I'm not going to belabour it. On a published site, a tag is a navigation surface and an SEO signal. WordPress, a blog theme, a reader clicking "more like this" — all of that genuinely runs on taxonomy. Tag your published articles. Done.</p>
+<p>Question 2 is the interesting one. And here the honest answer, from my own data, is: <strong>mostly no — and understanding <em>why</em> changes how you should structure everything.</strong></p>
+<hr/>
+<h2>Why an AI doesn't read tags the way a notes app does</h2>
+<p>Here's the thing I'd glossed over for years. Claude doesn't have a tag index. When it looks for something in my vault, it doesn't run "give me everything tagged <code>#validation</code>." It does what a developer does at a terminal: it <strong>greps</strong> — searches file contents and paths — and it <strong>globs</strong> — matches folder and filename patterns.</p>
+<p>That's the whole mechanism. And it has a consequence I should have seen immediately:</p>
+<p>&gt; A tag only helps the AI if the tag word is <strong>not already</strong> somewhere greppable — the body, the filename, or the path.</p>
+<p>Because if the word is already in the body, grep finds it <em>with or without</em> the tag line. The tag is just a duplicate copy of a word that's already there. It costs a line of frontmatter and buys nothing.</p>
+<p>So I stopped theorising and checked whether my tags were actually adding new, findable words — or just echoing words already in the text.</p>
+<hr/>
+<h2>What the vault actually showed</h2>
+<p>I looked at a real file, one of my positioning infographics. Its tags:</p>
+<pre><code>tags: [career, positioning, infographic, validation, business, demand, training-material]</code></pre>
+<p>Seven tags. I checked each one against the filename and the body of that same file. Result:</p>
+<p>| Tag | Already in filename? | Already in body? | |---|---|---| | career | — | ✅ (also in the folder path) | | positioning | — | ✅ (also in the folder path) | | infographic | — | ✅ (also the folder it's in) | | validation | — | ✅ | | business | ✅ | ✅ | | demand | — | ✅ | | training-material | — | ✅ |</p>
+<p><strong>Seven out of seven were already in the body.</strong> Two of them were also in the folder path. Grep would surface that file for every single one of those words <em>without the tags line existing at all.</em> The tags weren't a retrieval handle. They were a second, redundant copy of words the file already contained.</p>
+<p>That wasn't a cherry-picked file. Across the tagged files I sampled, <strong>80–90% of tag keywords were already present</strong> in the body, the filename, or the path. The tags were echoing the content, not extending it.</p>
+<p>And the structure was doing the heavy lifting I'd credited to tags. That file lives at:</p>
+<pre><code>career / 2-active / positioning / infographics / 2026-07-04_validate-your-business-idea.md</code></pre>
+<p>Read that path. It already says: a <em>career</em> document, currently <em>active</em>, about <em>positioning</em>, in <em>infographic</em> form, dated, about <em>validating a business idea</em>. Before a single tag. The path is a sentence, and the AI reads paths.</p>
+<hr/>
+<h2>The tell: where I <em>didn't</em> use tags at all</h2>
+<p>The most convincing evidence wasn't in the tagged files. It was in the ones without tags.</p>
+<p>My decision records — the documents I most need to retrieve precisely — carry <strong>no tags</strong>. A file like <code>assets/car/1-plan/6-decisions/PDR-051-vehicle-strategy-hybrid-vs-ev.md</code> has none. It doesn't need them: the path says the domain and that it's a decision, the <code>type: PDR</code> field makes it queryable, the <code>id: PDR-051</code> makes it addressable, and the slug says what it's about. Structure and typed fields carry the whole load.</p>
+<p>And my cross-session memory — the AI's long-term recall, the thing whose retrieval matters <em>most</em> — doesn't use tags either. It uses a <strong>typed</strong> field: <code>type: user | feedback | project | reference</code>. Not a free-text keyword list. A small, fixed vocabulary the system can reason over. When I actually designed for retrieval, I reached for <em>typed structure</em>, not tags. I'd been doing the right thing in the places that mattered and cargo-culting tags in the places that didn't.</p>
+<hr/>
+<h2>Tags vs structure: the real distinction</h2>
+<p>This is the crux, and it's the same lesson that runs through everything I build:</p>
+<ul><li>A <strong>tag</strong> is an untyped, free-text keyword you have to remember to add, keep consistent, and match by synonym later. <code>training-material</code> in the tag; "training" in the body; same idea, different string — and now retrieval depends on you having guessed the right word twice.</li><li><strong>Structure</strong> — the folder path, the four-level lifecycle (<code>1-plan</code> / <code>2-active</code> / <code>3-history</code> / <code>4-insights</code>), the calendar spine, a <code>type:</code> enum, a <code>domain:</code> field — is <em>positional and typed</em>. It can't drift out of sync with itself, because it <em>is</em> the file's location and shape. It's there whether or not you remembered to think about retrieval.</li></ul>
+<p>Tags sit on top and hope you were disciplined. Structure is underneath and doesn't need you to be.</p>
+<p>That's not an anti-tag argument. It's a <em>hierarchy</em>: path first, typed fields second, and tags only for the thin slice of cases neither covers.</p>
+<hr/>
+<h2>When a tag genuinely earns its place</h2>
+<p>I went looking for cases where a tag would actually help the AI — where structure honestly can't reach. There are a few, and they're worth naming, because "mostly no" isn't "never":</p>
+<p>1. <strong>A true synonym or a second language.</strong> My vault is bilingual — "Car" / "Auto" / "Mobility." Grep for one misses the others. But the right tool here is an <code>aliases:</code> field (a typed synonym list), not a general tag pile. Same instinct, sharper instrument. 2. <strong>A cross-cutting theme with no shared word.</strong> "Everything about my sabbatical" is scattered across career, finances, travel, and health, and those files don't all contain the word "sabbatical." A tag <em>could</em> unify them. But I found I'd solved it structurally instead — a <code>subject: sabbatical</code> field, queryable across domains — which is, again, a <em>typed</em> handle rather than a free tag. 3. <strong>A topic the document never states about itself.</strong> Rare, but real: when a file's subject genuinely isn't in its own text, a tag adds a word grep couldn't otherwise find. This is the one clean win. It's also uncommon — most documents say what they're about.</p>
+<p>Notice the pattern: every genuine win is either better served by a <em>typed</em> field, or it's the narrow case where the tag adds a word that truly isn't anywhere else. That's a small set. It's not the reflexive seven-tags-per-file habit I'd built.</p>
+<hr/>
+<h2>The same lesson, in the data warehouse</h2>
+<p>If this sounds familiar to the data people: it's the metadata-vs-tags argument you already know. A dimension you can query — a typed column, a governed attribute — beats a free-text label smeared across rows. You don't tag your fact table <code>#revenue</code>; you model revenue as a structured, typed thing you can join and aggregate. Ad-hoc keywords are how meaning quietly drifts until two reports disagree. The vault version and the warehouse version are the same principle: <strong>typed structure you can query beats untyped keywords you have to match.</strong></p>
+<hr/>
+<h2>What I changed</h2>
+<p>I didn't rip every tag out — that's busywork, and on published articles the tags earn their keep for readers and SEO. But I stopped <em>adding</em> tags to working documents as a retrieval strategy, because for the AI they were paying rent for nothing. Instead I put the effort one level down:</p>
+<ul><li><strong>Make the path a sentence.</strong> If the folder structure and filename describe the document, the AI already knows what it is.</li><li><strong>Prefer a typed field to a tag.</strong> <code>type:</code>, <code>domain:</code>, <code>subject:</code>, <code>status:</code>, <code>aliases:</code> — a small fixed vocabulary beats an open keyword list every time.</li><li><strong>Reserve tags for the two jobs they're actually good at:</strong> reader-facing navigation on published sites, and the rare document whose topic genuinely isn't in its own text.</li></ul>
+<hr/>
+<h2>The honest limit</h2>
+<p>One caveat, because I'd rather be right than tidy. This is measured on <em>my</em> vault — one built structure-first, where the paths really are sentences and the frontmatter really is typed. If your notes live in one flat folder with generic filenames (<code>note-2024-final-v3.md</code>), tags carry far more weight, because you've given the AI nothing else to grep. The finding isn't "tags are useless." It's the sharper, more useful thing: <strong>tags are a substitute for structure — and if you have the structure, you don't need the substitute.</strong></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
