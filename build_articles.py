@@ -510,15 +510,18 @@ def autolink_concepts(body: str, concept_map: list, self_slug: str) -> str:
     return "\n".join(out_lines)
 
 
-def build_related_section(meta: dict, article_titles: dict) -> str:
+def build_related_section(meta: dict, article_titles: dict, concept_names: dict | None = None) -> str:
     """Render a 'Related' section from article frontmatter.
 
     related_concepts: [<concept-slug>]        -> links to ../concepts/<slug>.html
     related_articles: [<article-slug>] or [{title,url}] -> links to sibling articles
 
     Concept slugs may carry the vault 'concept-' prefix; we strip it for the URL.
+    The concept's real display name is used when known (concept_names: slug->name,
+    from the built concepts index); otherwise we fall back to title-casing the slug.
     Unknown article slugs are skipped silently (kept out of the graph, not broken).
     """
+    concept_names = concept_names or {}
     rc = _norm_reflist(meta.get("related_concepts"))
     ra = _norm_reflist(meta.get("related_articles"))
     if not rc and not ra:
@@ -529,7 +532,7 @@ def build_related_section(meta: dict, article_titles: dict) -> str:
         for c in rc:
             key = str(c).strip()
             bare = key[len("concept-"):] if key.startswith("concept-") else key
-            label = bare.replace("-", " ").title()
+            label = concept_names.get(bare) or bare.replace("-", " ").title()
             lis.append(f'<li><a href="{CONCEPTS_URL}/{html.escape(bare, quote=True)}.html">{html.escape(label)}</a></li>')
         blocks.append(f"<h3>Related concepts</h3><ul>{''.join(lis)}</ul>")
     if ra:
@@ -564,6 +567,7 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
     article_titles = _article_titles()
     concept_map = _load_concept_map()  # name -> concept page; for inline auto-linking
+    concept_names = {slug: name for name, slug, _ in concept_map}  # slug -> display name
     cards = []
     for slug in ARTICLES:
         folder = resolve_article_folder(slug)
@@ -609,7 +613,7 @@ def main() -> None:
             og_image_abs=og_image_abs,
             published_meta=published_meta,
             json_ld=json_ld,
-            body=md_to_html(body) + build_related_section(meta, article_titles),
+            body=md_to_html(body) + build_related_section(meta, article_titles, concept_names),
             css=CSS,
         ), encoding="utf-8")
         print(f"  + articles/{slug}.html  ({copied} assets)")
