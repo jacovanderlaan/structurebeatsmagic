@@ -44,6 +44,16 @@ voice — keep them visually and tonally consistent.
 - **Signature lines** (reuse, don't overuse): "Structure beats magic." · "Give
   the recipe, sell the kitchen." · "A toy vs an instrument." · "Rent the AI; own
   the structure." · "Notes organize. Architecture personalizes."
+- **Name the concept, in Title Case, when you mean the concept.** When an article
+  refers to one of the library's named concepts, write it by its exact capitalised
+  name — *Derived Insight*, *One-Way Publishing*, *The Validation Loop* — not the
+  lowercase paraphrase ("a knowledge graph of your life"). The builder auto-links
+  the **first** Title-Case mention of each concept to its `concepts/<slug>.html`
+  page (case-sensitive on purpose, so casual phrasing stays plain text). So the
+  capitalisation is doing double duty: it signals "this is the named idea" to the
+  reader, and it's what turns the mention into a link. Don't force it — only where
+  you're genuinely invoking the concept, and only worth it once per concept per
+  piece (the auto-linker links the first mention only).
 - **British-ish spelling** in body copy is fine (organise, visualise) — keep a
   given page internally consistent.
 - **Em dashes** for asides — used freely, the house punctuation. Curly quotes.
