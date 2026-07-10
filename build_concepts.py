@@ -265,11 +265,15 @@ def _norm_reflist(val) -> list:
 
 def parse_concepts(src: Path) -> list[Concept]:
     concepts: list[Concept] = []
-    for f in sorted(src.glob("concept-*.md")):
+    # Folder-per-concept (ADR-080): each concept is <src>/<slug>/<slug>.md.
+    # (Back-compat: also pick up any legacy flat concept-<slug>.md still present.)
+    notes = [p for p in sorted(src.glob("*/*.md")) if p.stem == p.parent.name]
+    notes += sorted(src.glob("concept-*.md"))
+    for f in notes:
         text = f.read_text(encoding="utf-8", errors="replace")
         meta, body = split_frontmatter(text)
         body = strip_private_sections(body)
-        slug = f.stem[len("concept-"):]
+        slug = f.stem[len("concept-"):] if f.stem.startswith("concept-") else f.stem
         # The most reliable display name is the body's first H1 heading (correctly
         # capitalised, e.g. "A Toy vs an Instrument"). Fall back to frontmatter
         # title/name, then to a title-cased slug — so a broken frontmatter (e.g.
