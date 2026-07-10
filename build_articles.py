@@ -80,6 +80,12 @@ ARTICLES = [
     "i-wired-twenty-data-sources-into-my-daily-notes",
     "the-trip-that-plans-itself-around-everyone",
     "see-your-life-on-a-timeline",
+    # --- Brand & stance / method drafts published 2026-07-10 (were folder-only, not in allow-list) ---
+    "content-to-training",
+    "find-the-essence-first",
+    "practice-what-you-evangelize",
+    "structure-beats-magic-at-every-scale",
+    "the-machine-behind-the-method",
 ]
 
 CSS = "../assets/article.css"
