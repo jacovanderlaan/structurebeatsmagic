@@ -442,6 +442,73 @@ def _norm_reflist(v) -> list:
 CONCEPTS_URL = "../concepts"
 
 
+def _load_concept_map() -> list:
+    """Concept display-name -> slug, from the built concepts/index.html.
+
+    Returns a list of (name, slug, compiled_pattern) sorted longest-name-first so
+    a longer concept ("Structure Beats Magic") is matched before a shorter one it
+    contains. Empty list if the index isn't built yet (auto-linking is then a no-op).
+    """
+    idx = HERE / "concepts" / "index.html"
+    if not idx.exists():
+        return []
+    txt = idx.read_text(encoding="utf-8")
+    pairs = re.findall(r'href="([a-z0-9-]+)\.html">\s*<div class="c-name">([^<]+)</div>', txt)
+    out = []
+    for slug, raw in pairs:
+        name = html.unescape(raw).strip()
+        if len(name) < 4:
+            continue
+        # word-boundary match on the literal name; \b won't fire next to a trailing
+        # '.' (e.g. "…Personalizes.") so anchor on start-boundary + optional trailing
+        # word-char guard instead of a bare \b at both ends.
+        pat = re.compile(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])")
+        out.append((name, slug, pat))
+    out.sort(key=lambda t: len(t[0]), reverse=True)
+    return out
+
+
+def autolink_concepts(body: str, concept_map: list, self_slug: str) -> str:
+    """Link the FIRST mention of each concept name to its concept page.
+
+    - First occurrence per concept only (kept subtle; avoids a sea of links).
+    - Skips the article's own concept, fenced code, inline `code`, existing
+      [markdown](links), headings, and the leading H1/italic lede.
+    - Operates on the markdown body before md_to_html, emitting a normal
+      [name](../concepts/slug.html) link the existing inline parser renders.
+    """
+    if not concept_map:
+        return body
+    linked: set = set()
+    out_lines = []
+    in_code = False
+    for ln in body.split("\n"):
+        st = ln.strip()
+        if st.startswith("```"):
+            in_code = not in_code
+            out_lines.append(ln); continue
+        # never touch code blocks, headings, figure/blockquote/list-marker lines
+        if in_code or st.startswith(("#", ">", "[[figure:")):
+            out_lines.append(ln); continue
+        # protect existing inline links + `code` spans by stashing them out
+        stash: list = []
+        def _hold(m):
+            stash.append(m.group(0)); return f"\x00{len(stash)-1}\x00"
+        safe = re.sub(r"\[[^\]]+\]\([^)]+\)|`[^`]+`", _hold, ln)
+        for name, slug, pat in concept_map:
+            if slug in linked or slug == self_slug:
+                continue
+            m = pat.search(safe)
+            if not m:
+                continue
+            safe = safe[:m.start()] + f"[{m.group(0)}]({CONCEPTS_URL}/{slug}.html)" + safe[m.end():]
+            linked.add(slug)
+        # restore stashed links/code
+        safe = re.sub(r"\x00(\d+)\x00", lambda m: stash[int(m.group(1))], safe)
+        out_lines.append(safe)
+    return "\n".join(out_lines)
+
+
 def build_related_section(meta: dict, article_titles: dict) -> str:
     """Render a 'Related' section from article frontmatter.
 
@@ -495,6 +562,7 @@ def _article_titles() -> dict:
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     article_titles = _article_titles()
+    concept_map = _load_concept_map()  # name -> concept page; for inline auto-linking
     cards = []
     for slug in ARTICLES:
         folder = resolve_article_folder(slug)
@@ -505,6 +573,8 @@ def main() -> None:
         copied = copy_article_assets(slug)
         meta, body = split_frontmatter(src.read_text(encoding="utf-8"))
         body = strip_private_sections(body)
+        # auto-link the first mention of each concept name to its concept page
+        body = autolink_concepts(body, concept_map, slug)
         title = str(meta.get("title", slug)).strip().strip('"')
         subtitle = str(meta.get("subtitle", "")).strip().strip('"')
         created = str(meta.get("created", "")).strip().strip("'\"")
