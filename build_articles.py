@@ -86,6 +86,7 @@ ARTICLES = [
     "practice-what-you-evangelize",
     "structure-beats-magic-at-every-scale",
     "the-machine-behind-the-method",
+    "the-vault-is-the-data-model",
 ]
 
 CSS = "../assets/article.css"

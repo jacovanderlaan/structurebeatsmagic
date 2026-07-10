@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Vault Is the Data Model — Structure Beats Magic</title>
+<meta name="description" content="A folder of markdown files doesn&#x27;t hold a model of my knowledge. It is the model — atomic, self-describing, open, queryable. After 25 years of data modeling, I finally built one for myself, and it works exactly like the enterprise kind."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/the-vault-is-the-data-model.html"/>
+<meta property="og:title" content="The Vault Is the Data Model"/>
+<meta property="og:description" content="A folder of markdown files doesn&#x27;t hold a model of my knowledge. It is the model — atomic, self-describing, open, queryable. After 25 years of data modeling, I finally built one for myself, and it works exactly like the enterprise kind."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/the-vault-is-the-data-model.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-10"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="The Vault Is the Data Model"/>
+<meta name="twitter:description" content="A folder of markdown files doesn&#x27;t hold a model of my knowledge. It is the model — atomic, self-describing, open, queryable. After 25 years of data modeling, I finally built one for myself, and it works exactly like the enterprise kind."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Vault Is the Data Model",
+  "description": "A folder of markdown files doesn't hold a model of my knowledge. It is the model — atomic, self-describing, open, queryable. After 25 years of data modeling, I finally built one for myself, and it works exactly like the enterprise kind.",
+  "image": "https://structurebeatsmagic.com/assets/sbm-og-card.svg",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/the-vault-is-the-data-model.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/the-vault-is-the-data-model.html",
+  "datePublished": "2026-07-10",
+  "dateModified": "2026-07-10"
+}
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../#writing">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Structure Beats Magic</p>
+  <h1>The Vault Is the Data Model</h1>
+  <p class="subtitle">A folder of markdown files doesn&#x27;t hold a model of my knowledge. It is the model — atomic, self-describing, open, queryable. After 25 years of data modeling, I finally built one for myself, and it works exactly like the enterprise kind.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-10</div>
+  
+  <article>
+  <hr/>
+<h2>The skill under all of it</h2>
+<p>My core skill was never building pipelines. It's <strong>data modeling</strong> — and I mean that in the widest sense. Taking something tangled and giving it a shape. Finding the essence in a mess of detail. Drawing the diagram that finally makes a complex system <em>clear</em> — to engineers, yes, but also to the business, the stakeholders, the people who have to trust it without reading a line of code.</p>
+<p>At its heart, modeling is simple to state and hard to do well: you find the real <strong>building blocks</strong> — the entities, the things that matter — and you assemble, structure, and link them into something whole. It's a bit like Lego. You identify the pieces, see how they snap together, and build something that holds — and when the need changes, you take it apart and rebuild without starting from nothing.</p>
+<p>The claim of this piece is that your personal knowledge can be modeled the exact same way. And once it is, it stops being a pile of notes and becomes something you — and an AI — can actually use.</p>
+<h2>The building blocks: atomic, self-describing, open</h2>
+<p>Start with the pieces, because everything rests on them. Three properties make a building block worth anything.</p>
+<p><strong>Atomicity.</strong> Each block is the smallest unit that still means something on its own — small enough to be stable, reusable, and recombined a hundred ways without breaking. In a data model that's an entity. In a knowledge system it's a single note, one idea per file.</p>
+<p><strong>Self-describing.</strong> This is the one people underrate. A good block carries its own meaning with it — what it is, where it came from, what it's allowed to do — so it can be understood and trusted without a manual or a person who "just knows." An atomic, self-describing block is a piece you can hand to anyone, or to an AI, and it explains itself.</p>
+<p><strong>Open — and therefore tool-agnostic.</strong> The model those blocks form isn't a separate technical artifact locked inside a proprietary modeling tool. It's plain, readable, versionable, close to the thing it describes — not trapped in a vendor's file format that only one application can open. Because it's open, it's <em>tool-agnostic</em> — across every category of tool. It doesn't belong to a particular <strong>modeling tool</strong>, a particular <strong>metadata tool or catalog</strong>, or a particular <strong>AI</strong>. Use Claude today and a different model tomorrow; load the metadata into DuckDB now and Databricks later; open the files in any editor. The model outlives all of them, because it never lived inside any of them. You swap tools freely and keep the model whole. An open model is one everyone can read, review, and build on, people and AI alike. A proprietary one is a black box you rent access to — and when the vendor changes, your model is hostage.</p>
+<p>Hold those three in mind, because a personal vault can have all of them.</p>
+<h2>Decompose, then reassemble</h2>
+<p>Here's the move at the heart of good modeling, and it's worth making explicit because it's where the craft actually lives.</p>
+<p>Data comes in whole and messy. You <strong>decompose</strong> it into its smallest honest parts — the entities, the atomic facts, the building blocks (this is the instinct behind ensemble modeling: break things down to the pieces that don't change). Then you <strong>transform, clean, and validate</strong> those pieces. And then you <strong>reassemble</strong> them into a coherent <em>business model</em> — a picture of how the organization actually thinks about itself, shaped by its current understanding, not by whatever shape the source systems happened to arrive in.</p>
+<p>The crucial part is what happens on top. That business model is deliberately kept separate from the <strong>delivery models</strong> — the specific views each consumer needs. Marketing, sales, HR, finance, risk: each is a <em>view</em> built on the same underlying model, tailored to how that team asks its questions. You keep them separate on purpose, because the delivery layer is <em>volatile</em> — what marketing wants this quarter isn't what it wanted last year — while the business model underneath stays comparatively stable. Separate the stable core from the changing surface, and you can keep reshaping the surface without rebuilding the foundation every time.</p>
+<p>That principle — a stable, well-modeled core with volatile views layered on top — is exactly what I mean by structure. It's what makes a data platform survive a reorg, and it's what makes a personal knowledge system survive a change of tools or goals.</p>
+<h2>The vault is the data model</h2>
+<p>Now bring it home. In my own system, the building blocks are simply <strong>markdown files</strong> — plain text, one idea per file. At the top of each sits a small block of <strong>YAML frontmatter</strong>, and that's what carries the structure: the type of thing this note is, its properties, its relationships, its status — the schema of the block, written right into the block. It's the metadata layer, the same role a schema plays in a data model, except it travels <em>with</em> the file instead of living in a separate catalog.</p>
+<p>And that metadata organizes itself the way data modeling always has — in <strong>conceptual, logical, and technical</strong> layers, each pitched at its own audience. The conceptual layer is the plain-language <em>what</em> — the business's view. The logical layer is the <em>how it fits together</em> — the architect's and analyst's view. The technical layer is the <em>how it's implemented</em> — the engineer's view. One model, read at three altitudes, so every stakeholder meets it where they stand.</p>
+<p>The notes link to each other into a web — a Zettelkasten, if you know the term: atomic pieces you connect until the links themselves become the thinking. Entities linked by relationships; notes linked into a graph. Different words, one instinct.</p>
+<p>So here's the line I keep coming back to: <strong>the vault <em>is</em> the data model.</strong> A folder of atomic, self-describing, linked markdown files — structured deliberately in three layers — isn't a place where I keep a model of my knowledge. It <em>is</em> the model. Open, owned, readable by anyone, exactly like a data model should be.</p>
+<h2>What that structure unlocks</h2>
+<p>Because the structure is real, machine-readable metadata, it doesn't just sit there. It <em>does</em> things.</p>
+<p><strong>You can mould the whole vault into a database.</strong> Pour the frontmatter across thousands of files into DuckDB, or Databricks, or whatever engine you like, and suddenly you can <em>query</em> your knowledge the way you'd query a warehouse. The files stay the source of truth; the database is a view you build from them and rebuild any time.</p>
+<p><strong>You can generate diagrams on top of it</strong> — maps of how everything connects, drawn straight from the metadata rather than by hand. Because they're derived, they're <strong>always up to date</strong>: change the underlying files, regenerate, and the picture is current. No stale diagram gathering dust in a folder. That closes the circle back to the part of modeling I love most: making a complex structure <em>visible</em> and clear for everyone, automatically.</p>
+<p><strong>You can offer the structure to an AI.</strong> An open, atomic, self-describing, queryable model — metadata and links intact — is exactly what an AI can read and reason over. Give it a genuine structure and it stops guessing and starts working <em>from</em> your knowledge. The magic was never the model on the vendor's side; it's the structure you hand it.</p>
+<h2>The part everyone forgets: validation</h2>
+<p>There's one more layer, and it's the one that separates a real system from a hopeful pile: you have to <strong>consistently validate and run plausibility checks</strong> — and in the AI era, this stops being optional.</p>
+<p>A model isn't trustworthy because you built it carefully once. It's trustworthy because rules keep checking it against what's known — <strong>at every stage.</strong> Not just the data coming in, but the intermediate results, and above all the <strong>output.</strong> Validation and plausibility rules test each of them against context — <em>does this date fall in a possible range? does this link point somewhere real? does this number contradict something we already hold true?</em> — and on a mismatch, the system <strong>flags rather than guesses.</strong></p>
+<p>This is why a real <strong>data-quality framework matters more now, not less.</strong> AI produces volume — it drafts, extracts, infers, fills in — and volume without checks is just more places to be quietly wrong. So you validate <em>all</em> of it: every generated field, every enriched value, every inference the model made. The DQ framework is what makes AI output safe to keep.</p>
+<p>And here's the part I care about most: <strong>improving the rules based on the output is how the human stays in the loop.</strong> You don't review everything — you review what the checks <em>flag</em>, and the surprising things that slip through. Human eyes on the output are where judgment lives. When something's wrong that the rules missed, you don't just fix the value; you add or sharpen a rule so it's caught next time. A double loop: the data gets better, <em>and</em> the rules that guard it get better — tuned by a human looking at real results. That's not a human rubber-stamping AI; it's a human steering it, at the one point where steering counts.</p>
+<p>This is the missing word in every "data + AI" pitch. Everyone says data and AI; almost no one says <strong>rules.</strong> But rules — validation, plausibility, the discipline of flagging instead of guessing, and the loop that keeps improving them — are what keep a model honest as it grows and as the AI writes into it. It's the Data Quality Index I ran for banks, pointed now at my own knowledge. Structure without validation drifts; structure <em>with</em> validation compounds.</p>
+<h2>It was always metadata</h2>
+<p>Strip the whole thing to the studs and it's the same craft it has always been: <strong>metadata.</strong> The frontmatter, the entities, the three layers, the diagrams, the views each team gets, the rules that validate it — all of it is metadata. Data about the data. The structure that says what the pieces are, how they fit, and how to trust them.</p>
+<p>That's what I've worked with my entire career, and it's the through-line that never changed. The tools came and went; the discipline was always metadata. What's new is only that AI finally made everyone else care about it too — because a model an AI can read and act on is worth more today than it has ever been.</p>
+<p>And it's <strong>business-friendly</strong>, which for me is the whole point. An open, self-describing model with living diagrams and validation isn't only machine-readable; it's <em>human</em>-readable. The business can see it, question it, trust it — no proprietary tool, no priesthood of engineers required to translate. Bringing structure that everyone understands — the business, the stakeholders, the AI, and the engineers alike — is what I've always meant by data modeling.</p>
+<p>Enterprise data or your own knowledge in a folder of files: same skill, two sizes. The vault is the data model. And a good model, kept open and kept honest, is the most useful thing you can hand to an AI — or to yourself.</p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
