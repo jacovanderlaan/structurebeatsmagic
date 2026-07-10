@@ -753,6 +753,68 @@ def render_wordpress(concepts: list[Concept]) -> None:
                      "the static renderer is built. See render_static().")
 
 
+# Article sources whose frontmatter declares related_concepts. We invert those
+# edges so each concept page can show "which articles reference this concept".
+# Both brands' article roots are scanned; a concept slug maps to the articles
+# (title + published URL) that list it in related_concepts.
+ARTICLE_ROOTS = [
+    (Path(os.environ.get("SBM_ARTICLES_SRC", "W:/systems/products/sbm/articles")),
+     "https://structurebeatsmagic.com/articles"),
+    (Path(os.environ.get("MDDE_ARTICLES_SRC", "W:/data/products/mdde/articles")),
+     "https://jacovanderlaan.com/articles"),
+]
+
+
+def _bare_concept_slug(ref: str) -> str:
+    r = str(ref).strip()
+    return r[len("concept-"):] if r.startswith("concept-") else r
+
+
+def build_reverse_article_index() -> dict:
+    """concept-slug -> [{title, url}] for every article that lists it in
+    related_concepts. This is the reverse of the article->concept edge, so a
+    concept page can show the articles that reference it."""
+    if yaml is None:
+        return {}
+    idx: dict = {}
+    for root, base_url in ARTICLE_ROOTS:
+        if not root.exists():
+            continue
+        for md in root.glob("*/*.md"):
+            if md.stem != md.parent.name:          # only folder-notes <slug>/<slug>.md
+                continue
+            txt = md.read_text(encoding="utf-8")
+            if not txt.startswith("---"):
+                continue
+            end = txt.find("\n---", 3)
+            if end == -1:
+                continue
+            try:
+                meta = yaml.safe_load(txt[3:end]) or {}
+            except Exception:
+                continue
+            rc = meta.get("related_concepts")
+            if not rc:
+                continue
+            if not isinstance(rc, list):
+                rc = [rc]
+            slug = md.stem
+            title = str(meta.get("title", slug)).strip().strip('"')
+            # don't publish drafts marked private-only? keep it simple: include all
+            entry = {"title": title, "url": f"{base_url}/{slug}.html"}
+            for ref in rc:
+                idx.setdefault(_bare_concept_slug(ref), []).append(entry)
+    # stable order + de-dup per concept
+    for k, lst in idx.items():
+        seen, uniq = set(), []
+        for e in lst:
+            if e["url"] in seen:
+                continue
+            seen.add(e["url"]); uniq.append(e)
+        idx[k] = sorted(uniq, key=lambda e: e["title"].lower())
+    return idx
+
+
 def main() -> None:
     fmt = "static"
     args = sys.argv[1:]
@@ -764,6 +826,17 @@ def main() -> None:
         raise SystemExit(f"Concept source not found: {SRC}")
     concepts = parse_concepts(SRC)
     print(f"Parsed {len(concepts)} concepts from {SRC}")
+    # attach reverse edges: articles that reference each concept (related_concepts)
+    rev = build_reverse_article_index()
+    linked = 0
+    for c in concepts:
+        arts = rev.get(c.slug)
+        if not arts:
+            continue
+        have = {a.get("url") for a in c.related_articles if isinstance(a, dict)}
+        c.related_articles = list(c.related_articles) + [a for a in arts if a["url"] not in have]
+        linked += 1
+    print(f"Reverse-linked related articles onto {linked} concepts")
     if fmt == "static":
         render_static(concepts)
     elif fmt == "wordpress":
