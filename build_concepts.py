@@ -113,19 +113,36 @@ def strip_private_sections(body: str) -> str:
 
 
 def inline(s: str) -> str:
-    """Escape + render **bold**, *italic*, [text](url), `code`. Order matters."""
+    """Escape + render [[wikilinks]], **bold**, *italic*, [text](url), `code`."""
     spans: list[str] = []
 
     def _stash(m: "re.Match") -> str:
         spans.append(html.escape(m.group(1), quote=False))
         return f"\x00{len(spans) - 1}\x00"
 
+    # Obsidian [[wikilinks]] in body prose -> links to the concept detail page.
+    # [[concept-slug|Label]] or [[concept-slug]]; the 'concept-' prefix is stripped
+    # for the URL (pages are the bare slug), and a bare link derives a readable label.
+    links: list[str] = []
+
+    def _wiki(m: "re.Match") -> str:
+        target = m.group(1).strip()
+        label = (m.group(2) or "").strip()
+        bare = target[len("concept-"):] if target.startswith("concept-") else target
+        if not label:
+            label = bare.replace("-", " ").replace(" moc", " (MOC)")
+            label = label[:1].upper() + label[1:]
+        links.append(f'<a href="{html.escape(bare, quote=True)}.html">{html.escape(label, quote=False)}</a>')
+        return f"\x01{len(links) - 1}\x01"
+
+    s = re.sub(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]", _wiki, s)
     s = re.sub(r"`([^`]+)`", _stash, s)
     s = html.escape(s, quote=False)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
     s = re.sub(r"\x00(\d+)\x00", lambda m: f"<code>{spans[int(m.group(1))]}</code>", s)
+    s = re.sub(r"\x01(\d+)\x01", lambda m: links[int(m.group(1))], s)
     return s
 
 
