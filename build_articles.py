@@ -152,12 +152,43 @@ def md_to_html(md: str) -> str:
     para: list[str] = []
     bullets: list[str] = []
     quote: list[str] = []  # accumulated blockquote lines (already stripped of "> ")
+    table: list[str] = []  # accumulated GFM table rows (raw "| a | b |" lines)
 
     def flush_bullets():
         if bullets:
             items = "".join(f"<li>{inline(b)}</li>" for b in bullets)
             out.append(f"<ul>{items}</ul>")
             bullets.clear()
+
+    def _row_cells(row: str) -> list:
+        # split a "| a | b |" row into cells, ignoring the leading/trailing pipes
+        s = row.strip()
+        if s.startswith("|"):
+            s = s[1:]
+        if s.endswith("|"):
+            s = s[:-1]
+        return [c.strip() for c in s.split("|")]
+
+    def flush_table():
+        if not table:
+            return
+        rows = table[:]
+        table.clear()
+        # a GFM table needs a header row + a separator row (|---|---|)
+        is_sep = lambda r: bool(re.fullmatch(r"\s*\|?[\s:\-|]+\|?\s*", r)) and "-" in r
+        header, body_rows = None, rows
+        if len(rows) >= 2 and is_sep(rows[1]):
+            header, body_rows = rows[0], rows[2:]
+        cells_html = []
+        if header is not None:
+            ths = "".join(f"<th>{inline(c)}</th>" for c in _row_cells(header))
+            cells_html.append(f"<thead><tr>{ths}</tr></thead>")
+        trs = "".join(
+            "<tr>" + "".join(f"<td>{inline(c)}</td>" for c in _row_cells(r)) + "</tr>"
+            for r in body_rows if r.strip()
+        )
+        cells_html.append(f"<tbody>{trs}</tbody>")
+        out.append(f'<div class="table-wrap"><table>{"".join(cells_html)}</table></div>')
 
     def flush_quote():
         if quote:
@@ -178,6 +209,7 @@ def md_to_html(md: str) -> str:
     def flush():
         flush_bullets()
         flush_quote()
+        flush_table()
         if para:
             joined = " ".join(para).strip()
             if joined:
@@ -269,6 +301,15 @@ def md_to_html(md: str) -> str:
             quote.append("" if st == ">" else st[2:].strip())
             continue
         flush_quote()  # a non-quote line ends any open blockquote
+        # GFM table row: a line starting with "|". Consecutive such lines group
+        # into one <table>; flush_table() decides header/separator/body.
+        if st.startswith("|"):
+            if para:
+                flush()
+            flush_bullets()
+            table.append(st)
+            continue
+        flush_table()  # a non-table line ends any open table
         # bullet list item: "- text" or "* text" (not "**bold**")
         if (st.startswith("- ") or (st.startswith("* ") and not st.startswith("**"))):
             if para:
