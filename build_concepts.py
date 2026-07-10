@@ -493,6 +493,14 @@ def render_index(groups: list[tuple[str, list[Concept]]],
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="../assets/site.css" />
 {INDEX_STYLE}
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
 </head>
 <body>
 
@@ -558,6 +566,14 @@ def render_group(slug: str, gmeta: dict, members: list[Concept]) -> str:
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="../../assets/site.css" />
 {INDEX_STYLE}
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
 </head>
 <body>
 

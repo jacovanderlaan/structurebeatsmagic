@@ -244,6 +244,14 @@ def render_index(ucs: list[UseCase]) -> str:
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="../assets/site.css" />
 {INDEX_STYLE}
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
 </head>
 <body>
 
@@ -302,6 +310,14 @@ def render_detail(u: UseCase, article_titles: dict) -> str:
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="../assets/site.css" />
 {DETAIL_STYLE}
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
 </head>
 <body>
 
