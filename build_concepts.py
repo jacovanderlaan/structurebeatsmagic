@@ -298,6 +298,14 @@ def parse_concepts(src: Path) -> list[Concept]:
         # (the category is rendered as a chip on the detail page).
         body_clean = re.sub(r"^\s*\*\*Category:\*\*.*$", "", body_clean, flags=re.M).strip()
 
+        # Drop a body "## Related concepts" section — the page renders its own
+        # linked block from the frontmatter data (raw [[wikilinks]] would show
+        # literally here). The wikilink version stays for reading in the vault.
+        body_clean = re.sub(
+            r"\n##+\s*Related concepts\s*\n.*?(?=\n##\s|\Z)",
+            "\n", body_clean, flags=re.S | re.I,
+        ).strip()
+
         # Summary for the card = the tagline if we have one; else first paragraph.
         summary = tag
         if not summary:
@@ -310,9 +318,12 @@ def parse_concepts(src: Path) -> list[Concept]:
         concepts.append(Concept(
             slug=slug, name=name, tag=tag, category=category,
             summary=summary, body_md=body_clean, where=where, groups=groups,
-            related_concepts=_norm_reflist(meta.get("related_concepts")),
-            related_articles=_norm_reflist(meta.get("related_articles")),
-            references=_norm_reflist(meta.get("references")),
+            # Accept relationship fields at top level OR nested under metadata:
+            # (the vault concept generator writes them under metadata, mirroring
+            # how category/groups are read above — one connected data model).
+            related_concepts=_norm_reflist(meta.get("related_concepts") or (md.get("related_concepts") if isinstance(md, dict) else None)),
+            related_articles=_norm_reflist(meta.get("related_articles") or (md.get("related_articles") if isinstance(md, dict) else None)),
+            references=_norm_reflist(meta.get("references") or (md.get("references") if isinstance(md, dict) else None)),
         ))
     return concepts
 
@@ -582,8 +593,12 @@ def render_group(slug: str, gmeta: dict, members: list[Concept]) -> str:
 def _render_rel_block(concepts_by_slug, concepts_by_name, c: Concept) -> str:
     def resolve(ref):
         # ref is a slug or a display name; link to the detail page if we can.
+        # Tolerate the vault convention of a "concept-" prefix on slugs
+        # (frontmatter writes concept-<slug>; page slugs are the bare <slug>).
         key = str(ref).strip()
-        target = concepts_by_slug.get(key) or concepts_by_name.get(key.lower())
+        bare = key[len("concept-"):] if key.startswith("concept-") else key
+        target = (concepts_by_slug.get(key) or concepts_by_slug.get(bare)
+                  or concepts_by_name.get(key.lower()))
         if target:
             return f'<a href="{esc(target.slug)}.html">{esc(target.name)}</a>'
         return esc(key)
