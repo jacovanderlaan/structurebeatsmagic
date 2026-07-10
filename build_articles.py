@@ -143,6 +143,7 @@ def md_to_html(md: str) -> str:
     out: list[str] = []
     para: list[str] = []
     bullets: list[str] = []
+    quote: list[str] = []  # accumulated blockquote lines (already stripped of "> ")
 
     def flush_bullets():
         if bullets:
@@ -150,8 +151,25 @@ def md_to_html(md: str) -> str:
             out.append(f"<ul>{items}</ul>")
             bullets.clear()
 
+    def flush_quote():
+        if quote:
+            # group into paragraphs: a blank entry (bare ">") separates <p>s
+            paras: list[list[str]] = [[]]
+            for q in quote:
+                if q == "":
+                    if paras[-1]:
+                        paras.append([])
+                else:
+                    paras[-1].append(q)
+            body = "".join(
+                f"<p>{inline(' '.join(p).strip())}</p>" for p in paras if p
+            )
+            out.append(f"<blockquote>{body}</blockquote>")
+            quote.clear()
+
     def flush():
         flush_bullets()
+        flush_quote()
         if para:
             joined = " ".join(para).strip()
             if joined:
@@ -234,6 +252,15 @@ def md_to_html(md: str) -> str:
             flush(); out.append(f"<h2>{inline(st[3:])}</h2>"); continue
         if st.startswith("# "):
             flush(); out.append(f"<h2>{inline(st[2:])}</h2>"); continue
+        # blockquote: "> text" (consecutive lines group; a bare ">" is a paragraph
+        # break inside the quote). Renders as <blockquote> — NOT a literal ">".
+        if st == ">" or st.startswith("> "):
+            if para:
+                flush()  # close any open paragraph before the quote
+            flush_bullets()
+            quote.append("" if st == ">" else st[2:].strip())
+            continue
+        flush_quote()  # a non-quote line ends any open blockquote
         # bullet list item: "- text" or "* text" (not "**bold**")
         if (st.startswith("- ") or (st.startswith("* ") and not st.startswith("**"))):
             if para:

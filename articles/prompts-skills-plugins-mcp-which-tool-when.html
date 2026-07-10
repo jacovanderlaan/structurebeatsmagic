@@ -76,22 +76,22 @@
 <h2>Prompt: the right tool for the one-off</h2>
 <p>A prompt is perfect when you'll do the thing <em>once</em>. "Rewrite this paragraph." "What's wrong with this query?" "Summarize this thread." There's no procedure worth saving, no repetition to amortize. Typing it is faster than filing it.</p>
 <p>The failure mode is using a prompt for something you do <em>every week</em>. If you've pasted roughly the same instruction three times, you've diagnosed a skill. The third repetition is the signal — stop paying the tax and write the file.</p>
-<p>&gt; <strong>Rule of thumb:</strong> Done once → prompt. Done repeatedly → skill.</p>
+<blockquote><p><strong>Rule of thumb:</strong> Done once → prompt. Done repeatedly → skill.</p></blockquote>
 <hr/>
 <h2>Skill: the right tool for the repeated procedure</h2>
 <p>A skill is what a prompt becomes when it stops being a one-off. It's the unit that compounds (Part 1): written once, owned forever, improved in place. Reach for a skill the moment a procedure has a <em>shape</em> you'd otherwise re-explain — the steps, the constraints, the where-things-go.</p>
 <p>The failure mode here is the opposite: overbuilding. Not everything deserves a skill. A procedure you'll run twice a year, with no fixed shape, is fine as a prompt you rewrite. Skills earn their keep through <em>repetition</em> — no repetition, no payoff.</p>
-<p>&gt; <strong>Rule of thumb:</strong> A procedure with a stable shape you'd re-explain → skill. A vague thing you'll do rarely → leave it a prompt.</p>
+<blockquote><p><strong>Rule of thumb:</strong> A procedure with a stable shape you'd re-explain → skill. A vague thing you'll do rarely → leave it a prompt.</p></blockquote>
 <hr/>
 <h2>Plugin: the right tool for sharing</h2>
 <p>A plugin is a <em>distribution</em> mechanism. It bundles one or more skills (plus other machinery) so they can be installed elsewhere — another project, a teammate's setup, a public marketplace. The skill inside a plugin is the same kind of thing you built in Part 2; the plugin is just the box it ships in.</p>
 <p>Here's the nuance people miss: <strong>you don't need a plugin to use a skill.</strong> A single-file skill in your own project works perfectly, forever, un-bundled. Reach for a plugin only when the skill is good enough that <em>someone else</em> should have it, or you want it versioned across many of your own repos. Distribution is the trigger, not usage.</p>
-<p>&gt; <strong>Rule of thumb:</strong> Keep it personal → single-file skill. Worth sharing or versioning across projects → promote it to a plugin.</p>
+<blockquote><p><strong>Rule of thumb:</strong> Keep it personal → single-file skill. Worth sharing or versioning across projects → promote it to a plugin.</p></blockquote>
 <hr/>
 <h2>MCP: the right tool for what the AI can see</h2>
 <p>The first three are all about what the AI can <em>do</em>. MCP is the other axis entirely: what it can <strong>see.</strong> An MCP server connects the AI to a live system — your calendar, your mail, your CRM, a database — so it can query real, current data instead of guessing or asking you to paste it in.</p>
 <p>This is the half most people never build, and it's the half that changes everything. A skill that files a task is useful; a skill that files a task <em>and can check your actual calendar for conflicts</em> is a different category of useful, because it can <em>see</em>. Skills without data sources are a very organized way of working blind.</p>
-<p>&gt; <strong>Rule of thumb:</strong> The AI needs to <em>act</em> a certain way → skill. The AI needs to <em>see</em> your real data → MCP.</p>
+<blockquote><p><strong>Rule of thumb:</strong> The AI needs to <em>act</em> a certain way → skill. The AI needs to <em>see</em> your real data → MCP.</p></blockquote>
 <hr/>
 <h2>The map, on one page</h2>
 <p>| You want to… | Reach for | Because | |---|---|---| | Do a thing once | <strong>Prompt</strong> | No repetition to amortize | | Repeat a procedure the same way | <strong>Skill</strong> | Written once, compounds, improves in place | | Share a skill / version it across repos | <strong>Plugin</strong> | Distribution box around skills | | Let the AI see your live data | <strong>MCP server</strong> | Connects it to real systems it can query |</p>

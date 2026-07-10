@@ -82,7 +82,7 @@
 <h2>Why an AI doesn't read tags the way a notes app does</h2>
 <p>Here's the thing I'd glossed over for years. Claude doesn't have a tag index. When it looks for something in my vault, it doesn't run "give me everything tagged <code>#validation</code>." It does what a developer does at a terminal: it <strong>greps</strong> — searches file contents and paths — and it <strong>globs</strong> — matches folder and filename patterns.</p>
 <p>That's the whole mechanism. And it has a consequence I should have seen immediately:</p>
-<p>&gt; A tag only helps the AI if the tag word is <strong>not already</strong> somewhere greppable — the body, the filename, or the path.</p>
+<blockquote><p>A tag only helps the AI if the tag word is <strong>not already</strong> somewhere greppable — the body, the filename, or the path.</p></blockquote>
 <p>Because if the word is already in the body, grep finds it <em>with or without</em> the tag line. The tag is just a duplicate copy of a word that's already there. It costs a line of frontmatter and buys nothing.</p>
 <p>So I stopped theorising and checked whether my tags were actually adding new, findable words — or just echoing words already in the text.</p>
 <hr/>
