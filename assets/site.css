@@ -36,7 +36,12 @@
     .burger{display:block}
     nav.main{position:fixed;top:64px;left:0;right:0;background:var(--surface);
       border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
-      padding:.5rem 0;box-shadow:var(--shadow);display:none}
+      padding:.5rem 0;box-shadow:var(--shadow);display:none;
+      /* the drawer expands every dropdown inline, so the item list can exceed the
+         viewport height. Cap it to the space below the 64px header and let it
+         scroll — otherwise the last entries (Writing + the enterprise CTA) fall
+         off the bottom of the screen with no way to reach them on a phone. */
+      max-height:calc(100vh - 64px);overflow-y:auto;-webkit-overflow-scrolling:touch}
     nav.main > a, .navgroup > .navtop{margin:0;padding:.9rem 24px;font-size:16px;border-bottom:1px solid var(--line);display:block;width:100%;text-align:left}
     /* in the drawer, dropdowns just expand inline */
     .navgroup{display:block}
