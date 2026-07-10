@@ -428,8 +428,73 @@ def resolve_article_folder(slug: str) -> Path | None:
     return None
 
 
+def _norm_reflist(v) -> list:
+    """Normalise a frontmatter related-list to a list of plain strings/dicts."""
+    if not v:
+        return []
+    if isinstance(v, list):
+        return v
+    return [v]
+
+
+# URL base for linking to concept detail pages from an article's Related section.
+# Concept pages are built by build_concepts.py into ./concepts/<slug>.html.
+CONCEPTS_URL = "../concepts"
+
+
+def build_related_section(meta: dict, article_titles: dict) -> str:
+    """Render a 'Related' section from article frontmatter.
+
+    related_concepts: [<concept-slug>]        -> links to ../concepts/<slug>.html
+    related_articles: [<article-slug>] or [{title,url}] -> links to sibling articles
+
+    Concept slugs may carry the vault 'concept-' prefix; we strip it for the URL.
+    Unknown article slugs are skipped silently (kept out of the graph, not broken).
+    """
+    rc = _norm_reflist(meta.get("related_concepts"))
+    ra = _norm_reflist(meta.get("related_articles"))
+    if not rc and not ra:
+        return ""
+    blocks = []
+    if rc:
+        lis = []
+        for c in rc:
+            key = str(c).strip()
+            bare = key[len("concept-"):] if key.startswith("concept-") else key
+            label = bare.replace("-", " ").title()
+            lis.append(f'<li><a href="{CONCEPTS_URL}/{html.escape(bare, quote=True)}.html">{html.escape(label)}</a></li>')
+        blocks.append(f"<h3>Related concepts</h3><ul>{''.join(lis)}</ul>")
+    if ra:
+        lis = []
+        for a in ra:
+            if isinstance(a, dict) and a.get("url"):
+                lis.append(f'<li><a href="{html.escape(a["url"], quote=True)}">{html.escape(a.get("title") or a["url"])}</a></li>')
+            else:
+                aslug = str(a).strip()
+                if aslug in article_titles:
+                    lis.append(f'<li><a href="{html.escape(aslug, quote=True)}.html">{html.escape(article_titles[aslug])}</a></li>')
+        if lis:
+            blocks.append(f"<h3>Related writing</h3><ul>{''.join(lis)}</ul>")
+    if not blocks:
+        return ""
+    return f'<aside class="article-related"><h2>Related</h2>{"".join(blocks)}</aside>'
+
+
+def _article_titles() -> dict:
+    """slug -> title for every published article (for related_articles linking)."""
+    titles = {}
+    for slug in ARTICLES:
+        folder = resolve_article_folder(slug)
+        if folder is None:
+            continue
+        meta, _ = split_frontmatter((folder / f"{slug}.md").read_text(encoding="utf-8"))
+        titles[slug] = str(meta.get("title", slug)).strip().strip('"')
+    return titles
+
+
 def main() -> None:
     OUT.mkdir(exist_ok=True)
+    article_titles = _article_titles()
     cards = []
     for slug in ARTICLES:
         folder = resolve_article_folder(slug)
@@ -473,7 +538,7 @@ def main() -> None:
             og_image_abs=og_image_abs,
             published_meta=published_meta,
             json_ld=json_ld,
-            body=md_to_html(body),
+            body=md_to_html(body) + build_related_section(meta, article_titles),
             css=CSS,
         ), encoding="utf-8")
         print(f"  + articles/{slug}.html  ({copied} assets)")

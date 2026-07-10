@@ -53,6 +53,13 @@ footer{padding:3rem 0;border-top:1px solid var(--line);text-align:center;color:v
 .article-hero{margin:1.5rem 0 2.5rem}
 .article-hero img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(15,23,42,.07)}
 .article-hero figcaption{font-size:.85rem;color:var(--ink-faint);margin-top:.7rem;text-align:center;line-height:1.5}
+.article-related{margin:3rem 0 0;padding:1.5rem 0 0;border-top:1px solid var(--line)}
+.article-related h2{font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 .8rem}
+.article-related h3{font-size:.95rem;margin:1rem 0 .4rem;color:var(--ink)}
+.article-related ul{margin:0 0 .5rem;padding-left:1.1rem}
+.article-related li{margin:.25rem 0}
+.article-related a{color:var(--accent);text-decoration:none}
+.article-related a:hover{text-decoration:underline}
 
 /* inline article figure (in-body, shortcode) */
 .article-fig{margin:2.5rem 0}
