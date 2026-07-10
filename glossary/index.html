@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glossary · Structure Beats Magic</title>
+<meta name="description" content="The non-concept vocabulary of Structure Beats Magic and Model-Driven Data Engineering — field terms and distinctions defined and linked. A volatile layer under the concept libraries." />
+<meta property="og:title" content="Glossary · Structure Beats Magic" />
+<meta property="og:description" content="Field terms and distinctions, defined and linked — the vocabulary under the coined concepts." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .gl-intro { max-width:760px; color:var(--ink-soft); font-size:16px; }
+  .gl-group { margin-top:2.2rem; }
+  .gl-group h2 { font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); margin:0 0 .8rem; }
+  .gl-list { display:grid; gap:14px; }
+  .gl-term { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 20px; }
+  .gl-term .t { font-size:17px; font-weight:800; color:var(--ink); margin-bottom:4px; }
+  .gl-term .d { font-size:15px; color:var(--ink-soft); margin:0; line-height:1.55; }
+  .gl-note { margin-top:2.2rem; font-size:14px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:1rem; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <a href="../writing/">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="eyebrow">The vocabulary, defined</div>
+  <h1>Glossary</h1>
+  <p class="lede">The <strong>non-concept vocabulary</strong> of Structure Beats Magic and Model-Driven Data Engineering: field terms, distinctions and borrowed ideas that deserve a shared definition and a link — but aren't <em>ownable coined concepts</em> (those live in the SBM and MDDE concept libraries, Nick-Milo-style).  This is a <strong>volatile, promotable layer</strong>. A glossary term is lighter than a concept: it can be added fast, it can change, and — crucially — it can be <strong>promoted to a concept</strong> when it starts carrying real weight (recurs across articles, earns its own name, gets its own article). The rule of thumb:  - <strong>Concept</strong> = a name <em>I</em> coined and own, that does thesis-level work. Gets its own page. - <strong>Glossary term</strong> = a word the field already owns, or a distinction I draw, that readers need defined. Gets a line here + links.</p>
+</div>
+
+<section id="glossary">
+  <div class="wrap">
+<div class="gl-group">
+<h2>Data &amp; modelling</h2>
+<div class="gl-list">
+<div class="gl-term"><div class="t">Data Modeling</div><p class="d">Designing the shape of information: the entities that matter, how they relate, the rules that hold. Not SQL or tables — the conceptual picture where humans and machines agree on meaning. Jaco's core craft. → <a href="../concepts/visual-thinking.html">Visual Thinking</a> · <a href="../concepts/drawing-it-together.html">Drawing It Together</a>; MDDE owns the coined variants Business Friendly Data Modeling · Collaborative Data Modeling.</p></div>
+<div class="gl-term"><div class="t">Metadata</div><p class="d">Data about data: the typed, structured description (schema, meaning, lineage, rules) that makes raw data legible and governable. The layer MDDE treats as the operating system. → Metadata Operating System · Metadata As Code.</p></div>
+<div class="gl-term"><div class="t">Plausibility Check</div><p class="d">A validation that asks "is this <em>believable</em>?" rather than only "is this <em>well-formed</em>?" — catching implausible-but-valid data (a €0 invoice, a date in 2099) that passes schema checks. Part of the validate-don't-guess discipline. → <a href="../concepts/the-validation-loop.html">The Validation Loop</a> · <a href="../concepts/the-validated-exchange-layer.html">The Validated Exchange Layer</a>.</p></div>
+<div class="gl-term"><div class="t">Decompose &amp; Reassemble</div><p class="d">Breaking a body of knowledge into atomic, reusable units and recomposing them into new wholes (article, course, talk) without rebuilding. The Lego move applied to knowledge. → candidate concept; overlaps <a href="../concepts/play-with-the-blocks.html">Play With The Blocks</a> · <a href="../concepts/content-to-training.html">Content To Training</a>.</p></div>
+</div></div>
+<div class="gl-group">
+<h2>Knowledge management</h2>
+<div class="gl-list">
+<div class="gl-term"><div class="t">Zettelkasten</div><p class="d">Niklas Luhmann's method of atomic, densely-linked notes (one idea per note, wired together). The historical root of the modern second brain; SBM's take is "let the AI do the labor, keep the judgment." → <a href="../concepts/content-intelligence.html">Content Intelligence</a>; article <em>Zettelkasten 2.0</em>.</p></div>
+<div class="gl-term"><div class="t">Personal Knowledge System</div><p class="d">The whole apparatus by which one person captures, structures, and reuses what they know — vault, rules, skills, publishing. Broader than PKM (note-taking): a <em>system</em>, not a note collection. → <a href="../concepts/sovereign-personal-system.html">Sovereign Personal System</a> · <a href="../concepts/personal-data-warehouse.html">Personal Data Warehouse</a>.</p></div>
+<div class="gl-term"><div class="t">Personal Knowledge Management (PKM)</div><p class="d">The established field of managing one's own notes and knowledge (Obsidian/Notion/Roam culture). SBM positions as a <em>superset</em>: KM re-architected for AI, one level above the note-taking-tool cohort. → <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a>.</p></div>
+</div></div>
+<div class="gl-group">
+<h2>Visual &amp; facilitation</h2>
+<div class="gl-list">
+<div class="gl-term"><div class="t">Visual Facilitation</div><p class="d">The field of guiding a group to a shared picture of a contested idea (sketchnoting, graphic facilitation). The neighbouring discipline to <a href="../concepts/drawing-it-together.html">Drawing It Together</a> — others' profession; the co-drawing <em>with the business</em> is the part Jaco owns.</p></div>
+</div></div>
+<div class="gl-group">
+<h2>Business &amp; delivery</h2>
+<div class="gl-list">
+<div class="gl-term"><div class="t">Business Model</div><p class="d">How value is created, delivered and captured — what you sell and how you get paid (e.g. give the recipe free, sell the kitchen). → <a href="../concepts/give-the-recipe-sell-the-kitchen.html">Give The Recipe Sell The Kitchen</a>.</p></div>
+<div class="gl-term"><div class="t">Delivery Model</div><p class="d">How the work actually gets done and handed over — engagement shape, transfer-by-design, who owns the result afterward. Distinct from the business model: <em>how you deliver</em> vs <em>how you charge</em>. → <a href="../concepts/smart-teams.html">Smart Teams</a>.</p></div>
+<div class="gl-term"><div class="t">Model Outlives the Tool</div><p class="d">The principle that your data model / structure survives every tool that renders it (diagramming app, BI tool, the AI itself). Folded into → <a href="../concepts/rent-the-ai-own-the-structure.html">Rent The Ai Own The Structure</a>.</p></div>
+</div></div>
+    <p class="gl-note">A volatile, promotable layer: a term that keeps recurring or earns its own article gets promoted to a <a href="../concepts/">concept</a>. The coined concepts live in the <a href="../concepts/">concept library</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

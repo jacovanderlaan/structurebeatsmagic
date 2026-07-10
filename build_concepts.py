@@ -375,6 +375,7 @@ NAV = """<header class="site">
         <span class="navmenu">
           <a href="../#principles">Principles</a>
           <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
           <a href="../#play">Play</a>
           <a href="../#why-structure">Why structure</a>
         </span>
@@ -519,7 +520,7 @@ gtag('config', 'G-P7W9B34R1Z');
     <p class="section-lede">The coined terms this thesis owns — grouped by where they live in the system. Each links to its own page.</p>
 {chips_html}
 {groups_html}
-    <p class="infl-note" style="margin-top:2rem">A living vocabulary — it grows as the thesis does. The enterprise counterpart (Model-Driven Data Engineering) keeps its own concept library at <a href="https://jacovanderlaan.com/concepts.html">jacovanderlaan.com/concepts</a>.</p>
+    <p class="infl-note" style="margin-top:2rem">A living vocabulary — it grows as the thesis does. For field terms and distinctions that aren't coined concepts, see the <a href="../glossary/">glossary</a>. The enterprise counterpart (Model-Driven Data Engineering) keeps its own concept library at <a href="https://jacovanderlaan.com/concepts.html">jacovanderlaan.com/concepts</a>.</p>
   </div>
 </section>
 

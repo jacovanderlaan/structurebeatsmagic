@@ -784,7 +784,7 @@ def write_sitemap(cards: list) -> None:
 
     # top-level + collection/section pages (no reliable date -> omit lastmod).
     # Collections are their own rankable pages (ADR-078), so list them all.
-    for rel in ["", "writing/", "concepts/", "use-cases/",
+    for rel in ["", "writing/", "concepts/", "glossary/", "use-cases/",
                 "system/", "intelligence/", "influences/"]:
         urls.append((rel, ""))
 
