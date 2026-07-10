@@ -61,6 +61,23 @@ CATEGORY_ORDER = [
     "Brand & stance",
 ]
 
+# Cross-cutting groups: a many-to-many overlay ON TOP of the one-per-concept
+# category. A concept opts into a group via `groups: [<slug>]` in its frontmatter.
+# Unlike categories (mutually exclusive), a concept can be in several groups.
+# Each entry here gets a filter-chip on the index and its own /groups/<slug>.html
+# overview page. A group referenced by a concept but missing here still gets a
+# page (label = title-cased slug) — so a new group can't silently vanish.
+GROUPS = {
+    "layer-types": {
+        "label": "Layer types",
+        "blurb": "The named layers of the system — each a place with a boundary, "
+                 "where something crosses, is transformed, or is concluded. A layer "
+                 "is a role in the architecture, not a physical location (that's a "
+                 "zone) and not a technique applied across it (that's a method).",
+    },
+}
+GROUP_ORDER = ["layer-types"]
+
 # Trailing working sections in a source file that must never be published.
 PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
 
@@ -207,6 +224,7 @@ class Concept:
     summary: str       # first paragraph of the body, plain-ish (for the card)
     body_md: str       # full markdown body (minus the "Where it lives" tail meta)
     where: str         # "Where it lives" value (raw markdown), or ""
+    groups: list = field(default_factory=list)              # [group-slug] (cross-cutting)
     related_concepts: list = field(default_factory=list)   # [slug or name]
     related_articles: list = field(default_factory=list)   # [{title,url}]
     references: list = field(default_factory=list)          # [{title,url}]
@@ -254,6 +272,13 @@ def parse_concepts(src: Path) -> list[Concept]:
             category = str(md.get("category", "")).strip()
         category = category or "Other"
 
+        # Cross-cutting groups: accept top-level `groups:` or nested under metadata.
+        groups_raw = meta.get("groups")
+        if not groups_raw and isinstance(md, dict):
+            groups_raw = md.get("groups")
+        groups = [str(g).strip() for g in groups_raw] if isinstance(groups_raw, list) \
+            else ([str(groups_raw).strip()] if groups_raw else [])
+
         # Pull the "Where it lives:" line out of the body so it renders separately.
         where = ""
         body_lines = body.split("\n")
@@ -284,7 +309,7 @@ def parse_concepts(src: Path) -> list[Concept]:
 
         concepts.append(Concept(
             slug=slug, name=name, tag=tag, category=category,
-            summary=summary, body_md=body_clean, where=where,
+            summary=summary, body_md=body_clean, where=where, groups=groups,
             related_concepts=_norm_reflist(meta.get("related_concepts")),
             related_articles=_norm_reflist(meta.get("related_articles")),
             references=_norm_reflist(meta.get("references")),
@@ -302,6 +327,26 @@ def group_concepts(concepts: list[Concept]) -> list[tuple[str, list[Concept]]]:
             ordered.append((cat, by_cat.pop(cat)))
     for cat in sorted(by_cat):  # any leftover categories, alphabetical
         ordered.append((cat, by_cat[cat]))
+    return ordered
+
+
+def collect_groups(concepts: list[Concept]) -> list[tuple[str, dict, list[Concept]]]:
+    """Cross-cutting groups -> [(slug, meta{label,blurb}, members)] in GROUP_ORDER,
+    then any group used-but-unregistered (label = title-cased slug), alphabetical.
+    A group with no members is dropped."""
+    members: dict[str, list[Concept]] = {}
+    for c in concepts:
+        for g in c.groups:
+            members.setdefault(g, []).append(c)
+    ordered: list[tuple[str, dict, list[Concept]]] = []
+    seen = set()
+    for slug in GROUP_ORDER:
+        if slug in members:
+            ordered.append((slug, GROUPS.get(slug, {"label": slug.replace("-", " ").title(), "blurb": ""}), members[slug]))
+            seen.add(slug)
+    for slug in sorted(members):
+        if slug not in seen:
+            ordered.append((slug, GROUPS.get(slug, {"label": slug.replace("-", " ").title(), "blurb": ""}), members[slug]))
     return ordered
 
 
@@ -365,6 +410,10 @@ INDEX_STYLE = """<style>
   .concept .c-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:6px; }
   .concept .c-tag { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:10px; }
   .concept .c-def { font-size:15px; color:var(--ink-soft); margin:0; }
+  .group-chips { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:1.5rem 0 .5rem; }
+  .group-chip { display:inline-block; font-size:14px; font-weight:700; color:var(--accent); background:rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.18); border-radius:999px; padding:7px 16px; text-decoration:none; transition:background .15s ease; }
+  .group-chip:hover { background:rgba(37,99,235,.16); }
+  .group-chips-lede { text-align:center; font-size:14px; color:var(--ink-faint); margin:0 0 .25rem; }
   @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
 </style>"""
 
@@ -387,7 +436,21 @@ def esc(x: str) -> str:
     return html.escape(x or "", quote=False)
 
 
-def render_index(groups: list[tuple[str, list[Concept]]]) -> str:
+def render_index(groups: list[tuple[str, list[Concept]]],
+                 xgroups: list[tuple[str, dict, list[Concept]]] | None = None) -> str:
+    # Cross-cutting group chips (a filter overlay above the category index).
+    chips_html = ""
+    if xgroups:
+        chips = "".join(
+            f'<a class="group-chip" href="groups/{esc(slug)}.html">{esc(gmeta["label"])} '
+            f'<span style="opacity:.6;font-weight:600">{len(members)}</span></a>'
+            for slug, gmeta, members in xgroups
+        )
+        chips_html = (
+            '<p class="group-chips-lede">Or explore concepts by cross-cutting group:</p>'
+            f'<div class="group-chips">{chips}</div>'
+        )
+
     parts: list[str] = []
     for cat, items in groups:
         parts.append(f'<div class="nl-k" style="text-align:center;margin:2rem 0 1rem">{esc(cat)}</div>')
@@ -432,12 +495,80 @@ def render_index(groups: list[tuple[str, list[Concept]]]) -> str:
     <div class="section-eyebrow">The vocabulary</div>
     <h2 class="section-title">Named concepts</h2>
     <p class="section-lede">The coined terms this thesis owns — grouped by where they live in the system. Each links to its own page.</p>
+{chips_html}
 {groups_html}
     <p class="infl-note" style="margin-top:2rem">A living vocabulary — it grows as the thesis does. The enterprise counterpart (Model-Driven Data Engineering) keeps its own concept library at <a href="https://jacovanderlaan.com/concepts.html">jacovanderlaan.com/concepts</a>.</p>
   </div>
 </section>
 
 {FOOTER}
+
+{NAV_SCRIPT}
+</body>
+</html>
+"""
+
+
+# NAV/FOOTER for group pages live one level deeper (concepts/groups/), so the
+# relative prefix is "../../" instead of "../". Build depth-adjusted copies.
+def _reprefix(html_block: str) -> str:
+    return (html_block
+            .replace('href="../', 'href="../../')
+            .replace('src="../', 'src="../../'))
+
+
+def render_group(slug: str, gmeta: dict, members: list[Concept]) -> str:
+    nav = _reprefix(NAV)
+    footer = _reprefix(FOOTER)
+    label = gmeta.get("label", slug.replace("-", " ").title())
+    blurb = gmeta.get("blurb", "")
+    # Members keep authored order within the group (source-sorted from parse).
+    cards = "".join(
+        f'<a class="concept" href="../{esc(c.slug)}.html">'
+        f'<div class="c-name">{esc(c.name)}</div>'
+        f'<div class="c-tag">{esc(c.tag)}</div>'
+        f'<p class="c-def">{esc(c.summary)}</p></a>'
+        for c in members
+    )
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{esc(label)} · Concepts · Structure Beats Magic</title>
+<meta name="description" content="{html.escape(blurb, quote=True)}" />
+<meta property="og:title" content="{esc(label)} · Structure Beats Magic" />
+<meta property="og:description" content="{html.escape(blurb, quote=True)}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="../../assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="../../assets/site.css" />
+{INDEX_STYLE}
+</head>
+<body>
+
+{nav}
+
+<div class="hero wrap">
+  <div class="c-crumb" style="font-size:14px;margin-bottom:1rem"><a href="../">&#8592; All concepts</a></div>
+  <div class="eyebrow">Concept group</div>
+  <h1>{esc(label)}</h1>
+  <p class="lede">{esc(blurb)}</p>
+</div>
+
+<section id="concepts">
+  <div class="wrap">
+    <div class="section-eyebrow">The group</div>
+    <h2 class="section-title">{esc(label)} <span style="color:var(--ink-faint);font-weight:600">({len(members)})</span></h2>
+    <p class="section-lede">Every concept tagged into this group, drawn from across the categories. A concept can belong to more than one group.</p>
+    <div class="concept-grid">
+{cards}
+    </div>
+    <p class="infl-note" style="margin-top:2rem">&#8592; Back to <a href="../">all concepts</a>.</p>
+  </div>
+</section>
+
+{footer}
 
 {NAV_SCRIPT}
 </body>
@@ -534,15 +665,24 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 def render_static(concepts: list[Concept]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     groups = group_concepts(concepts)
+    xgroups = collect_groups(concepts)
     by_slug = {c.slug: c for c in concepts}
     by_name = {c.name.lower(): c for c in concepts}
-    # index
-    (OUT / "index.html").write_text(render_index(groups), encoding="utf-8")
+    # index (with cross-cutting group chips)
+    (OUT / "index.html").write_text(render_index(groups, xgroups), encoding="utf-8")
     # detail pages
     for c in concepts:
         (OUT / f"{c.slug}.html").write_text(
             render_detail(c, by_slug, by_name), encoding="utf-8")
-    print(f"  index.html + {len(concepts)} detail pages -> {OUT}")
+    # cross-cutting group pages -> concepts/groups/<slug>.html
+    if xgroups:
+        gdir = OUT / "groups"
+        gdir.mkdir(parents=True, exist_ok=True)
+        for slug, gmeta, members in xgroups:
+            (gdir / f"{slug}.html").write_text(
+                render_group(slug, gmeta, members), encoding="utf-8")
+    print(f"  index.html + {len(concepts)} detail pages + "
+          f"{len(xgroups)} group page(s) -> {OUT}")
 
 
 def render_wordpress(concepts: list[Concept]) -> None:
