@@ -421,6 +421,9 @@ DETAIL_STYLE = """<style>
   .c-detail { max-width:760px; }
   .c-crumb { font-size:14px; margin-bottom:1rem; }
   .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
   .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
   .c-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
   .c-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
@@ -618,6 +621,12 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
     body_html = md_to_html(c.body_md)
     where_html = f'<p class="c-where"><strong>Where it lives:</strong> {inline(c.where)}</p>' if c.where else ""
     rel_html = _render_rel_block(concepts_by_slug, concepts_by_name, c)
+    # Group memberships as chips next to the category chip (link to group pages).
+    group_chips = "".join(
+        f' <a class="c-chip c-chip-group" href="groups/{esc(g)}.html">'
+        f'{esc(GROUPS.get(g, {}).get("label", g.replace("-", " ").title()))}</a>'
+        for g in c.groups
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -639,7 +648,7 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 
 <div class="hero wrap">
   <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
-  <div class="c-chip">{esc(c.category)}</div>
+  <div class="c-chip">{esc(c.category)}</div>{group_chips}
   <h1>{esc(c.name)}</h1>
 </div>
 

@@ -91,6 +91,7 @@ ARTICLES = [
     "a-note-on-whats-next-two-publications",
     "the-other-half-of-structure-visual-thinking",
     "the-missing-system",
+    "stop-driving-by-the-rear-view-mirror",
 ]
 
 CSS = "../assets/article.css"

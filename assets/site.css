@@ -24,6 +24,11 @@
   .navgroup > .navtop::after{content:" \25be";color:var(--ink-faint);font-size:11px}
   .navmenu{display:none;position:absolute;top:100%;left:18px;min-width:190px;background:var(--surface);
     border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:.5rem 0;z-index:20}
+  /* A hover-dropdown is absolutely positioned and can overhang the sibling links
+     to its right (e.g. "Writing"), stealing their first click. The dropdown only
+     needs to sit under its OWN group, so cap its width to the group and let it
+     grow leftward — never rightward over a sibling. */
+  .navmenu{left:0;right:auto;min-width:0;width:max-content;max-width:240px}
   .navgroup:hover .navmenu{display:block}
   .navmenu a{display:block;margin:0;padding:.6rem 1.1rem;font-size:14.5px;color:var(--ink-soft);white-space:nowrap}
   .navmenu a:hover{color:var(--accent);background:var(--bg)}
