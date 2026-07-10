@@ -323,7 +323,7 @@ gtag('config', 'G-P7W9B34R1Z');
 <body>
 <header class="site"><div class="wrap">
   <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
-  <a class="back" href="../#writing">← All writing</a>
+  <a class="back" href="../writing/">← All writing</a>
 </div></header>
 <main class="wrap article">
   <p class="eyebrow">{face}</p>
@@ -336,7 +336,7 @@ gtag('config', 'G-P7W9B34R1Z');
   </article>
   <div class="article-cta">
     <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
-    <a class="btn" href="../#writing">← More writing</a>
+    <a class="btn" href="../writing/">← More writing</a>
     <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
   </div>
 </main>
@@ -642,18 +642,104 @@ def main() -> None:
 
     inject_homepage_cards(snip)
 
+    write_writing_index(cards)
+
     write_sitemap(cards)
 
 
-def inject_homepage_cards(snip: list) -> None:
-    """Inject the freshly-built article cards into index.html between markers.
+WRITING_INDEX = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Writing · Structure Beats Magic</title>
+<meta name="description" content="Practical pieces on structure, knowledge and AI — each takes one real, working system and shows the method behind it, so you can build your own."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="{canonical}"/>
+<meta property="og:title" content="Writing · Structure Beats Magic"/>
+<meta property="og:description" content="Practical pieces on structure, knowledge and AI — the recipe, free."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="{canonical}"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="{og_image_abs}"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="stylesheet" href="{css}"/>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../">← Home</a>
+</div></header>
 
-    The homepage used to carry a hand-maintained copy of the card list, which
-    drifted out of sync (new articles never appeared). Now the cards live in
-    exactly one place — the article frontmatter — and are projected into the
-    homepage at build time between the ARTICLE-CARDS:START/END markers. Same
-    one-source, one-direction rule the site argues for. No markers -> no-op
-    with a warning (so a manual homepage still builds, just isn't updated).
+<div class="hero wrap">
+  <div class="eyebrow">Writing</div>
+  <h1>Practical pieces on structure, knowledge &amp; AI</h1>
+  <p class="lede">The recipe, free. Each piece takes one real, working system and shows the method behind it — so you can build your own. Newest first.</p>
+</div>
+
+<section id="writing">
+  <div class="wrap">
+    <div class="posts">
+{cards}
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
+"""
+
+
+def write_writing_index(cards: list) -> None:
+    """Write a standalone writing/index.html — the collection page for all
+    articles (ADR-078: collections are their own pages, not homepage anchors).
+    Source of truth is the same `cards` list that feeds the homepage teaser and
+    the sitemap; here it becomes a rankable page with its own <title>/canonical.
+    One level deep, so article hrefs (articles/...) get a ../ prefix."""
+    out_dir = HERE / "writing"
+    out_dir.mkdir(exist_ok=True)
+    rows = []
+    for _d, title, subtitle, href, face in cards:  # already sorted newest-first
+        rows.append(
+            f'      <a class="post" href="../{href}">'
+            f'<span class="post-face">{html.escape(face)}</span>'
+            f'<h3>{html.escape(title)}</h3>'
+            f'<p>{html.escape(subtitle)}</p></a>'
+        )
+    page = WRITING_INDEX.format(
+        canonical=f"{BASE_URL}/writing/",
+        og_image_abs=f"{BASE_URL}/assets/sbm-og-card.svg",
+        css="../assets/site.css",
+        cards="\n".join(rows),
+    )
+    (out_dir / "index.html").write_text(page, encoding="utf-8")
+    print(f"  + writing/index.html ({len(cards)} articles)")
+
+
+# The homepage is a manifest (ADR-078): it teases the newest writing and links
+# to the full collection at /writing/. Cap the homepage cards to this many.
+HOMEPAGE_TEASER_COUNT = 9
+
+
+def inject_homepage_cards(snip: list) -> None:
+    """Inject a teaser of the freshly-built article cards into index.html.
+
+    The homepage used to carry a hand-maintained copy of the full card list,
+    which drifted out of sync. Now the cards live in exactly one place — the
+    article frontmatter — and the newest HOMEPAGE_TEASER_COUNT are projected
+    into the homepage at build time between the ARTICLE-CARDS:START/END markers,
+    followed by an "All writing →" link to the full /writing/ collection page.
+    Same one-source, one-direction rule the site argues for. No markers -> no-op.
     """
     index = OUT.parent / "index.html"
     if not index.exists():
@@ -666,11 +752,16 @@ def inject_homepage_cards(snip: list) -> None:
     if i == -1 or j == -1 or j < i:
         print("  ! index.html: ARTICLE-CARDS markers not found — homepage cards NOT updated")
         return
+    teaser = snip[:HOMEPAGE_TEASER_COUNT]
+    more_link = ('      <a class="post post-more" href="writing/">'
+                 '<span class="post-face">All writing</span>'
+                 f'<h3>See all {len(snip)} pieces →</h3>'
+                 '<p>The full collection — structure, knowledge and AI, newest first.</p></a>')
     # keep the START marker comment line intact, replace everything up to END
     start_line_end = html_txt.find("-->", i) + len("-->")
     block = (
         html_txt[i:start_line_end]
-        + "\n" + "\n".join(snip) + "\n      "
+        + "\n" + "\n".join(teaser) + "\n" + more_link + "\n      "
         + end
     )
     new_html = html_txt[:i] + block + html_txt[j + len(end):]
@@ -691,8 +782,10 @@ def write_sitemap(cards: list) -> None:
     art_dates = {href: (d or "") for d, _t, _s, href, _f in cards}
     urls: list[tuple[str, str]] = []  # (relative path, lastmod)
 
-    # top-level + section pages (no reliable date -> omit lastmod)
-    for rel in ["", "system/", "intelligence/", "influences/"]:
+    # top-level + collection/section pages (no reliable date -> omit lastmod).
+    # Collections are their own rankable pages (ADR-078), so list them all.
+    for rel in ["", "writing/", "concepts/", "use-cases/",
+                "system/", "intelligence/", "influences/"]:
         urls.append((rel, ""))
 
     # published articles, sorted newest first
