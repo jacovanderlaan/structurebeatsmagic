@@ -91,8 +91,9 @@ ARTICLES = [
     "the-vault-is-the-data-model",
     "a-note-on-whats-next-two-publications",
     "the-other-half-of-structure-visual-thinking",
-    "the-missing-system",
-    "stop-driving-by-the-rear-view-mirror",
+    # NB: "the-missing-system" + "stop-driving-by-the-rear-view-mirror" MOVED to
+    # the jvdl/MDDE pipeline (canonical_home = jacovanderlaan.com) on 2026-07-10.
+    # Source now at W:/data/products/mdde/articles/, built by jacovanderlaan-site.
 ]
 
 CSS = "../assets/article.css"
@@ -450,29 +451,61 @@ def _norm_reflist(v) -> list:
 # Concept pages are built by build_concepts.py into ./concepts/<slug>.html.
 CONCEPTS_URL = "../concepts"
 
+# Curated synonym map for inline auto-linking: variant words/phrases that should
+# link to a concept page even though they aren't the concept's exact display name
+# (the auto-linker matches exact names; a reader writes "atomicity", not "Atomic
+# Documents"). Keyed by concept SLUG -> list of extra phrases to match. Keep this
+# CONSERVATIVE and specific — only high-confidence, unambiguous variants, or the
+# body turns into a sea of links. Case-insensitive, whole-word, first-mention-only
+# (same rules as exact-name matching). A synonym for the article's own concept is
+# skipped automatically. If a slug here doesn't exist as a concept, it's ignored.
+CONCEPT_SYNONYMS = {
+    "atomic-documents": ["atomicity", "atomic note", "atomic notes", "atomic unit", "atomic units"],
+    "rent-the-ai-own-the-structure": ["tool-agnostic", "tool agnostic", "vendor lock-in", "vendor-agnostic"],
+    "the-validation-loop": ["flag, don't guess", "flag don't guess", "validation loop"],
+    "map-of-content-moc": ["map of content", "maps of content", "MOC"],
+    "knowledge-graph": ["zettelkasten"],
+    "the-calendar-is-the-spine": ["calendar-as-spine", "calendar as spine"],
+    "derived-insight": ["derived insight", "data you never typed"],
+    "the-missing-system": ["system of intelligence", "intelligence layer"],
+    "the-rear-view-mirror-problem": ["rear-view mirror", "rear view mirror"],
+}
+
 
 def _load_concept_map() -> list:
-    """Concept display-name -> slug, from the built concepts/index.html.
+    """Concept display-name (+ curated synonyms) -> slug, from concepts/index.html.
 
     Returns a list of (name, slug, compiled_pattern) sorted longest-name-first so
     a longer concept ("Structure Beats Magic") is matched before a shorter one it
-    contains. Empty list if the index isn't built yet (auto-linking is then a no-op).
+    contains. Includes CONCEPT_SYNONYMS entries (variant words) pointing at the same
+    slug. Empty list if the index isn't built yet (auto-linking is then a no-op).
     """
     idx = HERE / "concepts" / "index.html"
     if not idx.exists():
         return []
     txt = idx.read_text(encoding="utf-8")
     pairs = re.findall(r'href="([a-z0-9-]+)\.html">\s*<div class="c-name">([^<]+)</div>', txt)
+    valid_slugs = {s for s, _ in pairs}
+    # extend the (slug, phrase) pairs with curated synonyms for slugs that exist
+    syn_pairs = [(slug, phrase)
+                 for slug, phrases in CONCEPT_SYNONYMS.items() if slug in valid_slugs
+                 for phrase in phrases]
     out = []
-    for slug, raw in pairs:
+    # exact concept names: case-SENSITIVE (a proper-noun name; avoids "structure"
+    # matching "Structure Beats Magic"). curated synonyms: case-INSENSITIVE
+    # (a reader writes "atomicity" mid-sentence or at a sentence start).
+    for is_syn, (slug, raw) in ([(False, p) for p in pairs] + [(True, p) for p in syn_pairs]):
         name = html.unescape(raw).strip()
-        if len(name) < 4:
+        if len(name) < 3:
             continue
         # word-boundary match on the literal name; \b won't fire next to a trailing
         # '.' (e.g. "…Personalizes.") so anchor on start-boundary + optional trailing
         # word-char guard instead of a bare \b at both ends.
-        pat = re.compile(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])")
+        flags = re.IGNORECASE if is_syn else 0
+        pat = re.compile(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])", flags)
         out.append((name, slug, pat))
+    # exact names first, then by length: an exact multi-word name beats a short
+    # synonym; among same kind, the longer phrase wins.
     out.sort(key=lambda t: len(t[0]), reverse=True)
     return out
 
@@ -575,7 +608,16 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
     article_titles = _article_titles()
     concept_map = _load_concept_map()  # name -> concept page; for inline auto-linking
-    concept_names = {slug: name for name, slug, _ in concept_map}  # slug -> display name
+    # slug -> display name for the Related section. concept_map is sorted longest-
+    # first and mixes exact names with synonyms; keep the FIRST (longest) as the
+    # label but prefer a real (non-synonym) name — synonym phrases live in
+    # CONCEPT_SYNONYMS values, so exclude those from becoming a display label.
+    _synonym_phrases = {p.lower() for phrases in CONCEPT_SYNONYMS.values() for p in phrases}
+    concept_names = {}
+    for name, slug, _ in concept_map:
+        if name.lower() in _synonym_phrases:
+            continue
+        concept_names.setdefault(slug, name)
     cards = []
     for slug in ARTICLES:
         folder = resolve_article_folder(slug)
