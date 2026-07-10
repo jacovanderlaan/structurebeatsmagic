@@ -53,6 +53,7 @@ PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
 
 # Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
+    "the-data-you-never-typed",
     "give-the-recipe-sell-the-kitchen",
     "the-pkm-and-ai-dividing-line",
     "zettelkasten-2-0",
@@ -88,6 +89,8 @@ ARTICLES = [
     "the-machine-behind-the-method",
     "the-vault-is-the-data-model",
     "a-note-on-whats-next-two-publications",
+    "the-other-half-of-structure-visual-thinking",
+    "the-missing-system",
 ]
 
 CSS = "../assets/article.css"
