@@ -91,6 +91,7 @@ ARTICLES = [
     "the-vault-is-the-data-model",
     "a-note-on-whats-next-two-publications",
     "the-other-half-of-structure-visual-thinking",
+    "google-standardized-my-vault",
     # NB: "the-missing-system" + "stop-driving-by-the-rear-view-mirror" MOVED to
     # the jvdl/MDDE pipeline (canonical_home = jacovanderlaan.com) on 2026-07-10.
     # Source now at W:/data/products/mdde/articles/, built by jacovanderlaan-site.

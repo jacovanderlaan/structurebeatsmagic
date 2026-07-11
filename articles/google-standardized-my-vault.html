@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Google Standardized the Thing I&#x27;ve Been Building — And Left Out the One Layer That Matters — Structure Beats Magic</title>
+<meta name="description" content="Google Cloud&#x27;s Open Knowledge Format turns your data&#x27;s context into a folder of markdown files with frontmatter — the exact architecture I built for my own knowledge. It&#x27;s the right shape. But its relationships are untyped, and untyped is where a knowledge graph quietly stops being trustworthy. The missing layer has a name: rules."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/google-standardized-my-vault.html"/>
+<meta property="og:title" content="Google Standardized the Thing I&#x27;ve Been Building — And Left Out the One Layer That Matters"/>
+<meta property="og:description" content="Google Cloud&#x27;s Open Knowledge Format turns your data&#x27;s context into a folder of markdown files with frontmatter — the exact architecture I built for my own knowledge. It&#x27;s the right shape. But its relationships are untyped, and untyped is where a knowledge graph quietly stops being trustworthy. The missing layer has a name: rules."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/google-standardized-my-vault.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/google-standardized-my-vault-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-11"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Google Standardized the Thing I&#x27;ve Been Building — And Left Out the One Layer That Matters"/>
+<meta name="twitter:description" content="Google Cloud&#x27;s Open Knowledge Format turns your data&#x27;s context into a folder of markdown files with frontmatter — the exact architecture I built for my own knowledge. It&#x27;s the right shape. But its relationships are untyped, and untyped is where a knowledge graph quietly stops being trustworthy. The missing layer has a name: rules."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/google-standardized-my-vault-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Google Standardized the Thing I've Been Building — And Left Out the One Layer That Matters",
+  "description": "Google Cloud's Open Knowledge Format turns your data's context into a folder of markdown files with frontmatter — the exact architecture I built for my own knowledge. It's the right shape. But its relationships are untyped, and untyped is where a knowledge graph quietly stops being trustworthy. The missing layer has a name: rules.",
+  "image": "https://structurebeatsmagic.com/assets/google-standardized-my-vault-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/google-standardized-my-vault.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/google-standardized-my-vault.html",
+  "datePublished": "2026-07-11",
+  "dateModified": "2026-07-11"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Structure Beats Magic</p>
+  <h1>Google Standardized the Thing I&#x27;ve Been Building — And Left Out the One Layer That Matters</h1>
+  <p class="subtitle">Google Cloud&#x27;s Open Knowledge Format turns your data&#x27;s context into a folder of markdown files with frontmatter — the exact architecture I built for my own knowledge. It&#x27;s the right shape. But its relationships are untyped, and untyped is where a knowledge graph quietly stops being trustworthy. The missing layer has a name: rules.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-11</div>
+  <figure class="article-hero"><img src="../assets/google-standardized-my-vault-hero.png" alt="Google Standardized the Thing I&#x27;ve Been Building — And Left Out the One Layer That Matters" loading="eager"/><figcaption>Two folders of markdown, same shape. On the left, Google&#x27;s Open Knowledge Format — concepts as markdown files with YAML frontmatter, linked into a graph. On the right, the same architecture I built for my own knowledge years before it had a spec. The convergence is the proof the shape is right. The difference is the edges: OKF&#x27;s relationships are untyped; mine carry their meaning. That difference is the whole article.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>A spec that fits on a page</h2>
+<p>On 12 June 2026, Google Cloud released the <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md">Open Knowledge Format</a> — OKF — at version 0.1. The whole idea is almost aggressively simple, and that simplicity is the point.</p>
+<p>A <em>concept</em> is one markdown file. At the top sits a block of YAML frontmatter; below it, ordinary prose. Exactly <strong>one</strong> field is required: <code>type</code> — a short string that says what kind of thing this is (a table, a metric, a runbook, an API). Everything else — <code>title</code>, <code>description</code>, <code>resource</code>, <code>tags</code>, <code>timestamp</code> — is recommended but optional. Two filenames are reserved: <code>index.md</code> for a directory listing, and <code>log.md</code> for a running change history. A <em>bundle</em> is just a folder of these files, distributed like any repo — git, a tarball, a subdirectory. Concepts link to each other with plain markdown links, and those links turn the folder into a graph.</p>
+<p>That's it. No SDK to install, no platform to sign up for, no proprietary file format. The spec's authors are blunt about it: <em>"OKF is not tied to any specific cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve."</em> You read and write files like you would in any repository, and any agent that can read files can read your knowledge.</p>
+<p>If you've read anything else I've written, you can probably feel why I sat up.</p>
+<h2>I'd already built this</h2>
+<p>A while back I wrote a piece called <a href="../the-vault-is-the-data-model/the-vault-is-the-data-model.html"><em>The Vault Is the Data Model</em></a>. The claim was that a folder of markdown files, each with real YAML frontmatter, isn't a place where you <em>keep</em> a model of your knowledge — it <strong>is</strong> the model, in exactly the sense a data modeler means the word. Atomic. Self-describing. Open. Queryable. After twenty-five years of modeling data for banks, I'd built one for myself, and it worked like the enterprise kind because it <em>was</em> the enterprise kind, at a different scale.</p>
+<p>Line the two up and it's uncanny:</p>
+<div class="table-wrap"><table><thead><tr><th>What I built (and wrote about)</th><th>OKF v0.1</th></tr></thead><tbody><tr><td>One idea per markdown file — atomic building blocks</td><td>A concept is one markdown file</td></tr><tr><td>YAML frontmatter carries the schema, travels <em>with</em> the file</td><td>Frontmatter with a required <code>type</code>, optional fields</td></tr><tr><td>A folder-note that indexes each folder</td><td>Reserved <code>index.md</code> directory listing</td></tr><tr><td>A running log of what changed</td><td>Reserved <code>log.md</code> change history</td></tr><tr><td>Notes linked into a graph you can walk</td><td>Markdown links form the concept graph</td></tr><tr><td>Open, <a href="../concepts/rent-the-ai-own-the-structure.html">tool-agnostic</a>, versionable in git</td><td>Format-not-platform, distributed as a git bundle</td></tr></tbody></table></div>
+<p>I'm not claiming Google copied my homework. The opposite, and it's more interesting: <strong>we converged.</strong> So did a lot of people. Andrej Karpathy described almost exactly this pattern back in April — an <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"><em>LLM Wiki</em></a>, a growing set of markdown pages with wikilinks, where the human curates and the model does the bookkeeping. Anyone who's dropped a <code>CLAUDE.md</code> or <code>AGENTS.md</code> into a repo, or wired an Obsidian vault into a coding assistant, has built a private dialect of the same thing. Google's own framing is honest about this: these hand-rolled files are <em>"compelling"</em> but <em>"bespoke,"</em> and <em>"none of them interoperate."</em></p>
+<p>That's what a standard is for. Not a new idea — a <strong>shared</strong> one. And when independent people keep reaching for the same shape, that shape is telling you something. It's the strongest evidence I know that a folder of self-describing markdown, linked into a graph, is simply the right container for knowledge an AI has to use. <em>Structure beats magic</em> — and here's a whole industry arriving at the same structure from different doors.</p>
+<p>So far, so validating. Now the part that matters.</p>
+<h2>Where OKF stops</h2>
+<p>Here is the sentence in the OKF spec I keep circling back to:</p>
+<blockquote><p><em>A link from concept A to concept B asserts a relationship. The specific kind of relationship (parent/child, references, joins-with, depends-on, etc.) is conveyed by the surrounding prose, not by the link itself. Consumers that build a graph view typically treat all links as directed edges of an untyped relationship.</em></p></blockquote>
+<p>Read that carefully, because it's the whole ballgame. In OKF, <strong>every edge is the same edge.</strong> A link that means <em>"this table joins to that one on <code>customer_id</code>"</em> and a link that means <em>"see also, for background"</em> are, to any consumer building the graph, indistinguishable. The <em>meaning</em> of the relationship isn't in the structure — it's in the prose next to the link. To recover it, something has to read the sentence and guess.</p>
+<p>For a human browsing, that's fine; we read the sentence anyway. But the entire premise of OKF is that a <em>machine</em> consumes this. And a machine handed an untyped graph can see <em>that</em> two things are connected while having no reliable idea <em>how</em>. It's a map where every road is drawn the same width, with the difference between a motorway and a footpath written in tiny letters you have to stop and read at every junction.</p>
+<p>This isn't a fringe objection. Six days after launch, someone opened <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/issues/101">issue #101</a> on the OKF repo proposing — carefully, backward-compatibly — a way to add <em>optional typed relationships</em>, so a link could declare <code>joins-with: on customer_id</code> in a machine-readable slot instead of leaving it to prose. The community reached for the missing layer almost immediately, because the moment you try to <em>act</em> on the graph rather than just read it, you feel the gap.</p>
+<p>And the rest of the data world already lives on the other side of this line. The <a href="https://github.com/dbt-labs/dbt-mcp">dbt Semantic Layer</a> defines metrics in typed YAML — dimensions, entities, the works — and exposes them to agents through tools that <em>execute</em> the definition, not describe it. <a href="https://github.com/The-Knowledge-Graph-Guys/vault-ld">Vault-LD</a> turns markdown frontmatter into typed RDF triples with a shared vocabulary, and pointedly ships an OKF "lifting" profile: keep your OKF bundle exactly as is, add one context file, and its untyped body links become promotable to typed edges. The typed camp isn't hypothetical. It's where machine-actionable meaning already comes from.</p>
+<h2>The missing word is <em>rules</em></h2>
+<p>I've made this argument before in a different frame, and OKF is the cleanest illustration of it I've found.</p>
+<p>Every pitch you hear about the near future is <em>"data plus AI."</em> Point the model at the data and let it reason. What almost nobody says out loud is the third word: <strong>rules.</strong> Structure without rules drifts. A knowledge graph whose edges carry no declared meaning is structure without rules — it looks organized, and it will happily let an AI infer a join that isn't there, follow a "related" link as if it were a dependency, or restate a stale claim as current, with nothing in the structure to say <em>no, that edge doesn't mean what you think.</em></p>
+<p>Typed relationships are the first and most basic of those rules. An edge that declares itself — <em>this is a foreign-key join, this is a citation, this is a supersedes</em> — is an edge a machine can trust without re-reading the prose and hoping. Go one step further and you get validation: rules that check the graph against what's known — <em>does this link point somewhere real? does this join key exist on both sides? does this number contradict something we already hold true?</em> — and, on a mismatch, <strong>flag rather than guess.</strong> That flag-don't-guess discipline is precisely what an AI writing into your knowledge base needs and precisely what an untyped graph can't provide, because it has no notion of what <em>would</em> be a violation.</p>
+<p>This is the part I care about most, and it's where the human stays in the loop by design. You don't review everything the AI touches — you review what the rules <em>flag</em>. When something slips through, you don't just fix the value; you sharpen the rule, so it's caught next time. A double loop: the knowledge improves, and the rules guarding it improve, both steered by a human looking at real output. That's not a person rubber-stamping a model. It's a person steering it, at the one point where steering counts.</p>
+<p>OKF gives you the first two thirds of that beautifully — the <em>data</em> (self-describing files) and the <em>AI-readable structure</em> (the graph). It deliberately leaves out the third. And I understand <em>why</em> — v0.1 is betting that adoption comes from being dead simple, and it's probably right. But "simple enough to adopt" and "trustworthy enough to act on" are different bars, and the gap between them is exactly the layer with no name in the marketing: rules.</p>
+<h2>The shape is right. Finish it.</h2>
+<p>Here's what I actually think, and I don't want the critique to drown it: <strong>OKF is a good thing, and its instinct is correct.</strong> Formats outlast the platforms built around them, and a plain-markdown, git-native, no-SDK format for machine-usable knowledge is going to outlast a lot of expensive tooling. The convergence is real. The shape is right. If you're a data or knowledge team wondering whether "a folder of markdown files" is a serious way to give AI context, the answer — now with Google's name on it — is yes.</p>
+<p>But don't mistake the container for the system. A knowledge graph you can <em>read</em> is table stakes; a knowledge graph you can <em>act on</em> needs its edges to mean something and its contents to be checked. Type your relationships. Add the validation rules. Keep a human on the flags. That's the difference between structure that drifts and structure that compounds — and it's the half of the problem that a one-page spec, by design, hands back to you.</p>
+<p>Google standardized the folder. The rules are still yours to build. That was always the part that mattered.</p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/atomic-documents.html">Atomic Documents</a></li><li><a href="../concepts/rent-the-ai-own-the-structure.html">Rent the AI; Own the Structure</a></li><li><a href="../concepts/the-missing-system.html">The Missing System</a></li><li><a href="../concepts/knowledge-graph.html">Knowledge Graph</a></li><li><a href="../concepts/business-friendly-metadata.html">Business Friendly Metadata</a></li></ul><h3>Related writing</h3><ul><li><a href="the-vault-is-the-data-model.html">The Vault Is the Data Model</a></li><li><a href="own-the-source-rent-the-interface.html">Own the Source, Rent the Interface</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
