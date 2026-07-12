@@ -111,6 +111,23 @@ def parse_glossary(src: Path) -> tuple[str, list[Group]]:
     return intro, groups
 
 
+def merge_groups(groups: list[Group]) -> list[Group]:
+    """Fold groups that share a title into one (case-insensitive), preserving
+    first-seen order. Lets a brand file and the shared file both use e.g.
+    'Data & modelling' without rendering two identical section headers."""
+    out: list[Group] = []
+    by_key: dict[str, Group] = {}
+    for g in groups:
+        key = g.title.strip().lower()
+        if key in by_key:
+            by_key[key].terms.extend(g.terms)
+        else:
+            ng = Group(title=g.title, terms=list(g.terms))
+            by_key[key] = ng
+            out.append(ng)
+    return out
+
+
 def esc(x: str) -> str:
     return html.escape(x or "", quote=False)
 
@@ -257,7 +274,7 @@ def main() -> None:
     # SBM file supplies the intro + its own groups; shared file appends its groups.
     intro, groups = parse_glossary(SRC_SBM)
     _, shared_groups = parse_glossary(SRC_SHARED)
-    groups = groups + shared_groups
+    groups = merge_groups(groups + shared_groups)
     concept_slugs = known_concept_slugs()
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "index.html").write_text(render(intro, groups, concept_slugs), encoding="utf-8")
