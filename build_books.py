@@ -115,10 +115,29 @@ def _meta_line(meta: dict) -> str:
     return " · ".join(b for b in bits if b)
 
 
+def _has_real_highlights(body: str) -> bool:
+    """True only if the Highlights section has real content — not the scaffold
+    stub. A book whose highlights are still '_To write: …_' must NOT publish."""
+    m = re.search(r"##\s*Highlights(.*?)(?=\n##\s|\Z)", body, re.S)
+    if not m:
+        return False
+    sec = m.group(1)
+    if "To write:" in sec:
+        return False
+    # require some real prose beyond the "AI-assisted." preamble
+    real = [l for l in sec.strip().split("\n")
+            if l.strip() and not l.strip().strip("*_").lower().startswith("ai-assisted")]
+    return any(len(l.strip()) > 20 for l in real)
+
+
+def _has_cover(folder: Path) -> bool:
+    return any((folder / n).is_file() for n in ("cover.jpg", "cover.jpeg", "cover.png"))
+
+
 def discover_books() -> list[str]:
     if _ALLOW:
         return _ALLOW
-    slugs = []
+    slugs, skipped = [], 0
     if not BOOKS_ROOT.is_dir():
         print(f"  ! books root not found: {BOOKS_ROOT}")
         return slugs
@@ -128,9 +147,18 @@ def discover_books() -> list[str]:
         note = folder / f"{folder.name}.md"
         if not note.exists():
             continue
-        meta, _ = split_frontmatter(note.read_text(encoding="utf-8"))
-        if _fm_str(meta, "status").lower() in PUBLISH_STATUS:
-            slugs.append(folder.name)
+        meta, body = split_frontmatter(note.read_text(encoding="utf-8"))
+        if _fm_str(meta, "status").lower() not in PUBLISH_STATUS:
+            continue
+        # Publish gate (2026-07-12): a book goes live ONLY with real highlights
+        # AND a cover image. Stubs ("_To write…_") and cover-less books are held
+        # back until filled in — "generate content + image first, then publish".
+        if not _has_real_highlights(body) or not _has_cover(folder):
+            skipped += 1
+            continue
+        slugs.append(folder.name)
+    if skipped:
+        print(f"  (held back {skipped} incomplete book(s): missing real highlights or cover)")
     return slugs
 
 
