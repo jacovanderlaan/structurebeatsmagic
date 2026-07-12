@@ -460,7 +460,6 @@ DETAIL_STYLE = """<style>
   .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
   .c-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
   .c-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
-  .c-where { font-size:15px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:1rem; margin-top:1.5rem; }
   .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
   .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
@@ -672,10 +671,9 @@ def _render_rel_block(concepts_by_slug, concepts_by_name, c: Concept) -> str:
 
 def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
     body_html = md_to_html(c.body_md)
-    # "Where it lives" is an internal/technical note (e.g. "system/index.html") and is
-    # intentionally not published on concept pages. The field is still parsed and kept on
-    # the Concept for internal use; it is just not rendered. Set to "" to hide it site-wide.
-    where_html = ""
+    # "Where it lives" (c.where) is an internal/technical note and is intentionally NOT
+    # published on concept pages. The field is still parsed and kept on the Concept for
+    # internal use; it is simply not rendered here.
     rel_html = _render_rel_block(concepts_by_slug, concepts_by_name, c)
     # Group memberships as chips next to the category chip (link to group pages).
     group_chips = "".join(
@@ -714,7 +712,6 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
     <div class="c-body">
 {body_html}
     </div>
-    {where_html}
     {rel_html}
   </div>
 </section>

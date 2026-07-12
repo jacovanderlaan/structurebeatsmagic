@@ -21,7 +21,6 @@
   .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
   .c-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
   .c-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
-  .c-where { font-size:15px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:1rem; margin-top:1.5rem; }
   .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
   .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
@@ -80,7 +79,6 @@
 <blockquote><p>Documents link through metadata, not by copying — so each one travels self-describing.</p></blockquote>
 <p>Documents connect to each other through <strong>frontmatter links</strong> (<a href="wikilinks.html">Wikilinks</a>, IDs, <code>companion_to</code>, <code>owner</code>), never by duplicating each other's content. The coupling lives in the metadata, so it's cheap to change one document without breaking the others, and — crucially for federation — <strong>the metadata travels with the document</strong>. A shared record arrives in another vault still carrying its own frontmatter: its type, its owner, its links, its sharing status. It's understandable <em>on arrival</em> without shipping the whole context around it. Loose coupling is the counterpart of <a href="atomic-documents.html">Atomic documents</a>: atoms stay small and whole; links (not copies) hold the web together. This is exactly the foreign-key discipline of a good data model, applied to documents — the <a href="personal-data-warehouse.html">Personal data warehouse</a> pattern at the document layer.</p>
     </div>
-    
     
   </div>
 </section>
