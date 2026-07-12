@@ -26,7 +26,7 @@ a WordPress renderer is a later addition, not a rewrite.
 
 Usage:
     python build_glossary.py
-    SBM_GLOSSARY_SRC="D:/vault/system/glossary/glossary.md" python build_glossary.py
+    SBM_GLOSSARY_DIR="D:/vault/system/glossary" python build_glossary.py
 """
 from __future__ import annotations
 
