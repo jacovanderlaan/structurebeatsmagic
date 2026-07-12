@@ -352,6 +352,10 @@ def main() -> None:
         rating_html = f'<span class="book-rating" title="My rating">{stars}</span>' if stars else ""
         json_ld = build_jsonld_book(title, authors, meta_desc, canonical, og_image_abs, year, isbn)
         rendered = md_to_html(body) + build_related(meta, book_titles, concept_names)
+        # Subtle AI-attribution footer, only when the page carries a Highlights section.
+        if re.search(r"(?m)^## Highlights\b", body):
+            rendered += ('<p class="ai-note"><em>Highlights on this page are '
+                         'generated with the help of AI.</em></p>')
         (OUT / f"{slug}.html").write_text(PAGE.format(
             title=html.escape(title, quote=True),
             meta_desc=html.escape(meta_desc, quote=True),

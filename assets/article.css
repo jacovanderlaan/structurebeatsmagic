@@ -88,3 +88,5 @@ article pre code{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consola
 .book-cover{margin:1.25rem 0 0;max-width:200px}
 .book-cover img{width:100%;border-radius:8px;box-shadow:0 10px 30px rgba(15,23,42,.14)}
 .book-rating{color:var(--gold);letter-spacing:3px;font-size:1.15rem}
+.ai-note{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);
+  font-size:.82rem;color:var(--ink-faint)}
