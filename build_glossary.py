@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 """Build the SBM glossary page from the vault glossary -> glossary/index.html.
 
-Source of truth = the vault glossary (one markdown file):
-    D:/vault/system/glossary/glossary.md
+Source of truth = TWO vault markdown files, merged in order:
+    D:/vault/system/glossary/glossary-sbm.md     (SBM-only terms)
+    D:/vault/system/glossary/glossary-shared.md  (terms shared with MDDE)
+
+The glossary was split by brand (2026-07-12): SBM-only, MDDE-only, and shared.
+The SBM site renders sbm + shared; the MDDE site renders mdde + shared. Edit a
+shared term once in glossary-shared.md and both sites pick it up. The intro comes
+from glossary-sbm.md.
 
 The glossary is the NON-concept vocabulary — field terms and distinctions that
 deserve a shared definition and a link, but aren't ownable coined concepts
@@ -31,7 +37,9 @@ from pathlib import Path
 from dataclasses import dataclass, field
 
 HERE = Path(__file__).parent
-SRC = Path(os.environ.get("SBM_GLOSSARY_SRC", "D:/vault/system/glossary/glossary.md"))
+GLOSSARY_DIR = Path(os.environ.get("SBM_GLOSSARY_DIR", "D:/vault/system/glossary"))
+SRC_SBM = GLOSSARY_DIR / "glossary-sbm.md"        # SBM-only terms (+ intro)
+SRC_SHARED = GLOSSARY_DIR / "glossary-shared.md"  # terms shared with MDDE
 OUT = HERE / "glossary"
 CONCEPTS_DIR = HERE / "concepts"
 
@@ -208,7 +216,7 @@ def render(intro: str, groups: list[Group], concept_slugs: set[str]) -> str:
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Glossary · Structure Beats Magic</title>
-<meta name="description" content="The non-concept vocabulary of Structure Beats Magic and Model-Driven Data Engineering — field terms and distinctions defined and linked. A volatile layer under the concept libraries." />
+<meta name="description" content="The non-concept vocabulary of Structure Beats Magic — field terms and distinctions defined and linked. A volatile layer under the concept library." />
 <meta property="og:title" content="Glossary · Structure Beats Magic" />
 <meta property="og:description" content="Field terms and distinctions, defined and linked — the vocabulary under the coined concepts." />
 <meta property="og:type" content="website" />
@@ -243,14 +251,18 @@ def render(intro: str, groups: list[Group], concept_slugs: set[str]) -> str:
 
 
 def main() -> None:
-    if not SRC.exists():
-        raise SystemExit(f"Glossary source not found: {SRC}")
-    intro, groups = parse_glossary(SRC)
+    for src in (SRC_SBM, SRC_SHARED):
+        if not src.exists():
+            raise SystemExit(f"Glossary source not found: {src}")
+    # SBM file supplies the intro + its own groups; shared file appends its groups.
+    intro, groups = parse_glossary(SRC_SBM)
+    _, shared_groups = parse_glossary(SRC_SHARED)
+    groups = groups + shared_groups
     concept_slugs = known_concept_slugs()
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "index.html").write_text(render(intro, groups, concept_slugs), encoding="utf-8")
     n = sum(len(g.terms) for g in groups)
-    print(f"  glossary/index.html ({n} terms in {len(groups)} groups) -> {OUT}")
+    print(f"  glossary/index.html ({n} terms in {len(groups)} groups: sbm + shared) -> {OUT}")
 
 
 if __name__ == "__main__":
