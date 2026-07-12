@@ -672,7 +672,10 @@ def _render_rel_block(concepts_by_slug, concepts_by_name, c: Concept) -> str:
 
 def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
     body_html = md_to_html(c.body_md)
-    where_html = f'<p class="c-where"><strong>Where it lives:</strong> {inline(c.where)}</p>' if c.where else ""
+    # "Where it lives" is an internal/technical note (e.g. "system/index.html") and is
+    # intentionally not published on concept pages. The field is still parsed and kept on
+    # the Concept for internal use; it is just not rendered. Set to "" to hide it site-wide.
+    where_html = ""
     rel_html = _render_rel_block(concepts_by_slug, concepts_by_name, c)
     # Group memberships as chips next to the category chip (link to group pages).
     group_chips = "".join(
