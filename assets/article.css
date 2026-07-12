@@ -83,3 +83,8 @@ article pre{background:#0f172a;color:#e2e8f0;border:1px solid var(--line);border
 article pre code{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
   font-size:.85rem;background:none;color:inherit;padding:0;border:0;border-radius:0;
   white-space:pre;display:block}
+
+/* --- Book reference pages (ADR-068 references-layer) --- */
+.book-cover{margin:1.25rem 0 0;max-width:200px}
+.book-cover img{width:100%;border-radius:8px;box-shadow:0 10px 30px rgba(15,23,42,.14)}
+.book-rating{color:var(--gold);letter-spacing:3px;font-size:1.15rem}
