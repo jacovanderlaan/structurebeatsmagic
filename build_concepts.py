@@ -3,7 +3,7 @@
 Build SBM concept pages from the vault concept library -> concepts/*.html.
 
 Source of truth = the vault concept library (markdown, one file per concept):
-    D:/vault/system/concepts/concept-*.md
+    W:/systems/concepts/concept-*.md
 Each concept has YAML frontmatter (name, description = the one-line tag,
 metadata.category) + a body (the full explanation) + a "**Where it lives:**"
 line. This script renders them into:
@@ -27,7 +27,7 @@ over the same Concept objects — not a rewrite. Pick the renderer with --format
 Usage:
     python build_concepts.py                 # static HTML (default)
     python build_concepts.py --format static
-    SBM_CONCEPTS_SRC="D:/vault/system/concepts" python build_concepts.py
+    SBM_CONCEPTS_SRC="W:/systems/concepts" python build_concepts.py
     # (WordPress renderer: to be added — see render_wordpress stub.)
 """
 from __future__ import annotations
@@ -45,7 +45,7 @@ except ImportError:
     yaml = None
 
 HERE = Path(__file__).parent
-SRC = Path(os.environ.get("SBM_CONCEPTS_SRC", "D:/vault/system/concepts"))
+SRC = Path(os.environ.get("SBM_CONCEPTS_SRC", "W:/systems/concepts"))
 OUT = HERE / "concepts"
 
 # Category order for the index (authored sequence, mirrors the vault README TOC).

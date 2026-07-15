@@ -2,8 +2,8 @@
 """Build the SBM glossary page from the vault glossary -> glossary/index.html.
 
 Source of truth = TWO vault markdown files, merged in order:
-    D:/vault/system/glossary/glossary-sbm.md     (SBM-only terms)
-    D:/vault/system/glossary/glossary-shared.md  (terms shared with MDDE)
+    W:/systems/glossary/glossary-sbm.md     (SBM-only terms)
+    W:/systems/glossary/glossary-shared.md  (terms shared with MDDE)
 
 The glossary was split by brand (2026-07-12): SBM-only, MDDE-only, and shared.
 The SBM site renders sbm + shared; the MDDE site renders mdde + shared. Edit a
@@ -26,7 +26,7 @@ a WordPress renderer is a later addition, not a rewrite.
 
 Usage:
     python build_glossary.py
-    SBM_GLOSSARY_DIR="D:/vault/system/glossary" python build_glossary.py
+    SBM_GLOSSARY_DIR="W:/systems/glossary" python build_glossary.py
 """
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ from pathlib import Path
 from dataclasses import dataclass, field
 
 HERE = Path(__file__).parent
-GLOSSARY_DIR = Path(os.environ.get("SBM_GLOSSARY_DIR", "D:/vault/system/glossary"))
+GLOSSARY_DIR = Path(os.environ.get("SBM_GLOSSARY_DIR", "W:/systems/glossary"))
 SRC_SBM = GLOSSARY_DIR / "glossary-sbm.md"        # SBM-only terms (+ intro)
 SRC_SHARED = GLOSSARY_DIR / "glossary-shared.md"  # terms shared with MDDE
 OUT = HERE / "glossary"
