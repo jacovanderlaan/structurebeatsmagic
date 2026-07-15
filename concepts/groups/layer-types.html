@@ -22,22 +22,18 @@
   .concept .c-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:6px; }
   .concept .c-tag { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:10px; }
   .concept .c-def { font-size:15px; color:var(--ink-soft); margin:0; }
-  /* Cross-cutting groups = an inline filter ROW that belongs to the section
-     header — left-aligned on the same grid as the lede and the categories below.
-     (Was a centred, boxed panel: with one chip in it, that read as a stray
-     element interrupting "Named concepts -> Umbrella thesis".) */
-  .group-bar { display:flex; align-items:center; flex-wrap:wrap; gap:.6rem .8rem; margin:1.25rem 0 0; }
-  .group-chips { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
-  .group-chip { display:inline-flex; align-items:center; gap:.4rem; font-size:13px; font-weight:700; color:var(--accent); background:rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.18); border-radius:999px; padding:5px 13px; text-decoration:none; transition:background .15s ease; }
-  .group-chip:hover { background:rgba(37,99,235,.16); }
-  .group-chips-lede { font-size:14px; color:var(--ink-faint); margin:0; }
-  /* Category = a real section heading, not a tiny eyebrow. Left-aligned with a
-     rule, so the eye reads: heading -> its cards -> next heading. */
+  /* Section heading — used identically for a CATEGORY and for a cross-cutting
+     GROUP, because both are ways of grouping the same concepts. Left-aligned
+     with a rule, so the eye reads: heading -> its cards -> next heading. */
   .cat-head { display:flex; align-items:baseline; gap:.75rem; margin:3.25rem 0 1.25rem; }
-  .cat-head:first-of-type { margin-top:2.5rem; }
+  .cat-head:first-of-type { margin-top:1rem; }
   .cat-head h2 { font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin:0; white-space:nowrap; }
+  .cat-head h2 a { color:inherit; text-decoration:none; }
+  .cat-head h2 a:hover { color:var(--accent); }
   .cat-head .cat-count { font-size:14px; font-weight:600; color:var(--ink-faint); }
   .cat-head .cat-rule { flex:1 1 auto; height:1px; background:var(--line); }
+  /* A group says what it is; a category doesn't need to. */
+  .cat-note { font-size:14px; color:var(--ink-faint); margin:-.5rem 0 1.25rem; max-width:70ch; line-height:1.6; }
   @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
 </style>
 <!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->

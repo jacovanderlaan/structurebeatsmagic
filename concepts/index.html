@@ -22,22 +22,18 @@
   .concept .c-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:6px; }
   .concept .c-tag { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:10px; }
   .concept .c-def { font-size:15px; color:var(--ink-soft); margin:0; }
-  /* Cross-cutting groups = an inline filter ROW that belongs to the section
-     header — left-aligned on the same grid as the lede and the categories below.
-     (Was a centred, boxed panel: with one chip in it, that read as a stray
-     element interrupting "Named concepts -> Umbrella thesis".) */
-  .group-bar { display:flex; align-items:center; flex-wrap:wrap; gap:.6rem .8rem; margin:1.25rem 0 0; }
-  .group-chips { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
-  .group-chip { display:inline-flex; align-items:center; gap:.4rem; font-size:13px; font-weight:700; color:var(--accent); background:rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.18); border-radius:999px; padding:5px 13px; text-decoration:none; transition:background .15s ease; }
-  .group-chip:hover { background:rgba(37,99,235,.16); }
-  .group-chips-lede { font-size:14px; color:var(--ink-faint); margin:0; }
-  /* Category = a real section heading, not a tiny eyebrow. Left-aligned with a
-     rule, so the eye reads: heading -> its cards -> next heading. */
+  /* Section heading — used identically for a CATEGORY and for a cross-cutting
+     GROUP, because both are ways of grouping the same concepts. Left-aligned
+     with a rule, so the eye reads: heading -> its cards -> next heading. */
   .cat-head { display:flex; align-items:baseline; gap:.75rem; margin:3.25rem 0 1.25rem; }
-  .cat-head:first-of-type { margin-top:2.5rem; }
+  .cat-head:first-of-type { margin-top:1rem; }
   .cat-head h2 { font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin:0; white-space:nowrap; }
+  .cat-head h2 a { color:inherit; text-decoration:none; }
+  .cat-head h2 a:hover { color:var(--accent); }
   .cat-head .cat-count { font-size:14px; font-weight:600; color:var(--ink-faint); }
   .cat-head .cat-rule { flex:1 1 auto; height:1px; background:var(--line); }
+  /* A group says what it is; a category doesn't need to. */
+  .cat-note { font-size:14px; color:var(--ink-faint); margin:-.5rem 0 1.25rem; max-width:70ch; line-height:1.6; }
   @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
 </style>
 <!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
@@ -99,7 +95,7 @@ gtag('config', 'G-P7W9B34R1Z');
     <div class="section-eyebrow">The vocabulary</div>
     <h2 class="section-title">Named concepts</h2>
     <p class="section-lede">The coined terms this thesis owns — grouped by where they live in the system. Each links to its own page.</p>
-<div class="group-bar"><p class="group-chips-lede">Also browse by group:</p><div class="group-chips"><a class="group-chip" href="groups/layer-types.html">Layer types <span style="opacity:.6;font-weight:600">4</span></a></div></div>
+
 <div class="cat-head"><h2>Umbrella thesis</h2><span class="cat-count">9</span><span class="cat-rule"></span></div>
 <div class="concept-grid">
 <a class="concept" href="a-compounding-asset.html"><div class="c-name">A Compounding Asset</div><div class="c-tag">A structured second brain gains value with every note — like reinvested capital.</div><p class="c-def">A pile of notes depreciates; a structured knowledge system compounds. Every new note, connection and rule increases the value of what's already there, the way reinvested returns build financial capital. The structure is what converts…</p></a>
@@ -206,6 +202,14 @@ gtag('config', 'G-P7W9B34R1Z');
 <a class="concept" href="portfolio-life.html"><div class="c-name">Portfolio Life</div><div class="c-tag">A life composed of several parallel pursuits — work, projects, learning, purpose — rather than one job that defines you.</div><p class="c-def">The conventional model puts one job at the center and lets it define you; a Portfolio Life spreads across several parallel pursuits at once — paid work, creative projects, learning, service, relationships, health — each contributing…</p></a>
 <a class="concept" href="reinforcing-loop.html"><div class="c-name">Reinforcing Loop</div><div class="c-tag">A feedback loop where each turn amplifies the next — the engine behind both compounding growth and destructive spirals.</div><p class="c-def">A reinforcing loop is the systems-thinking primitive underneath a lot of life's non-linear behaviour: an output feeds back as input in the *same* direction, so each turn amplifies the next. It's morally neutral — the identical machinery…</p></a>
 <a class="concept" href="self-destructive-spiral.html"><div class="c-name">Self-Destructive Spiral</div><div class="c-tag">A reinforcing loop where a bad state feeds behaviour that deepens it — the negative twin of the compounding brain.</div><p class="c-def">Some declines aren't a straight slide; they're a loop. A bad state prompts a response that makes the state worse, which prompts more of the same — stress erodes sleep, poor sleep worsens judgement, bad decisions add stress. It's the same…</p></a>
+</div>
+<div class="cat-head"><h2><a href="groups/layer-types.html">Layer types</a></h2><span class="cat-count">4</span><span class="cat-rule"></span></div>
+<p class="cat-note">The named layers of the system — each a place with a boundary, where something crosses, is transformed, or is concluded. A layer is a role in the architecture, not a physical location (that's a zone) and not a technique applied across it (that's a method).</p>
+<div class="concept-grid">
+<a class="concept" href="exchange-layer.html"><div class="c-name">Exchange Layer</div><div class="c-tag">A controlled front door (inbound) and publication layer (outbound).</div><p class="c-def">A deliberate boundary for data in and out: a controlled front door for ingestion (inbound) and a publication layer for what leaves (outbound).</p></a>
+<a class="concept" href="the-reasoning-layer.html"><div class="c-name">The Reasoning Layer</div><div class="c-tag">The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever.</div><p class="c-def">The layer everyone mistakes for magic. When AI gives a good answer, it feels like the model reasoned its way there. But the reasoning is only as good as what sits beneath it: the context it can reach, the memory across sessions, the rules…</p></a>
+<a class="concept" href="the-validated-exchange-layer.html"><div class="c-name">The Validated Exchange Layer</div><div class="c-tag">Vaults never read each other directly — what crosses the boundary is validated on the way out and in.</div><p class="c-def">The federation mechanism: when individual and team systems work together, they never read each other directly. What crosses the boundary passes through a publishing layer that validates on the way out and on the way in — the same…</p></a>
+<a class="concept" href="the-voice-layer.html"><div class="c-name">The Voice Layer</div><div class="c-tag">Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources.</div><p class="c-def">How you stop the model sounding like a model: a standing voice corpus distilled from real, unpolished sources (sent mail, messages) plus an explicit anti-AI banned-words list. The key rule — AI-generated text is the anti-example, never the…</p></a>
 </div>
     <p class="infl-note" style="margin-top:2rem">A living vocabulary — it grows as the thesis does. For field terms and distinctions that aren't coined concepts, see the <a href="../glossary/">glossary</a>. The enterprise counterpart (Model-Driven Data Engineering) keeps its own concept library at <a href="https://jacovanderlaan.com/concepts.html">jacovanderlaan.com/concepts</a>.</p>
   </div>

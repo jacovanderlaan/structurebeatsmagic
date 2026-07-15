@@ -458,22 +458,18 @@ INDEX_STYLE = """<style>
   .concept .c-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:6px; }
   .concept .c-tag { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:10px; }
   .concept .c-def { font-size:15px; color:var(--ink-soft); margin:0; }
-  /* Cross-cutting groups = an inline filter ROW that belongs to the section
-     header — left-aligned on the same grid as the lede and the categories below.
-     (Was a centred, boxed panel: with one chip in it, that read as a stray
-     element interrupting "Named concepts -> Umbrella thesis".) */
-  .group-bar { display:flex; align-items:center; flex-wrap:wrap; gap:.6rem .8rem; margin:1.25rem 0 0; }
-  .group-chips { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
-  .group-chip { display:inline-flex; align-items:center; gap:.4rem; font-size:13px; font-weight:700; color:var(--accent); background:rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.18); border-radius:999px; padding:5px 13px; text-decoration:none; transition:background .15s ease; }
-  .group-chip:hover { background:rgba(37,99,235,.16); }
-  .group-chips-lede { font-size:14px; color:var(--ink-faint); margin:0; }
-  /* Category = a real section heading, not a tiny eyebrow. Left-aligned with a
-     rule, so the eye reads: heading -> its cards -> next heading. */
+  /* Section heading — used identically for a CATEGORY and for a cross-cutting
+     GROUP, because both are ways of grouping the same concepts. Left-aligned
+     with a rule, so the eye reads: heading -> its cards -> next heading. */
   .cat-head { display:flex; align-items:baseline; gap:.75rem; margin:3.25rem 0 1.25rem; }
-  .cat-head:first-of-type { margin-top:2.5rem; }
+  .cat-head:first-of-type { margin-top:1rem; }
   .cat-head h2 { font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin:0; white-space:nowrap; }
+  .cat-head h2 a { color:inherit; text-decoration:none; }
+  .cat-head h2 a:hover { color:var(--accent); }
   .cat-head .cat-count { font-size:14px; font-weight:600; color:var(--ink-faint); }
   .cat-head .cat-rule { flex:1 1 auto; height:1px; background:var(--line); }
+  /* A group says what it is; a category doesn't need to. */
+  .cat-note { font-size:14px; color:var(--ink-faint); margin:-.5rem 0 1.25rem; max-width:70ch; line-height:1.6; }
   @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
 </style>"""
 
@@ -505,42 +501,56 @@ def esc(x: str) -> str:
     return html.escape(x or "", quote=False)
 
 
+def _concept_card(c: Concept) -> str:
+    return (
+        f'<a class="concept" href="{esc(c.slug)}.html">'
+        f'<div class="c-name">{esc(c.name)}</div>'
+        f'<div class="c-tag">{esc(c.tag)}</div>'
+        f'<p class="c-def">{esc(c.summary)}</p></a>'
+    )
+
+
+def _section(title: str, items: list[Concept], note: str = "", href: str = "") -> list[str]:
+    """One index section: heading + count + rule, then the concept cards.
+
+    Used for BOTH categories and cross-cutting groups — they're two ways of
+    grouping the same concepts, so they render identically. Previously a group
+    was demoted to a chip in the corner while a category got a full section,
+    which is the inconsistency Jaco kept (rightly) pointing at.
+    """
+    head = ['<div class="cat-head">']
+    head.append(f'<h2><a href="{esc(href)}">{esc(title)}</a></h2>' if href else f'<h2>{esc(title)}</h2>')
+    head.append(f'<span class="cat-count">{len(items)}</span>')
+    head.append('<span class="cat-rule"></span>')
+    head.append('</div>')
+    out = ["".join(head)]
+    if note:
+        out.append(f'<p class="cat-note">{esc(note)}</p>')
+    out.append('<div class="concept-grid">')
+    out.extend(_concept_card(c) for c in items)
+    out.append('</div>')
+    return out
+
+
 def render_index(groups: list[tuple[str, list[Concept]]],
                  xgroups: list[tuple[str, dict, list[Concept]]] | None = None) -> str:
-    # Cross-cutting group chips (a filter overlay above the category index).
-    chips_html = ""
-    if xgroups:
-        chips = "".join(
-            f'<a class="group-chip" href="groups/{esc(slug)}.html">{esc(gmeta["label"])} '
-            f'<span style="opacity:.6;font-weight:600">{len(members)}</span></a>'
-            for slug, gmeta, members in xgroups
-        )
-        chips_html = (
-            '<div class="group-bar">'
-            '<p class="group-chips-lede">Also browse by group:</p>'
-            f'<div class="group-chips">{chips}</div>'
-            '</div>'
-        )
+    chips_html = ""   # groups are rendered as sections now, not as a chip bar
 
     parts: list[str] = []
     for cat, items in groups:
-        parts.append(
-            '<div class="cat-head">'
-            f'<h2>{esc(cat)}</h2>'
-            f'<span class="cat-count">{len(items)}</span>'
-            '<span class="cat-rule"></span>'
-            '</div>'
-        )
-        parts.append('<div class="concept-grid">')
-        for c in items:
-            card = (
-                f'<a class="concept" href="{esc(c.slug)}.html">'
-                f'<div class="c-name">{esc(c.name)}</div>'
-                f'<div class="c-tag">{esc(c.tag)}</div>'
-                f'<p class="c-def">{esc(c.summary)}</p></a>'
-            )
-            parts.append(card)
-        parts.append('</div>')
+        parts.extend(_section(cat, items))
+
+    # Cross-cutting groups, same shape as a category. A concept has exactly one
+    # category but MAY belong to groups, so its card appears in both places —
+    # that repetition is the point: it's a second, deliberate way in.
+    for slug, gmeta, members in (xgroups or []):
+        label = gmeta.get("label", slug.replace("-", " ").title())
+        parts.extend(_section(
+            label, members,
+            note=gmeta.get("blurb", ""),
+            href=f"groups/{slug}.html",
+        ))
+
     groups_html = "\n".join(parts)
     return f"""<!doctype html>
 <html lang="en">
