@@ -437,7 +437,8 @@ def main() -> None:
         ), encoding="utf-8")
         print(f"  + books/{slug}.html  ({'cover' if cover_file else 'no cover'})")
         cards.append({"slug": slug, "title": title, "authors": authors, "year": year,
-                      "cluster": cluster, "curated": curated, "stars": stars})
+                      "cluster": cluster, "curated": curated, "stars": stars,
+                      "cover": cover_file})
 
     write_library_index(cards)
 
@@ -480,10 +481,19 @@ def write_library_index(cards: list) -> None:
         for c in rows:
             meta_bits = " · ".join(b for b in [c["authors"], str(c["year"]) if c["year"] else ""] if b)
             stars = f'<span class="book-rating">{c["stars"]}</span> ' if c["stars"] else ""
+            thumb = (
+                f'        <figure class="lib-thumb"><img loading="lazy" src="../assets/{c["cover"]}" '
+                f'alt="{html.escape(c["title"], quote=True)} cover"/></figure>\n'
+                if c.get("cover") else
+                '        <figure class="lib-thumb lib-thumb--none" aria-hidden="true"></figure>\n'
+            )
             cards_html.append(
                 f'      <a class="lib-card" href="{c["slug"]}.html">\n'
-                f'        <h3>{html.escape(c["title"])}</h3>\n'
-                f'        <p class="muted">{stars}{html.escape(meta_bits)}</p>\n'
+                f'{thumb}'
+                f'        <div class="lib-card-body">\n'
+                f'          <h3>{html.escape(c["title"])}</h3>\n'
+                f'          <p class="muted">{stars}{html.escape(meta_bits)}</p>\n'
+                f'        </div>\n'
                 f'      </a>'
             )
         title = cluster_label(cluster)
