@@ -293,9 +293,12 @@
   .play .pt h3{font-size:1.5rem;margin:0 0 .8rem;letter-spacing:-.01em}
   .play .pt p{color:var(--ink-soft);margin:0 0 1rem}
   .play .pt .em{color:var(--ink);font-weight:600}
-  .bricks{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1.5rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-  .brick{padding:.55rem .9rem;border-radius:8px;font-size:.82rem;font-weight:700;color:#fff}
-  .b1{background:#2563eb}.b2{background:#b88a1b}.b3{background:#0f172a}.b4{background:#3b82f6}.b5{background:#1e40af}.b6{background:#475569}
+  /* #play figure — replaced the old .bricks chip-grid (2026-07-15). The chips
+     named the blocks but showed none of the Lego argument (snap/try/rebuild →
+     same bricks, bigger build); the figure makes that argument. */
+  .play-fig{margin:0}
+  .play-fig img{width:100%;height:auto;display:block;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .play-fig figcaption{font-size:.85rem;color:var(--ink-faint);margin-top:.7rem;line-height:1.5}
   .play-flow{text-align:center;margin-top:2rem;color:var(--ink-soft);font-size:1.05rem}
   .play-flow strong{color:var(--ink)}
 
