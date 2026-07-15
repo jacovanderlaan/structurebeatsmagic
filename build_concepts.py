@@ -695,8 +695,11 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
         for g in c.groups
     )
     # optional concept hero (ADR-080): <slug>/assets/<file> -> site assets/
+    # Render only when the image exists on disk: a brief may set hero_image long
+    # before the image is generated, and an <img> at a missing file would ship a
+    # broken image to the site.
     hero_html = ""
-    if c.hero_image:
+    if c.hero_image and (SRC / c.slug / "assets" / c.hero_image).is_file():
         cap = f"<figcaption>{esc(c.hero_caption)}</figcaption>" if c.hero_caption else ""
         hero_html = (f'<figure class="c-hero"><img src="../assets/{esc(c.hero_image)}" '
                      f'alt="{esc(c.name)}" loading="eager"/>{cap}</figure>')
