@@ -525,6 +525,10 @@ def render_index(groups: list[tuple[str, list[Concept]]],
 <meta property="og:type" content="website" />
 <meta property="og:image" content="../assets/sbm-og-card.svg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
 <link rel="stylesheet" href="../assets/site.css" />
 {INDEX_STYLE}
 <!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
@@ -598,6 +602,10 @@ def render_group(slug: str, gmeta: dict, members: list[Concept]) -> str:
 <meta property="og:type" content="website" />
 <meta property="og:image" content="../../assets/sbm-og-card.svg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon-180.png"/>
 <link rel="stylesheet" href="../../assets/site.css" />
 {INDEX_STYLE}
 <!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
@@ -715,6 +723,10 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 <meta property="og:type" content="article" />
 <meta property="og:image" content="../assets/sbm-og-card.svg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
 <link rel="stylesheet" href="../assets/site.css" />
 {DETAIL_STYLE}
 </head>
