@@ -880,6 +880,42 @@ def build_reverse_article_index() -> dict:
     return idx
 
 
+def check_hero_refs(concepts: list[Concept]) -> None:
+    """Report both hero-image failure modes. Warning-only, by design.
+
+    Unlike the article builder (which renders <img> blindly and so must FAIL on a
+    missing file), the concept renderer already skips a hero whose file isn't on
+    disk — it cannot ship a broken image. But it fails *silently*, which hides two
+    real mistakes:
+
+      1. hero_image set, file missing -> the hero just vanishes, no warning. A
+         typo in the filename looks identical to "no hero yet".
+      2. hero file on disk, never referenced -> the graphic was delivered but
+         nothing points at it, so it never publishes. This happened twice
+         (federated-brains, rent-the-ai-own-the-structure).
+
+    Neither breaks a page, so neither fails the build — but both are silent work
+    that went nowhere, and both are worth seeing in the build output.
+    """
+    missing, orphans = [], []
+    for c in concepts:
+        adir = SRC / c.slug / "assets"
+        if c.hero_image and not (adir / c.hero_image).is_file():
+            missing.append(f"{c.slug}: hero_image -> no file 'assets/{c.hero_image}' (hero will NOT render)")
+        if adir.is_dir():
+            for f in sorted(adir.iterdir()):
+                if (f.is_file() and "hero" in f.name.lower()
+                        and f.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".webp")
+                        and f.name != c.hero_image):
+                    orphans.append(f"{c.slug}: 'assets/{f.name}' exists but no hero_image points at it")
+    for m in missing:
+        print(f"  ! {m}")
+    for o in orphans:
+        print(f"  ~ {o}")
+    if missing or orphans:
+        print(f"  ({len(missing)} missing-file, {len(orphans)} unreferenced — hero refs need attention)")
+
+
 def main() -> None:
     fmt = "static"
     args = sys.argv[1:]
@@ -891,6 +927,7 @@ def main() -> None:
         raise SystemExit(f"Concept source not found: {SRC}")
     concepts = parse_concepts(SRC)
     print(f"Parsed {len(concepts)} concepts from {SRC}")
+    check_hero_refs(concepts)
     # attach reverse edges: articles that reference each concept (related_concepts)
     rev = build_reverse_article_index()
     linked = 0
