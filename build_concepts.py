@@ -245,6 +245,8 @@ class Concept:
     related_concepts: list = field(default_factory=list)   # [slug or name]
     related_articles: list = field(default_factory=list)   # [{title,url}]
     references: list = field(default_factory=list)          # [{title,url}]
+    hero_image: str = ""     # filename in the concept's assets/ (ADR-080 + ADR-075)
+    hero_caption: str = ""   # optional caption rendered under the hero
 
 
 def _norm_reflist(val) -> list:
@@ -345,6 +347,10 @@ def parse_concepts(src: Path) -> list[Concept]:
             related_concepts=_norm_reflist(meta.get("related_concepts") or (md.get("related_concepts") if isinstance(md, dict) else None)),
             related_articles=_norm_reflist(meta.get("related_articles") or (md.get("related_articles") if isinstance(md, dict) else None)),
             references=_norm_reflist(meta.get("references") or (md.get("references") if isinstance(md, dict) else None)),
+            # optional concept hero (ADR-080 folder-per-concept + ADR-075 style):
+            # <slug>/assets/<file>, copied into the site assets/ at build time.
+            hero_image=str(meta.get("hero_image") or (md.get("hero_image") if isinstance(md, dict) else "") or "").strip().strip('"'),
+            hero_caption=str(meta.get("hero_caption") or (md.get("hero_caption") if isinstance(md, dict) else "") or "").strip().strip('"'),
         ))
     return concepts
 
@@ -458,6 +464,9 @@ DETAIL_STYLE = """<style>
   a.c-chip-group:hover { background:rgba(37,99,235,.10); }
   a.c-chip-group::before { content:"◆ "; opacity:.55; }
   .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
   .c-body { font-size:17px; line-height:1.65; color:var(--ink-soft); }
   .c-body h2 { font-size:20px; color:var(--ink); margin-top:1.6rem; }
   .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
@@ -681,6 +690,12 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
         f'{esc(GROUPS.get(g, {}).get("label", g.replace("-", " ").title()))}</a>'
         for g in c.groups
     )
+    # optional concept hero (ADR-080): <slug>/assets/<file> -> site assets/
+    hero_html = ""
+    if c.hero_image:
+        cap = f"<figcaption>{esc(c.hero_caption)}</figcaption>" if c.hero_caption else ""
+        hero_html = (f'<figure class="c-hero"><img src="../assets/{esc(c.hero_image)}" '
+                     f'alt="{esc(c.name)}" loading="eager"/>{cap}</figure>')
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -709,6 +724,7 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">{esc(c.tag)}</p>
+    {hero_html}
     <div class="c-body">
 {body_html}
     </div>
@@ -724,8 +740,34 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 """
 
 
+def copy_concept_assets(concepts: list[Concept]) -> int:
+    """Copy each concept's own assets/ into the site assets/ (build output).
+
+    Mirrors the article builder: the concept folder owns its images
+    (<root>/<slug>/assets/*), and the repo assets/ is generated — never
+    hand-managed. Only concepts that declare a hero_image need this.
+    """
+    import shutil
+    site_assets = HERE / "assets"
+    site_assets.mkdir(parents=True, exist_ok=True)
+    copied = 0
+    for c in concepts:
+        if not c.hero_image:
+            continue
+        src = SRC / c.slug / "assets" / c.hero_image
+        if src.is_file():
+            shutil.copy2(src, site_assets / c.hero_image)
+            copied += 1
+        else:
+            print(f"  ! concept hero missing on disk: {c.slug} -> {c.hero_image}")
+    return copied
+
+
 def render_static(concepts: list[Concept]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
+    n = copy_concept_assets(concepts)
+    if n:
+        print(f"  copied {n} concept hero image(s) -> assets/")
     groups = group_concepts(concepts)
     xgroups = collect_groups(concepts)
     by_slug = {c.slug: c for c in concepts}
