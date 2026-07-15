@@ -329,14 +329,23 @@ def parse_concepts(src: Path) -> list[Concept]:
             "\n", body_clean, flags=re.S | re.I,
         ).strip()
 
-        # Summary for the card = the tagline if we have one; else first paragraph.
-        summary = tag
+        # Summary for the card = the FIRST BODY PARAGRAPH — never the tagline.
+        # The card already prints the tagline as .c-tag; reusing it here made every
+        # card show the same sentence twice (blue, then grey). The summary's job is
+        # to add what the tagline doesn't say: the first line of the explanation.
+        # Falls back to the tagline only if the body has no usable paragraph.
+        summary = ""
+        for para in re.split(r"\n\s*\n", body_clean):
+            p = " ".join(para.split())
+            if not p or p.startswith(("#", ">", "**Category", "**Where", "←", "[[")):
+                continue
+            summary = p
+            break
         if not summary:
-            for para in re.split(r"\n\s*\n", body_clean):
-                p = para.strip()
-                if p and not p.startswith("#") and not p.startswith(">"):
-                    summary = p
-                    break
+            summary = tag
+        # keep cards even: trim an over-long first paragraph on a word boundary
+        if len(summary) > 240:
+            summary = summary[:240].rsplit(" ", 1)[0].rstrip(" ,;:—-") + "…"
 
         concepts.append(Concept(
             slug=slug, name=name, tag=tag, category=category,
@@ -449,10 +458,21 @@ INDEX_STYLE = """<style>
   .concept .c-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:6px; }
   .concept .c-tag { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:10px; }
   .concept .c-def { font-size:15px; color:var(--ink-soft); margin:0; }
-  .group-chips { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:1.5rem 0 .5rem; }
+  /* Cross-cutting groups = a FILTER BAR, deliberately set apart from the
+     category sections below it. Boxed + tinted so it reads as "another way in",
+     not as a heading in the category sequence. */
+  .group-bar { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.25rem; margin:2rem auto 3.5rem; max-width:640px; text-align:center; }
+  .group-chips { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:.75rem 0 0; }
   .group-chip { display:inline-block; font-size:14px; font-weight:700; color:var(--accent); background:rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.18); border-radius:999px; padding:7px 16px; text-decoration:none; transition:background .15s ease; }
   .group-chip:hover { background:rgba(37,99,235,.16); }
-  .group-chips-lede { text-align:center; font-size:14px; color:var(--ink-faint); margin:0 0 .25rem; }
+  .group-chips-lede { text-align:center; font-size:14px; color:var(--ink-faint); margin:0; }
+  /* Category = a real section heading, not a tiny eyebrow. Left-aligned with a
+     rule, so the eye reads: heading -> its cards -> next heading. */
+  .cat-head { display:flex; align-items:baseline; gap:.75rem; margin:3.25rem 0 1.25rem; }
+  .cat-head:first-of-type { margin-top:1rem; }
+  .cat-head h2 { font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin:0; white-space:nowrap; }
+  .cat-head .cat-count { font-size:14px; font-weight:600; color:var(--ink-faint); }
+  .cat-head .cat-rule { flex:1 1 auto; height:1px; background:var(--line); }
   @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
 </style>"""
 
@@ -495,13 +515,22 @@ def render_index(groups: list[tuple[str, list[Concept]]],
             for slug, gmeta, members in xgroups
         )
         chips_html = (
-            '<p class="group-chips-lede">Or explore concepts by cross-cutting group:</p>'
+            '<div class="group-bar">'
+            '<p class="group-chips-lede">A concept lives in one category below — '
+            'but can also belong to a cross-cutting group:</p>'
             f'<div class="group-chips">{chips}</div>'
+            '</div>'
         )
 
     parts: list[str] = []
     for cat, items in groups:
-        parts.append(f'<div class="nl-k" style="text-align:center;margin:2rem 0 1rem">{esc(cat)}</div>')
+        parts.append(
+            '<div class="cat-head">'
+            f'<h2>{esc(cat)}</h2>'
+            f'<span class="cat-count">{len(items)}</span>'
+            '<span class="cat-rule"></span>'
+            '</div>'
+        )
         parts.append('<div class="concept-grid">')
         for c in items:
             card = (

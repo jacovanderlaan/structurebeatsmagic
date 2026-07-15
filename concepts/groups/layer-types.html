@@ -22,10 +22,21 @@
   .concept .c-name { font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin-bottom:6px; }
   .concept .c-tag { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:10px; }
   .concept .c-def { font-size:15px; color:var(--ink-soft); margin:0; }
-  .group-chips { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:1.5rem 0 .5rem; }
+  /* Cross-cutting groups = a FILTER BAR, deliberately set apart from the
+     category sections below it. Boxed + tinted so it reads as "another way in",
+     not as a heading in the category sequence. */
+  .group-bar { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.25rem; margin:2rem auto 3.5rem; max-width:640px; text-align:center; }
+  .group-chips { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:.75rem 0 0; }
   .group-chip { display:inline-block; font-size:14px; font-weight:700; color:var(--accent); background:rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.18); border-radius:999px; padding:7px 16px; text-decoration:none; transition:background .15s ease; }
   .group-chip:hover { background:rgba(37,99,235,.16); }
-  .group-chips-lede { text-align:center; font-size:14px; color:var(--ink-faint); margin:0 0 .25rem; }
+  .group-chips-lede { text-align:center; font-size:14px; color:var(--ink-faint); margin:0; }
+  /* Category = a real section heading, not a tiny eyebrow. Left-aligned with a
+     rule, so the eye reads: heading -> its cards -> next heading. */
+  .cat-head { display:flex; align-items:baseline; gap:.75rem; margin:3.25rem 0 1.25rem; }
+  .cat-head:first-of-type { margin-top:1rem; }
+  .cat-head h2 { font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--ink); margin:0; white-space:nowrap; }
+  .cat-head .cat-count { font-size:14px; font-weight:600; color:var(--ink-faint); }
+  .cat-head .cat-rule { flex:1 1 auto; height:1px; background:var(--line); }
   @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
 </style>
 <!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
@@ -89,7 +100,7 @@ gtag('config', 'G-P7W9B34R1Z');
     <h2 class="section-title">Layer types <span style="color:var(--ink-faint);font-weight:600">(4)</span></h2>
     <p class="section-lede">Every concept tagged into this group, drawn from across the categories. A concept can belong to more than one group.</p>
     <div class="concept-grid">
-<a class="concept" href="../exchange-layer.html"><div class="c-name">Exchange Layer</div><div class="c-tag">A controlled front door (inbound) and publication layer (outbound).</div><p class="c-def">A controlled front door (inbound) and publication layer (outbound).</p></a><a class="concept" href="../the-reasoning-layer.html"><div class="c-name">The Reasoning Layer</div><div class="c-tag">The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever.</div><p class="c-def">The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever.</p></a><a class="concept" href="../the-validated-exchange-layer.html"><div class="c-name">The Validated Exchange Layer</div><div class="c-tag">Vaults never read each other directly — what crosses the boundary is validated on the way out and in.</div><p class="c-def">Vaults never read each other directly — what crosses the boundary is validated on the way out and in.</p></a><a class="concept" href="../the-voice-layer.html"><div class="c-name">The Voice Layer</div><div class="c-tag">Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources.</div><p class="c-def">Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources.</p></a>
+<a class="concept" href="../exchange-layer.html"><div class="c-name">Exchange Layer</div><div class="c-tag">A controlled front door (inbound) and publication layer (outbound).</div><p class="c-def">A deliberate boundary for data in and out: a controlled front door for ingestion (inbound) and a publication layer for what leaves (outbound).</p></a><a class="concept" href="../the-reasoning-layer.html"><div class="c-name">The Reasoning Layer</div><div class="c-tag">The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever.</div><p class="c-def">The layer everyone mistakes for magic. When AI gives a good answer, it feels like the model reasoned its way there. But the reasoning is only as good as what sits beneath it: the context it can reach, the memory across sessions, the rules…</p></a><a class="concept" href="../the-validated-exchange-layer.html"><div class="c-name">The Validated Exchange Layer</div><div class="c-tag">Vaults never read each other directly — what crosses the boundary is validated on the way out and in.</div><p class="c-def">The federation mechanism: when individual and team systems work together, they never read each other directly. What crosses the boundary passes through a publishing layer that validates on the way out and on the way in — the same…</p></a><a class="concept" href="../the-voice-layer.html"><div class="c-name">The Voice Layer</div><div class="c-tag">Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources.</div><p class="c-def">How you stop the model sounding like a model: a standing voice corpus distilled from real, unpolished sources (sent mail, messages) plus an explicit anti-AI banned-words list. The key rule — AI-generated text is the anti-example, never the…</p></a>
     </div>
     <p class="infl-note" style="margin-top:2rem">&#8592; Back to <a href="../">all concepts</a>.</p>
   </div>
