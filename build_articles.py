@@ -461,6 +461,47 @@ def copy_article_assets(slug: str) -> int:
     return n
 
 
+FIGURE_RE = re.compile(r"^\s*\[\[figure:\s*([^|\]]+?)\s*(?:\||\]\])", re.M)
+
+
+def check_image_refs(slug: str, meta: dict, body: str) -> list[str]:
+    """Verify every image an article references actually exists in its assets/.
+
+    Catches the silent-broken-image class of bug: a `hero_image:` or
+    `[[figure: …]]` pointing at a filename that isn't there (typo, rename, or a
+    graphic never delivered). The renderer emits an <img> blindly, so without
+    this the build is green and the break only shows up as a broken image on the
+    live site. Returns a list of human-readable problems (empty = all good).
+
+    Also reports orphans (a file in assets/ that nothing references) as a
+    warning-only signal — those don't break the page, so they don't fail a build.
+    """
+    problems: list[str] = []
+    folder = resolve_article_folder(slug)
+    if folder is None:
+        return [f"{slug}: no article folder"]
+    src_dir = folder / "assets"
+    on_disk = {f.name for f in src_dir.iterdir() if f.is_file()} if src_dir.is_dir() else set()
+
+    referenced: set[str] = set()
+    hi = str(meta.get("hero_image", "")).strip().strip("'\"")
+    if hi:
+        referenced.add(hi)
+        if hi not in on_disk:
+            problems.append(f"{slug}: hero_image -> missing file 'assets/{hi}'")
+    for fn in FIGURE_RE.findall(body):
+        fn = fn.strip()
+        referenced.add(fn)
+        if fn not in on_disk:
+            problems.append(f"{slug}: [[figure:]] -> missing file 'assets/{fn}'")
+
+    orphans = {f for f in on_disk if f not in referenced and f.lower().endswith(
+        (".png", ".jpg", ".jpeg", ".svg", ".gif", ".webp"))}
+    for o in sorted(orphans):
+        print(f"  ~ {slug}: unreferenced image 'assets/{o}' (not published)")
+    return problems
+
+
 def resolve_article_folder(slug: str) -> Path | None:
     """Find an article's source folder by slug.
 
@@ -665,6 +706,7 @@ def main() -> None:
             continue
         concept_names.setdefault(slug, name)
     cards = []
+    image_problems: list[str] = []
     for slug in ARTICLES:
         folder = resolve_article_folder(slug)
         if folder is None:
@@ -674,6 +716,9 @@ def main() -> None:
         copied = copy_article_assets(slug)
         meta, body = split_frontmatter(src.read_text(encoding="utf-8"))
         body = strip_private_sections(body)
+        # Image-integrity gate: every referenced image must exist in the article's
+        # assets/. Collected across all articles and reported together at the end.
+        image_problems += check_image_refs(slug, meta, body)
         # auto-link the first mention of each concept name to its concept page
         body = autolink_concepts(body, concept_map, slug)
         title = str(meta.get("title", slug)).strip().strip('"')
@@ -714,6 +759,17 @@ def main() -> None:
         ), encoding="utf-8")
         print(f"  + articles/{slug}.html  ({copied} assets)")
         cards.append((created, title, subtitle, f"articles/{slug}.html", face_label(meta)))
+
+    # Image-integrity gate (2026-07-15): fail the build on any image reference
+    # that points at a file which isn't there. The renderer emits <img> blindly,
+    # so a typo ("-01.pn.png") or a never-delivered graphic would otherwise ship
+    # green and only surface as a broken image on the live site.
+    if image_problems:
+        print(f"\n  ! IMAGE-INTEGRITY GATE: {len(image_problems)} broken image reference(s):")
+        for p in image_problems:
+            print(f"      - {p}")
+        print("\n  Fix the reference or add the missing file, then rebuild.")
+        raise SystemExit(1)
 
     # write a snippet the homepage can include (manual paste or future include)
     cards.sort(reverse=True)
