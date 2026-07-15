@@ -112,6 +112,14 @@ def strip_private_sections(body: str) -> str:
     return body
 
 
+# Set once per run by render(): the slugs that will actually have a page. A
+# [[wikilink]] to anything outside this set is rendered as plain text instead of
+# a link, so a dangling reference can never ship as a 404. None = unknown (no
+# filtering, e.g. when inline() is used standalone).
+_known_concept_slugs: set | None = None
+_dangling_links: list = []
+
+
 def inline(s: str) -> str:
     """Escape + render [[wikilinks]], **bold**, *italic*, [text](url), `code`."""
     spans: list[str] = []
@@ -126,16 +134,26 @@ def inline(s: str) -> str:
     links: list[str] = []
 
     def _wiki(m: "re.Match") -> str:
-        target = m.group(1).strip()
+        # Inside a markdown TABLE cell the alias pipe must be escaped (`\|`) or it
+        # would split the cell -- so the backslash is part of the source, not the
+        # slug. Strip it, or the link resolves to `<slug>\.html` -> 404.
+        target = m.group(1).strip().rstrip("\\").strip()
         label = (m.group(2) or "").strip()
         bare = target[len("concept-"):] if target.startswith("concept-") else target
         if not label:
             label = bare.replace("-", " ").replace(" moc", " (MOC)")
             label = label[:1].upper() + label[1:]
+        # Never emit a link to a concept that has no page: a dangling wikilink
+        # (a concept that was renamed, lives in the MDDE library, or was never
+        # written) becomes a 404 on a live page. Render the label as plain text
+        # and let check_concept_links() report it.
+        if _known_concept_slugs is not None and bare not in _known_concept_slugs:
+            _dangling_links.append(bare)
+            return html.escape(label, quote=False)
         links.append(f'<a href="{html.escape(bare, quote=True)}.html">{html.escape(label, quote=False)}</a>')
         return f"\x01{len(links) - 1}\x01"
 
-    s = re.sub(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]", _wiki, s)
+    s = re.sub(r"\[\[([^\]|]+?)(?:\\?\|([^\]]+))?\]\]", _wiki, s)
     s = re.sub(r"`([^`]+)`", _stash, s)
     s = html.escape(s, quote=False)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
@@ -1023,6 +1041,11 @@ def main() -> None:
         raise SystemExit(f"Concept source not found: {SRC}")
     concepts = parse_concepts(SRC)
     print(f"Parsed {len(concepts)} concepts from {SRC}")
+    # Tell the wikilink resolver which concepts will actually have a page, so a
+    # [[link]] to a missing one renders as text rather than shipping a 404.
+    global _known_concept_slugs, _dangling_links
+    _known_concept_slugs = {c.slug for c in concepts}
+    _dangling_links = []
     check_hero_refs(concepts)
     # attach reverse edges: articles that reference each concept (related_concepts)
     rev = build_reverse_article_index()
@@ -1035,6 +1058,13 @@ def main() -> None:
         c.related_articles = list(c.related_articles) + [a for a in arts if a["url"] not in have]
         linked += 1
     print(f"Reverse-linked related articles onto {linked} concepts")
+    if _dangling_links:
+        from collections import Counter
+        print(f"  ! {len(set(_dangling_links))} dangling [[wikilink]] target(s) rendered as PLAIN TEXT "
+              f"(no such concept page -- would have been a 404):")
+        for slug, n in sorted(Counter(_dangling_links).items()):
+            print(f"      [[{slug}]]  x{n}")
+        print("    Fix: create the concept, retarget the link, or drop it.")
     if fmt == "static":
         render_static(concepts)
     elif fmt == "wordpress":
