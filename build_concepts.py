@@ -484,6 +484,9 @@ DETAIL_STYLE = """<style>
   .c-hero { margin:0 0 2rem; }
   .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
   .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
   .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
   .c-body p { margin:0 0 1.15rem; }
   .c-body p:last-child { margin-bottom:0; }
@@ -705,15 +708,34 @@ def _render_rel_block(concepts_by_slug, concepts_by_name, c: Concept) -> str:
         items = "".join(f"<li>{resolve(r)}</li>" for r in c.related_concepts)
         blocks.append(f"<h3>Related concepts</h3><ul>{items}</ul>")
     if c.related_articles:
-        lis = []
-        for a in c.related_articles:
+        # An article with the concept's own slug is not "related" -- it IS the
+        # canonical piece for this concept. Promote it to its own line above the
+        # list so the reader gets the obvious route in, and "Related writing"
+        # keeps its plain meaning: the OTHER articles that reference this idea.
+        def _slug_of(a):
             if isinstance(a, dict) and a.get("url"):
-                lis.append(f'<li><a href="{html.escape(a["url"], quote=True)}">{esc(a.get("title") or a["url"])}</a></li>')
-            elif isinstance(a, dict):
-                lis.append(f'<li>{esc(a.get("title",""))}</li>')
-            else:
-                lis.append(f'<li>{esc(str(a))}</li>')
-        blocks.append(f'<h3>Related writing</h3><ul>{"".join(lis)}</ul>')
+                return a["url"].rstrip("/").split("/")[-1].removesuffix(".html")
+            return None
+
+        canonical = next((a for a in c.related_articles if _slug_of(a) == c.slug), None)
+        others = [a for a in c.related_articles if a is not canonical]
+
+        if canonical:
+            blocks.append(
+                f'<h3>The article</h3><p class="c-canonical">'
+                f'<a href="{html.escape(canonical["url"], quote=True)}">'
+                f'{esc(canonical.get("title") or canonical["url"])}</a></p>'
+            )
+        if others:
+            lis = []
+            for a in others:
+                if isinstance(a, dict) and a.get("url"):
+                    lis.append(f'<li><a href="{html.escape(a["url"], quote=True)}">{esc(a.get("title") or a["url"])}</a></li>')
+                elif isinstance(a, dict):
+                    lis.append(f'<li>{esc(a.get("title",""))}</li>')
+                else:
+                    lis.append(f'<li>{esc(str(a))}</li>')
+            blocks.append(f'<h3>Related writing</h3><ul>{"".join(lis)}</ul>')
     if c.references:
         lis = []
         for r in c.references:
@@ -874,12 +896,35 @@ def _bare_concept_slug(ref: str) -> str:
     return r[len("concept-"):] if r.startswith("concept-") else r
 
 
-def build_reverse_article_index() -> dict:
-    """concept-slug -> [{title, url}] for every article that lists it in
-    related_concepts. This is the reverse of the article->concept edge, so a
-    concept page can show the articles that reference it."""
+def _published_article_slugs():
+    """The set of slugs the site actually publishes = build_articles.ARTICLES.
+    Imported (not duplicated) so the two builders can never drift apart.
+    Returns None if it can't be read -- callers then skip the publish filter
+    rather than silently dropping every link."""
+    try:
+        import build_articles
+        arts = getattr(build_articles, "ARTICLES", None)
+        if not arts:
+            return None
+        out = set()
+        for a in arts:
+            out.add(a if isinstance(a, str) else (a.get("slug") or a.get("name")))
+        return {s for s in out if s} or None
+    except Exception:
+        return None
+
+
+def build_reverse_article_index(published_slugs=None) -> dict:
+    """concept-slug -> [{title, url}] for every PUBLISHED article that lists it
+    in related_concepts/concepts. The reverse of the article->concept edge, so a
+    concept page can show the articles that reference it.
+
+    published_slugs: restrict to these slugs (defaults to the article builder's
+    ARTICLES allow-list). Pass an empty set to disable linking entirely."""
     if yaml is None:
         return {}
+    if published_slugs is None:
+        published_slugs = _published_article_slugs()
     idx: dict = {}
     for root, base_url in ARTICLE_ROOTS:
         if not root.exists():
@@ -897,16 +942,28 @@ def build_reverse_article_index() -> dict:
                 meta = yaml.safe_load(txt[3:end]) or {}
             except Exception:
                 continue
-            rc = meta.get("related_concepts")
-            if not rc:
-                continue
+            # Two frontmatter spellings mean the same thing (a list of concept
+            # slugs): `related_concepts` (7 articles) and `concepts` (25). Both
+            # are the article->concept edge, so read both and merge -- otherwise
+            # three quarters of the corpus never reaches a concept page.
+            rc = meta.get("related_concepts") or []
             if not isinstance(rc, list):
                 rc = [rc]
+            cs = meta.get("concepts") or []
+            if not isinstance(cs, list):
+                cs = [cs]
+            refs = list(rc) + list(cs)
+            if not refs:
+                continue
             slug = md.stem
+            # Only link articles that are actually published: the site's publish
+            # gate is build_articles.ARTICLES (an allow-list), NOT frontmatter
+            # `status`. Linking a draft would put a 404 on a live concept page.
+            if published_slugs is not None and slug not in published_slugs:
+                continue
             title = str(meta.get("title", slug)).strip().strip('"')
-            # don't publish drafts marked private-only? keep it simple: include all
             entry = {"title": title, "url": f"{base_url}/{slug}.html"}
-            for ref in rc:
+            for ref in refs:
                 idx.setdefault(_bare_concept_slug(ref), []).append(entry)
     # stable order + de-dup per concept
     for k, lst in idx.items():
