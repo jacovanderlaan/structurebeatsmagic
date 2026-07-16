@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Cut Test · Concepts · Structure Beats Magic</title>
+<meta name="description" content="One question decides what stays in your rules: would a future session get something wrong without this line? If not, cut it. Bloat isn&#x27;t structure." />
+<meta property="og:title" content="The Cut Test · Structure Beats Magic" />
+<meta property="og:description" content="One question decides what stays in your rules: would a future session get something wrong without this line? If not, cut it. Bloat isn&#x27;t structure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-cut-test.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-cut-test.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#samples">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>The Cut Test</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">One question decides what stays in your rules: would a future session get something wrong without this line? If not, cut it. Bloat isn't structure.</p>
+    
+    <div class="c-body">
+<p>The failure mode of people who <em>get</em> structure is over-structure: the forty skills of which three are used, the prompt library never opened, the context file that grew past the point where the model still follows it. Adherence measurably drops as instructions pile up — every added line dilutes the attention every other line gets. Bloat isn't structure. Bloat is what structure looks like when nothing is ever removed.</p>
+<p>The cure is one question, applied line by line: <strong>would a future session get something wrong without this?</strong> If yes, the line has a job — keep it. If no, cut it, however clever it sounds. Not "might it help someday," not "it took effort to write" — one criterion, ruthlessly applied. The test works because it reframes every rule as a <em>prevented failure</em>: a rule that prevents nothing is doing nothing, and a rule doing nothing in a context file is not neutral.</p>
+<p>Not neutral, because a stale rule misinforms every run. The instruction that described last quarter's workflow actively steers the model wrong today; two rules that quietly contradict each other force it to pick one, silently, differently each time — which reads as flakiness and is actually your own file arguing with itself. Pruning isn't housekeeping; it's reliability engineering. The system is only as deterministic as its rules are current and consistent.</p>
+<p>This is via negativa pointed at your own structure: the setup improves by what you remove. A context file you maintain by deleting is more deliberate than one you maintain by adding — because every surviving line has re-earned its place, and the model reads a file where everything present is true, current, and load-bearing. Small, sharp and obeyed beats long, complete and skimmed.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="claude-md-as-operating-system.html">CLAUDE.md as Operating System</a></li><li><a href="via-negativa.html">Via Negativa</a></li><li><a href="deliberate-by-design.html">Deliberate by Design</a></li><li><a href="structure-lets-a-cheaper-model-win.html">Structure Lets a Cheaper Model Win</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>
