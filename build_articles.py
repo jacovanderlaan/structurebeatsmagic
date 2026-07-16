@@ -919,22 +919,46 @@ def inject_homepage_cards(snip: list) -> None:
 def write_sitemap(cards: list) -> None:
     """Regenerate sitemap.xml from the published pages, so it stays current.
 
-    Lists the hub + section pages + every published article. Excludes 404.html
-    and the _cards.html fragment. Article lastmod uses its `created` date.
+    Coverage rule (SEO fix 2026-07-16): the sitemap lists EVERY published .html
+    page on disk, not just articles — before this it covered 47 of ~140 pages
+    and left all 85 per-concept pages (ADR-084) invisible. Article lastmod uses
+    the card's `created` date; other pages use the file's mtime. Excluded:
+    404.html and _*.html fragments (e.g. articles/_cards.html).
     """
-    # known article lastmod by relative href
+    from datetime import datetime, timezone
+
+    # known article lastmod by relative href (frontmatter `created` beats mtime)
     art_dates = {href: (d or "") for d, _t, _s, href, _f in cards}
     urls: list[tuple[str, str]] = []  # (relative path, lastmod)
+    seen: set[str] = set()
 
-    # top-level + collection/section pages (no reliable date -> omit lastmod).
-    # Collections are their own rankable pages (ADR-078), so list them all.
+    def add(rel: str, lastmod: str = "") -> None:
+        if rel not in seen:
+            seen.add(rel)
+            urls.append((rel, lastmod))
+
+    # 1. homepage + collection/section index pages first (stable, readable order)
     for rel in ["", "writing/", "concepts/", "glossary/", "use-cases/",
-                "system/", "intelligence/", "influences/"]:
-        urls.append((rel, ""))
+                "system/", "intelligence/", "influences/", "books/"]:
+        if rel == "" or (HERE / rel / "index.html").is_file():
+            add(rel)
 
-    # published articles, sorted newest first
+    # 2. published articles, newest first (frontmatter date as lastmod)
     for href in sorted(art_dates, key=lambda h: art_dates[h], reverse=True):
-        urls.append((href, art_dates[href]))
+        add(href, art_dates[href])
+
+    # 3. every other published .html on disk (concept pages, group pages,
+    #    book pages, use-case pages, ...) — mtime as lastmod. This keeps the
+    #    sitemap complete no matter which builder added the page.
+    skip_names = {"404.html"}
+    for p in sorted(HERE.rglob("*.html")):
+        rel_path = p.relative_to(HERE).as_posix()
+        if (p.name in skip_names or p.name.startswith("_")
+                or rel_path.startswith((".", "__"))):
+            continue
+        rel = rel_path[:-len("index.html")] if p.name == "index.html" else rel_path
+        mtime = datetime.fromtimestamp(p.stat().st_mtime, tz=timezone.utc)
+        add(rel, mtime.strftime("%Y-%m-%d"))
 
     parts = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

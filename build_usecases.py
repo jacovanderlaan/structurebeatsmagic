@@ -33,6 +33,9 @@ except ImportError:
 HERE = Path(__file__).parent
 SRC = Path(os.environ.get("SBM_USECASES_SRC", "W:/systems/use-cases"))
 OUT = HERE / "use-cases"
+
+# Canonical base for <link rel="canonical"> / og:url (same as build_articles.py).
+BASE_URL = os.environ.get("SBM_BASE_URL", "https://structurebeatsmagic.com").rstrip("/")
 CONCEPTS_DIR = "../concepts"   # for linking applies-to concepts to their pages
 ARTICLES_DIR = "../articles"   # for linking related articles
 
@@ -240,7 +243,9 @@ def render_index(ucs: list[UseCase]) -> str:
 <meta property="og:title" content="Use cases · Structure Beats Magic" />
 <meta property="og:description" content="Proof, not slides — the thesis applied to concrete situations." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta property="og:url" content="{BASE_URL}/use-cases/" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<link rel="canonical" href="{BASE_URL}/use-cases/" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
@@ -310,7 +315,9 @@ def render_detail(u: UseCase, article_titles: dict) -> str:
 <meta property="og:title" content="{esc(u.title)} · Structure Beats Magic" />
 <meta property="og:description" content="{html.escape(u.summary, quote=True)}" />
 <meta property="og:type" content="article" />
-<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta property="og:url" content="{BASE_URL}/use-cases/{esc(u.slug)}.html" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<link rel="canonical" href="{BASE_URL}/use-cases/{esc(u.slug)}.html" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>

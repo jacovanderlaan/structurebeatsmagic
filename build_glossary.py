@@ -237,7 +237,9 @@ def render(intro: str, groups: list[Group], concept_slugs: set[str]) -> str:
 <meta property="og:title" content="Glossary · Structure Beats Magic" />
 <meta property="og:description" content="Field terms and distinctions, defined and linked — the vocabulary under the coined concepts." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta property="og:url" content="https://structurebeatsmagic.com/glossary/" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<link rel="canonical" href="https://structurebeatsmagic.com/glossary/" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>

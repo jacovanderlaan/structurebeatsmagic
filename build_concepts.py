@@ -48,6 +48,11 @@ HERE = Path(__file__).parent
 SRC = Path(os.environ.get("SBM_CONCEPTS_SRC", "W:/systems/concepts"))
 OUT = HERE / "concepts"
 
+# Canonical base for <link rel="canonical"> / og:url / absolute og:image on the
+# generated concept pages (same convention as build_articles.py — the custom
+# domain resolves directly to GitHub Pages since the 2026-06-30 DNS cutover).
+BASE_URL = os.environ.get("SBM_BASE_URL", "https://structurebeatsmagic.com").rstrip("/")
+
 # Category order for the index (authored sequence, mirrors the vault README TOC).
 # Any category found in the sources but not listed here is appended at the end,
 # so a new category can't silently drop a concept from the page.
@@ -583,8 +588,10 @@ def render_index(groups: list[tuple[str, list[Concept]]],
 <meta property="og:title" content="Concepts &amp; vocabulary · Structure Beats Magic" />
 <meta property="og:description" content="The coined vocabulary behind the thesis — one memorable name per idea, each with its own page." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta property="og:url" content="{BASE_URL}/concepts/" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="{BASE_URL}/concepts/" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
@@ -660,8 +667,10 @@ def render_group(slug: str, gmeta: dict, members: list[Concept]) -> str:
 <meta property="og:title" content="{esc(label)} · Structure Beats Magic" />
 <meta property="og:description" content="{html.escape(blurb, quote=True)}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="../../assets/sbm-og-card.svg" />
+<meta property="og:url" content="{BASE_URL}/concepts/groups/{esc(slug)}.html" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="{BASE_URL}/concepts/groups/{esc(slug)}.html" />
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png"/>
@@ -786,10 +795,14 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
     # before the image is generated, and an <img> at a missing file would ship a
     # broken image to the site.
     hero_html = ""
+    og_image = f"{BASE_URL}/assets/sbm-og-card.svg"
     if c.hero_image and (SRC / c.slug / "assets" / c.hero_image).is_file():
         cap = f"<figcaption>{esc(c.hero_caption)}</figcaption>" if c.hero_caption else ""
         hero_html = (f'<figure class="c-hero"><img src="../assets/{esc(c.hero_image)}" '
                      f'alt="{esc(c.name)}" loading="eager"/>{cap}</figure>')
+        # the concept's own hero makes a far richer social card than the generic one
+        og_image = f"{BASE_URL}/assets/{c.hero_image}"
+    canonical = f"{BASE_URL}/concepts/{c.slug}.html"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -800,8 +813,10 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 <meta property="og:title" content="{esc(c.name)} · Structure Beats Magic" />
 <meta property="og:description" content="{html.escape(c.tag, quote=True)}" />
 <meta property="og:type" content="article" />
-<meta property="og:image" content="../assets/sbm-og-card.svg" />
+<meta property="og:url" content="{esc(canonical)}" />
+<meta property="og:image" content="{esc(og_image)}" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="{esc(canonical)}" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
