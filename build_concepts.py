@@ -493,7 +493,12 @@ INDEX_STYLE = """<style>
   .cat-head .cat-rule { flex:1 1 auto; height:1px; background:var(--line); }
   /* A group says what it is; a category doesn't need to. */
   .cat-note { font-size:14px; color:var(--ink-faint); margin:-.5rem 0 1.25rem; max-width:70ch; line-height:1.6; }
-  @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } }
+  /* Optional scene-band above a category (ADR-075 track B). Thin, rounded,
+     face-safe crop. Present only when assets/cat-<slug>.jpg exists. */
+  .cat-band { margin:3.25rem 0 0; border-radius:14px; overflow:hidden; border:1px solid var(--line); box-shadow:0 6px 20px rgba(15,23,42,.06); }
+  .cat-band + .cat-head { margin-top:1rem; }
+  .cat-band img { width:100%; height:130px; object-fit:cover; object-position:center 40%; display:block; }
+  @media (max-width:760px){ .concept-grid{ grid-template-columns:1fr; } .cat-band img{ height:100px; } }
 </style>"""
 
 DETAIL_STYLE = """<style>
@@ -549,7 +554,16 @@ def _section(title: str, items: list[Concept], note: str = "", href: str = "") -
     head.append(f'<span class="cat-count">{len(items)}</span>')
     head.append('<span class="cat-rule"></span>')
     head.append('</div>')
-    out = ["".join(head)]
+    out = []
+    # Optional scene-band (ADR-075 track B): if assets/cat-<slug>.jpg exists it is
+    # rendered as a thin banner above the heading. Missing file => plain heading
+    # (graceful, like hero_image). Slug = title lowercased, non-alnum -> hyphen.
+    _cat_slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    _band = HERE / "assets" / f"cat-{_cat_slug}.jpg"
+    if _band.exists():
+        out.append(f'<div class="cat-band"><img src="../assets/cat-{_cat_slug}.jpg" '
+                   f'alt="{esc(title)}" loading="lazy" /></div>')
+    out.append("".join(head))
     if note:
         out.append(f'<p class="cat-note">{esc(note)}</p>')
     out.append('<div class="concept-grid">')
