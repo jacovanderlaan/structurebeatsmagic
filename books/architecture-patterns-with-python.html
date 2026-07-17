@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Architecture Patterns with Python — Books — Structure Beats Magic</title>
+<meta name="description" content="Architecture Patterns with Python by Harry Percival, Bob Gregory — why it&#x27;s in Jaco van der Laan&#x27;s Structure-Beats-Magic library, the ideas worth stealing, and what he built with it."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/books/architecture-patterns-with-python.html"/>
+<meta property="og:title" content="Architecture Patterns with Python"/>
+<meta property="og:description" content="Architecture Patterns with Python by Harry Percival, Bob Gregory — why it&#x27;s in Jaco van der Laan&#x27;s Structure-Beats-Magic library, the ideas worth stealing, and what he built with it."/>
+<meta property="og:type" content="book"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/books/architecture-patterns-with-python.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/book-architecture-patterns-with-python.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/book-architecture-patterns-with-python.jpg"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Architecture Patterns with Python",
+  "description": "Architecture Patterns with Python by Harry Percival, Bob Gregory — why it's in Jaco van der Laan's Structure-Beats-Magic library, the ideas worth stealing, and what he built with it.",
+  "url": "https://structurebeatsmagic.com/books/architecture-patterns-with-python.html",
+  "image": "https://structurebeatsmagic.com/assets/book-architecture-patterns-with-python.jpg",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Harry Percival"
+    },
+    {
+      "@type": "Person",
+      "name": "Bob Gregory"
+    }
+  ],
+  "datePublished": "2020",
+  "isbn": "9781492052203",
+  "review": {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "Jaco van der Laan",
+      "url": "https://jacovanderlaan.com"
+    }
+  }
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="index.html">← The library</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">My library · a curated source</p>
+  <h1>Architecture Patterns with Python</h1>
+  <p class="subtitle">Harry Percival, Bob Gregory · 2020 · software architecture</p>
+  <div class="byline"></div>
+  <figure class="book-cover"><img src="../assets/book-architecture-patterns-with-python.jpg" alt="Architecture Patterns with Python cover"/></figure>
+  <article>
+  <h2>Highlights</h2>
+<ul><li><strong>Put the domain model at the center, everything else is a plugin</strong> — the book's core move is dependency inversion: business logic lives in plain Python objects, while the database, ORM, and web framework are swappable details at the edges. This is "the model outlives the tool" in code form — the same reason MDDE generates from models instead of hand-wiring to whatever platform is current.</li><li><strong>Repository and Unit of Work decouple you from your persistence layer</strong> — by hiding storage behind a thin abstraction, you can test against fakes and migrate infrastructure without rewriting the domain. Platforms churn, capabilities endure: the pattern is the durable asset, the database engine is not.</li><li><strong>Named patterns are a shared vocabulary before they are code</strong> — Percival and Gregory spend as much effort defining terms (aggregate, service layer, message bus) as implementing them, because a team that shares precise words can reason together. That is exactly the concept-library play: the vocabulary is the reusable unit, not the snippet.</li><li><strong>Aggregates make invariants explicit consistency boundaries</strong> — instead of scattering business rules across the codebase, you draw a boundary around the objects that must change together and enforce the rules there. Rules as a first-class, located artifact — the forgotten third pillar of SBM, given an address in the architecture.</li><li><strong>Events and a message bus turn implicit workflows into explicit, inspectable ones</strong> — when "what happens next" is a named event handled by a registered handler, the system's behavior is readable structure rather than framework magic. Structure beats magic, almost literally: the wiring you can see is the wiring you can trust.</li><li><strong>The authors are honest that every pattern has a cost</strong> — each chapter weighs the added indirection against the complexity it tames, and they explicitly warn against applying the full stack to simple problems. That deliberate, validate-don't-guess posture is the difference between architecture as discipline and architecture as cargo cult.</li></ul><p class="ai-note"><em>Highlights on this page are generated with the help of AI.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="index.html">← The whole library</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
