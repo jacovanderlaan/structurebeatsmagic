@@ -96,6 +96,8 @@ ARTICLES = [
     "reading-intelligence",
     # --- Thesis piece: context engineering = structure, not prompting (2026-07-15) ---
     "context-engineering-for-one",
+    # --- Agreement-centered governance (2026-07-17) ---
+    "almost-everything-is-an-agreement",
     # NB: "the-missing-system" + "stop-driving-by-the-rear-view-mirror" MOVED to
     # the jvdl/MDDE pipeline (canonical_home = jacovanderlaan.com) on 2026-07-10.
     # Source now at W:/data/products/mdde/articles/, built by jacovanderlaan-site.
