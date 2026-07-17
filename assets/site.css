@@ -111,11 +111,16 @@
   .path-b2b .path-go{color:var(--gold)}
   /* thesis one-liner, now below the human opening */
   .hero-formula{text-align:center;padding:.4rem 0 3rem}
-  @media(max-width:820px){
-    .hero-intro{grid-template-columns:1fr;gap:1.6rem;padding:2.4rem 0 1.6rem;text-align:left}
+  @media(max-width:860px){
+    .hero-intro{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem 0 1.4rem;text-align:left}
     .hero-photo{order:-1}
+    /* full-width photo on top, fixed pleasant height so it never shrinks to a stamp */
+    .hero-photo img{width:100%;height:clamp(220px,42vw,340px);object-fit:cover;object-position:center 35%}
+    .hero-intro-copy>*:first-child{margin-top:0}
+    .hero-intro-copy h1{font-size:clamp(1.6rem,5vw,2.1rem);max-width:100%}
+    .hero-intro-copy .lede{max-width:100%;font-size:1rem}
+    .hero-intro-copy .hero-proof{max-width:100%}
     .paths{grid-template-columns:1fr}
-    .hero-intro-copy h1{font-size:1.8rem;max-width:100%}
   }
   .btn{padding:.7rem 1.3rem;border-radius:10px;font-weight:600;font-size:15px;display:inline-block}
   .btn-primary{background:var(--accent);color:#fff}
