@@ -9,7 +9,7 @@
 <meta property="og:description" content="Each document carries its own history of changes — so a shared record is traceable, and a sync knows what changed, when, and by whom." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/document-change-log.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/document-change-log-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/document-change-log.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -91,7 +91,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">Each document carries its own history of changes — so a shared record is traceable, and a sync knows what changed, when, and by whom.</p>
-    
+    <figure class="c-hero"><img src="../assets/document-change-log-hero.png" alt="Document Change-Log" loading="eager"/><figcaption>A document isn't just its current state — it carries a ## History that travels with the atom. That's what makes a shared record honest: when two vaults sync and conflict, the log shows whose edit came first and what it touched, so a merge is traceable instead of a mystery. The owner's log is authoritative; the replica's is a view.</figcaption></figure>
     <div class="c-body">
 <blockquote><p>Each document carries its own history — what changed, when, by whom.</p></blockquote>
 <p>A document isn't just its current state; it holds a <strong>log of its own changes</strong> (a <code>## History</code> / change-log section, or structured <code>updated:</code> + revision entries in frontmatter). This is quiet housekeeping in a single vault, but it becomes essential the moment documents are shared (<a href="federated-brains.html">Federated brains</a>): a sync needs to know <em>what</em> changed and <em>when</em> to send only the delta, to detect conflicts, and to resolve them fairly. When two vaults hold views of the same record, the change-log is what makes a conflict traceable instead of a mystery — you can see whose edit came first and what it touched. Provenance travels with the atom. Pairs with <a href="atomic-documents.html">Atomic documents</a> (the unit that has a history) and the ownership rule (the owner's log is authoritative).</p>
