@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Knowledge Graph · Concepts · Structure Beats Magic</title>
-<meta name="description" content="A living graph of your life you can ask natural questions." />
-<meta property="og:title" content="Knowledge Graph · Structure Beats Magic" />
-<meta property="og:description" content="A living graph of your life you can ask natural questions." />
+<title>The Context Graph · Concepts · Structure Beats Magic</title>
+<meta name="description" content="The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search through." />
+<meta property="og:title" content="The Context Graph · Structure Beats Magic" />
+<meta property="og:description" content="The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search through." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://structurebeatsmagic.com/concepts/knowledge-graph.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/knowledge-graph-hero.png" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-context-graph.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="canonical" href="https://structurebeatsmagic.com/concepts/knowledge-graph.html" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-context-graph.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
@@ -84,22 +84,21 @@
 
 <div class="hero wrap">
   <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
-  <div class="c-chip">Personal data model</div>
-  <h1>Knowledge Graph</h1>
+  <div class="c-chip">System architecture</div>
+  <h1>The Context Graph</h1>
 </div>
 
 <section>
   <div class="wrap c-detail">
-    <p class="c-tagline">A living graph of your life you can ask natural questions.</p>
-    <figure class="c-hero"><img src="../assets/knowledge-graph-hero.png" alt="Knowledge Graph" loading="eager"/><figcaption>The same six notes, twice. On the left a folder: each note is fine, none knows the others exist. On the right the links are drawn in and typed — informs, part-of, cites, depends-on, led to — and a question can now travel them: "What's the decision log from my Iceland trip about data modeling?" The notes didn't change; the links made them a graph, and the graph can answer.</figcaption></figure>
+    <p class="c-tagline">The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search through.</p>
+    
     <div class="c-body">
-<p>People, places, trips, events and interests, all connected — a living knowledge graph you query in natural language and that answers from your structured data, not a guess.</p>
-<p>The notes didn't change; the links made them a graph. That's the whole move, and it's smaller than it sounds. A folder of good notes is a folder of good notes: each one fine, none aware of the others. Add real links between them and the same files become something a question can <em>travel</em> — from a trip, to the people on it, to what they said, to the decision it led to.</p>
-<p>What makes those links worth anything is that they're <strong>typed</strong>. An edge that says nothing — "these are related, somehow" — leaves a machine exactly where it started: it can see two things are connected while having no idea how. An edge that declares itself (<em>cites</em>, <em>part-of</em>, <em>depends-on</em>, <em>supersedes</em>) can be reasoned over. Meaning in the structure, not in the prose beside it. And typed edges pay off exactly where it hurts: retrieval. An untyped graph can only be searched by proximity — grab whatever sits near the query and hope; typed relationships make retrieval <em>precise</em>, because "follow the supersedes edge" is an instruction, not a similarity guess.</p>
-<p>Which is why the answer differs in kind, not just in quality. Ask a pile of notes a question and the best you get is retrieval — here are some documents that mention this. Ask a graph and it can follow the relationships you declared and answer from what's actually true in your data, rather than producing something plausible.</p>
-<p>The honest limit: a graph is only as good as the links you actually made. Nobody hand-links a decade of notes, and an auto-generated hairball is not understanding — it's a picture of one. Link deliberately, where the connection means something.</p>
+<p>The missing word between having structure and using it. A knowledge graph knows <em>what exists</em>: thousands of nodes, every entity and relationship, stable, domain-scoped, the whole memory. That completeness is its job — and its trap. A complete graph is a haystack: you built precise structure, then forced probabilistic retrieval across all of it, making the agent <em>search</em> what you so carefully <em>organized</em>. Precision at design time, guesswork at runtime.</p>
+<p>The context graph is the answer: not another store, but a <strong>cut</strong>. For each decision, scope the graph down to the subgraph that decision actually needs — the flight, the fare rule, the weather, the one policy that applies — assembled at runtime, discarded after. The design target is a phrase worth keeping: <em>small enough to reason across, not search through</em>. An agent handed a scoped subgraph reads all of it and reasons; an agent handed the whole graph samples it and hopes.</p>
+<p>The two are complements, not rivals, and the properties pair off cleanly: the knowledge graph is stable, the context graph ephemeral; one holds what's permanently true, the other what's true for <em>this</em> decision in <em>this</em> moment; one is curated at design time, the other assembled at runtime; one is enterprise memory, the other a working set. Skip the first and there's nothing sound to cut from. Skip the second and the soundness never reaches the decision.</p>
+<p>If you run a structured personal system, you already do this without the name. The vault is the knowledge graph; every session works from a slice — the routing file points at the relevant domain, the day-folder supplies the moment, and the assistant reasons over a context small enough to actually hold. Big structure exists so that small, relevant context can be cut from it per task. That's the whole design: build the haystack deliberately, then never hand anyone the haystack.</p>
     </div>
-    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="map-of-content-moc.html">Map of Content (MOC)</a></li><li><a href="personal-data-warehouse.html">Personal Data Warehouse</a></li><li><a href="the-structure-pyramid.html">The Structure Pyramid</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/google-standardized-my-vault.html">Google Standardized the Thing I've Been Building — And Left Out the One Layer That Matters</a></li><li><a href="https://structurebeatsmagic.com/articles/the-vault-is-the-data-model.html">The Vault Is the Data Model</a></li><li><a href="https://structurebeatsmagic.com/articles/your-bookshelf-is-already-a-knowledge-base.html">Your Bookshelf Is Already a Knowledge Base (You Just Can't Query It Yet)</a></li><li><a href="https://structurebeatsmagic.com/articles/your-notes-are-brain-cells.html">Your Notes Are Brain Cells</a></li></ul></div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="company-brain.html">Company Brain</a></li><li><a href="the-reasoning-layer.html">The Reasoning Layer</a></li><li><a href="find-the-essence-first.html">Find the Essence First</a></li></ul></div>
   </div>
 </section>
 
