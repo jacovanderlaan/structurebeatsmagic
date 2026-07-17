@@ -112,14 +112,17 @@
   /* thesis one-liner, now below the human opening */
   .hero-formula{text-align:center;padding:.4rem 0 3rem}
   @media(max-width:860px){
-    .hero-intro{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem 0 1.4rem;text-align:left}
+    .hero-intro{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem 0 1.4rem}
     .hero-photo{order:-1}
     /* full-width photo on top, fixed pleasant height so it never shrinks to a stamp */
     .hero-photo img{width:100%;height:clamp(220px,42vw,340px);object-fit:cover;object-position:center 35%}
+    /* match the sections below: centred, same content max-widths, so the hero
+       lines up with them instead of running edge-to-edge. */
+    .hero-intro-copy{text-align:center}
     .hero-intro-copy>*:first-child{margin-top:0}
-    .hero-intro-copy h1{font-size:clamp(1.6rem,5vw,2.1rem);max-width:100%}
-    .hero-intro-copy .lede{max-width:100%;font-size:1rem}
-    .hero-intro-copy .hero-proof{max-width:100%}
+    .hero-intro-copy h1{font-size:clamp(1.6rem,5vw,2.1rem);max-width:20ch;margin-left:auto;margin-right:auto}
+    .hero-intro-copy .lede{max-width:54ch;font-size:1.05rem;margin-left:auto;margin-right:auto}
+    .hero-intro-copy .hero-proof{max-width:54ch;margin-left:auto;margin-right:auto}
     .paths{grid-template-columns:1fr}
   }
   .btn{padding:.7rem 1.3rem;border-radius:10px;font-weight:600;font-size:15px;display:inline-block}
