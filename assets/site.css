@@ -89,13 +89,13 @@
     .formula .result{color:var(--gold)}
   }
   /* ===== WARM HERO (person + promise) — added 2026-07-17 ===== */
-  .hero-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2.6rem;align-items:center;padding:4rem 0 2.4rem}
+  .hero-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:3rem;align-items:center;padding:3rem 0 2.4rem}
   .hero-photo{margin:0}
-  .hero-photo img{width:100%;height:auto;display:block;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line)}
+  .hero-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line)}
   .hero-intro-copy .eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0}
-  .hero-intro-copy h1{font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.1;letter-spacing:-.02em;margin:.6rem 0 1rem;max-width:18ch;text-wrap:balance}
-  .hero-intro-copy .lede{font-size:1.14rem;color:var(--ink-soft);max-width:52ch;margin:0 0 1rem}
-  .hero-intro-copy .hero-proof{font-size:.95rem;color:var(--ink-faint);max-width:52ch;margin:0}
+  .hero-intro-copy h1{font-size:clamp(1.7rem,2.9vw,2.4rem);line-height:1.12;letter-spacing:-.02em;margin:.6rem 0 1.1rem;max-width:20ch;text-wrap:balance}
+  .hero-intro-copy .lede{font-size:1.08rem;color:var(--ink-soft);max-width:52ch;margin:0 0 1rem}
+  .hero-intro-copy .hero-proof{font-size:.92rem;color:var(--ink-faint);max-width:52ch;margin:0}
   /* ===== TWO PATHS ===== */
   .paths{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;padding:.6rem 0 1.4rem}
   .path{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);
