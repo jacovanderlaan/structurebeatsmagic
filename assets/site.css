@@ -112,7 +112,11 @@
   /* thesis one-liner, now below the human opening */
   .hero-formula{text-align:center;padding:.4rem 0 3rem}
   @media(max-width:860px){
-    .hero-intro{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem 0 1.4rem}
+    /* the hero photo + copy sit edge-to-edge inside .wrap (24px), while the path
+       cards below add ~24px of their own inner padding -> the cards look inset
+       and the hero looks too wide. Give the whole hero the SAME extra inset so
+       photo, copy and cards share one visual gutter. */
+    .hero-intro{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem 1.6rem 1.4rem}
     .hero-photo{order:-1}
     /* full-width photo on top, fixed pleasant height so it never shrinks to a stamp */
     .hero-photo img{width:100%;height:clamp(220px,42vw,340px);object-fit:cover;object-position:center 35%}
