@@ -333,10 +333,13 @@
 
   /* intelligence systems */
   .intel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem}
-  .isys{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);border-top:3px solid var(--accent)}
+  .isys{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);border-top:3px solid var(--accent);transition:border-color .15s,box-shadow .15s,transform .15s}
+  a.isys:hover{border-color:var(--accent);box-shadow:0 14px 34px rgba(15,23,42,.1);transform:translateY(-2px)}
   .isys .it{font-weight:700;font-size:1.08rem;color:var(--ink)}
   .isys .ist{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:.3rem 0 .5rem}
   .isys p{margin:0;color:var(--ink-soft);font-size:.92rem}
+  .isys-go{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600;color:var(--accent);opacity:0;transition:opacity .15s}
+  a.isys:hover .isys-go{opacity:1}
   .st-built{color:#15803d}.st-progress{color:var(--accent)}.st-vision{color:var(--ink-faint)}
   .intel-note{text-align:center;max-width:60ch;margin:2rem auto 0;color:var(--ink-soft);font-size:1rem}
   .intel-note strong{color:var(--ink)}
