@@ -60,8 +60,6 @@ ARTICLES = [
     # and a real ending before being added here.
     "rules-before-models",
     "self-contained-atomic-units",
-    "the-self-correcting-system",
-    "hooks-not-hopes",
     "your-database-is-a-view",
     "red-team-your-ai-plan",
     "own-the-source-rent-the-interface",
