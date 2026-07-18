@@ -93,6 +93,9 @@ PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
 # Reusable markdown helpers (ported from build_articles.py, kept in sync)      #
 # --------------------------------------------------------------------------- #
 def split_frontmatter(text: str) -> tuple[dict, str]:
+    # Same CRLF normalisation as build_articles.py: a file authored with CRLF
+    # would otherwise have its frontmatter parsed as body text.
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
     if text.startswith("---"):
         end = text.find("\n---", 3)
         if end != -1:
@@ -102,8 +105,14 @@ def split_frontmatter(text: str) -> tuple[dict, str]:
             if yaml:
                 try:
                     meta = yaml.safe_load(fm_raw) or {}
-                except Exception:
-                    meta = {}
+                except Exception as exc:
+                    # Never swallow this. A malformed frontmatter block used to
+                    # fail silently to {}, which published the article with no
+                    # title, no subtitle and no hero -- a broken card on the
+                    # index and a slug as the headline. One stray quote in a
+                    # slop-audit note was enough. (2026-07-18)
+                    print(f"  ! FRONTMATTER PARSE ERROR: {exc}")
+                    meta = {"__parse_error__": str(exc)}
             return meta, body
     return {}, text
 

@@ -47,11 +47,53 @@ OUT = HERE / "articles"
 ASSETS = HERE / "assets"
 
 # Private-section convention: the folder-note is one markdown document. Everything
-# publishes EXCEPT a fixed set of working sections at the bottom. As soon as the
-# builder hits the first of these (case-insensitive ## heading), it stops
-# publishing — the rest is a private notes/actions/comments summary. Mirrors the
-# vault's protected manual-sections rule.
-PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
+# publishes EXCEPT the working sections at the bottom. As soon as the builder hits
+# the first of these (case-insensitive ## heading), it stops publishing — the rest
+# is private. Mirrors the vault's protected manual-sections rule.
+#
+# 2026-07-18: this used to be an exact-match set, which failed open. Two articles
+# published their private working sections live — candidate titles, a "Guard:"
+# note to self, positioning notes — because they used "## Working notes",
+# "## The brief" and "## Core argument (skeleton — to write)". None matched, so
+# everything below them shipped. An exact-match private-section filter is only
+# ever as good as an author's heading discipline, and the failure is silent and
+# public. Matching is now by PREFIX WORD, so any heading that *starts* with a
+# working word is private regardless of what follows it.
+PRIVATE_SECTION_WORDS = {
+    "notes", "note", "action", "actions", "comment", "comments",
+    "brief", "briefs", "todo", "todos", "draft", "drafts", "working",
+    "scratch", "internal", "private", "wip", "backlog", "ideas", "idea",
+    "outline", "skeleton", "research", "sources", "meta", "angles",
+}
+
+# A heading whose text contains any of these is unfinished-work signalling, even
+# when the heading word itself looks publishable ("## Core argument (to write)").
+UNFINISHED_MARKERS = (
+    "to write", "to do", "todo", "tbd", "draft", "skeleton", "wip",
+    "unfinished", "placeholder", "rough", "notes to self",
+)
+
+
+def _heading_is_private(text: str) -> bool:
+    """True when a ## heading marks private working material.
+
+    Prefix-word match, not exact match: "Working notes", "Notes to self" and
+    "Brief (why this article)" are all private. Also catches headings that
+    advertise unfinished work anywhere in the line.
+    """
+    t = text.strip().rstrip(":").lower()
+    if any(m in t for m in UNFINISHED_MARKERS):
+        return True
+    # Check every word, not just the first: "The brief (why this article)" and
+    # "Working notes" are both private, and only the second starts with a
+    # working word. Leading articles/determiners are skipped.
+    words = [w for w in re.split(r"[^a-z]+", t) if w]
+    skip = {"the", "a", "an", "my", "some", "these"}
+    return any(w in PRIVATE_SECTION_WORDS for w in words if w not in skip)
+
+
+# Kept for anything still importing the old name.
+PRIVATE_SECTIONS = PRIVATE_SECTION_WORDS
 
 # Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
@@ -128,6 +170,12 @@ BASE_URL = os.environ.get(
 
 
 def split_frontmatter(text: str) -> tuple[dict, str]:
+    # Normalise line endings first. Two articles were authored with CRLF, so the
+    # "\n---" fence search never matched: their frontmatter was silently treated
+    # as body text, which published the raw slug as the title and dropped the
+    # subtitle and hero image entirely. Failing on an invisible character is not
+    # something an author can be expected to spot. (2026-07-18)
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
     if text.startswith("---"):
         end = text.find("\n---", 3)
         if end != -1:
@@ -137,8 +185,14 @@ def split_frontmatter(text: str) -> tuple[dict, str]:
             if yaml:
                 try:
                     meta = yaml.safe_load(fm_raw) or {}
-                except Exception:
-                    meta = {}
+                except Exception as exc:
+                    # Never swallow this. A malformed frontmatter block used to
+                    # fail silently to {}, which published the article with no
+                    # title, no subtitle and no hero -- a broken card on the
+                    # index and a slug as the headline. One stray quote in a
+                    # slop-audit note was enough. (2026-07-18)
+                    print(f"  ! FRONTMATTER PARSE ERROR: {exc}")
+                    meta = {"__parse_error__": str(exc)}
             return meta, body
     return {}, text
 
@@ -153,10 +207,8 @@ def strip_private_sections(body: str) -> str:
     lines = body.split("\n")
     for i, ln in enumerate(lines):
         st = ln.strip()
-        if st.startswith("## "):
-            name = st[3:].strip().rstrip(":").lower()
-            if name in PRIVATE_SECTIONS:
-                return "\n".join(lines[:i]).rstrip() + "\n"
+        if st.startswith("## ") and _heading_is_private(st[3:]):
+            return "\n".join(lines[:i]).rstrip() + "\n"
     return body
 
 
@@ -479,6 +531,86 @@ def copy_article_assets(slug: str) -> int:
 FIGURE_RE = re.compile(r"^\s*\[\[figure:\s*([^|\]]+?)\s*(?:\||\]\])", re.M)
 
 
+def check_metadata(slug: str, meta: dict) -> list[str]:
+    """Refuse to publish an article whose frontmatter didn't survive parsing.
+
+    Added 2026-07-18. Two articles shipped with the raw slug as their headline
+    and an empty card on the index, because they were authored with CRLF line
+    endings and the frontmatter fence never matched — so title, subtitle and
+    hero were all silently absent. The parser now normalises line endings, but
+    the deeper problem was that missing metadata published quietly instead of
+    failing loudly. A card with no title is always a bug, never a choice.
+    """
+    problems = []
+    title = str(meta.get("title", "")).strip().strip('"')
+
+    if not title:
+        problems.append(f"{slug}: no title in frontmatter (card would show the slug)")
+    elif title == slug:
+        # Literal slug — hyphens and all — means the fallback kicked in. A title
+        # that merely slugifies to the same thing ("Why Structure Beats Magic")
+        # is perfectly normal and must not be flagged.
+        problems.append(f"{slug}: title is the raw slug — frontmatter unparsed")
+    if not str(meta.get("subtitle", "")).strip().strip('"'):
+        problems.append(f"{slug}: no subtitle (its card would be blank)")
+
+    return problems
+
+
+def check_publishable(slug: str, body: str) -> list[str]:
+    """Refuse to publish material that reads as private or unfinished.
+
+    Runs on the body AFTER strip_private_sections(), so it sees exactly what
+    would ship. The section filter is the first line of defence; this is the
+    second, because the filter can only catch headings it recognises.
+
+    Added 2026-07-18 after two articles published their working notes live
+    (candidate titles, a "Guard:" note to self, positioning notes) and one
+    shipped with a "Core argument (skeleton — to write)" heading. Both were
+    invisible to the heading filter and to a human skim of word count and
+    ending. A failing build is cheap; a public leak is not.
+    """
+    problems = []
+    in_code = False
+
+    for i, ln in enumerate(body.split("\n"), 1):
+        st = ln.strip()
+
+        # Never look inside fenced code: a shell comment ("# block raw-IP URLs")
+        # is not a heading, and flagging it would train everyone to ignore this
+        # gate.
+        if st.startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+
+        # A working-section heading that survived the filter. Only ## and
+        # deeper — a single # is the article title, and a title legitimately
+        # contains words like "Notes" ("Your Notes Are Brain Cells").
+        if st.startswith("## ") and _heading_is_private(st[3:]):
+            problems.append(f"{slug}:{i}: private/unfinished heading -> {st[:70]}")
+
+        # Notes-to-self phrasing that has no business on a public page. These
+        # must be anchored (line-initial label, or a bracketed marker) — an
+        # unanchored substring match flags ordinary prose ("...it would be easy
+        # to write this piece as though...") and a gate that cries wolf gets
+        # ignored, which is worse than no gate.
+        low = st.lower()
+        label_tells = ("guard:", "note to self", "todo:", "tbd:", "fixme:",
+                       "own proof:", "angle:", "angles:", "hook:", "guards:",
+                       "relationship to siblings:", "candidate titles:",
+                       "working title:", "to write:", "next:")
+        if any(low.startswith(t) for t in label_tells):
+            problems.append(f"{slug}:{i}: working-note label -> {st[:70]}")
+            continue
+        if re.search(r"\[(tk|todo|tbd|placeholder|xxx)\]", low) or \
+           re.search(r"\b(tk|tbd|fixme)\b(?!\w)", low) and st.isupper():
+            problems.append(f"{slug}:{i}: placeholder marker -> {st[:70]}")
+
+    return problems
+
+
 def check_image_refs(slug: str, meta: dict, body: str) -> list[str]:
     """Verify every image an article references actually exists in its assets/.
 
@@ -734,6 +866,7 @@ def main() -> None:
         concept_names.setdefault(slug, name)
     cards = []
     image_problems: list[str] = []
+    privacy_problems: list[str] = []
     for slug in ARTICLES:
         folder = resolve_article_folder(slug)
         if folder is None:
@@ -746,6 +879,8 @@ def main() -> None:
         # Image-integrity gate: every referenced image must exist in the article's
         # assets/. Collected across all articles and reported together at the end.
         image_problems += check_image_refs(slug, meta, body)
+        privacy_problems += check_publishable(slug, body)
+        privacy_problems += check_metadata(slug, meta)
         # auto-link the first mention of each concept name to its concept page
         body = autolink_concepts(body, concept_map, slug)
         title = str(meta.get("title", slug)).strip().strip('"')
@@ -796,6 +931,19 @@ def main() -> None:
         for p in image_problems:
             print(f"      - {p}")
         print("\n  Fix the reference or add the missing file, then rebuild.")
+        raise SystemExit(1)
+
+    # Publishable-content gate (2026-07-18): fail the build when anything that
+    # would ship reads as private working material or unfinished work. See
+    # check_publishable() for why this exists.
+    if privacy_problems:
+        print(f"\n  ! PUBLISHABLE-CONTENT GATE: {len(privacy_problems)} issue(s) "
+              f"that must not go public:")
+        for p in privacy_problems:
+            print(f"      - {p}")
+        print("\n  Either finish the section, rename it to a working heading "
+              "(## Notes, ## Working notes, ...), or drop the article from "
+              "ARTICLES until it is ready.")
         raise SystemExit(1)
 
     # write a snippet the homepage can include (manual paste or future include)
