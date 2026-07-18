@@ -84,12 +84,27 @@ def _heading_is_private(text: str) -> bool:
     t = text.strip().rstrip(":").lower()
     if any(m in t for m in UNFINISHED_MARKERS):
         return True
-    # Check every word, not just the first: "The brief (why this article)" and
-    # "Working notes" are both private, and only the second starts with a
-    # working word. Leading articles/determiners are skipped.
-    words = [w for w in re.split(r"[^a-z]+", t) if w]
-    skip = {"the", "a", "an", "my", "some", "these"}
-    return any(w in PRIVATE_SECTION_WORDS for w in words if w not in skip)
+
+    # Match the SHAPE of a working heading, not the mere presence of a working
+    # word. A real section title is prose and can legitimately contain one --
+    # "The note that ate the day", "Your Notes Are Brain Cells". Matching any
+    # word anywhere blanked a live 1,900-word article. (2026-07-18)
+    #
+    # A working heading is short and administrative: the working word carries
+    # the heading, optionally with a leading determiner and/or a trailing
+    # parenthetical. "Working notes", "Notes", "The brief (why this article)",
+    # "Actions" -- yes. Anything with real prose after the working word -- no.
+    head = re.sub(r"\(.*?\)", "", t).strip()          # drop a parenthetical
+    words = [w for w in re.split(r"[^a-z]+", head) if w]
+    while words and words[0] in {"the", "a", "an", "my", "our"}:
+        words.pop(0)
+    if not words or len(words) > 2:
+        return False
+    if len(words) == 1:
+        return words[0] in PRIVATE_SECTION_WORDS
+    # Two words: both must be working-ish ("working notes", "internal notes"),
+    # so "note that" or "draft rules" style prose openings don't qualify.
+    return all(w in PRIVATE_SECTION_WORDS for w in words)
 
 
 # Kept for anything still importing the old name.
@@ -591,6 +606,20 @@ def check_publishable(slug: str, body: str) -> list[str]:
         if st.startswith("## ") and _heading_is_private(st[3:]):
             problems.append(f"{slug}:{i}: private/unfinished heading -> {st[:70]}")
 
+        # Internal decision records. ADRs are the kitchen, not the recipe:
+        # they are kept private for training and consultancy, and a public
+        # "recorded as ADR-056" points readers at something they cannot open
+        # while leaking the internal numbering. Four live articles carried one.
+        # (Jaco, 2026-07-18: "There are no ADRs published. I keep them internal
+        # — that's the kitchen.")
+        # A record id inside a path or `code` span is an illustration of the
+        # naming convention, not a pointer at an internal document — that is
+        # legitimate teaching material and must not be flagged.
+        stripped = re.sub(r"`[^`]*`", "", st)
+        stripped = re.sub(r"\S*/\S*", "", stripped)
+        if re.search(r"\b(ADR|PDR|IDR|BDR)-\d{2,3}\b", stripped):
+            problems.append(f"{slug}:{i}: internal decision record referenced -> {st[:70]}")
+
         # Notes-to-self phrasing that has no business on a public page. These
         # must be anchored (line-initial label, or a bracketed marker) — an
         # unanchored substring match flags ordinary prose ("...it would be easy
@@ -932,6 +961,23 @@ def main() -> None:
             print(f"      - {p}")
         print("\n  Fix the reference or add the missing file, then rebuild.")
         raise SystemExit(1)
+
+    # Dead-link gate (2026-07-18): an article that links to a sibling which is
+    # not published ships a 404 on a live page. Jaco found seven such links
+    # across four articles by clicking through the site.
+    #
+    # This FAILS the build rather than quietly unlinking, because an article
+    # that leans on work which does not exist yet is not finished. Jaco's call:
+    # "Die artikelen kunnen dan dus nog niet gepubliceerd worden." Silently
+    # dropping the link would hide that judgement instead of surfacing it —
+    # publish the sibling, or cut the reference from the source.
+    published = set(ARTICLES)
+    for page in sorted(OUT.glob("*.html")):
+        for href in sorted(set(re.findall(r'href="([a-z0-9-]+)\.html"',
+                                          page.read_text(encoding="utf-8")))):
+            if href not in published:
+                privacy_problems.append(
+                    f"{page.stem}: links to unpublished article '{href}' (404)")
 
     # Publishable-content gate (2026-07-18): fail the build when anything that
     # would ship reads as private working material or unfinished work. See
