@@ -126,6 +126,10 @@ ARTICLES = [
     # Added 2026-07-18 — six drafts reviewed and approved for publication.
     # Checked for placeholders, sensitive content (names, amounts, credentials)
     # and a real ending before being added here.
+    # Written out from its own skeleton 2026-07-18 and published after the
+    # gates cleared it. Was briefly live in skeleton form with its working
+    # notes exposed; taken down, finished, and re-published properly.
+    "hooks-not-hopes",
     "rules-before-models",
     "self-contained-atomic-units",
     "your-database-is-a-view",
