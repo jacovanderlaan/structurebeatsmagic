@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Inter, Segoe UI, Arial, sans-serif">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e293b"/>
-    </linearGradient>
-  </defs>
+  <!-- Off-white share card (ADR-075 HARD RULE 0). Replaced the dark navy-gradient
+       version 2026-07-18 so the card matches the site and its on-page imagery;
+       original archived in W:/systems/products/sbm/design/legacy-dark-images/.
+       Composition unchanged: brand mark, statement, formula strip, footer. -->
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="#f7f8fa"/>
   <!-- accent corner bar (SBM blue) -->
   <rect x="0" y="0" width="1200" height="8" fill="#2563eb"/>
 
@@ -23,17 +22,17 @@
   </g>
 
   <!-- statement -->
-  <text x="600" y="300" text-anchor="middle" font-size="92" font-weight="800" fill="#f8fafc" letter-spacing="-2">Structure</text>
-  <text x="600" y="376" text-anchor="middle" font-size="54" font-weight="600" fill="#94a3b8">beats</text>
+  <text x="600" y="300" text-anchor="middle" font-size="92" font-weight="800" fill="#0f172a" letter-spacing="-2">Structure</text>
+  <text x="600" y="376" text-anchor="middle" font-size="54" font-weight="600" fill="#475569">beats</text>
   <text x="600" y="464" text-anchor="middle" font-size="92" font-weight="800" fill="#b88a1b" letter-spacing="-2">magic</text>
-  <rect x="500" y="486" width="200" height="4" rx="2" fill="#2563eb"/>
+  <rect x="500" y="496" width="200" height="4" rx="2" fill="#2563eb"/>
 
   <!-- formula strip (the master formula — gold Systems is the payoff).
        Two left-anchored text elements so the gold payoff aligns deterministically
        (avoids adjacent-tspan whitespace trimming in some SVG rasterizers). -->
-  <text x="316" y="546" font-size="26" fill="#94a3b8" xml:space="preserve">Structure + Data + AI + Rules + Skills  &#8594;  </text>
+  <text x="316" y="546" font-size="26" fill="#475569" xml:space="preserve">Structure + Data + AI + Rules + Skills  &#8594;  </text>
   <text x="792" y="546" font-size="26" font-weight="800" fill="#b88a1b">Systems</text>
 
   <!-- footer -->
-  <text x="600" y="596" text-anchor="middle" font-size="20" fill="#64748b">Knowledge management, re-architected for the AI era · structurebeatsmagic.com</text>
+  <text x="600" y="596" text-anchor="middle" font-size="20" fill="#94a3b8">Knowledge management, re-architected for the AI era · structurebeatsmagic.com</text>
 </svg>
