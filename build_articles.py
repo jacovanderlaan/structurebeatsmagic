@@ -112,6 +112,14 @@ PRIVATE_SECTIONS = PRIVATE_SECTION_WORDS
 
 # Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
+    # Added 2026-07-18 (ADR-090): published as a cluster because these five and
+    # the articles already live cross-reference each other. Publishing them
+    # separately would have left 404s in both directions.
+    "eight-old-drives",
+    "folderize-folders-still-beat-tags",
+    "data-driven-daily-notes",
+    "health-metrics-local-duckdb",
+    "photo-library-to-photo-memory",
     # Added 2026-07-18 — six drafts reviewed and approved for publication.
     # Checked for placeholders, sensitive content (names, amounts, credentials)
     # and a real ending before being added here.
@@ -987,9 +995,15 @@ def main() -> None:
               f"that must not go public:")
         for p in privacy_problems:
             print(f"      - {p}")
-        print("\n  Either finish the section, rename it to a working heading "
-              "(## Notes, ## Working notes, ...), or drop the article from "
-              "ARTICLES until it is ready.")
+        print("\n  How to clear each kind:")
+        print("   · links to unpublished article — publish the target first, or")
+        print("     cut the reference from the source. An article that leans on")
+        print("     work that doesn't exist yet is not ready to ship (ADR-090).")
+        print("   · private/unfinished heading — finish the section, or rename")
+        print("     it to a working heading (## Notes, ## Working notes, ...).")
+        print("   · internal decision record — ADRs stay unpublished; remove the")
+        print("     citation. An id inside a path or `code` span is fine.")
+        print("   · missing title/subtitle — check the frontmatter parsed.")
         raise SystemExit(1)
 
     # write a snippet the homepage can include (manual paste or future include)
