@@ -652,7 +652,19 @@ def build_related_section(meta: dict, article_titles: dict, concept_names: dict 
     Unknown article slugs are skipped silently (kept out of the graph, not broken).
     """
     concept_names = concept_names or {}
-    rc = _norm_reflist(meta.get("related_concepts"))
+    # Articles use either `concepts:` (the graph convention, 33 articles) or
+    # `related_concepts:` (14 articles). Read both, merged + de-duped, or a third
+    # of the corpus silently loses its Related-concepts section.
+    rc = _norm_reflist(meta.get("related_concepts")) + _norm_reflist(meta.get("concepts"))
+    _seen = set()
+    rc = [c for c in rc if not (str(c).strip() in _seen or _seen.add(str(c).strip()))]
+    # Skip any concept that has no SBM page (e.g. an MDDE-only concept referenced
+    # by mistake) -- linking it would 404. concept_names holds every built SBM
+    # concept slug; when it's populated, treat it as the allow-list.
+    if concept_names:
+        rc = [c for c in rc
+              if (str(c).strip()[len("concept-"):] if str(c).strip().startswith("concept-")
+                  else str(c).strip()) in concept_names]
     ra = _norm_reflist(meta.get("related_articles"))
     if not rc and not ra:
         return ""
