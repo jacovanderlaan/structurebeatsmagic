@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Your Database Is a View — The Rebuild Discipline That Keeps Files the Source of Truth — Structure Beats Magic</title>
+<meta name="description" content="The files are canonical. The database is a rebuildable projection of them. Get that one arrow the right way round and everything downstream — queries, AI, sync — becomes trustworthy. Get it backwards and your data quietly rots."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/your-database-is-a-view.html"/>
+<meta property="og:title" content="Your Database Is a View — The Rebuild Discipline That Keeps Files the Source of Truth"/>
+<meta property="og:description" content="The files are canonical. The database is a rebuildable projection of them. Get that one arrow the right way round and everything downstream — queries, AI, sync — becomes trustworthy. Get it backwards and your data quietly rots."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/your-database-is-a-view.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/your-database-is-a-view-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-12"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Your Database Is a View — The Rebuild Discipline That Keeps Files the Source of Truth"/>
+<meta name="twitter:description" content="The files are canonical. The database is a rebuildable projection of them. Get that one arrow the right way round and everything downstream — queries, AI, sync — becomes trustworthy. Get it backwards and your data quietly rots."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/your-database-is-a-view-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your Database Is a View — The Rebuild Discipline That Keeps Files the Source of Truth",
+  "description": "The files are canonical. The database is a rebuildable projection of them. Get that one arrow the right way round and everything downstream — queries, AI, sync — becomes trustworthy. Get it backwards and your data quietly rots.",
+  "image": "https://structurebeatsmagic.com/assets/your-database-is-a-view-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/your-database-is-a-view.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/your-database-is-a-view.html",
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Your Database Is a View — The Rebuild Discipline That Keeps Files the Source of Truth</h1>
+  <p class="subtitle">The files are canonical. The database is a rebuildable projection of them. Get that one arrow the right way round and everything downstream — queries, AI, sync — becomes trustworthy. Get it backwards and your data quietly rots.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-12</div>
+  <figure class="article-hero"><img src="../assets/your-database-is-a-view-hero.png" alt="Your Database Is a View — The Rebuild Discipline That Keeps Files the Source of Truth" loading="eager"/><figcaption>One arrow, and which way it points decides everything. On the left, the healthy shape: files are the source of truth, and the database is a projection rebuilt from them. On the right, the trap: someone edited the database directly, and now the files and the database disagree — with no way to know which is right.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>The arrow that decides everything</h2>
+<p>Build any system that puts your notes, your transactions, your photos, your health data into a database so you can query it, and you make one architectural decision so early and so quietly that you might not notice you made it. It's the direction of a single arrow: <strong>do the files feed the database, or does the database feed the files?</strong></p>
+<p>Almost everyone gets it backwards, or worse, leaves it ambiguous. They set up a database, start querying it, and gradually start <em>editing it directly</em> — fixing a value here, adding a row there — because the database is where the data <em>is now</em>, and it's convenient. The moment they do, the arrow reverses without anyone deciding it should, and the system develops a slow, invisible sickness: the files say one thing, the database says another, and there is no longer any way to know which one is right.</p>
+<p>The healthy shape is the opposite, and it has to be <em>chosen</em> and <em>held</em>: <strong>the files are canonical, and the database is a rebuildable projection of them.</strong> The arrow points one way only — from files to database — and it never reverses. Your markdown notes, your source records, your exports are the source of truth. The database is a <em>view</em>: a queryable convenience you can throw away and regenerate at any time, because it holds nothing the files don't. Get that arrow right and the whole system becomes trustworthy. Get it wrong and it rots from the inside while looking fine on the surface.</p>
+<h2>Why files, not the database, deserve to be canonical</h2>
+<p>It seems backwards at first. A database is structured, indexed, fast — surely <em>that's</em> the real data, and the files are just how you happened to type it in? No. The files win the canonical role for reasons that hold up under pressure.</p>
+<p><strong>Files are legible without the machine.</strong> A markdown note is readable in any text editor, on any device, in fifty years, with no software that understands your schema. A database row is meaningless without the database. When the question is <em>what do I most want to still be able to read when everything else is gone</em>, the answer is never the binary blob.</p>
+<p><strong>Files carry their own context.</strong> A note with frontmatter is a self-describing unit — it says what it is, and it travels with its meaning. A row in a table is a tuple of values whose meaning lives in a schema somewhere else. Separate the row from its schema and you have numbers without nouns.</p>
+<p><strong>Files are what humans and AIs actually edit.</strong> You write in the note. An AI you point at your vault reads and edits the note. The database is not an editing surface for anyone — it's a <em>derived</em> thing. If you let it become an editing surface, you've created a second place where truth can be changed, and two places where truth can be changed is exactly one place too many.</p>
+<p>So the files are canonical not by nostalgia but by <em>durability, self-description, and editability.</em> The database earns a different, lesser, essential role: it's the fast queryable <em>answer-machine</em> built on top — and answer-machines are meant to be rebuilt, not curated.</p>
+<h2>The database is a view — even when it's a "real" database</h2>
+<p>There's a precise word for what the database is, and it's borrowed from the oldest idea in databases themselves: it's a <strong>view.</strong></p>
+<p>A view, in database terms, is a query that <em>looks</em> like a table but stores nothing of its own — it's computed from underlying data on demand, and if you drop it, you lose nothing, because you can recreate it from its definition. That's exactly the relationship your analytical database should have to your files. <code>photos.duckdb</code>, the transactions database, the fitness rollups — each is a <em>view over the files</em>, materialized for speed, holding no truth the files don't already hold. Delete any of them and you regenerate it by re-reading the source. It was never the record. It was a lens.</p>
+<p>This is true even when the database is a heavyweight one that stores real bytes on disk. The distinction isn't about whether the database <em>physically</em> holds data — of course it does — it's about <em>where authority lives.</em> A view has no authority; it defers to its source. Treat your database as a view — as something that <em>defers to the files</em> — and you've kept authority in the one place that deserves it. The bytes on disk are an optimization. The files are the law.</p>
+<h2>The one discipline: never edit the view; always rebuild</h2>
+<p>Everything above collapses into a single operational rule, and it's the rule that people break:</p>
+<blockquote><p><strong>Never edit the view. Always rebuild it.</strong></p></blockquote>
+<p>When a value is wrong, you do not fix it in the database. You fix it in the <em>file</em>, and you rebuild the database from the files. When you want new data in, you add it to the <em>files</em>, and you rebuild. The database is never a place you <em>write</em> to by hand — only a place you <em>read</em> from. Writing happens upstream, in the source; the database catches up by regenerating.</p>
+<p>This feels inefficient the first time — <em>why re-read everything when I could just UPDATE one row?</em> — and that instinct is the whole trap. The one-row UPDATE is how the arrow reverses. The moment you edit the database directly, it stops being a projection of the files and becomes a <em>fork</em> of them: an independent copy that now disagrees with its source and will drift further with every convenient shortcut. The rebuild discipline is what <em>guarantees</em> the database can never disagree with the files, because it's always freshly computed <em>from</em> them. It's not inefficiency. It's the mechanism that keeps the arrow pointed the right way.</p>
+<figure class="article-fig"><img src="../assets/your-database-is-a-view-01.png" alt="Writes happen upstream; the view is read-only. The right way: a value is wrong, so you correct it in the file, regenerate the view from all files, and the view is in sync. The tempting shortcut: you edit the view with a one-row UPDATE, and you've reversed the arrow — the view now disagrees with the source, a fork exists, and there's no reliable answer to which is right. Files are the source of truth; the database is a view; rebuild is the only write." loading="lazy"/><figcaption>Writes happen upstream; the view is read-only. The right way: a value is wrong, so you correct it in the file, regenerate the view from all files, and the view is in sync. The tempting shortcut: you edit the view with a one-row UPDATE, and you've reversed the arrow — the view now disagrees with the source, a fork exists, and there's no reliable answer to which is right. Files are the source of truth; the database is a view; rebuild is the only write.</figcaption></figure>
+<h2>The failure modes this prevents — the ones nobody warns you about</h2>
+<p>State the rule and it sounds obvious. Watch what happens when it's violated, and you see why it's load-bearing. Three specific failures, all of which look like "the system is just a bit unreliable" until you trace them to the reversed arrow:</p>
+<p><strong>Drift.</strong> The database and the files quietly diverge because someone — you, a script, an AI — edited one and not the other. Now a query returns a number that isn't in any file, or a file says something no query reflects. Drift is silent: nothing errors, the system just becomes <em>subtly untrue</em>, and you lose trust in your own data without being able to point at when it went wrong.</p>
+<p><strong>Stale views.</strong> The database was built once and never rebuilt, so it reflects the files <em>as they were</em>, not as they are. Every query is answering an old version of reality. This is the failure of <em>forgetting to rebuild</em> — and it's why the rebuild can't be a thing you remember to do; it has to be cheap and routine enough to run constantly.</p>
+<p><strong>Partial rebuilds.</strong> You rebuilt <em>some</em> of the database from <em>some</em> of the files, and now it's an incoherent mix of old and new — the worst state of all, because it's neither the old truth nor the new one, and there's no clean version to fall back to. A rebuild must be <em>all-or-nothing</em> — regenerate the whole view from the whole source, atomically, or don't call it a rebuild.</p>
+<p>Every one of these is invisible in the moment and expensive in the aggregate, because they don't crash — they <em>corrode.</em> The rebuild discipline is what makes all three structurally impossible: if the database is <em>always</em> fully regenerated from the files, it cannot drift, cannot go stale, and cannot half-update.</p>
+<figure class="article-fig"><img src="../assets/your-database-is-a-view-02.png" alt="Reverse the arrow and three sicknesses creep in, silently. Drift: the files and the database quietly diverge — both look plausible, and you won't know which is right until it hurts. Stale views: built once, never rebuilt, so you're deciding on yesterday's truth. Partial rebuilds: some rebuilt, the rest missed — everything looks populated but it doesn't add up. The cure is the same in all three cases: always rebuild from the files. One way, one source, one truth." loading="lazy"/><figcaption>Reverse the arrow and three sicknesses creep in, silently. Drift: the files and the database quietly diverge — both look plausible, and you won't know which is right until it hurts. Stale views: built once, never rebuilt, so you're deciding on yesterday's truth. Partial rebuilds: some rebuilt, the rest missed — everything looks populated but it doesn't add up. The cure is the same in all three cases: always rebuild from the files. One way, one source, one truth.</figcaption></figure>
+<h2>Why this is what makes the system trustworthy for AI</h2>
+<p>There's a reason this principle sits underneath so many other pieces, and it's about trust — specifically, the trust you need before you let an AI query or act on your data.</p>
+<p>When the files are canonical and the database is a rebuilt view, you can hand an AI either one and know exactly what you're handing it: the files are the truth, and the database is a <em>faithful, current projection</em> of the truth, because it was just regenerated from it. A question answered against the database is answered against the files, one step removed but never in disagreement. The AI can query the fast view <em>and</em> verify against the canonical files, and the two will always agree — because one is defined as a projection of the other.</p>
+<p>Reverse the arrow and that guarantee evaporates. If the database can be edited independently, then an AI querying it might be reading a value that exists <em>nowhere in your files</em> — a fork, a drift, a stale row — and now the AI's confident answer is grounded in something you can't trace back to a source of truth. The rebuild discipline is what lets you say, of any number the system produces: <em>this came from a file, and here's the file.</em> That traceability is the difference between a system you can let an AI reason over and one you can't.</p>
+<h2>Keep the arrow pointed at the files</h2>
+<p>The seductive move, always, is to treat the database as the real data — it's structured, it's fast, it's where the querying happens, so surely that's the source of truth. It isn't, and the day you start editing it directly is the day your data begins to rot in ways you won't notice until you've lost trust in all of it.</p>
+<p>This is <strong>structure beats magic</strong> at the most foundational layer of any personal data system — the layer that decides whether everything above it can be believed. The magic answer is a clever database that becomes the single smart home for all your data. The structural answer is humbler and unbreakable: keep the truth in files that are legible, self-describing, and editable; build the database as a <em>view</em> over them; and hold the one discipline that keeps the arrow from ever reversing — <strong>never edit the view, always rebuild.</strong> Do that, and your database is exactly as trustworthy as your files, forever, because it is nothing more, and nothing less, than a current picture of them.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series — the keystone the data-driven pieces rest on: <a href="data-driven-daily-notes.html">Data-Driven Daily Notes</a>, <a href="health-metrics-local-duckdb.html">Health Metrics in a Local DuckDB</a>, <a href="photo-library-to-photo-memory.html">From Photo Library to Photo Memory</a>, and the atomic-units piece all treat their database as a rebuildable view. The enterprise form of the same principle — files-as-source, generated artifacts downstream — is Model-Driven Data Engineering.</em></p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

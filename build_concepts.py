@@ -37,6 +37,8 @@ import re
 import sys
 import html
 from pathlib import Path
+
+from image_pipeline import copy_optimised
 from dataclasses import dataclass, field
 
 try:
@@ -874,7 +876,6 @@ def copy_concept_assets(concepts: list[Concept]) -> int:
     (<root>/<slug>/assets/*), and the repo assets/ is generated — never
     hand-managed. Only concepts that declare a hero_image need this.
     """
-    import shutil
     site_assets = HERE / "assets"
     site_assets.mkdir(parents=True, exist_ok=True)
     copied = 0
@@ -883,7 +884,7 @@ def copy_concept_assets(concepts: list[Concept]) -> int:
             continue
         src = SRC / c.slug / "assets" / c.hero_image
         if src.is_file():
-            shutil.copy2(src, site_assets / c.hero_image)
+            copy_optimised(src, site_assets / c.hero_image)
             copied += 1
         else:
             print(f"  ! concept hero missing on disk: {c.slug} -> {c.hero_image}")

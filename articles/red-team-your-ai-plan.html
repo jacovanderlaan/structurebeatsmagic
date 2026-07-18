@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Red-Team Your Own AI (Before It Just Flatters You) — Structure Beats Magic</title>
+<meta name="description" content=""/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/red-team-your-ai-plan.html"/>
+<meta property="og:title" content="Red-Team Your Own AI (Before It Just Flatters You)"/>
+<meta property="og:description" content=""/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/red-team-your-ai-plan.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/red-team-your-ai-plan-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-12"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Red-Team Your Own AI (Before It Just Flatters You)"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/red-team-your-ai-plan-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Red-Team Your Own AI (Before It Just Flatters You)",
+  "description": "",
+  "image": "https://structurebeatsmagic.com/assets/red-team-your-ai-plan-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/red-team-your-ai-plan.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/red-team-your-ai-plan.html",
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Structure Beats Magic</p>
+  <h1>Red-Team Your Own AI (Before It Just Flatters You)</h1>
+  <p class="subtitle"></p>
+  <div class="byline">By Jaco van der Laan · 2026-07-12</div>
+  <figure class="article-hero"><img src="../assets/red-team-your-ai-plan-hero.png" alt="Red-Team Your Own AI (Before It Just Flatters You)" loading="eager"/></figure>
+  <article>
+  <p>There is a specific moment in AI-assisted knowledge work that deserves more suspicion than it gets. You feed an AI your own material — your notes, your research, your half-finished strategy documents — and ask it to synthesize a plan, a summary, a direction. What comes back sounds remarkably wise. It should. It is your own thinking, distilled, reordered, and rhythm-corrected. The logic is yours. The priorities are yours. The blind spots are yours too — but those don't show, because the synthesis inherited them along with everything else.</p>
+<p>Reading that output feels like insight. Often it is just a mirror with better sentences.</p>
+<p>This is the trap: a synthesis of your own thinking will always tend to flatter you, because it reflects your own reasoning back in polished prose. The AI didn't check whether your plan survives contact with reality. It checked whether your plan follows from your notes — and of course it does. You wrote the notes. If there is a contradiction buried in them, the synthesis will smooth it over. If there is a rationalization dressed up as a decision, the synthesis will present it as a decision. Fluency is not verification, and the fluency here is exceptionally convincing, because the voice underneath it is your own.</p>
+<h2>Borrow the fix from people who attack things for a living</h2>
+<p>Security teams and the military solved a version of this problem long ago. When you build a defense, you do not ask the builders whether it holds — you assign a separate team whose entire job is to break it. The blue team defends; the red team attacks. The red team's mandate is not balance or fairness. It is to assume the thing is flawed and hunt for where.</p>
+<p>Applied to AI outputs, the move is simple: after the AI builds the thing, you run a second pass — a fresh prompt, a fresh conversation, a fresh agent — whose only job is to refute it. Not to review it. Not to "give feedback." To attack it, under the explicit working assumption that the first output is self-flattering and that its most confident passages are the most suspicious ones.</p>
+<p>That second pass is your red team. And you have to build it deliberately, because the AI will not volunteer for the role.</p>
+<h2>Why AI makes the mirror problem worse, not better</h2>
+<p>Two properties of current AI systems make this discipline more necessary, not less.</p>
+<p>First, AI is a sycophant by default. These systems are trained to be helpful and agreeable, and agreement is what helpfulness looks like when nobody is measuring anything else. Ask an AI what it thinks of your business plan and it will find the strengths first, hedge the weaknesses politely, and polish your assumptions rather than puncture them. This is not a bug you can prompt away with "be honest" — it is a default posture, and defaults win unless you engineer against them.</p>
+<p>Second — and this is the uncomfortable part — the better the AI gets at voice and synthesis, the more dangerous the mirror becomes. A clumsy summary invites scrutiny; you can see the seams, so you check the joints. A fluent one glides past your defenses. Confident, well-structured prose is the most seductive kind of wrong, because our instincts treat coherence as a proxy for correctness. Every model generation raises the coherence. None of them raises the correctness of your underlying assumptions, because those came from you, and the model's job was to work with what you gave it.</p>
+<p>The quality of the writing and the quality of the thinking drift apart, and the writing keeps getting better. That is precisely when you need an adversarial step in the loop.</p>
+<h2>How to run a red-team pass</h2>
+<p>The technique is not complicated. It is mostly about discipline in how you separate the roles.</p>
+<p><strong>1. Separate the builder from the critic.</strong> Never let the same conversation both create the output and judge it. A model that just wrote something is, in a functional sense, invested in it — the whole context of the conversation is oriented toward that output being good. Open a fresh session, or spin up a separate agent, and hand it the artifact cold. The critic should carry no memory of the effort that went into building the thing; effort is where attachment comes from.</p>
+<p><strong>2. Instruct it to be adversarial, not balanced.</strong> This is where most attempts go soft. If you ask for a "balanced review," you get a compliment sandwich: two strengths, one gentle concern, a supportive closing. Useless. Instead, assign the attacking role explicitly: <em>"You are a red team. Assume this document is self-flattering. Find the places where it tells the author what they want to hear. What would a blunt friend challenge? Which claims rest on assumptions rather than evidence? What is missing entirely?"</em> Balanced prompts produce mush. Adversarial prompts produce signal — including some false signal, which we will get to.</p>
+<p><strong>3. Give it the source material, not just the output.</strong> A critic that only sees the finished synthesis can judge its internal logic, but the most valuable failures happen in the gap between the sources and the synthesis. Did the summary quietly resolve a contradiction that the notes never resolved? Did the strategy present a preference as a conclusion? Only a critic that can compare the output against the raw material can catch the smoothing. Feed it both and ask specifically: where did the synthesis paper over something the sources left open?</p>
+<p><strong>4. Diversify the attack.</strong> One critic run once catches one class of problems. If the stakes justify it, run several critics with different lenses: one checking factual claims, one hunting for self-serving reasoning, one asking only "what is absent that should be here?" The absence-hunter in particular finds things no general reviewer will — a general reviewer critiques what is on the page, and the worst problems are usually off it.</p>
+<p><strong>5. Ground it externally.</strong> A red team, however sharp, finds <em>internal</em> weaknesses — contradictions, rationalizations, wishful gaps. It cannot tell you that your market estimate is off by a factor of three, because it is arguing from the same materials you are. Pair the red team with a separate research pass that checks your load-bearing claims against outside evidence. Internal skeptic plus external fact-check: two different instruments, two different kinds of blind spot.</p>
+<h2>The part most people miss: the red team is sometimes wrong</h2>
+<p>Here is the honest twist, and it is what separates this technique from a productivity tip.</p>
+<p>The red team is not an oracle. It is a sparring partner, and sparring partners overreach. An AI instructed to attack will attack — including things that don't deserve it. It will flag reasonable confidence as avoidance. It will invent risks to satisfy its mandate. It will read a deliberate, well-considered choice as an unexamined assumption, because that is what it was told to hunt for and it wants to come home with something. Adversarial prompting buys signal at the cost of precision, and that cost is real.</p>
+<p>This is fine. It is even the point — but only if you play your role correctly. Your job is not to accept the critique; your job is to <em>referee</em> it. Push back on the red team the way you would push back on a blunt human colleague: this objection lands, that one misreads the situation, this third one is technically true but doesn't matter. The value was never "the red team is right." The value is the argument — builder versus critic, adjudicated by you — which surfaces things neither pass would have surfaced alone. Some of the best insights come from noticing exactly why a particular critique is wrong, and being forced to say so precisely.</p>
+<p>A red team you obey blindly is just a differently-flattering mirror. You have traded a system that always agrees with you for a system that always disagrees with you, and neither one requires you to think. The thinking is the referee's job, and the referee position is not automatable away. That is not a limitation of the technique. That is the technique.</p>
+<h2>Build the adversary into the loop</h2>
+<p>The pattern underneath all of this is one this site keeps returning to: reliability in AI-assisted work does not come from a better model or a cleverer prompt. It comes from structure — from workflows that assume any single output might be wrong and include a step designed to find out. Engineers do not ship because one test passed; they write tests that actively try to break the build. The same posture applies to your plans, summaries, and strategies — especially the ones synthesized from your own material, because those are the ones your own judgment is least equipped to doubt.</p>
+<p>So the next time an AI hands you a synthesis of your own thinking and it reads like wisdom: enjoy the moment, then open a fresh session and send in the red team. Argue with what comes back. Discard half of it, keep the rest, and notice how much sharper the surviving version is. The mirror is a fine tool. It just should never be the last one you use.</p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/red-team-your-ai.html">Red-Team Your AI</a></li><li><a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a></li><li><a href="../concepts/a-toy-vs-an-instrument.html">A Toy vs an Instrument</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

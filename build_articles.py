@@ -24,6 +24,8 @@ import json
 import shutil
 from pathlib import Path
 
+from image_pipeline import copy_optimised
+
 try:
     import yaml
 except ImportError:
@@ -53,6 +55,15 @@ PRIVATE_SECTIONS = {"notes", "actions", "comments", "briefs"}
 
 # Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
+    # Added 2026-07-18 — six drafts reviewed and approved for publication.
+    # Checked for placeholders, sensitive content (names, amounts, credentials)
+    # and a real ending before being added here.
+    "rules-before-models",
+    "self-contained-atomic-units",
+    "the-self-correcting-system",
+    "hooks-not-hopes",
+    "your-database-is-a-view",
+    "red-team-your-ai-plan",
     "own-the-source-rent-the-interface",
     "the-data-you-never-typed",
     "give-the-recipe-sell-the-kitchen",
@@ -462,7 +473,7 @@ def copy_article_assets(slug: str) -> int:
     n = 0
     for f in sorted(src_dir.iterdir()):
         if f.is_file():
-            shutil.copy2(f, ASSETS / f.name)
+            copy_optimised(f, ASSETS / f.name)
             n += 1
     return n
 

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Everything Is a Folder — Self-Contained, Atomic Knowledge Units — Structure Beats Magic</title>
+<meta name="description" content="One principle runs my whole content system: every article, image, concept, and review is an atomic folder that carries everything about itself — and the database is just a queryable view of it."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/self-contained-atomic-units.html"/>
+<meta property="og:title" content="Everything Is a Folder — Self-Contained, Atomic Knowledge Units"/>
+<meta property="og:description" content="One principle runs my whole content system: every article, image, concept, and review is an atomic folder that carries everything about itself — and the database is just a queryable view of it."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/self-contained-atomic-units.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-08"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Everything Is a Folder — Self-Contained, Atomic Knowledge Units"/>
+<meta name="twitter:description" content="One principle runs my whole content system: every article, image, concept, and review is an atomic folder that carries everything about itself — and the database is just a queryable view of it."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Everything Is a Folder — Self-Contained, Atomic Knowledge Units",
+  "description": "One principle runs my whole content system: every article, image, concept, and review is an atomic folder that carries everything about itself — and the database is just a queryable view of it.",
+  "image": "https://structurebeatsmagic.com/assets/sbm-og-card.svg",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/self-contained-atomic-units.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/self-contained-atomic-units.html",
+  "datePublished": "2026-07-08",
+  "dateModified": "2026-07-08"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For knowledge workers</p>
+  <h1>Everything Is a Folder — Self-Contained, Atomic Knowledge Units</h1>
+  <p class="subtitle">One principle runs my whole content system: every article, image, concept, and review is an atomic folder that carries everything about itself — and the database is just a queryable view of it.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-08</div>
+  
+  <article>
+  <hr/>
+<h2>The mess this replaced</h2>
+<p>Before the principle, my content lived the way most people's does. Articles were markdown files in one directory. Their images went into a shared <code>attachments/</code> pile, named whatever the export tool named them. Review notes, if they existed, were scattered — some inline, some in a separate doc, some in my head. The database, when I finally built one to make sense of it all, was where I <em>edited</em> things, because that's where the data felt real.</p>
+<p>Everything about that arrangement fought me. To move an article, I had to hunt down its images in the shared pile and hope I got all of them. To reason about the corpus — what's missing, what's stale, what's ready — I queried a database that had quietly drifted from the files. To reuse a good paragraph, I had to remember which three-thousand-word document it was buried in. Nothing was a <em>thing</em> I could pick up. Everything was a relationship I had to reconstruct.</p>
+<p>Then I rebuilt the whole corpus around one rule, and the friction didn't reduce — it <em>disappeared</em>. The rule is almost embarrassingly simple, and it's the subject of this piece.</p>
+<h2>The one-sentence thesis</h2>
+<blockquote><p>Every unit of knowledge — an article, an image, a concept, a series, even a review — is a <strong>self-contained, atomic folder</strong> that carries everything about itself. And a database sits alongside as a <strong>queryable view of the files</strong>, never as the master.</p></blockquote>
+<p>Two ideas, welded together. First: the unit of everything is a <em>folder</em>, and that folder holds the unit and everything belonging to it, with nothing loose and nothing scattered. Second: the database that makes the whole thing queryable is a <em>projection</em> of those folders, not a second home for the truth. The rest of this article is those two ideas, made concrete.</p>
+<h2>Atomic and self-contained, at every level</h2>
+<p>Here's the shape. An article is not a file — it's a <strong>folder</strong>: the markdown that <em>is</em> the article (a same-named folder-note), its <code>assets/</code> of images, its <code>review/</code> notes. Everything the article needs to exist lives inside the article's folder.</p>
+<p>Now zoom in, because the principle is fractal. Each image isn't just a loose PNG in the assets pile — it's <em>also</em> a folder, holding the image file, a properties note describing it, and its own regeneration brief. Zoom out, and a <em>concept</em> is a folder, a <em>series</em> is a folder, a <em>review</em> is a folder. The same shape — one unit, one folder, everything about it inside — repeats at every level of the system. It's the <a href="../concepts/knowledge-graph.html">[Zettelkasten</a>](../concepts/zettelkasten.html) idea of the <a href="../concepts/atomic-documents.html">atomic note</a>, taken seriously and applied to <em>every content type</em>, not just prose notes. The atom isn't the sentence or the file. It's the self-contained folder, wherever you look.</p>
+<h2>Why atomicity is the thing that makes reuse and automation safe</h2>
+<p>This isn't tidiness for its own sake. A self-contained unit has a property that a scattered one can never have: <strong>it can be picked up whole, and everything comes with it.</strong></p>
+<p>Move the folder, and the article moves <em>with</em> its images and its review notes — no dangling references, no orphaned attachments, no "wait, where did that diagram go." Publish the folder, and the build script finds everything it needs in one place. Hand the folder to a colleague — or point an AI at it — and it has the <em>entire</em> story, no external context required, because the context is <em>inside the unit.</em> That last part is why this matters more in 2026 than it did before: an AI agent working through your corpus can reason about a self-contained folder because the folder is complete. It can't reason about a file whose meaning is scattered across three other directories it would have to go find.</p>
+<p>Atomicity is what makes reuse safe (you reuse a whole, coherent unit, not a fragment ripped from context) and automation safe (a script or an agent operates on a bounded thing, not a web of assumed relationships). Get the <em>boundary</em> of the unit right, make every unit <em>carry itself</em>, and everything downstream — moving, publishing, reasoning, reusing — becomes trivial instead of treacherous.</p>
+<h2>The database is a view, not the master</h2>
+<p>The second half of the thesis is where people's instincts betray them. Once you have hundreds of these folders, you want to <em>query</em> across them — what's missing a concept tag, which images need regenerating, what's the review status across six hundred articles? A folder tree can't answer that. A database can.</p>
+<p>So you build one — and the temptation, immediately, is to treat it as the real data and start editing it directly. Don't. <strong>All truth lives in the files</strong> — the markdown bodies and their YAML frontmatter. The database is a <em>derived, queryable representation of that YAML</em>, rebuilt from the files on every run. It exists to answer the cross-cutting questions the folders can't, without ever becoming a second place the truth lives. Edit the <em>frontmatter</em>, re-run, and the view updates. <strong>Never edit the view.</strong></p>
+<p>Because it's a view, the discipline that keeps it honest is: after any change, you rebuild it — seconds, not minutes. That single habit — files are truth, the database is a fast disposable projection you regenerate on demand — is what lets the system be <em>both</em> fully human-editable (they're just folders and text) <em>and</em> fully machine-queryable (there's a SQL layer over them) at the same time, without the two ever disagreeing. (This is important enough to stand on its own — the rebuild discipline and its failure modes are <a href="your-database-is-a-view.html">Your Database Is a View</a>; here it's one half of the atomic-unit principle.)</p>
+<h2>Why this beats every alternative I tried</h2>
+<p>Set the atomic-folder-plus-view design against the three things people actually do instead, and each alternative fails at a specific, predictable joint.</p>
+<p><strong>Versus a big database as the master:</strong> the database drifts from reality, because it's edited independently, and one day you can't tell which is right — the file or the row. The files, by contrast, <em>are</em> the reality; they can't drift from themselves. And files survive a tool change — open them in any editor, forever — while a proprietary database schema is a bet on one tool outliving your data. Truth in files, queries in a rebuildable view: you get the database's power without staking your data on it.</p>
+<p><strong>Versus loose files plus search:</strong> search is excellent at <em>finding</em>, and useless at everything else. It can't <em>move</em> a unit, <em>publish</em> one, <em>back one up</em>, or <em>reason about one as a whole</em>, because search returns matching lines, not bounded things. Atomic folders can be all of those, because a folder <em>is</em> a bounded thing. (This is the deeper reason <a href="folderize-folders-still-beat-tags.html">folders still beat tags</a> — the atomic folder is <em>why</em> the folder wins.)</p>
+<p><strong>Versus one giant document:</strong> you cannot reuse a paragraph buried in a three-thousand-word file — to reuse it, you'd have to extract it, and now you've got two copies drifting apart. You <em>can</em> reuse an atomic unit, because it was already a self-contained thing with its own boundary. Reuse requires atomicity; a monolith forbids it.</p>
+<h2>The intelligence falls out of the structure</h2>
+<p>Here's the payoff, and it's the whole "structure beats magic" argument in miniature. My content system does things that <em>look</em> intelligent — it finds gaps (which articles imply a piece that doesn't exist yet), spots duplicates, tracks review status across the whole corpus, plans what to publish next. None of that is magic, and none of it required a clever algorithm. It's simply <strong>what the atomic structure plus the YAML-as-data make computable.</strong></p>
+<p>Because every unit is a self-contained folder, a script can walk them. Because every unit carries its own frontmatter, that walk produces <em>data</em>. Because the database is a rebuilt view of that data, the cross-cutting questions become SQL. The "intelligence" of the system is a <em>consequence</em> of the structure, not an addition to it. You don't build a smart system on top of a messy one. You get the unit boundary right, make every unit carry itself, keep the database as a view — and the smart behavior <em>falls out for free.</em></p>
+<h2>Get the boundary right, and everything follows</h2>
+<p>The mess I started with wasn't a discipline problem or a tooling problem. It was a <em>boundary</em> problem: nothing was a self-contained thing, so nothing could be picked up, reused, reasoned about, or trusted. The fix wasn't a better app. It was one principle, applied ruthlessly at every level: <strong>one unit, one folder, everything about it inside — and a database that's only ever a view of the files.</strong></p>
+<p>This is <strong>structure beats magic</strong> at the most foundational level of a knowledge system — the level that decides whether everything above it is computable or just searchable. The magic answer is an all-knowing app that organizes your mess for you. The structural answer is to <em>not have a mess</em>: make every unit atomic and self-contained, keep the truth in files and the queries in a rebuildable view, and watch the system's intelligence emerge from its shape rather than from a promise. Get the atom right, and the whole falls out for free.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series — the layer beneath <a href="folderize-folders-still-beat-tags.html">Folders Still Beat Tags</a> (why folder-per-unit works) and the sibling of <a href="your-database-is-a-view.html">Your Database Is a View</a> (the rebuild discipline). Pointing an AI at these self-contained units is <a href="context-engineering-for-one.html">Context Engineering for One</a>. Born from the content-backbone rebuild (ADR-071).</em></p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a></li><li><a href="../concepts/deliberate-by-design.html">Deliberate by Design</a></li><li><a href="../concepts/find-the-essence-first.html">Find the Essence First</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
