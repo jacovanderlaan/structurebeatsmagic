@@ -285,6 +285,7 @@ INDEX_PAGE = """<!doctype html>
 <link rel="canonical" href="{canonical}"/>
 <meta property="og:title" content="My library — Structure Beats Magic"/>
 <meta property="og:description" content="The books behind the method — a curated shelf, each read through the Structure-Beats-Magic lens."/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="{canonical}"/>
 <meta property="og:site_name" content="Structure Beats Magic"/>

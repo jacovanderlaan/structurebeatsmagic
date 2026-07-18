@@ -449,7 +449,7 @@ NAV = """<header class="site">
       <span class="navgroup">
         <button class="navtop" type="button">Proof</button>
         <span class="navmenu">
-          <a href="../#samples">Sample systems</a>
+          <a href="../#use-cases">Sample systems</a>
           <a href="../influences/">Influences</a>
           <a href="../#about">About Jaco</a>
         </span>
