@@ -32,6 +32,10 @@
     <lastmod>2026-07-18</lastmod>
   </url>
   <url>
+    <loc>https://structurebeatsmagic.com/articles/eight-old-drives.html</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://structurebeatsmagic.com/articles/almost-everything-is-an-agreement.html</loc>
     <lastmod>2026-07-16</lastmod>
   </url>
@@ -90,6 +94,10 @@
   <url>
     <loc>https://structurebeatsmagic.com/articles/content-to-training.html</loc>
     <lastmod>2026-07-09</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/folderize-folders-still-beat-tags.html</loc>
+    <lastmod>2026-07-08</lastmod>
   </url>
   <url>
     <loc>https://structurebeatsmagic.com/articles/find-the-essence-first.html</loc>
@@ -164,10 +172,6 @@
     <lastmod>2026-07-04</lastmod>
   </url>
   <url>
-    <loc>https://structurebeatsmagic.com/articles/your-trips-are-already-structured-data-part-1.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://structurebeatsmagic.com/articles/your-photos-are-already-a-map.html</loc>
     <lastmod>2026-06-29</lastmod>
   </url>
@@ -177,10 +181,6 @@
   </url>
   <url>
     <loc>https://structurebeatsmagic.com/articles/stop-prompting-start-directing.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://structurebeatsmagic.com/articles/your-trips-are-already-structured-data-part-2.html</loc>
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
@@ -208,7 +208,31 @@
     <lastmod>2026-06-28</lastmod>
   </url>
   <url>
+    <loc>https://structurebeatsmagic.com/articles/mobile-data-auto-pipeline.html</loc>
+    <lastmod>2026-05-28</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/syncthing-as-the-glue.html</loc>
+    <lastmod>2026-05-27</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/master-vs-publish-vaults.html</loc>
+    <lastmod>2026-05-27</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/health-metrics-local-duckdb.html</loc>
+    <lastmod>2026-05-27</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/photo-library-to-photo-memory.html</loc>
+    <lastmod>2026-05-27</lastmod>
+  </url>
+  <url>
     <loc>https://structurebeatsmagic.com/articles/day-folders-atomic-capture.html</loc>
+    <lastmod>2026-05-27</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/data-driven-daily-notes.html</loc>
     <lastmod>2026-05-27</lastmod>
   </url>
   <url>

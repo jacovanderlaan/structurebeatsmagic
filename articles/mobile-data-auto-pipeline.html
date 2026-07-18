@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Mobile Data Auto-Pipeline — Turning a Once-a-Year Export Button into a Five-Tap Habit — Structure Beats Magic</title>
+<meta name="description" content="Every app has a &#x27;Download your data&#x27; button buried in settings. Most people press it once and forget. Here&#x27;s the dropzone-and-routing pipeline that turns it into a routine your notes consume."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/mobile-data-auto-pipeline.html"/>
+<meta property="og:title" content="The Mobile Data Auto-Pipeline — Turning a Once-a-Year Export Button into a Five-Tap Habit"/>
+<meta property="og:description" content="Every app has a &#x27;Download your data&#x27; button buried in settings. Most people press it once and forget. Here&#x27;s the dropzone-and-routing pipeline that turns it into a routine your notes consume."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/mobile-data-auto-pipeline.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-05-28"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="The Mobile Data Auto-Pipeline — Turning a Once-a-Year Export Button into a Five-Tap Habit"/>
+<meta name="twitter:description" content="Every app has a &#x27;Download your data&#x27; button buried in settings. Most people press it once and forget. Here&#x27;s the dropzone-and-routing pipeline that turns it into a routine your notes consume."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Mobile Data Auto-Pipeline — Turning a Once-a-Year Export Button into a Five-Tap Habit",
+  "description": "Every app has a 'Download your data' button buried in settings. Most people press it once and forget. Here's the dropzone-and-routing pipeline that turns it into a routine your notes consume.",
+  "image": "https://structurebeatsmagic.com/assets/sbm-og-card.svg",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/mobile-data-auto-pipeline.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/mobile-data-auto-pipeline.html",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>The Mobile Data Auto-Pipeline — Turning a Once-a-Year Export Button into a Five-Tap Habit</h1>
+  <p class="subtitle">Every app has a &#x27;Download your data&#x27; button buried in settings. Most people press it once and forget. Here&#x27;s the dropzone-and-routing pipeline that turns it into a routine your notes consume.</p>
+  <div class="byline">By Jaco van der Laan · 2026-05-28</div>
+  
+  <article>
+  <hr/>
+<h2>The one-time-export trap</h2>
+<p>Buried three or four menus deep in every wearable and health app is a button that says something like <em>Download your data.</em> It's there because regulation made it be there, and it works: press it and you get a zip of fifty to a hundred files with everything the app knows about you. It is, in principle, the escape hatch from the vendor's walled garden.</p>
+<p>In practice, almost nobody uses it more than once. You press it, a zip lands in your Downloads, you save it <em>somewhere</em>, and then… nothing. Six months later that export is stale, half its contents are data you no longer care about, and the thought of doing the whole menu-diving, unzip, figure-out-the-format dance <em>again</em> is enough that you don't. The export button gives you your data exactly once and then bets — correctly — that you'll never make the effort to keep it current.</p>
+<p>The reason isn't laziness. It's that <strong>the export is a one-time act and using the data is an unclear ongoing workflow</strong>, and a one-time act pointed at an unclear workflow decays to zero. The fix isn't discipline. It's turning the workflow into a <em>pipeline</em> — so that pressing the button becomes a five-tap habit whose payoff is automatic and visible.</p>
+<h2>The architecture: four hops, two of them automated</h2>
+<p>Here's the shape that makes the export sustainable. It's four hops, and the trick is that only two of them are manual — and the manual two are cheap.</p>
+<pre><code>Phone: press "export"  →  saves to /Download/&lt;vendor&gt;/
+   ↓  (Syncthing, automatic)
+Laptop: drop-zone folder
+   ↓  (routing script, one command)
+DuckDB: per-vendor schema
+   ↓  (daily-note enrichment, automatic)
+Daily-note sections: ## Workouts, ## Health metrics, ...</code></pre>
+<p><strong>Hop one</strong> is pressing export on the phone — manual, five taps, unavoidable, because the vendor gives no API. <strong>Hop two</strong> is transport, and it's <em>automatic</em>: a sync tool watches the phone's download folder and mirrors new exports to a dropzone on the laptop, with no cloud in the middle. <strong>Hop three</strong> is one command — run the routing script — which imports the export into a local database. <strong>Hop four</strong> is <em>automatic</em> again: the daily-note enrichment reads the freshly-imported data and drops it into each day's note.</p>
+<p>Two manual touches (press export, run the script), two automated legs (sync, enrich). The whole difference between "a button I press once a year" and "a habit I keep" is that the pipeline removes every step <em>between</em> pressing export and seeing the data show up where I'll actually read it. (What the notes do with the data — the schema, the views, the cross-source joins — is the <a href="health-metrics-local-duckdb.html">health-metrics spoke</a>; this piece is about getting it there safely.)</p>
+<h2>Syncthing as the transport, and why not the cloud</h2>
+<p>The transport leg is peer-to-peer sync rather than a cloud drive, and the choice is deliberate: your complete health export is exactly the kind of data you don't want sitting on someone else's server just to move it between two of your own devices. <a href="syncthing-as-the-glue.html">Syncthing does this gluing</a> — direct device-to-device, encrypted in transit, no third party — and the one configuration detail that matters here is folder-type. This particular flow wants <em>both sides able to delete</em>, because the pipeline's cleanup step (below) needs the deletion to propagate back to the phone. And a <code>.stignore</code> keeps the OS junk and soft-deleted files out of the transfer, so the dropzone only ever sees real exports.</p>
+<h2>The drop-zone: a staging area that's empty by design</h2>
+<p>The exports do <strong>not</strong> sync straight into your canonical data folders, and that restraint is the whole safety story.</p>
+<p>A drop-zone is a <em>temporary staging area</em> — a folder that is empty by design, whose only job is to catch inbound exports and hold them until the routing script processes them. The reason not to sync directly into canonical storage is blunt: a mirrored folder can <em>propagate deletes and overwrites</em>, and you never want the sync layer able to reach into your structured, permanent data and modify it because a phone did something weird. The dropzone is a quarantine. Data lands there, gets inspected and imported deliberately, and only <em>then</em> — through code you control, not through the sync protocol — reaches anything permanent. A folder-note in the dropzone documents the flow, so future-you (or an AI) knows what this staging area is for.</p>
+<h2>The routing script: the brain, and where the safety lives</h2>
+<p>The routing script is the one command you run, and it's built around a single principle: <strong>do the dangerous things only on the success path.</strong></p>
+<p>Its sequence:</p>
+<p>1. <strong>Detect</strong> new exports in the dropzone by name-pattern. 2. <strong>Move</strong> them to a dated canonical folder — using a copy-then-verify, not a bare move, so a half-transferred file can't corrupt the archive. 3. <strong>Import</strong> via a vendor-specific parser into DuckDB. 4. <strong>Smoke-test</strong>: did rows actually land? Query the table; confirm the import produced data, not an empty success. 5. <strong>Only on success</strong>, enrich the daily-notes and apply the retention policy. 6. <strong>Only on success</strong>, clean up the dropzone — which propagates the delete back to the phone, freeing its storage.</p>
+<p>The ordering is the safety. Deletes and cleanups come <em>last</em>, gated behind a smoke-test that proves the import worked. If anything fails — a corrupt export, a format the parser doesn't recognize, zero rows imported — the script <strong>stops and leaves the dropzone intact</strong> for manual inspection. Nothing is deleted, nothing is cleaned up, the evidence is preserved exactly where it landed. And the whole thing is <strong>idempotent</strong>: re-running it is always safe, because it detects what's already been processed and only acts on what's new. Safety here isn't the <em>absence</em> of failure — failures will happen, vendors will ship broken exports. Safety is that failure leaves everything recoverable and success is the only thing that triggers a delete.</p>
+<h2>Retention: the database is the history, the exports are just evidence</h2>
+<p>Once data is imported, the raw export has done its job — the <em>history</em> now lives in DuckDB, and the export file is merely the evidence that an import happened. So retention can be aggressive without losing anything:</p>
+<ul><li>Keep the <strong>last couple of exports</strong> in the canonical folder (for a quick re-import if you ever need one).</li><li>Move <strong>older exports to an archive</strong> folder.</li><li><strong>Delete archived exports past thirty days</strong> — the data they carried is already in the database, permanently.</li></ul>
+<p>This keeps import-evidence around long enough to debug a bad import, without letting years of redundant hundred-file zips pile up. The rule that makes it safe to be this aggressive: <strong>the database is the canonical history; the exports are import-evidence, not the record.</strong> Confuse those two and you hoard exports forever out of fear; separate them and retention becomes obvious.</p>
+<h2>The vendor-quirk reality</h2>
+<p>An honest word about the parsers, because this is where the pipeline meets the real world's mess. Every vendor exports differently and inconsistently. One health platform <em>changed its CSV export format mid-year</em> and sometimes ships JSON instead of CSV for the same data — so the parser has to tolerate both. Another exports only XML, never CSV, and parsing it is its own small project. A third takes <em>days</em> to fulfill a full export request. So you write <strong>one importer per vendor</strong> — each absorbing that vendor's specific weirdness — but the routing, the smoke-test, the retention, and the enrichment are <strong>shared infrastructure</strong> used by all of them. The vendor-specific ugliness is quarantined in the parser; everything downstream is uniform. That separation is what keeps the pipeline maintainable as vendors churn their formats underneath you.</p>
+<h2>What this isn't</h2>
+<p>Briefly, the boundaries, because an infra piece should draw them. This is <strong>not real-time</strong> — export cadence is measured in weeks, and that's fine; the point is a durable record, not a live feed. It's <strong>not medical</strong> — it's a reflection and memory system, not diagnosis. And it's <strong>not a vendor replacement</strong> — the vendor's own app stays for live coaching and glanceable today-numbers. The pipeline isn't trying to <em>replace</em> the app; it's trying to free the data the app is sitting on, and route it somewhere the app was never going to take it: into the notes you actually re-read.</p>
+<h2>The button was never the opportunity — the pipeline is</h2>
+<p>The "Download your data" button feels like the escape hatch, but on its own it's a dead end: a one-time export pointed at a workflow you'll never repeat. The opportunity was never the button. It's the <strong>pipeline that stands behind it</strong> — dropzone, routing-script, smoke-test, retention, delete-on-success — that turns a once-a-year chore into a five-tap habit whose results show up where you'll see them.</p>
+<p>This is <strong>structure beats magic</strong> at the plumbing layer of a personal system. The magic answer is a vendor that finally gives you a good API and a lovely dashboard (they won't). The structural answer owns the transport yourself: a staging dropzone so the sync layer can never touch your canonical data, a routing script that does the dangerous work only after a smoke-test passes, and a retention rule that trusts the database as the history. Build that once, and your data stops being trapped behind a button you'll never press twice.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series — the transport spoke under <a href="data-driven-daily-notes.html">Data-Driven Daily Notes</a>. The sync leg is <a href="syncthing-as-the-glue.html">Syncthing as the Glue</a>; what the notes do with the landed data — schema, views, cross-source joins — is <a href="health-metrics-local-duckdb.html">Health Metrics in a Local DuckDB</a>.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

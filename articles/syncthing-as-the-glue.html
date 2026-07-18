@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Syncthing as the Glue: One Tool, Three Flows, Zero Cloud — Structure Beats Magic</title>
+<meta name="description" content="Phone photos in, vault views out, a folder shared with family — three different sync-flows, one tool, and folder-type as the security boundary."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/syncthing-as-the-glue.html"/>
+<meta property="og:title" content="Syncthing as the Glue: One Tool, Three Flows, Zero Cloud"/>
+<meta property="og:description" content="Phone photos in, vault views out, a folder shared with family — three different sync-flows, one tool, and folder-type as the security boundary."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/syncthing-as-the-glue.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-05-27"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Syncthing as the Glue: One Tool, Three Flows, Zero Cloud"/>
+<meta name="twitter:description" content="Phone photos in, vault views out, a folder shared with family — three different sync-flows, one tool, and folder-type as the security boundary."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Syncthing as the Glue: One Tool, Three Flows, Zero Cloud",
+  "description": "Phone photos in, vault views out, a folder shared with family — three different sync-flows, one tool, and folder-type as the security boundary.",
+  "image": "https://structurebeatsmagic.com/assets/sbm-og-card.svg",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/syncthing-as-the-glue.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/syncthing-as-the-glue.html",
+  "datePublished": "2026-05-27",
+  "dateModified": "2026-05-27"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Syncthing as the Glue: One Tool, Three Flows, Zero Cloud</h1>
+  <p class="subtitle">Phone photos in, vault views out, a folder shared with family — three different sync-flows, one tool, and folder-type as the security boundary.</p>
+  <div class="byline">By Jaco van der Laan · 2026-05-27</div>
+  
+  <article>
+  <hr/>
+<h2>The tool everyone underuses</h2>
+<p>Syncthing is a peer-to-peer file-sync tool: no cloud server in the middle, encrypted in transit, mirroring directories directly between your own devices. Most people install it to solve one narrow problem — get photos off the phone, say — get that working, and never touch it again. They've seen a fraction of what it does.</p>
+<p>Its real value shows up when you stop thinking of it as <em>a way to move one folder</em> and start thinking of it as <strong>the glue layer</strong> for personal infrastructure: the thing that connects your phone, your laptop, your tablet, and a family member's machine into one small mesh, each connection carrying a <em>different</em> flow with a <em>different</em> direction and a <em>different</em> trust level. Three of those flows cover most of a well-run personal setup, and the interesting thing is that they're all the same tool configured three ways — the configuration <em>is</em> the design.</p>
+<p>Before that, one boundary worth drawing clearly, because it's where people misuse it: Syncthing is a <strong>mirror</strong>, not a backup and not a file-server. A backup keeps <em>history</em> so you can go back in time — that's Restic's job, and if a file gets corrupted, Syncthing will faithfully mirror the corruption everywhere. A file-server gives you <em>remote access and permissions</em> — that's Nextcloud's job. Syncthing keeps N copies of a directory <em>identical, now</em>, across devices you control. Ask it to be a backup and it will lose you data with perfect fidelity. Use it for what it is and it's superb.</p>
+<h2>The three flows, as three trust configurations</h2>
+<p>Here are the three flows I run, and the point is less the flows themselves than that each one is a <em>direction</em> and a <em>trust decision</em> made concrete:</p>
+<p><strong>Photos in.</strong> The phone's camera roll flows <em>up</em> to the laptop, landing in an inbox folder where a routing script can pick them up. The laptop is <strong>receive-only</strong> here — it takes what the phone sends and never pushes back. The phone owns this flow; the laptop is a sink.</p>
+<p><strong>Vault views out.</strong> A published view of my knowledge vault flows <em>down</em> from the laptop to the phone and tablet. The mobiles are <strong>receive-only</strong> — they <em>display</em> the vault but can't modify the source. The laptop owns this flow; the mobiles are consumers. (What gets filtered into that view is the <a href="master-vs-publish-vaults.html">master-vs-publish-vault</a> question; Syncthing just carries the result.)</p>
+<p><strong>A folder shared out.</strong> A slice of family-context content flows <em>one way</em> to a family member's laptop. Their side is <strong>receive-only</strong> — they can read it, they can't corrupt it, and nothing they do propagates back to me.</p>
+<p>Three flows, three directions, three trust levels — and every one of them is enforced by a single choice you make per folder. That choice is the whole security model.</p>
+<h2>Folder-type is the security boundary</h2>
+<p>This is the sentence to take away: <strong>folder-type is the security boundary, not user-permissions.</strong></p>
+<p>Most people reach for permissions — accounts, roles, "can this user edit." Syncthing gives you something blunter and, for personal infrastructure, better: it enforces <em>direction</em> at the protocol level, per folder, per device.</p>
+<ul><li><strong>Send-Only</strong> on a source means: this device pushes changes out and refuses to accept them in. Set your master side to send-only and it becomes structurally untouchable from downstream. Nothing a remote device does can flow back and alter it.</li><li><strong>Receive-Only</strong> on a target means: this device accepts the source's version and <em>any local modification gets reverted.</em> Not "discouraged" — reverted. A receive-only copy cannot fork away from its source, because the protocol won't let it.</li><li><strong>Send-Receive</strong> is the only bidirectional type, and you use it <em>deliberately and rarely</em> — for a genuine two-way folder like a capture back-channel, where both ends legitimately write.</li></ul>
+<p>The reason this beats permissions for a personal setup is that it's not a policy someone has to honor — it's a property of the sync relationship. Your family member on a receive-only folder <em>cannot</em> accidentally corrupt your data, no matter what they do on their end, because their edits don't survive the next sync. You didn't trust them to be careful; you configured a boundary that doesn't require them to be. And Syncthing tells you it's holding — the "reduced by ignore patterns" and out-of-sync indicators are your live confirmation that the direction is being enforced.</p>
+<h2>The ignore-file is the other half of the value</h2>
+<p>Between folder-types and ignore-files, you've captured most of what makes Syncthing worth running. The <code>.stignore</code> file — a per-folder list of what <em>not</em> to sync — is what keeps a flow clean.</p>
+<p>The patterns are unglamorous and essential. On Android, exclude the junk the OS scatters through your storage: soft-deleted files (<code>.trashed-*</code>), pending downloads (<code>.pending-*</code>), the <code>.nomedia</code> markers. Everywhere, exclude OS metadata cruft — <code>Thumbs.db</code>, <code>desktop.ini</code>, <code>.DS_Store</code>, the <code>._*</code> resource forks — because otherwise your clean vault view fills up with invisible garbage from three operating systems. Keep the ignore-lists <strong>folder-scoped</strong>, not global: each flow has different noise, and a per-folder <code>.stignore</code> is easier to reason about than one giant exclude file trying to cover every case.</p>
+<p>The photo flow deserves special mention because it's the one that bites people. A phone's DCIM directory is not just your camera roll — it's screenshots, chat-app caches, downloaded memes, and soft-deleted images the OS hasn't purged yet. Sync it wholesale and you've mirrored a landfill to your laptop. Either filter hard at the source with <code>.stignore</code>, or let it land in an inbox and filter on the laptop side with a routing script. Raw DCIM is never what you want; the filtering is the work.</p>
+<h2>The gotchas nobody warns you about</h2>
+<p>Two categories reliably cost people an afternoon, so name them up front.</p>
+<p><strong>Android power management.</strong> Syncthing is a background service, and modern Android is aggressive about killing those. If your phone flow mysteriously stalls, the culprit is almost always battery optimization — the Syncthing app has to be set to <em>unrestricted</em> background activity or the OS suspends it. Wi-Fi power-saving compounds it, dropping the sync's TCP sockets mid-transfer. The reliable move for a big initial sync is boring: screen on, plugged in, and let it run. And read the status correctly — a large <code>errors == needFiles</code> count during a first sync isn't an error, it's just "still has files to fetch." It clears itself.</p>
+<p><strong>Device pairing.</strong> The pairing dance is a two-step exchange people rush and then debug. First, devices exchange IDs — scan a QR or copy the string. Then, for each folder, one side <em>shares</em> it and the other side must <em>accept</em> it. The "a device wants to share a folder with you" notification is flaky on some platforms; when it doesn't appear, don't assume pairing failed — open the Web UI directly and accept the folder there. The Web UI is the source of truth; the notifications are a convenience that sometimes lies.</p>
+<h2>What Syncthing deliberately doesn't do</h2>
+<p>An honest tool has honest gaps, and Syncthing's tell you what to pair it with.</p>
+<p>It has <strong>no real conflict resolution</strong> — when two sides edit the same file, it doesn't merge or prompt; it just drops a <code>.sync-conflict-*</code> file next to the original and leaves you to sort it out. This is fine precisely <em>because</em> you've used folder-types to make most flows one-directional: a receive-only target can't create a conflict. It has <strong>no version history</strong> — it mirrors the present, so a deletion or a corruption propagates instantly with no undo, which is exactly why it sits <em>alongside</em> a real backup tool rather than replacing one. And it has <strong>no filtering intelligence</strong> — it moves whole folders as-is, which is why the interesting decision of <em>what each audience sees</em> happens upstream in a publish-engine, and Syncthing only carries the already-filtered result.</p>
+<p>Those aren't failures. They're the shape of a tool that does one job — keep directories identical across your devices — and leaves the adjacent jobs to tools built for them.</p>
+<h2>One tool, well-bounded</h2>
+<p>The mistake with Syncthing is treating it as a solution to one problem. The move is treating it as the <strong>glue</strong> between problems: the transport layer that connects a routing script, a publish-engine, and a backup tool into something that behaves like personal infrastructure instead of a pile of manual copies.</p>
+<p>This is <strong>structure beats magic</strong> at the infrastructure layer. The magic version is a cloud service that syncs everything and asks you to trust it with all of it. The structural version keeps the data on devices you own, and encodes the trust decisions as <em>folder-types</em> — send-only where the source must stay pristine, receive-only where a copy must never fork, send-receive only where two-way is truly meant. Get the folder-types and the ignore-files right and you've done eighty percent of the work. The rest is knowing what Syncthing <em>isn't</em>, and pairing it with the tools that are.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series. What gets filtered into each synced view is <a href="master-vs-publish-vaults.html">Master vs Publish Vaults</a>; the division of labor between Syncthing, Restic, and Git — mirror vs backup vs history — is its own piece.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

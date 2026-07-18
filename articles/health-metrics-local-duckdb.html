@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Health Metrics in a Local DuckDB — Owning the Data Your Wearable Won&#x27;t Let You Query — Structure Beats Magic</title>
+<meta name="description" content="Your watch collects excellent data and shows it badly. Export it once, land it in a local database you own, and the questions the vendor app can&#x27;t answer become one line of SQL."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/health-metrics-local-duckdb.html"/>
+<meta property="og:title" content="Health Metrics in a Local DuckDB — Owning the Data Your Wearable Won&#x27;t Let You Query"/>
+<meta property="og:description" content="Your watch collects excellent data and shows it badly. Export it once, land it in a local database you own, and the questions the vendor app can&#x27;t answer become one line of SQL."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/health-metrics-local-duckdb.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-05-27"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Health Metrics in a Local DuckDB — Owning the Data Your Wearable Won&#x27;t Let You Query"/>
+<meta name="twitter:description" content="Your watch collects excellent data and shows it badly. Export it once, land it in a local database you own, and the questions the vendor app can&#x27;t answer become one line of SQL."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Health Metrics in a Local DuckDB — Owning the Data Your Wearable Won't Let You Query",
+  "description": "Your watch collects excellent data and shows it badly. Export it once, land it in a local database you own, and the questions the vendor app can't answer become one line of SQL.",
+  "image": "https://structurebeatsmagic.com/assets/sbm-og-card.svg",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/health-metrics-local-duckdb.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/health-metrics-local-duckdb.html",
+  "datePublished": "2026-05-27",
+  "dateModified": "2026-05-27"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Health Metrics in a Local DuckDB — Owning the Data Your Wearable Won&#x27;t Let You Query</h1>
+  <p class="subtitle">Your watch collects excellent data and shows it badly. Export it once, land it in a local database you own, and the questions the vendor app can&#x27;t answer become one line of SQL.</p>
+  <div class="byline">By Jaco van der Laan · 2026-05-27</div>
+  
+  <article>
+  <hr/>
+<h2>The wearable-data paradox</h2>
+<p>A modern watch is a superb sensor. It reads your heart rate every few seconds, logs every night's sleep in stages, records every workout with GPS and calories, tracks your weight each time you step on the scale. The <em>data</em> it generates is genuinely rich and genuinely yours.</p>
+<p>Then it hands that data to an app that shows you almost none of it. Samsung Health, Apple Health, Garmin Connect — they all present roughly the same thing: today's numbers, this week's, maybe a graph. Clean, glanceable, and <em>closed.</em> Ask a real question — <em>what was my average heart rate across every crosstrainer session in 2025? did my resting HR drift up in the months I traveled most? how did long-haul flights affect my sleep recovery?</em> — and the app has no answer, not because the data is missing but because the UI was built for a casual reader glancing at a dashboard, not for anyone who wants to actually <em>interrogate</em> their own history.</p>
+<p>That's the paradox: <strong>the data is there, and it's yours, and you can't query it.</strong> The silo isn't a data problem. It's an interface problem — and interface problems have a clean structural fix: get the data out from behind the interface and into something you can point SQL at.</p>
+<h2>Why DuckDB is the right home for personal analytics</h2>
+<p>The tool that makes this cheap enough to bother with is DuckDB, and it fits personal data almost suspiciously well.</p>
+<p>It's <strong>file-based</strong> — no server to run, no Docker, no daemon to keep alive; a database is just a file on your disk. It speaks <strong>SQL</strong> — the query language every analyst already knows, so you're not learning a bespoke syntax to ask your own data a question. It's <strong>local</strong> — the data stays on your machine, never uploaded, which for a complete record of your body's signals is not a small thing. It's <strong>fast at scale</strong> — millions of heart-rate readings query in under a second, so raw sensor data is no burden. And it <strong>reads whatever the vendors dump</strong> — CSV, JSON, Parquet — so an export in any format lands with minimal wrangling. For owning analytical personal data, DuckDB is the unsung hero: all the power of a real analytical database, none of the operational weight.</p>
+<h2>The schema you actually want: raw events under daily-aggregate views</h2>
+<p>Once the export has landed — and <em>getting</em> it there reliably is <a href="mobile-data-auto-pipeline.html">its own pipeline</a>, which this piece assumes rather than repeats — the shape that makes the data useful is two-layered.</p>
+<p>Underneath sit the <strong>raw event tables</strong> — one row per heart-rate reading, per sleep record, per exercise session — kept intact for any ad-hoc question you'll think of later. On top sit <strong>daily-aggregate views</strong> that roll those events up to the grain a daily-note wants: one row per day, per metric.</p>
+<pre><code>CREATE VIEW v_exercise AS
+  SELECT start_time::DATE AS day, exercise_type, duration_min,
+         mean_hr, max_hr, calories, distance_m, start_lat, start_lon
+  FROM exercise;
+
+CREATE VIEW v_heart_rate AS
+  SELECT timestamp::DATE AS day,
+         ROUND(AVG(hr), 0) AS hr_avg, MIN(hr) AS hr_min, MAX(hr) AS hr_max
+  FROM heart_rate GROUP BY 1;
+
+CREATE VIEW v_sleep AS
+  SELECT sleep_date AS day, total_min, rem_min, light_min, deep_min,
+         awake_count, efficiency_pct
+  FROM sleep;</code></pre>
+<p>The views are the unit of analysis for anything day-shaped; the raw tables stay underneath for the questions you haven't asked yet. And because they're <strong>views, not materialized copies</strong>, they cost nothing to keep — the query rebuilds them on demand from the events. This is the same discipline that runs through the whole system: <a href="your-database-is-a-view.html">the database is a view, not the master</a> — here, even <em>inside</em> the database, the daily rollups are views over the events, never a second frozen copy that can drift.</p>
+<h2>Landing it in the daily-note — and the section you must never touch</h2>
+<p>The morning enrichment queries those views for the day and drops the results into the note as sections — a <code>## Workouts</code> table, a <code>## Health metrics</code> block, a <code>## Sleep</code> summary — so the numbers live <em>in context</em>, next to what you actually did that day, rather than in a separate app you have to remember to open.</p>
+<p>There's a hard rule governing this, and it's important enough that it's defined once in the <a href="data-driven-daily-notes.html">umbrella piece</a> and obeyed everywhere: the enrichment writes <strong>only</strong> the whitelisted auto-sections (Workouts, Health metrics, Activity, Sleep) and <strong>never</strong> touches the manual ones (Notes, Reflection, Decisions). That boundary exists because an early version once overwrote a hand-written reflection paragraph — a real, unrecoverable loss — and section-protection is now enforced, not hoped for. When a script and a human co-edit the same file, the machine gets the facts and the human keeps the meaning, with a machine-enforced line between them.</p>
+<h2>The retrospective unlock</h2>
+<p>The instant daily health data lives in a queryable database, every aggregate you never bothered to compute becomes one line of SQL:</p>
+<pre><code>-- Total active hours this year
+SELECT SUM(duration_min)/60 AS active_hours
+FROM v_exercise WHERE day &gt;= '2026-01-01';
+
+-- Monthly resting-HR trend (exclude workout spikes)
+SELECT date_trunc('month', day) AS month, AVG(hr_avg) AS resting_hr
+FROM v_heart_rate WHERE hr_avg BETWEEN 50 AND 80
+GROUP BY 1 ORDER BY 1;</code></pre>
+<p>Total active hours, resting-HR trend across a year, sleep-efficiency by season — these were always computable from the data the watch collected, and were always locked behind an app that wouldn't compute them. Now the <strong>year-in-review nearly writes itself</strong>, because the numbers were structured on the way in. The retrospective stops being a thing you'd need to sit down and assemble, and becomes a query that's been ready the whole time.</p>
+<h2>The real payoff: the join your wearable app can't do</h2>
+<p>Everything above is worth doing, but it's not the reason to do it. Health data queried <em>alone</em> is interesting. Health data <strong>joined to your other data</strong> is where it becomes something no vendor app will ever offer — because the vendor only has <em>their</em> silo, and the join lives <em>across</em> silos, in the database you own.</p>
+<p>Because your exercise table carries a location and a timestamp, and because your <em>other</em> personal databases are keyed on the same dates and places, the joins write themselves:</p>
+<ul><li><strong>Workouts × locations</strong> — join exercise sessions to your location history and see <em>where</em> you actually ran and walked, mapped against the trips you took.</li><li><strong>HR-spikes × calendar</strong> — join heart-rate peaks to your calendar events and ask, with data, <em>did those meetings actually stress me?</em></li><li><strong>Sleep × trip-dates</strong> — join sleep quality to travel and quantify how long-haul flights wreck recovery, and for how many nights.</li><li><strong>Weight × transactions</strong> — join weigh-ins to restaurant and grocery spending and watch eating patterns move the trend.</li></ul>
+<p>Each of these is a <code>JOIN</code> on a date or a location — trivial once the data is in one queryable place, and <em>impossible</em> while it's trapped in four separate apps that don't know about each other. This is the whole argument for owning the analytical layer: not that you'll query your heart rate more prettily, but that you can finally ask the questions that only exist <em>between</em> your sources. The cross-source join is the payoff. Everything before it was setup.</p>
+<h2>What this isn't, and the refresh reality</h2>
+<p>The honest boundaries. This is <strong>not medical</strong> — it's reflection and self-knowledge, not diagnosis; the sparse HRV, the occasional ECG, the noisy body-composition readings are fine for noticing trends and useless for clinical claims. It's <strong>not real-time</strong> — with no vendor API, the freshest data always has a one-to-two-month tail, because you export on a cadence (every four to six weeks is plenty; daily granularity is preserved <em>in</em> the export, so you lose resolution of <em>recency</em>, not of detail). And it's <strong>not a vendor replacement</strong> — the watch app stays for live coaching and glanceable today-numbers. You're not replacing the app; you're liberating the history it's sitting on and giving it somewhere to be <em>queried</em> instead of merely <em>displayed.</em></p>
+<h2>Own the schema, and the silo opens</h2>
+<p>A wearable gives you two things and only lets you use one: superb data, behind a poor interface. The data is already yours; the silo is the whole problem. And the fix isn't a better app — it's refusing to let an app's UI be the only way you can reach your own history.</p>
+<p>This is <strong>structure beats magic</strong> applied to the quantified self. The magic answer is a health app with smarter charts and an AI coach reading you your own numbers. The structural answer is to own the analytical layer: export the data once, land it in a local database, model it as raw events under daily views, and — the part that actually matters — <em>join it to everything else you own.</em> Do that, and the question your watch could never answer becomes one line of SQL, and the data it's been quietly collecting for years finally becomes something you can think <em>with</em>, not just glance <em>at</em>.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series — the schema-and-analysis spoke under <a href="data-driven-daily-notes.html">Data-Driven Daily Notes</a>. How the export actually reaches the database is <a href="mobile-data-auto-pipeline.html">The Mobile Data Auto-Pipeline</a>; the views-not-copies principle is <a href="your-database-is-a-view.html">Your Database Is a View</a>; the location join connects to <a href="photo-library-to-photo-memory.html">From Photo Library to Photo Memory</a>.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

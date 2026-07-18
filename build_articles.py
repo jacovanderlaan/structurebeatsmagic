@@ -120,6 +120,9 @@ ARTICLES = [
     "data-driven-daily-notes",
     "health-metrics-local-duckdb",
     "photo-library-to-photo-memory",
+    "mobile-data-auto-pipeline",
+    "syncthing-as-the-glue",
+    "master-vs-publish-vaults",
     # Added 2026-07-18 — six drafts reviewed and approved for publication.
     # Checked for placeholders, sensitive content (names, amounts, credentials)
     # and a real ending before being added here.
@@ -138,8 +141,9 @@ ARTICLES = [
     "why-structure-beats-magic",
     "your-photos-are-already-a-map",
     "your-bookshelf-is-already-a-knowledge-base",
-    "your-trips-are-already-structured-data-part-1",
-    "your-trips-are-already-structured-data-part-2",
+    # NB: the two "your-trips-are-already-structured-data" parts were removed
+    # 2026-07-18: they were in this list with no source folder, so each built
+    # a page with a title and an empty body. Re-add when the source exists.
     "the-filter-youre-missing-anti-interests",
     "what-youre-not-is-also-who-you-are",
     "stop-prompting-start-directing",
@@ -979,6 +983,14 @@ def main() -> None:
     # "Die artikelen kunnen dan dus nog niet gepubliceerd worden." Silently
     # dropping the link would hide that judgement instead of surfacing it —
     # publish the sibling, or cut the reference from the source.
+    # Missing-source gate (2026-07-18): a slug in ARTICLES whose folder-note
+    # doesn't exist renders as a page with a title and no body at all. Two such
+    # pages were live. Publishing a slug we cannot read is never intended.
+    for slug in ARTICLES:
+        if not (ARTICLES_ROOT / slug / f"{slug}.md").is_file():
+            privacy_problems.append(
+                f"{slug}: no source at {slug}/{slug}.md (would publish an empty page)")
+
     published = set(ARTICLES)
     for page in sorted(OUT.glob("*.html")):
         for href in sorted(set(re.findall(r'href="([a-z0-9-]+)\.html"',
