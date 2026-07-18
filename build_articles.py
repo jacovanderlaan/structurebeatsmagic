@@ -100,6 +100,8 @@ ARTICLES = [
     "almost-everything-is-an-agreement",
     # --- Photo dedup / perceptual hashing (2026-07-18) ---
     "a-hash-is-naive",
+    # --- Day-folders as the atomic capture unit (2026-07-18) ---
+    "day-folders-atomic-capture",
     # NB: "the-missing-system" + "stop-driving-by-the-rear-view-mirror" MOVED to
     # the jvdl/MDDE pipeline (canonical_home = jacovanderlaan.com) on 2026-07-10.
     # Source now at W:/data/products/mdde/articles/, built by jacovanderlaan-site.
