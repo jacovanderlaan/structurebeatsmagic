@@ -9,7 +9,7 @@
 <meta property="og:description" content="RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time, not read time." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/compile-dont-retrieve.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/compile-dont-retrieve-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/compile-dont-retrieve.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -91,7 +91,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time, not read time.</p>
-    
+    <figure class="c-hero"><img src="../assets/compile-dont-retrieve-hero.png" alt="Compile, Don't Retrieve" loading="eager"/><figcaption>Retrieval does the work at read time — grab chunks, hope. Compilation does it at write time — build a structured record once, so a later question is read, not reassembled.</figcaption></figure>
     <div class="c-body">
 <p>Two ways to give an AI access to your knowledge, and the difference is <em>when the work happens</em>. Retrieval — the RAG pattern — does the work at read time: every query, grab the chunks that look similar, stuff them in the context, hope the relevant ones made the cut. Compilation does the work at write time: an agent reads your raw material once and <em>builds</em> a structured, interlinked record from it, so a later question is answered by reading an organized page, not by reassembling one from fragments on the fly.</p>
 <p>The distinction sounds technical and is actually the whole game. Retrieval treats your knowledge as a pile to be searched afresh every time, which means every answer is only as good as that moment's similarity match — and similarity is not understanding. Compilation treats your knowledge as something to be <em>understood and written down properly, once</em>, so the structure is already there when the question arrives. You paid the organizing cost up front instead of paying a guessing cost on every read.</p>

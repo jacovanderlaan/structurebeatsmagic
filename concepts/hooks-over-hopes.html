@@ -9,7 +9,7 @@
 <meta property="og:description" content="Every instruction to a model is a probability, not a promise. Rules that must always run belong in deterministic automation the model can&#x27;t skip." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/hooks-over-hopes.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/hooks-over-hopes-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/hooks-over-hopes.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -91,7 +91,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">Every instruction to a model is a probability, not a promise. Rules that must always run belong in deterministic automation the model can't skip.</p>
-    
+    <figure class="c-hero"><img src="../assets/hooks-over-hopes-hero.png" alt="Hooks Over Hopes" loading="eager"/><figcaption>An instruction to a model is a probability; a hook is a promise. Rules that must always run belong in deterministic automation the model can't skip.</figcaption></figure>
     <div class="c-body">
 <p>Every instruction you give a model is a probability, not a promise. Even a rule written in capitals in the operating-system file is <em>obeyed</em>, not <em>enforced</em> — the model reads it, weighs it against everything else in context, and usually complies. Usually. For preferences, usually is fine. For the rules where a single miss is expensive — never overwrite this section, always run the check before publishing — usually is a hope wearing a rule costume.</p>
 <p>The architectural insight is that one building block in the modern AI stack is deterministic by construction: automation that fires <em>outside</em> the model's loop. A hook that runs on every file-write doesn't ask the model's opinion; the model can't decide to skip it, can't deprioritise it under a long context, can't be talked out of it. That's not a smarter instruction — it's a different category of thing, and knowing the difference is half of making a system reliable.</p>
