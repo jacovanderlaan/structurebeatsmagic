@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>A Hash Is Exact. It Is Also Naive. — Structure Beats Magic</title>
+<meta name="description" content="I turned a shoebox of old drives into a database — every file fingerprinted, deduplication reduced to a single SQL query. It worked better than I expected, right up to the moment it confidently told me two identical photos were different. That&#x27;s where the interesting part starts: knowing exactly what your certainty is blind to."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/a-hash-is-naive.html"/>
+<meta property="og:title" content="A Hash Is Exact. It Is Also Naive."/>
+<meta property="og:description" content="I turned a shoebox of old drives into a database — every file fingerprinted, deduplication reduced to a single SQL query. It worked better than I expected, right up to the moment it confidently told me two identical photos were different. That&#x27;s where the interesting part starts: knowing exactly what your certainty is blind to."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/a-hash-is-naive.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/a-hash-is-naive-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-18"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="A Hash Is Exact. It Is Also Naive."/>
+<meta name="twitter:description" content="I turned a shoebox of old drives into a database — every file fingerprinted, deduplication reduced to a single SQL query. It worked better than I expected, right up to the moment it confidently told me two identical photos were different. That&#x27;s where the interesting part starts: knowing exactly what your certainty is blind to."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/a-hash-is-naive-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "A Hash Is Exact. It Is Also Naive.",
+  "description": "I turned a shoebox of old drives into a database — every file fingerprinted, deduplication reduced to a single SQL query. It worked better than I expected, right up to the moment it confidently told me two identical photos were different. That's where the interesting part starts: knowing exactly what your certainty is blind to.",
+  "image": "https://structurebeatsmagic.com/assets/a-hash-is-naive-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/a-hash-is-naive.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/a-hash-is-naive.html",
+  "datePublished": "2026-07-18",
+  "dateModified": "2026-07-18"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For knowledge workers</p>
+  <h1>A Hash Is Exact. It Is Also Naive.</h1>
+  <p class="subtitle">I turned a shoebox of old drives into a database — every file fingerprinted, deduplication reduced to a single SQL query. It worked better than I expected, right up to the moment it confidently told me two identical photos were different. That&#x27;s where the interesting part starts: knowing exactly what your certainty is blind to.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-18</div>
+  <figure class="article-hero"><img src="../assets/a-hash-is-naive-hero.png" alt="A Hash Is Exact. It Is Also Naive." loading="eager"/><figcaption>Two photos, identical to the eye. A byte-hash reads them as different — one was re-exported, so not a single byte matches — and reports them as two unique files. The fingerprint is perfectly exact and perfectly blind to what they are. Knowing where your certainty goes naive is the whole skill.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>The chore that wanted to be a query</h2>
+<p>In a companion piece I described <a href="eight-old-drives.html">clearing a shoebox of old hard drives</a> — the dread task everyone postpones — and the small system that made each drive cheaper to process than the last. That piece is about the discipline. This one is about the machinery underneath it, because building that machinery taught me something sharper than "get organised," and it applies far beyond a drawer of old disks.</p>
+<p>The core move was simple to state: stop <em>looking</em> at old drives and start <em>querying</em> them. Every file on every rescued disk gets a fingerprint — a hash of its actual contents, not its name, because names lie constantly (the same photo gets renamed a dozen times across a decade of backups). Drop all those fingerprints into a database. Now "what's on this new drive that I don't already have somewhere safe?" stops being an afternoon of squinting at folders and becomes one line of SQL.</p>
+<p>I put it in DuckDB — a local analytical database, a single file sitting next to my other data, no server to run. One table of sources, one row per drive. One table of files, one row per fingerprint. A handful of views: what's duplicated across drives, what's unique to each drive, how much space I'd reclaim by collapsing the copies. The whole cleanup became something I could ask questions of.</p>
+<p>And the first time I ran it against a real disk, it told me something I didn't expect — and something quietly wrong.</p>
+<h2>What the database got gloriously right</h2>
+<p>I pointed the query at a 2 TB drive that reported as nearly full — and it turned out to hold barely 40% real data. Tens of thousands of the "files" were cloud placeholders: OneDrive and Google Drive stubs that look like files but are really just pointers to something in the cloud, holding no bytes at all. No amount of <em>looking</em> at that drive would have told me it was mostly air. One query did.</p>
+<p>Then it deduplicated for real. Of one folder — a family member's photo collection, nearly 300 GB — it reported that <strong>89% already existed, byte-for-byte, in my main library.</strong> Nine-tenths of that drive was a second copy of things I already had, and the database knew it with certainty, because a matching hash isn't a guess. It doesn't think two files are probably the same. It knows they are identical, byte for byte, or it says nothing. That's the whole appeal: a fingerprint match is a <em>fact</em>, and facts are what you want when the next step is "so it's safe to delete this copy."</p>
+<p>This is the compounding part, too. The more drives I fed in, the more the database knew, and the less any future drive could surprise me. Each disk made the next one cheaper — the system got smarter as it ran. For a while it felt like I'd reduced an ambiguous human chore to a clean, mechanical, <em>certain</em> operation.</p>
+<figure class="article-fig"><img src="../assets/a-hash-is-naive-01.png" alt="The cleanup as a query, not a squint. Every file on every old drive is fingerprinted by its contents and dropped into one database; deduplication becomes a single question — "what here exists nowhere else?" A matching fingerprint is a fact, not a guess: identical bytes, or nothing. It's what makes "safe to delete this copy" a certainty instead of a hope. And it compounds — each drive fed in makes the next one cheaper to clear." loading="lazy"/><figcaption>The cleanup as a query, not a squint. Every file on every old drive is fingerprinted by its contents and dropped into one database; deduplication becomes a single question — "what here exists nowhere else?" A matching fingerprint is a fact, not a guess: identical bytes, or nothing. It's what makes "safe to delete this copy" a certainty instead of a hope. And it compounds — each drive fed in makes the next one cheaper to clear.</figcaption></figure>
+<h2>And then it confidently lied</h2>
+<p>I asked the database a slightly different question, about a different pile of old photos: <em>how many of these already exist in my main library?</em> And it answered, with total confidence: <strong>zero. None of them. All 96 GB is unique.</strong></p>
+<p>That was obviously false. I could see, just looking, that these were the same family photos I'd been organising for years. They were unmistakably in my library already. But the database — the thing I'd just been trusting to tell me hard facts — insisted every single one was new.</p>
+<p>It wasn't broken. It was doing <em>exactly</em> what I built it to do, and that's the unsettling part. A content-hash compares <strong>bytes.</strong> And these photos, though identical to my eye, did not have identical bytes — because at some point my photo library had re-imported them: re-encoded the JPEG a hair differently, rewrote the embedded metadata, corrected a date. Same picture. Different bytes. Different fingerprint. And so, to a byte-hash, a completely different file.</p>
+<p>It answered the question I actually asked — "are these the same bytes?" — flawlessly. It just wasn't the question I <em>meant</em> — "are these the same photo?" And nothing about the confident output told me those two questions had diverged. The certainty was real. It was also, for what I cared about, worthless.</p>
+<p><strong>A hash is exact. It is also naive.</strong> It knows byte-identity with total authority and knows nothing about meaning. Ask it whether two files are the same <em>thing</em> and it will answer a subtly different question — same <em>bytes</em> — and hand you the answer with a straight face.</p>
+<figure class="article-fig"><img src="../assets/a-hash-is-naive-02.png" alt="The exact tool asked the wrong question. Two photos identical to the eye, but one was re-encoded — a different date written in, a slightly different compression — so not one byte matches. The byte-hash reports them as two unrelated files, with full confidence. It answered "same bytes?" perfectly. It just wasn't the question that mattered: "same picture?" Exactness and blindness, in the same instrument." loading="lazy"/><figcaption>The exact tool asked the wrong question. Two photos identical to the eye, but one was re-encoded — a different date written in, a slightly different compression — so not one byte matches. The byte-hash reports them as two unrelated files, with full confidence. It answered "same bytes?" perfectly. It just wasn't the question that mattered: "same picture?" Exactness and blindness, in the same instrument.</figcaption></figure>
+<h2>The lesson isn't "hashes are bad"</h2>
+<p>The wrong conclusion is to distrust the tool. The hash did its job. The lesson is about the seam between an exact tool and the fuzzy thing you actually want.</p>
+<p>For the photos, the fix is a <em>different kind</em> of matching — a <strong>perceptual</strong> hash, which fingerprints what the image looks like rather than the bytes it's made of, so a re-encoded copy still matches its original. It's fuzzier, slower, occasionally wrong in its own way, and exactly right for "is this the same picture?" The point isn't that one hash is better than the other. It's that they answer <strong>different questions</strong>, and the entire skill is knowing which question you're really asking before you trust the confident answer.</p>
+<p>So I kept the two apart, on purpose. Byte-exact matching does the work it's certain about — the documents, the videos, the archives, the exact duplicate files — cheaply and safely, and I let it delete on that certainty without a second thought. The photos, where byte-identity and picture-identity come apart, get routed to the fuzzier, slower, human-supervised pass. Collapsing the two — trusting the exact tool on the question it's blind to — is precisely how you'd delete a photo that only <em>looked</em> like one you already had.</p>
+<p>This is the shape of it: an exact, confident, mechanical check, wrapped around a question it doesn't quite understand. The certainty is genuine and the blindness is genuine and they live in the same instrument. In my drawer of old drives it was byte-hash versus perceptual-hash. In an organisation it's the same story wearing a suit: two customer records that match perfectly on ID and refer to two different people, or refer to the same person and match on nothing — the exact join is certain and wrong, and only a fuzzier, meaning-aware layer catches it. The tools change; the seam doesn't.</p>
+<h2>Structure, and knowing where it ends</h2>
+<p>The reason I find this satisfying rather than deflating is what happened at the edge. Building the structure — fingerprint everything, make the cleanup queryable — turned a hopeless chore into a system that compounds. That part did everything I hoped.</p>
+<p>But the structure's real value showed up at its <em>edge</em> — at the moment it confidently returned a wrong answer and I had to know enough to not believe it. A system that only ever worked would have quietly deleted the photos it wrongly called duplicates, or wrongly kept the 96 GB it called unique, and I'd have been none the wiser either way. The system earned its keep precisely by having a knowable limit — a place where I could say "here the exact answer stops meaning what I need, hand this pile to a different tool."</p>
+<p>That's the discipline underneath the tidy database: not "build the structure and trust the output," but <strong>build the structure, and know exactly where its certainty goes blind.</strong> An index that makes the next drive free is worth building. An index you'd follow off a cliff because it sounded sure of itself is worth fearing. The difference is entirely in whether you know where the naivety lives.</p>
+<p>A hash is exact. It is also naive. The skill was never in getting the exact answer — the machine does that. It's in knowing which question you actually asked.</p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/the-compounding-brain.html">The Compounding Brain</a></li><li><a href="../concepts/deliberate-by-design.html">Deliberate by Design</a></li><li><a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
