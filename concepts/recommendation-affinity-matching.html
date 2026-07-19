@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recommendation (Affinity Matching) · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Scoring what&#x27;s new against what you&#x27;ve already proven you love — the engine that anti-interests puts a veto on." />
+<meta property="og:title" content="Recommendation (Affinity Matching) · Structure Beats Magic" />
+<meta property="og:description" content="Scoring what&#x27;s new against what you&#x27;ve already proven you love — the engine that anti-interests puts a veto on." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/recommendation-affinity-matching.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/recommendation-affinity-matching.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Filtering &amp; identity</div>
+  <h1>Recommendation (Affinity Matching)</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Scoring what's new against what you've already proven you love — the engine that anti-interests puts a veto on.</p>
+    
+    <div class="c-body">
+<blockquote><p>Scoring what's new against what you've already proven you love — the engine that <a href="anti-interests.html">anti-interests</a> puts a veto on.</p></blockquote>
+<p>Affinity matching answers one question: <em>given everything I already know you like, how close is this new thing?</em> It scores a candidate against a model of your taste built from your own history — the trips you actually took, the books you finished rather than bought, the films you rewatched, the places you returned to.</p>
+<p>The mechanism is unremarkable and the <strong>anchor</strong> is everything. A platform recommender scores against the behaviour of people statistically similar to you, optimising for engagement — time on site, clicks, the next autoplay. An affinity engine scores against <em>your recorded history</em>, optimising for whatever you told it to. Identical machinery, opposite master.</p>
+<p>That difference is why this is worth building rather than renting. A recommendation you can interrogate — <em>why did this score 0.89?</em> — is a different object from one you can only accept or dismiss. When the inputs are your own data and the weights are your own choice, "you might also like" stops being a guess about a demographic and becomes an inference about you.</p>
+<h2>The pair it belongs to</h2>
+<p>This is the <strong>engine</strong>; anti-interests is the <strong>brake</strong>. Neither works alone.</p>
+<p>An engine without a brake converges. Score by similarity long enough and the results collapse toward the safe middle of what you already like — the echo chamber, arrived at honestly. A brake without an engine has nothing to stop; a veto list on its own surfaces nothing.</p>
+<p>Together they produce the useful shape: broad candidates in, affinity ranks them, the veto kills the plausible-but-unwanted ones outright. The ranking proposes; the veto disposes. A high score is not a defence — that's exactly the case anti-interests exists for.</p>
+<h2>What it needs to work</h2>
+<p>Affinity matching is only as good as the history behind it, which makes it a <strong>consumer of structure rather than a source of it</strong>. It needs a modelled self: preferences recorded as data, not vibes. It needs history that distinguishes <em>did</em> from <em>considered</em>. And it needs enough resolution to separate "loved" from "was fine" — a five-star rating on everything teaches it nothing.</p>
+<p>This is why it shows up late in a personal system. You cannot score affinity against a pile of unstructured notes. The structure has to exist first, which is the whole argument for building it before you need it.</p>
+<p>Related: <a href="anti-interests.html">Anti interests</a> · <a href="curated-sources.html">Curated sources</a> · <a href="a-modeled-self.html">A modeled self</a> · <a href="via-negativa.html">Via negativa</a> · <a href="derived-insight.html">Derived insight</a></p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="anti-interests.html">Anti-Interests</a></li><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="a-modeled-self.html">A Modeled Self</a></li><li><a href="via-negativa.html">Via Negativa</a></li><li><a href="derived-insight.html">Derived Insight</a></li><li><a href="trip-intelligence.html">Trip Intelligence</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>
