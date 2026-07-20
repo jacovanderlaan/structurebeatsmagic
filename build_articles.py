@@ -767,7 +767,11 @@ CONCEPT_SYNONYMS = {
     "rent-the-ai-own-the-structure": ["tool-agnostic", "tool agnostic", "vendor lock-in", "vendor-agnostic"],
     "the-validation-loop": ["flag, don't guess", "flag don't guess", "validation loop"],
     "map-of-content-moc": ["map of content", "maps of content", "MOC"],
-    "knowledge-graph": ["zettelkasten"],
+    # NOTE: "zettelkasten" was mapped to knowledge-graph here until 20 jul 2026.
+    # It is its own concept (concepts/zettelkasten.html), so the synonym both
+    # mis-pointed the link AND collided with the markdown link the source already
+    # had — producing `">[Zettelkasten</a>](...)` on 5 pages. Ambiguous synonyms
+    # (a word that IS a concept) violate the "unambiguous variants only" rule above.
     "the-calendar-is-the-spine": ["calendar-as-spine", "calendar as spine"],
     "derived-insight": ["derived insight", "data you never typed"],
     "the-missing-system": ["system of intelligence", "intelligence layer"],
@@ -789,10 +793,26 @@ def _load_concept_map() -> list:
     txt = idx.read_text(encoding="utf-8")
     pairs = re.findall(r'href="([a-z0-9-]+)\.html">\s*<div class="c-name">([^<]+)</div>', txt)
     valid_slugs = {s for s, _ in pairs}
+    # A synonym must NOT be a concept in its own right: if the phrase matches an
+    # existing concept name/slug, the synonym would steal the link and point it at
+    # the wrong page (and collide with any markdown link the source already has).
+    # This bit us on 20 jul 2026: "zettelkasten" -> knowledge-graph, while
+    # concepts/zettelkasten.html existed. Skip + warn instead of mis-linking.
+    concept_names_lc = {html.unescape(n).strip().lower() for _, n in pairs}
+    def _synonym_is_own_concept(phrase: str) -> bool:
+        p = phrase.strip().lower()
+        return p in concept_names_lc or p.replace(" ", "-") in valid_slugs
     # extend the (slug, phrase) pairs with curated synonyms for slugs that exist
-    syn_pairs = [(slug, phrase)
-                 for slug, phrases in CONCEPT_SYNONYMS.items() if slug in valid_slugs
-                 for phrase in phrases]
+    syn_pairs = []
+    for slug, phrases in CONCEPT_SYNONYMS.items():
+        if slug not in valid_slugs:
+            continue
+        for phrase in phrases:
+            if _synonym_is_own_concept(phrase):
+                print(f"  ! skipped synonym '{phrase}' -> {slug}: it is a concept "
+                      f"in its own right (would mis-link)")
+                continue
+            syn_pairs.append((slug, phrase))
     out = []
     # exact concept names: case-SENSITIVE (a proper-noun name; avoids "structure"
     # matching "Structure Beats Magic"). curated synonyms: case-INSENSITIVE
