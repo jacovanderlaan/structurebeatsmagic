@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inbox Triage · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Every place loose input arrives needs a fast per-item sort — process, archive, discard, defer — before anything reaches the vault." />
+<meta property="og:title" content="Inbox Triage · Structure Beats Magic" />
+<meta property="og:description" content="Every place loose input arrives needs a fast per-item sort — process, archive, discard, defer — before anything reaches the vault." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/inbox-triage.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/inbox-triage.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>Inbox Triage</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Every place loose input arrives needs a fast per-item sort — process, archive, discard, defer — before anything reaches the vault.</p>
+    
+    <div class="c-body">
+<p>Every place where loose, unsorted input arrives — a capture note, a downloads folder, clipped articles, the collaboration inbox, documents that don't yet have a sidecar — needs a <strong>triage step</strong>: a fast, per-item decision about where each thing goes. Triage is what keeps an inbox from becoming a bottomless pit.</p>
+<h2>Triage is sorting, not processing</h2>
+<p>The word is medical, and the origin is the whole point: you decide the <em>category</em> quickly (urgent / can wait / hopeless) — you don't treat on the spot. An inbox where you try to fully handle each item as you touch it stalls; an inbox you triage first and process deliberately later flows. <strong>Triage is the fast sort that decides <em>what</em> gets processed, not the processing itself.</strong> Conflating the two is the most common way an inbox clogs.</p>
+<p>The per-item decision is small and bounded: does this get <strong>processed</strong> (turned into something durable), <strong>archived</strong> (kept but not acted on), <strong>discarded</strong> (gone), or <strong>deferred</strong> (back to a queue with a clear next step)? Four outcomes, decided fast, is the entire discipline.</p>
+<h2>Where it sits</h2>
+<p>Triage is the boundary between <em>unordered inflow</em> and the <em>ordered vault</em>. Input lands in an inbox; triage routes it; the vault only ever receives things that have been sorted. Without the step, the inbox and the vault blur into one undifferentiated pile — which is exactly the state a structured vault exists to avoid.</p>
+<p>Its outputs feed the vault's other chains. A triaged document becomes a sidecar; a triaged idea becomes a knowledge bite; a triaged task goes wherever tasks live. The collaboration inbox (see Publish Layer Over a Local First Source) is a triage surface by design — things arrive, and you decide, item by item, what earns a place in the source of truth.</p>
+<h2>Relationship to gates and decluttering</h2>
+<p>Triage is a gate pointed at inflow: a control point with a per-item condition, deciding what may pass into the ordered vault. Same shape — an explicit decision, made in one place, with a safe default (unsorted stays <em>in the inbox</em>, not silently in the vault).</p>
+<p>It's also the inflow counterpart to Digital Marie Kondo. Decluttering makes the keep-or-release decision about things <em>already</em> in the system; triage makes the same decision about things <em>arriving</em>. Together they close both ends: triage guards what comes in, decluttering handles what accumulated. And both fight the same enemy — because storage is non-rival and nothing forces the decision, the sorting pressure has to be manufactured as an explicit habit.</p>
+<h2>Why it matters</h2>
+<p>An inbox without triage is where capture goes to die: everything is saved, nothing is sorted, and the pile grows until searching it is worse than not having it. Triage is the cheap, repeated act that keeps capture worth doing — the guarantee that what you took in actually reaches the ordered part of the system, in a shape you can use.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="capture-types.html">Capture Types</a></li><li><a href="the-controlled-front-door.html">The Controlled Front Door</a></li><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="atomic-documents.html">Atomic Documents</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

@@ -677,10 +677,20 @@ def check_image_refs(slug: str, meta: dict, body: str) -> list[str]:
 
     referenced: set[str] = set()
     hi = str(meta.get("hero_image", "")).strip().strip("'\"")
+    hc = str(meta.get("hero_caption", "")).strip().strip("'\"")
     if hi:
         referenced.add(hi)
         if hi not in on_disk:
             problems.append(f"{slug}: hero_image -> missing file 'assets/{hi}'")
+    elif hc:
+        # A caption with no hero_image: the brief was written (someone thought
+        # about the image) but the graphic never arrived, so the page publishes
+        # with no hero at all. The renderer skips it silently — nothing breaks,
+        # which is exactly why this went unnoticed on 8 live articles until a
+        # reader pointed at two of them (2026-07-20). Warning, not a failure:
+        # the page is valid without a hero, it's just missing one it planned for.
+        print(f"  ~ {slug}: hero_caption present but no hero_image "
+              f"(image never made — the caption is a ready-made brief)")
     for fn in FIGURE_RE.findall(body):
         fn = fn.strip()
         referenced.add(fn)
