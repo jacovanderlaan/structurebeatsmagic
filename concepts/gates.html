@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gates · Concepts · Structure Beats Magic</title>
+<meta name="description" content="A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin." />
+<meta property="og:title" content="Gates · Structure Beats Magic" />
+<meta property="og:description" content="A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/gates.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/gates.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>Gates</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin.</p>
+    
+    <div class="c-body">
+<p>A <strong>gate</strong> is a conditional control point in a flow: a place where something may pass only if it meets a condition. Nothing crosses a gate by default — it crosses because it qualified. That single idea, applied deliberately, is one of the most reliable ways to keep a system trustworthy, and it is worth naming as a concept because the same shape recurs everywhere once you see it.</p>
+<p>The point of a gate is not to block. It is to make a decision <em>explicit and located</em>. Without gates, quality is a hope spread thin across a whole process; with gates, quality is a checkpoint you can point to. A gate turns "I trust this somehow" into "this passed <em>there</em>, on <em>these</em> conditions."</p>
+<h2>Why gates matter</h2>
+<p>Every flow — data moving through a pipeline, an idea moving toward publication, a project moving between phases — carries things that should not continue. Bad data, half-finished work, private notes, decisions made for no good reason. Without a checkpoint, these travel downstream unchallenged and are far more expensive to catch later, when they have already spread.</p>
+<p>A gate concentrates that judgement in one place, at one moment, on one explicit condition. Three things follow, and they are the whole reason gates earn their keep:</p>
+<ul><li><strong>The condition becomes visible.</strong> "Public may pass" is a rule you can read, audit, and change — unlike a habit living only in someone's head.</li><li><strong>The decision has a location.</strong> When something wrong gets through, you know which gate failed, instead of searching an entire process for where the judgement should have happened.</li><li><strong>The default becomes safe.</strong> A gate that blocks unless a condition is met means the failure mode is "nothing passes," not "everything passes." The system is closed until proven open, not open until caught.</li></ul>
+<p>That last point is the deepest. A well-placed gate makes <em>not passing</em> the default, so an omission — a note nobody classified, a field nobody validated — is held back rather than waved through. In a rule-driven system, this is what lets you trust the output without inspecting every item by hand.</p>
+<h2>Types of gate</h2>
+<p>The concept is one; the forms are several. These are the kinds worth distinguishing — the coats on the rack. They share the shape (a condition, a flow, a pass/no-pass) and differ in <em>what</em> they guard and <em>when</em> they sit.</p>
+<h3>Publishing / quality gate</h3>
+<p>Guards what goes <strong>out</strong>. The condition is "is this ready and allowed to be seen?" — public versus private, finished versus draft, good enough versus not yet. This is the gate between a vault and a public site: only material explicitly marked public passes, everything else is held back by default. The safety of the default is the entire value here — an unclassified note stays in, rather than leaking out because nobody caught it. The gate is what makes a vault-generated public site safe to automate: you are not trusting yourself to remember, you are trusting a condition that holds every time.</p>
+<h3>Data quality gate</h3>
+<p>Guards what moves <strong>through</strong>. The condition is a validation rule: does this data meet the contract before it may continue down the pipeline? Types match a definition, keys are present, values fall in range, referential integrity holds. Data that fails is stopped, quarantined, or flagged at the gate rather than corrupting everything downstream that assumed it was clean. The earlier the gate sits in the flow, the cheaper the catch — a bad record stopped at ingestion costs a fraction of the same record discovered after it has propagated through every model that consumed it.</p>
+<h3>Stage / phase gate</h3>
+<p>Guards what moves <strong>forward in time</strong>. The condition is a deliberate decision between phases: "should this proceed to the next stage at all?" Before more time, money, or attention is committed, the gate forces an explicit <em>go / no-go</em> instead of letting momentum carry the work onward. This is the gate that kills work surviving only because it was already begun — the same discipline as starting with why, expressed as a checkpoint. Its value is precisely that it interrupts default continuation: without it, a project proceeds because nobody stopped it, which is not the same as proceeding because it deserved to.</p>
+<h2>The pattern underneath</h2>
+<p>All three are the same move: <strong>insert an explicit condition where things would otherwise pass by default, and make the safe outcome the default.</strong> Guard the exit (publishing), guard the throughput (data quality), or guard the transition (stage) — the shape is identical, only the <em>what</em> and the <em>when</em> change.</p>
+<p>Seen this way, a gate is a small act of design against entropy. Left alone, flows leak: bad data spreads, private things surface, dead projects continue. A gate is where you decide, on purpose and in one readable place, what is allowed to go on. The cost is the discipline of defining the condition and placing the checkpoint; the return is a system you can trust without watching every item cross.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="deterministic-by-design.html">Deterministic by Design</a></li><li><a href="never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="the-controlled-front-door.html">The Controlled Front Door</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>

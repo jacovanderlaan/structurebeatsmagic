@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Folder Note · Concepts · Structure Beats Magic</title>
+<meta name="description" content="A note that lives inside a folder and carries its name — the folder&#x27;s own description, so a directory can say what it is." />
+<meta property="og:title" content="The Folder Note · Structure Beats Magic" />
+<meta property="og:description" content="A note that lives inside a folder and carries its name — the folder&#x27;s own description, so a directory can say what it is." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/folder-note.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/folder-note.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>The Folder Note</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">A note that lives inside a folder and carries its name — the folder's own description, so a directory can say what it is.</p>
+    
+    <div class="c-body">
+<p>A <strong>Folder Note</strong> is a Markdown note that lives inside a folder and shares that folder's name, and whose job is to describe what the folder contains. It is the folder's front page — the note you would write if someone (or something) asked "what is in here, and why?"</p>
+<p>It sits at the boundary between two audiences that rarely get served by the same artefact: the <strong>human</strong> browsing the vault, and the <strong>AI agent</strong> navigating it. Both need orientation. The Folder Note gives it to them in the same place, in prose, without either having to open and read every file the folder holds.</p>
+<h2>The problem it solves</h2>
+<p>A folder is a container, but a bare container carries almost no meaning. Its name is a label of a few words; its contents are a flat list of filenames. When a folder holds twenty notes, neither a person nor a model can tell from the outside what the folder is <em>about</em>, what belongs in it, what the notes have in common, or where to look first.</p>
+<p>The usual workarounds are weak. Filenames try to carry the meaning and become long and brittle. A folder's purpose lives only in the author's head and drifts as the folder grows. An AI agent asked to work in the vault must open files speculatively, burning context and time to reconstruct an intent that was never written down.</p>
+<p>The Folder Note fixes this by making the folder's purpose <strong>explicit, addressable, and co-located</strong> with what it describes.</p>
+<h2>The structure</h2>
+<p>The pattern has three parts.</p>
+<p><strong>Co-location.</strong> The note lives inside the folder it describes, not beside it. <code>Projects/Projects.md</code> describes the <code>Projects</code> folder from within it. This keeps the description travelling with the folder — move the folder, and its front page moves with it.</p>
+<p><strong>Name convention.</strong> The note's name matches the folder's name (<code>Projects/Projects.md</code>), or uses a fixed sentinel name the whole vault agrees on — most commonly <code>readme</code> (<code>Projects/readme.md</code>), borrowed from the README convention that software repositories have used for decades to mean "read this first to understand this directory." The same-name convention reads more cleanly in a file tree; the <code>readme</code> convention is instantly recognisable to anyone who has touched a codebase and is trivial for tooling to detect. Pick one and hold it vault-wide, because the value comes from the convention being predictable.</p>
+<p><strong>Content contract.</strong> The note describes the folder: its purpose, what belongs inside it and what does not, how its notes relate to each other, and any entry points worth starting from. It is a map and a charter, not a dumping ground for the folder's actual content.</p>
+<h2>The Obsidian implementation: Folder Notes plugin</h2>
+<p>Obsidian does not natively treat a folder and a note as the same thing — clicking a folder expands it; clicking a note opens it. The <strong>Folder Notes</strong> community plugin closes that gap. When a folder has an associated note (by matching name, or by a configured sentinel like <code>readme</code>), clicking the folder itself opens and displays that note instead of merely expanding the tree.</p>
+<p>The effect is that the folder <em>becomes</em> readable. The folder and its front page collapse into a single click. Browsing the vault stops being "expand a folder, guess from filenames, open a file" and becomes "click a folder, read what it is." The plugin supports both the same-name and the sentinel-name conventions, and can hide the note in the file list so the folder appears to speak for itself.</p>
+<h2>Why it matters for AI navigation</h2>
+<p>This is where the pattern earns its place in a systems vault rather than just a tidy one.</p>
+<p>An AI agent working over a vault faces the same orientation problem as a human, but pays for it differently. Every file it opens to "figure out what this folder is" consumes context window and adds latency and cost. A vault without Folder Notes forces the agent to explore breadth-first and speculatively, reading content to infer structure.</p>
+<p>Folder Notes invert this. The agent reads one small, purpose-built note per folder and learns the folder's intent, scope, and entry points before touching a single content file. Navigation becomes <strong>directed</strong> rather than exhaustive: the agent descends only into folders whose front page says the answer is likely there, and skips the rest without opening them. The Folder Note is, in effect, a human-readable index that doubles as an AI-readable routing table — one artefact serving retrieval efficiency and human comprehension at once.</p>
+<p>The sentinel name helps here too. A model that knows the vault convention is "<code>readme.md</code> describes its folder" can navigate any vault following that rule without being told the layout in advance, exactly as it would reason about a source repository.</p>
+<h2>The principle underneath</h2>
+<p>The Folder Note is a small instance of a larger systems idea: <strong>make structure self-describing.</strong> A container that carries its own explanation is navigable by anyone and anything that encounters it, with no external map and no tribal knowledge. The cost is one note per folder and the discipline to keep it current; the return is a vault that explains itself to the two very different readers who need to move through it — the human eye and the machine agent — in the same breath.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="atomic-documents.html">Atomic Documents</a></li><li><a href="capture-types.html">Capture Types</a></li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+</body>
+</html>
