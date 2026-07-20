@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sidecar Markdown — Giving a PDF the Thing It Can Never Have — Structure Beats Magic</title>
+<meta name="description" content="A binary file can&#x27;t be searched, can&#x27;t be queried, and can&#x27;t hold a single link. Put a markdown note beside it and all three problems go away at once."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/sidecar-markdown.html"/>
+<meta property="og:title" content="Sidecar Markdown — Giving a PDF the Thing It Can Never Have"/>
+<meta property="og:description" content="A binary file can&#x27;t be searched, can&#x27;t be queried, and can&#x27;t hold a single link. Put a markdown note beside it and all three problems go away at once."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/sidecar-markdown.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sidecar-markdown-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-19"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Sidecar Markdown — Giving a PDF the Thing It Can Never Have"/>
+<meta name="twitter:description" content="A binary file can&#x27;t be searched, can&#x27;t be queried, and can&#x27;t hold a single link. Put a markdown note beside it and all three problems go away at once."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sidecar-markdown-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sidecar Markdown — Giving a PDF the Thing It Can Never Have",
+  "description": "A binary file can't be searched, can't be queried, and can't hold a single link. Put a markdown note beside it and all three problems go away at once.",
+  "image": "https://structurebeatsmagic.com/assets/sidecar-markdown-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/sidecar-markdown.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/sidecar-markdown.html",
+  "datePublished": "2026-07-19",
+  "dateModified": "2026-07-19"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Structure Beats Magic</p>
+  <h1>Sidecar Markdown — Giving a PDF the Thing It Can Never Have</h1>
+  <p class="subtitle">A binary file can&#x27;t be searched, can&#x27;t be queried, and can&#x27;t hold a single link. Put a markdown note beside it and all three problems go away at once.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-19</div>
+  <figure class="article-hero"><img src="../assets/sidecar-markdown-hero.png" alt="Sidecar Markdown — Giving a PDF the Thing It Can Never Have" loading="eager"/><figcaption>Two files, one document. The PDF holds the record and can hold nothing else — no links, no fields, no searchable text. The markdown beside it carries the structure, the extracted content and the connections, and it is the one the vault actually works with.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>Three things a PDF cannot do</h2>
+<p>Put a scanned document into a text-based vault and it lands like a stone. It's stored, it's safe, and it's inert.</p>
+<p>It can't be <strong>searched</strong> — the words are pixels, not text. It can't be <strong>queried</strong> — there's no "all invoices over €500 from this supplier in Q2," because there are no fields, just a picture of a page. And the one almost nobody names: it can't be <strong>linked</strong>. You cannot put <code>[[wikilinks]]</code> inside a PDF. It has no way to point at anything else in your system, and nothing about it points back.</p>
+<p>The first two are inconveniences. The third is what makes the document an island. A vault's value comes from things being connected; a file that structurally cannot connect is outside the system even while sitting inside the folder.</p>
+<p>The sidecar pattern solves all three with one move, and it's almost embarrassingly simple: <strong>put a markdown note next to the binary.</strong> The PDF stays the untouchable original. The markdown becomes the thing the vault actually works with.</p>
+<h2>What one actually looks like</h2>
+<p>Not hypothetically. This is a real note from my vault — the RDW clearance certificate for a caravan my company sold in July:</p>
+<pre><code>---
+title: Vrijwaringsbewijs caravan WE-56-00 (RDW)
+date: 2026-07-02
+type: scan
+domain: business
+entity: Consilium Information Systems B.V.
+kenteken: WE-56-00
+document: vrijwaringsbewijs
+issuer: RDW
+visibility: private
+related: "[[transaction_caravan-verkoop-daniel-wouters]]"
+---</code></pre>
+<p>Below the frontmatter: the key data pulled out as a small table (registration, transaction code, timestamp, issuer), the operative sentence from the document quoted in full, and links to the sale transaction and the purchase agreement.</p>
+<p>Now look at what that gives me that the PDF alone never could.</p>
+<p><strong>It's searchable</strong> — the text lives in the markdown, so ordinary search finds it. No PDF indexer required.</p>
+<p><strong>It's queryable</strong> — <code>kenteken</code>, <code>issuer</code>, <code>document</code>, <code>entity</code> are fields. "Every RDW document for this company" is a query, not a rummage.</p>
+<p><strong>It's connected</strong> — <code>related:</code> points at the sale transaction. The chain from <em>sold the caravan</em> to <em>here's the proof of transfer</em> is walkable in both directions.</p>
+<p><strong>It's governed</strong> — <code>visibility: private</code> is the same gate every other note uses. The document became a first-class citizen of the system the moment it had a sidecar.</p>
+<p>None of that lives in the PDF. All of it lives beside it.</p>
+<h2>This is not a proposal</h2>
+<p>Worth being plain: I'm describing what's already running, not sketching an idea. There are <strong>14,774 scanned PDFs in my vault, about 23 GB</strong>, and the wrapper-beside-the-scan convention has been the filing rule for years. Every receipt, contract, and official letter that matters arrives, gets OCR'd, gets a wrapper, and gets filed in the day-folder it belongs to.</p>
+<p>The pattern earned its name late. It ran for a long time as "that's just how I file scans" before it was worth calling anything.</p>
+<h2>Where the real upgrade is</h2>
+<p>The searchability is nice. The <strong>structured query</strong> is the categorical change, and it's easy to undersell.</p>
+<p>Full-text search over documents — even good search — only ever answers "which documents contain these words." That's a fundamentally different question from "which documents have these <em>properties</em>." Google Drive could search my receipts; it could never tell me total spend per category per quarter, because it had text and no fields.</p>
+<p>Sidecar frontmatter turns a pile of documents into a dataset. And the fields aren't decoration — they're a small type system. A receipt carries amount, VAT, category, supplier, date. A contract carries party, start date, term. A scan of an official letter carries issuer and document type. Consistency per type is what makes queries trustworthy; inconsistent fields produce silent gaps, which are worse than missing data because they look like answers.</p>
+<p>That's data modelling, applied to your own paperwork. For anyone who models data professionally, it's home ground — the same discipline, minus the stakeholders.</p>
+<h2>One source, two kinds of sidecar</h2>
+<p>A source doesn't get exactly one companion, and the distinction between the kinds is worth keeping sharp.</p>
+<p>A <strong>representation</strong> stands <em>for</em> the source: derived, regenerable, mechanical, one-to-one. OCR text plus extracted fields. If you lost it you could remake it from the original.</p>
+<p>A <strong>distillate</strong> is <em>your thought about</em> the source: a summary in your own words, an argument you extracted, a note that stands on its own. Not regenerable — nobody can reconstruct your thinking from the PDF.</p>
+<p>Keep them typed differently and, ideally, filed separately. The moment "what the document says" blurs into "what I concluded," you've lost the ability to trust either one. A scanned book might carry one bibliographic representation and twenty idea-notes; those twenty are a different species and belong in the part of the system that handles your own thinking.</p>
+<h2>Frontmatter is a latent table</h2>
+<p>Every sidecar of the same type shares the same fields. Same fields across many notes is a table: each field a column, each note a row.</p>
+<p>Which means the sidecars can be exported to a database — and the export doesn't <em>impose</em> structure, it <strong>surfaces structure that was already there</strong>. The markdown was a table all along; the database just makes it queryable in a form markdown handles badly.</p>
+<p>One rule keeps this honest: the direction of truth is <strong>markdown → database, one-way</strong>. The files are the source. The database is a derived, regenerable view you rebuild when you want to ask something, and never edit back. Break that rule and you now have two sources of truth and no way to tell which one is lying.</p>
+<h2>The naming detail that decides whether it survives</h2>
+<p>Two ways to bind a sidecar to its source: convention (<code>receipt-2026-03.pdf</code> ↔ <code>receipt-2026-03.md</code>) or an explicit <code>source:</code> field in the frontmatter.</p>
+<p>Use the field. Convention breaks the first time someone renames a file, and it breaks silently. An explicit pointer survives renaming and — more usefully — makes the relationship <em>queryable</em>: you can ask which sources lack sidecars, which is exactly the audit you'll want once you have a few thousand of these.</p>
+<p>And a caveat that costs nothing to state and a lot to discover: <strong>the sidecar is only as good as the extraction that filled it.</strong> Clean digital PDFs are trivial. Photographed receipts at an angle in bad light are the weak link. A low-confidence extraction is a low-confidence search result, and it will fail you quietly rather than loudly.</p>
+<h2>A note on the word</h2>
+<p>If you've used a photo DAM, you've met sidecars already — XMP files carrying ratings and tags beside a RAW image. Same instinct, narrower mechanism: XMP is a fixed metadata standard for image tools.</p>
+<p>What's described here is the general case. Any binary, any document type, arbitrary fields you define, plus the two things XMP was never for: extracted body text, and links into the rest of your knowledge.</p>
+<h2>Why this is the same move as a folder note</h2>
+<p>A folder can't describe itself. A PDF can't link to anything. In both cases the answer is identical — <strong>put a markdown file beside the thing that can't speak, and let it speak on the thing's behalf.</strong></p>
+<p>That's the whole pattern, and it generalizes further than documents. Anything in your system that can't carry structure, can't carry links, or can't carry text gets a small markdown companion that can. The heavy original stays exactly as it is, authoritative and untouched. The lightweight note beside it does all the work of being part of a system.</p>
+<p>The PDF is still the record. The sidecar is what makes it <em>yours</em>.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series. Pairs with <a href="self-contained-atomic-units.html">Everything Is a Folder</a> on self-contained units, and <a href="your-database-is-a-view.html">Your Database Is a View</a> on why the files stay the source of truth.</em></p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/loosely-coupled-documents.html">Loosely Coupled Documents</a></li><li><a href="../concepts/atomic-documents.html">Atomic Documents</a></li><li><a href="../concepts/document-vault.html">Document Vault</a></li><li><a href="../concepts/rules-you-can-verify.html">Rules You Can Verify</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

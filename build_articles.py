@@ -112,6 +112,20 @@ PRIVATE_SECTIONS = PRIVATE_SECTION_WORDS
 
 # Explicit allow-list of article slugs (folder names). Only these publish.
 ARTICLES = [
+    # Added 2026-07-20 — personal-OS infra spoke, published as a cluster for the
+    # same reason as the 07-18 group: all four cross-reference each other and the
+    # already-live Syncthing/Restic pieces. "mirror-backup-history" was named in
+    # advance by both of those as a planned link, so publishing it closes a
+    # dangling reference rather than creating new ones.
+    # All four gated: hero rendered + verified, no placeholders, real ending.
+    "mirror-backup-history",
+    "reach-the-machine-not-the-copy",
+    "sidecar-markdown",
+    "why-concepts-come-first",
+    # Pulled in by the gate: both new infra pieces link to it, and it is the
+    # backup leg of the trilogy whose mirror leg (syncthing-as-the-glue) was
+    # already live. Publishing it closes those links instead of cutting them.
+    "restic-hetzner-personal-backup",
     # Added 2026-07-18 (ADR-090): published as a cluster because these five and
     # the articles already live cross-reference each other. Publishing them
     # separately would have left 404s in both directions.

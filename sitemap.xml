@@ -28,6 +28,22 @@
     <loc>https://structurebeatsmagic.com/books/</loc>
   </url>
   <url>
+    <loc>https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/why-concepts-come-first.html</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/sidecar-markdown.html</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/mirror-backup-history.html</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
     <loc>https://structurebeatsmagic.com/articles/a-hash-is-naive.html</loc>
     <lastmod>2026-07-18</lastmod>
   </url>
@@ -217,6 +233,10 @@
   </url>
   <url>
     <loc>https://structurebeatsmagic.com/articles/syncthing-as-the-glue.html</loc>
+    <lastmod>2026-05-27</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/articles/restic-hetzner-personal-backup.html</loc>
     <lastmod>2026-05-27</lastmod>
   </url>
   <url>
@@ -680,6 +700,14 @@
     <lastmod>2026-07-20</lastmod>
   </url>
   <url>
+    <loc>https://structurebeatsmagic.com/concepts/folder-note.html</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/concepts/gates.html</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
     <loc>https://structurebeatsmagic.com/concepts/give-the-recipe-sell-the-kitchen.html</loc>
     <lastmod>2026-07-20</lastmod>
   </url>
@@ -709,6 +737,10 @@
   </url>
   <url>
     <loc>https://structurebeatsmagic.com/concepts/intentions-over-goals.html</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://structurebeatsmagic.com/concepts/knowledge-bites.html</loc>
     <lastmod>2026-07-20</lastmod>
   </url>
   <url>

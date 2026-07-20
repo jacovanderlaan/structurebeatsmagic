@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Restic + Hetzner for Personal Backup — and the Restore-Test That Makes It Real — Structure Beats Magic</title>
+<meta name="description" content="Encrypted at the client, deduplicated, EU-resident, about €60 a year. But the setup isn&#x27;t the point — the restore-test is. Backup is a habit, not a hope."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/restic-hetzner-personal-backup.html"/>
+<meta property="og:title" content="Restic + Hetzner for Personal Backup — and the Restore-Test That Makes It Real"/>
+<meta property="og:description" content="Encrypted at the client, deduplicated, EU-resident, about €60 a year. But the setup isn&#x27;t the point — the restore-test is. Backup is a habit, not a hope."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/restic-hetzner-personal-backup.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/restic-hetzner-personal-backup-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-05-27"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Restic + Hetzner for Personal Backup — and the Restore-Test That Makes It Real"/>
+<meta name="twitter:description" content="Encrypted at the client, deduplicated, EU-resident, about €60 a year. But the setup isn&#x27;t the point — the restore-test is. Backup is a habit, not a hope."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/restic-hetzner-personal-backup-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Restic + Hetzner for Personal Backup — and the Restore-Test That Makes It Real",
+  "description": "Encrypted at the client, deduplicated, EU-resident, about €60 a year. But the setup isn't the point — the restore-test is. Backup is a habit, not a hope.",
+  "image": "https://structurebeatsmagic.com/assets/restic-hetzner-personal-backup-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/restic-hetzner-personal-backup.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/restic-hetzner-personal-backup.html",
+  "datePublished": "2026-05-27",
+  "dateModified": "2026-05-27"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Restic + Hetzner for Personal Backup — and the Restore-Test That Makes It Real</h1>
+  <p class="subtitle">Encrypted at the client, deduplicated, EU-resident, about €60 a year. But the setup isn&#x27;t the point — the restore-test is. Backup is a habit, not a hope.</p>
+  <div class="byline">By Jaco van der Laan · 2026-05-27</div>
+  <figure class="article-hero"><img src="../assets/restic-hetzner-personal-backup-hero.png" alt="Restic + Hetzner for Personal Backup — and the Restore-Test That Makes It Real" loading="eager"/><figcaption>A backup you&#x27;ve never restored is a hope, not a backup. The setup — laptop to Restic to EU object storage, encrypted at the client — is the easy half. The half that earns your trust is the arrow going backwards: a real restore, timed and verified, before you need it.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>The backup you've never restored isn't a backup</h2>
+<p>Almost everyone with a laptop has <em>a</em> backup, and almost no one has ever restored from it. That gap is the whole subject of this piece. A backup you have never restored is not a safety net — it's a <strong>hope</strong>, dressed up as one. You don't know if it's complete. You don't know if the encryption key still works. You don't know how long a restore takes, or whether the files come back byte-perfect, until the worst possible moment to find out: after you've lost the originals.</p>
+<p>So I'm going to describe the personal-backup setup I landed on — Restic to Hetzner Object Storage — but the setup is the supporting cast. The lead is the <strong>restore-test</strong>, because that's the part that turns a hope into a backup, and it's the part everyone skips.</p>
+<h2>The stack, briefly, because it <em>is</em> good</h2>
+<p>For personal data — a few hundred gigabytes of documents, no enterprise-compliance regime to satisfy — the combination that won was <strong>Restic writing to Hetzner Object Storage.</strong> Encrypted client-side with AES-256, deduplicated, EU-resident in Falkenstein, and flat-priced at roughly €60 a year for the first terabyte. I migrated to it off a Cryptomator-plus-Dropbox arrangement that was really a <em>sync</em> workflow pretending to be a backup, and the difference in how much I trust it is entirely down to the two properties below plus the restore-test.</p>
+<p><strong>Why Restic specifically.</strong> It encrypts by default, so you don't layer a separate encryption tool on top and hope the two compose. It deduplicates natively — a hundred-gigabyte source plus a run of monthly snapshots lands around a hundred-ten gigabytes stored, not hundreds, because unchanged data is stored once. It's a single cross-platform binary — same tool on Windows, Linux, macOS — with no daemon and no database server to babysit. And it's snapshot-based, which is what makes point-in-time restore possible.</p>
+<p><strong>Why Hetzner Object Storage.</strong> It's S3-compatible, so any S3 tool talks to it, and it's <strong>EU-resident</strong> — which for a European putting their whole personal record somewhere is a decision criterion, not a footnote. The pricing is predictable: a flat monthly rate per terabyte with generous inclusive egress, so a restore doesn't arrive with a surprise bandwidth bill. The endpoint is a single string — <code>s3:https://fsn1.your-objectstorage.com/&lt;bucket&gt;</code> — and setup, including a bucket in Falkenstein and a set of S3 access keys, is about ten minutes.</p>
+<h2>The one configuration detail that bites: the env-loader</h2>
+<p>Restic reads its credentials — repository URL, password, S3 keys — from environment variables, and how you supply them matters more than it should.</p>
+<p>The clean pattern is a small per-shell loader script that sets those variables, kept <em>out</em> of any synced or backed-up folder (you do not want your backup credentials riding along inside your backup). The gotcha that costs people an evening: on a shell like PowerShell you must <strong>dot-source</strong> the loader — load its variables <em>into the current shell</em> — not merely <em>run</em> it, which sets the variables in a child shell that vanishes the moment the script exits, leaving your actual shell with nothing. The reason to use env vars rather than a config file at all is that they're scope-bounded to the shell session: they exist while you're running a backup and they're gone when you close the terminal, instead of sitting in a file on disk.</p>
+<h2>What goes in, and what deliberately doesn't</h2>
+<p>A backup set is a series of decisions about what you'd cry over losing, and the exclusions are as considered as the inclusions.</p>
+<p><strong>In</strong> goes the irreplaceable, judgment-heavy data: personal documents, business records, family material, the analytical databases. <strong>Out</strong> goes the regenerable and the noise: temp directories, caches, <code>node_modules</code>, <code>.git</code> folders — anything a machine can rebuild or re-fetch, which has no business consuming backup space or restore time. And then there's a third category that trips people up: things I <em>don't</em> back up here <strong>on purpose, because they have their own better-fitted stack.</strong> Passwords live in a dedicated secrets manager, hardware-key-protected, not in a file backup. Photos live in their own asset-management-plus-local-backup stack, because a few hundred gigabytes of images have different access and dedup characteristics than documents. Source code is already off-site in Git hosting. Backing those up <em>here too</em> wouldn't be extra safety — it'd be double-managing data that's already handled, and blurring which tool owns which threat.</p>
+<h2>The restore-test — the part that turns a hope into a backup</h2>
+<p>Here is the discipline the whole article is built around, and it took two real restores before I trusted the setup at all.</p>
+<p>The <strong>first restore was small — about eleven kilobytes</strong> — and its only job was to verify the <em>plumbing</em>: that the credentials work, the repository unlocks, the encryption key is correct, and Restic can actually pull a file back down and reconstruct it. This is the test that catches the catastrophic-but-silent failures — the wrong password, the misconfigured endpoint, the key you thought you'd saved — while they're a five-minute annoyance instead of a disaster.</p>
+<p>The <strong>second restore was large — about forty-five gigabytes, verified byte-perfect</strong> — and it tested the things the small one couldn't: throughput, correctness at scale, and whether a <em>real</em> recovery is even tolerable. It came back correct at roughly eighty-three mebibytes a second, finishing in about nine minutes. That number matters more than it looks: it sets my expectations. If I ever lose the originals, I now <em>know</em> what recovery costs — minutes, not a mystery — instead of discovering it under stress.</p>
+<p>Most people skip both tests because a backup that's never been restored <em>feels</em> fine, and testing it feels redundant right up until it isn't. That feeling is the trap. <strong>Backup is meaningless without restore</strong>, and the only way to know your restore works is to have done one — deliberately, calmly, inside the first month, while nothing is actually wrong.</p>
+<h2>Scheduling, retention, and a small travel habit</h2>
+<p>With the restore verified, the operational layer is boring in the good way. Snapshots run on a schedule, with a Restic forget-policy that keeps a sensible pyramid — a week of dailies, a month of weeklies, half a year of monthlies — so history stays useful without growing forever. On Windows that's driven by a Task Scheduler wrapper rather than cron, which is a small platform detail but the kind that stops a "scheduled" backup from silently never running. And one human habit worth more than any config: <strong>a backup run before every trip.</strong> The moment your data is about to be physically carried into the world — airports, cafés, a bag that can be left behind — is exactly the moment to have a fresh, verified copy sitting safely in Falkenstein.</p>
+<h2>Two lessons that generalize</h2>
+<p>Two things I got wrong first and want to save you from.</p>
+<p><strong>Client-encrypt; "encrypted at rest in the cloud" is not enough.</strong> A provider encrypting your data on <em>their</em> disks protects it from <em>their</em> stolen hardware — not from the provider, a subpoena, or a breach of their access layer. Encrypting on <em>your</em> client before it leaves, with a key only you hold, is the property that actually makes the storage location untrusted-by-design. Restic does this by default, which is half of why it won.</p>
+<p><strong>Don't double-encrypt — match the tool to the threat.</strong> Full-disk encryption on the laptop and Restic's client-side encryption are not redundant; they defend <em>different</em> threats. Disk encryption protects the laptop if it's stolen while off. Restic's encryption protects the <em>cloud copy</em> from the storage provider and the network. Layering yet another encryption tool on top of Restic — as I briefly did with Cryptomator — adds friction and key-management risk without adding a threat model it defends against. Every encryption layer should answer a specific "protects against what?" If it can't, it's cost without cover.</p>
+<h2>Sovereign, verified, and about €60 a year</h2>
+<p>For a few hundred gigabytes of personal data, Hetzner isn't the absolute cheapest option — dedicated backup clouds can undercut it per terabyte. What it <em>is</em>: predictable (a flat bill, no egress surprises), EU-resident (a real jurisdiction decision), and client-encrypted (the storage host never sees plaintext). Predictable, sovereign, and encrypted is worth a small premium over cheapest-per-gigabyte for the one dataset you genuinely can't recreate.</p>
+<p>But re-read the title and notice the second half — <em>the restore-test that makes it real</em> — because that's the load-bearing claim. This is <strong>structure beats magic</strong> applied to the least glamorous corner of a personal system. The magic answer is a backup app with a reassuring green checkmark you never question. The structural answer is to distrust the checkmark until you've pulled your data <em>back</em> — timed it, verified it byte-for-byte, and made recovery a known quantity instead of a prayer. Set up the stack, yes. Then restore from it, on a calm Tuesday, before you ever have to. Restore is a habit, not a hope.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series. Restic is the backup leg of a three-tool split — mirror, backup, history — alongside <a href="syncthing-as-the-glue.html">Syncthing as the Glue</a> (the mirror) and version control (the history); Syncthing deliberately isn't a backup, which is exactly why Restic sits next to it.</em></p>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

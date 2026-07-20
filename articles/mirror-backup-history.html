@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Mirror, Backup, History — Three Jobs, Three Tools, One File-Set — Structure Beats Magic</title>
+<meta name="description" content="Syncthing replicates, Restic protects, Git remembers. Ask one of them to do another&#x27;s job and it will fail you politely, at the worst possible moment."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/mirror-backup-history.html"/>
+<meta property="og:title" content="Mirror, Backup, History — Three Jobs, Three Tools, One File-Set"/>
+<meta property="og:description" content="Syncthing replicates, Restic protects, Git remembers. Ask one of them to do another&#x27;s job and it will fail you politely, at the worst possible moment."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/mirror-backup-history.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/mirror-backup-history-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-19"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Mirror, Backup, History — Three Jobs, Three Tools, One File-Set"/>
+<meta name="twitter:description" content="Syncthing replicates, Restic protects, Git remembers. Ask one of them to do another&#x27;s job and it will fail you politely, at the worst possible moment."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/mirror-backup-history-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mirror, Backup, History — Three Jobs, Three Tools, One File-Set",
+  "description": "Syncthing replicates, Restic protects, Git remembers. Ask one of them to do another's job and it will fail you politely, at the worst possible moment.",
+  "image": "https://structurebeatsmagic.com/assets/mirror-backup-history-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/mirror-backup-history.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/mirror-backup-history.html",
+  "datePublished": "2026-07-19",
+  "dateModified": "2026-07-19"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Mirror, Backup, History — Three Jobs, Three Tools, One File-Set</h1>
+  <p class="subtitle">Syncthing replicates, Restic protects, Git remembers. Ask one of them to do another&#x27;s job and it will fail you politely, at the worst possible moment.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-19</div>
+  <figure class="article-hero"><img src="../assets/mirror-backup-history-hero.png" alt="Mirror, Backup, History — Three Jobs, Three Tools, One File-Set" loading="eager"/><figcaption>Three arrows, three different meanings. Syncthing&#x27;s arrow points both ways and carries the present. Restic&#x27;s points outward and carries the past, encrypted. Git&#x27;s points backward and never leaves the disk. The mistake that costs you data is assuming any one arrow can be redrawn as another.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>The backup that deleted my file, faithfully</h2>
+<p>You delete a file by accident. You reach for your sync folder, because that's where everything lives and it has always felt like safety. The file isn't there. It was deleted on the other machine too — instantly, correctly, exactly as designed.</p>
+<p>Nothing malfunctioned. A sync tool's entire job is to make two places identical, and it did that flawlessly. It replicated your mistake with the same fidelity it replicates your work, because it has no way to tell them apart.</p>
+<p>This is the most common data-loss story among people who are, by their own reckoning, careful. They have a sync tool. They assumed a sync tool was a backup. Those are different jobs, and the gap between them only becomes visible on the day you need the one you didn't have.</p>
+<p>The fix isn't a better tool. It's noticing that three separate questions have been collapsed into one.</p>
+<h2>Three questions about time</h2>
+<p>Every file you care about raises three questions, and they are genuinely distinct:</p>
+<p><strong>Is this the same everywhere?</strong> — the <em>present</em>. You edit on the laptop and want it on the phone. This is <strong>mirroring</strong>, and Syncthing does it.</p>
+<p><strong>Can I get this back if the disk dies?</strong> — the <em>past, off this machine</em>. This is <strong>backup</strong>, and Restic does it.</p>
+<p><strong>How did this become what it is?</strong> — the <em>past, on this machine</em>. Not "restore yesterday's file" but "show me every step, and why." This is <strong>history</strong>, and Git does it.</p>
+<p>One file-set, three questions. The reason they resist being merged is that each demands a property the others actively don't want.</p>
+<p>A mirror must propagate deletions — that's what makes it a mirror. A backup must <em>refuse</em> to propagate deletions, or it isn't protecting anything. Ask one tool to do both and you've asked for a contradiction; what you'll get is the mirror's behaviour with the backup's reassuring name.</p>
+<h2>Why the mirror can't be the backup</h2>
+<p>Syncthing is superb at what it does. It also has no memory of what you meant.</p>
+<p>Delete a file, it deletes it everywhere. Corrupt a file — a bad save, a half-written export, ransomware — and it faithfully corrupts every copy. Speed, which is a virtue for mirroring, becomes the vector: the damage is everywhere before you notice it happened anywhere.</p>
+<p>Versioning helps at the margin. Syncthing's staggered versioning keeps old copies for a while, and it has saved me. But it lives <em>on the same disks</em>, inside the same trust boundary, and only for a window. It's a seatbelt, not a spare car.</p>
+<p>The honest formulation: <strong>a mirror is a copy of the present. A backup is a copy of the past that the present cannot reach.</strong> That unreachability is the whole point.</p>
+<h2>Why the backup can't be the history</h2>
+<p>Restic is my backup, encrypted client-side before anything leaves the laptop, sitting in EU object storage. It answers "can I get it back" completely.</p>
+<p>It answers "how did this become this" barely at all. Restic gives you snapshots — the state of everything at 03:00 on a Tuesday. Diff two snapshots and you get a list of changed files. Not why. Not in what order. Not which of them belong to one coherent change.</p>
+<p>Git gives you all of that. Not because it stores more, but because a commit is <em>authored</em> — it's a claim about intent, with a message, grouping a set of changes that mean one thing together. That intent cannot be reconstructed from two snapshots after the fact. It has to be recorded when the change is made, or it's gone.</p>
+<p>Which is why the two layers compose rather than compete. <code>.git</code> is just files on disk. The encrypted backup sweeps up your full version history for free, no extra step — the history layer and the backup layer meet exactly once, at rest, as ciphertext.</p>
+<h2>Why the history can't be the mirror</h2>
+<p>The reverse temptation: Git syncs, so use Git for everything.</p>
+<p>Git is superb at merging text with a shared history. It is bad at binaries, bad at large files, and it demands a commit before anything moves. That's the wrong friction for a scanned PDF or a photo library.</p>
+<p>Worse is what happens if you let a sync tool replicate <code>.git</code> itself. A sync tool sees a folder of independent files. Git sees one interdependent whole. Let two devices write to the same repository internals concurrently and the sync tool will merge at file level into something Git considers structurally inconsistent — a corrupt repository. Sync-conflict copies, harmless among notes, are poison among Git's objects.</p>
+<p>The rule that follows is narrow and load-bearing: <strong>exclude the version-control directory from the sync layer, and run Git on one machine.</strong> That ignore rule is the literal boundary between two layers. It's one line of config, and it's the difference between three tools cooperating and two tools fighting over the same bytes.</p>
+<h2>The green checkmark is not the evidence</h2>
+<p>A structural split doesn't verify itself. And this is where personal infrastructure quietly rots: the layers are correct, and you stop checking, because everything <em>reports</em> fine.</p>
+<p>A real morning from my own system. The health-check flagged three scheduled backup tasks as failed — exit code <code>0x1</code>, red across the board. Backups broken, apparently.</p>
+<p>They weren't. Every snapshot was fresh: vault three hours old, repos and config eleven. What had actually failed was the <em>cleanup</em> step afterward — the retention prune couldn't acquire a lock, because a stale lock from an interrupted run was still sitting there. The backups had succeeded and then tripped on the way out the door.</p>
+<p>The inverse had bitten me before, and it's the worse direction: a task reporting success — clean <code>0x0</code>, green — while no backup had run for six days. An em-dash in a string literal had broken the script under an older PowerShell, and the wrapper swallowed it.</p>
+<p>So the exit code is not the evidence, in either direction. <strong>The evidence is a fresh snapshot per path, and a restore you have actually performed.</strong> My health-check now verifies snapshot freshness per backup path rather than reading return codes, because the return code turned out to be the least reliable signal in the system.</p>
+<p>A rule the system can't check is decoration. That includes the rule that says your backups are working.</p>
+<h2>Where the split earns its keep</h2>
+<p>The clearest demonstration came from adding a second workstation — a laptop at the other house, wanting the same vault.</p>
+<p>The obvious move is bidirectional sync: both machines read and write, everything converges. It works right up until both edit while apart, and then you're arbitrating conflict copies across a 90,000-file vault, forever.</p>
+<p>The split suggests something better. Ask which <em>job</em> the second machine is doing. It reads, and it produces small amounts of new work. It doesn't need to be a second master.</p>
+<p>So: the vault mirrors to it <strong>receive-only</strong>, and one small folder mirrors back the other way, <strong>send-only</strong>. Exactly one writer per folder, in both directions.</p>
+<p>The difference is categorical. Receive-only isn't a convention I have to remember — the protocol <em>refuses</em> to propagate local changes and offers to revert them. Conflicts aren't unlikely; they're structurally impossible. Nothing depends on my discipline at 11pm.</p>
+<p>It costs something real, and the trade is worth naming: on that machine, tools can read the vault but not write to it. Work produced there lands in the inbox folder and gets filed when I'm back at the master. Draft on the satellite, file at the source. I'd rather have that constraint than a permanent merge problem.</p>
+<p>Backup didn't change at all. It runs from the master, as it always did. Three layers, three roles, and adding a machine only touched one of them — which is the practical payoff of keeping them separate in the first place.</p>
+<h2>The shape of the answer</h2>
+<p>Three questions, three tools, one file-set:</p>
+<div class="table-wrap"><table><thead><tr><th>Question</th><th>Tense</th><th>Job</th><th>Must</th></tr></thead><tbody><tr><td>Same everywhere?</td><td>present</td><td><strong>mirror</strong></td><td>propagate deletions</td></tr><tr><td>Recoverable if the disk dies?</td><td>past, offsite</td><td><strong>backup</strong></td><td>refuse to propagate deletions</td></tr><tr><td>How did it become this?</td><td>past, local</td><td><strong>history</strong></td><td>record intent, not just state</td></tr></tbody></table></div>
+<p>The tools are incidental — pick whatever you like. The split is the durable part.</p>
+<p>Sync gives you the present on every device. Backup gives you the past, encrypted, out of reach of your own mistakes. Version control gives you the story, locally, where your private material stays private. They compose: history is files, so backup captures it for free; sync carries content, so it never touches history's internals.</p>
+<p>None of this is exotic. It's one idea — <strong>match the tool to the actual question</strong> — applied to the least glamorous corner of a personal system, where the cost of getting it wrong is invisible until the day it's total.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series, and the third leg of a trilogy: <a href="syncthing-as-the-glue.html">Syncthing as the Glue</a> is the mirror, <a href="restic-hetzner-personal-backup.html">Restic + Hetzner</a> is the backup, and this is the history — plus the argument for why they must stay three.</em></p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/sovereign-personal-system.html">Sovereign Personal System</a></li><li><a href="../concepts/one-way-publishing.html">One-Way Publishing</a></li><li><a href="../concepts/the-three-worlds-split.html">The Three-Worlds Split</a></li><li><a href="../concepts/rules-you-can-verify.html">Rules You Can Verify</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

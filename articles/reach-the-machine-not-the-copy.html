@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reach the Machine, Not the Copy — Structure Beats Magic</title>
+<meta name="description" content="Sync brings the data to you. Sometimes you need the opposite — to reach the machine where the data already lives, without opening a single port to the internet."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html"/>
+<meta property="og:title" content="Reach the Machine, Not the Copy"/>
+<meta property="og:description" content="Sync brings the data to you. Sometimes you need the opposite — to reach the machine where the data already lives, without opening a single port to the internet."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/reach-the-machine-not-the-copy-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-20"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Reach the Machine, Not the Copy"/>
+<meta name="twitter:description" content="Sync brings the data to you. Sometimes you need the opposite — to reach the machine where the data already lives, without opening a single port to the internet."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/reach-the-machine-not-the-copy-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Reach the Machine, Not the Copy",
+  "description": "Sync brings the data to you. Sometimes you need the opposite — to reach the machine where the data already lives, without opening a single port to the internet.",
+  "image": "https://structurebeatsmagic.com/assets/reach-the-machine-not-the-copy-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html",
+  "datePublished": "2026-07-20",
+  "dateModified": "2026-07-20"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For builders &amp; teams</p>
+  <h1>Reach the Machine, Not the Copy</h1>
+  <p class="subtitle">Sync brings the data to you. Sometimes you need the opposite — to reach the machine where the data already lives, without opening a single port to the internet.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-20</div>
+  <figure class="article-hero"><img src="../assets/reach-the-machine-not-the-copy-hero.png" alt="Reach the Machine, Not the Copy" loading="eager"/><figcaption>Two ways to work at a distance. The top path copies the data outward until it reaches you — more copies, more places to reconcile. The bottom path leaves the data exactly where it is and moves the session instead. One machine, one source of truth, reached over a private network that no port on the router knows about.</figcaption></figure>
+  <article>
+  <hr/>
+<h2>The question everyone asks, and the one they skip</h2>
+<p>Set up a second machine and the question arrives immediately: <strong>how do I get my stuff onto it?</strong></p>
+<p>It's the natural question and it has good answers — mirror the folders, restore from backup, generate a filtered subset. I've written about all three. But it quietly assumes something: that working elsewhere means <em>having the data</em> elsewhere.</p>
+<p>There's a second question, asked far less often, that dissolves a whole category of problems.</p>
+<p><strong>What if the data stays exactly where it is, and I go to it instead?</strong></p>
+<p>Not a copy. Not a sync. A session on the machine that already holds everything — the vault, the databases, the repositories, the credentials, every local integration that took months to wire together.</p>
+<p>Both answers are correct. They solve different problems, and knowing which one you're facing is most of the work.</p>
+<h2>Why a copy is sometimes the wrong shape</h2>
+<p>My second machine holds a read-only replica of the vault. That's deliberate, and for reading it's ideal — it works when the master is asleep, when there's no network, when I'm somewhere with bad signal.</p>
+<p>But a replica has a hard ceiling: <strong>it's a copy, so it can't be the source.</strong></p>
+<p>Anything that must happen <em>at</em> the source — a script that writes into the vault, a database query against the live file, a tool wired to credentials that live on one machine — cannot happen on a replica. You can copy the files. You cannot copy the <em>context</em>: the environment variables, the API keys, the mounted drives, the integrations, the accumulated configuration that makes one machine yours.</p>
+<p>That's the tell. When what you need is the machine rather than the files, stop trying to move the files.</p>
+<h2>The obvious solution, and why it's wrong</h2>
+<p>Remote access to a machine at home has a textbook answer: forward a port on the router, connect from outside.</p>
+<p>It works. It's also how you take a laptop holding your entire life — vault, backup credentials, code-signing keys, push rights to every repository — and expose a login service to the open internet, where it will be found and probed within hours. Not because anyone is after you. Because everything is scanned, constantly.</p>
+<p>The trade is bad in a specific way: you gain occasional convenience and accept a permanent, always-on attack surface. And the risk isn't proportional to how often you use it — the port is open whether you connect or not.</p>
+<h2>The better shape: a private network, not an open door</h2>
+<p>The alternative is to build a small private network spanning only your own devices, and put the service inside <em>that</em> instead of on the public internet.</p>
+<p>Mesh VPNs do this. Each device joins a network identified by your account and gets a stable private address. Devices find each other through a coordination service, then — this is the part that matters — <strong>connect directly to each other</strong>, negotiating through the network address translation that would normally block them.</p>
+<p>The properties are what you'd want from a personal system:</p>
+<p><strong>Nothing is exposed publicly.</strong> No port forwarded, no router configuration, no public address. A scanner sweeping your home IP finds nothing, because there's nothing to find.</p>
+<p><strong>Addresses are stable.</strong> Devices get a fixed private address that doesn't change when your provider rotates your public IP. Anything pointing at it keeps working. That single property quietly solves a class of breakage that plagues self-hosted setups.</p>
+<p><strong>It's direct.</strong> On my own pair: 7 ms, connecting straight rather than through a relay. Fast enough that a remote session feels local.</p>
+<p><strong>The membership is the boundary.</strong> Not a password on a public door — a network only your devices belong to.</p>
+<h2>The default that would have undone all of it</h2>
+<p>Here's the part worth the price of admission, because it's exactly the kind of thing that makes a careful setup quietly insecure.</p>
+<p>Installing the SSH server on Windows is one command. It installs the service, and it also creates and <strong>enables</strong> a firewall rule permitting inbound connections on port 22.</p>
+<p>From any address. <code>RemoteIP: Any</code>.</p>
+<p>Which means: install the server, start it, and your laptop now accepts SSH connections on <strong>every network it ever joins</strong>. Home, office, hotel, airport, café. The private network you carefully set up is irrelevant, because the service isn't restricted to it. You built a gated garden and left the side gate open.</p>
+<p>The fix is two steps, and the order matters:</p>
+<pre><code># 1. Disable the rule the installer created
+Get-NetFirewallRule -Name *OpenSSH-Server* | Disable-NetFirewallRule
+
+# 2. Replace it with one scoped to the private network only
+New-NetFirewallRule -Name "sshd-tailscale-only" `
+    -DisplayName "OpenSSH Server (Tailscale only)" `
+    -Enabled True -Direction Inbound -Protocol TCP -Action Allow `
+    -LocalPort 22 -RemoteAddress 100.64.0.0/10</code></pre>
+<p>That address range is the block mesh VPNs allocate from. Traffic from anywhere else never reaches the service.</p>
+<p><strong>Do this before starting the service, not after.</strong> Start it first and there's a window — minutes, maybe hours if you get distracted — where the broad rule is live and the service is listening. Windows of that kind are how systems get compromised: not through a decision, through an ordering.</p>
+<h2>Check the thing itself, not the thing that reports on it</h2>
+<p>After configuring, I checked. The output:</p>
+<pre><code>Old rule:  Enabled: No    RemoteIP: Any
+New rule:  Enabled: Yes   RemoteIP: 100.64.0.0/10   LocalPort: 22</code></pre>
+<p>That's the evidence. Not "the commands ran without errors" — the actual state of the actual rules.</p>
+<p>And one detail that will confuse you if you look, because it looks alarming:</p>
+<pre><code>TCP    0.0.0.0:22    LISTENING</code></pre>
+<p>The service <em>is</em> listening on all interfaces, and it will keep doing that. You cannot meaningfully tell it otherwise. <strong>The listener isn't the boundary — the firewall is.</strong> The service listens everywhere; the firewall decides who reaches it. Once you see that, the design makes sense: one component does one job, and the restriction lives in the component built for restrictions.</p>
+<p>This generalises past SSH. <strong>An installer's defaults are a claim about the common case, not a fact about your case.</strong> The common case for an SSH server is a server in a datacentre where broad access is the point. Your laptop is not that. Every default worth trusting is one you've checked against your own situation — and the ones that bite are never the settings you agonised over. They're the ones you didn't know had been made for you.</p>
+<h2>What it's actually for</h2>
+<p>With the network up and the service scoped, one command from the other machine reaches the master:</p>
+<pre><code>ssh me@my-laptop</code></pre>
+<p>And from there, anything that needs to happen <em>at</em> the source happens at the source. Run the assistant against the live vault. Query the real database. Trigger a build with the real credentials. Nothing was copied. Nothing has to be reconciled afterwards.</p>
+<p>Which completes a set. The <a href="mirror-backup-history.html">three-tool split</a> — mirror, backup, history — is about the <em>data</em>: is it the same everywhere, can I get it back, how did it become this. This is the fourth question, and it's about <em>presence</em>: <strong>can I be where the data is, without moving it?</strong></p>
+<p>The replica and the remote session don't compete. The replica works when the master is off, offline, unreachable. The remote session gives full power when the master is on. Two answers to two genuinely different situations, and having both is better than picking a favourite.</p>
+<p>The general move is the one worth keeping: when moving the data gets complicated, check whether you should be moving yourself instead.</p>
+<hr/>
+<p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series — the fourth leg of the personal-OS spoke, after <a href="syncthing-as-the-glue.html">Syncthing as the Glue</a>, <a href="restic-hetzner-personal-backup.html">Restic + Hetzner</a>, and <a href="mirror-backup-history.html">Mirror, Backup, History</a>.</em></p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/sovereign-personal-system.html">Sovereign Personal System</a></li><li><a href="../concepts/the-controlled-front-door.html">The Controlled Front Door</a></li><li><a href="../concepts/rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="../concepts/hooks-over-hopes.html">Hooks Over Hopes</a></li></ul></aside>
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
