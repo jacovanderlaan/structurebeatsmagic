@@ -186,13 +186,24 @@ function boot(root){
   addEventListener('pointerup',()=>setTimeout(()=>drag.node=null,0));
   addEventListener('resize',()=>{W=root.clientWidth;H=root.dataset.h?+root.dataset.h:Math.max(420,Math.min(680,root.clientWidth*0.62));svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.style.height=H+'px';});
 
-  // category filters (full map only)
+  // category filters (full map only). Multi-select categories; the "All" chip
+  // (empty data-cat) clears them. Opens focused on data-default-cat.
   const filt=root.querySelector('.cmap-filters');
-  if(filt){filt.querySelectorAll('.cmap-chip').forEach(ch=>ch.addEventListener('click',()=>{
-    ch.classList.toggle('on');
-    const active=[...filt.querySelectorAll('.cmap-chip.on')].map(c=>c.dataset.cat);
-    N.forEach(n=>n.on=active.length===0||active.includes(n.cat));
-  }));}
+  if(filt){
+    function apply(){
+      const active=[...filt.querySelectorAll('.cmap-chip.on')].map(c=>c.dataset.cat).filter(Boolean);
+      N.forEach(n=>n.on = active.length===0 || active.includes(n.cat));
+      filt.querySelector('.cmap-all')?.classList.toggle('on', active.length===0);
+      // re-scatter the now-visible nodes so a filtered view spreads out
+      N.forEach(n=>{ if(n.on){ n.x=W/2+(Math.random()-.5)*W*.4; n.y=H/2+(Math.random()-.5)*H*.4; } });
+    }
+    filt.querySelectorAll('.cmap-chip').forEach(ch=>ch.addEventListener('click',()=>{
+      if(ch.dataset.cat===''){ filt.querySelectorAll('.cmap-chip.on').forEach(c=>c.classList.remove('on')); }
+      else ch.classList.toggle('on');
+      apply();
+    }));
+    apply(); // honour the default-cat set in HTML
+  }
   tick();
 }
 document.querySelectorAll('.cmap-wrap').forEach(boot);
@@ -206,15 +217,26 @@ def graph_json_script(graph: dict, elem_id: str) -> str:
     return f'<script type="application/json" id="{elem_id}">{payload}</script>'
 
 
-def full_map_container(graph: dict, base: str) -> str:
-    """The interactive container for the /map/ page: filters + svg + data."""
-    chips = "".join(
-        f'<button class="cmap-chip" data-cat="{html.escape(c)}">{html.escape(c)}</button>'
-        for c in graph["categories"]
-    )
+def full_map_container(graph: dict, base: str, default_cat: str = "") -> str:
+    """The interactive container for the /map/ page: filters + svg + data.
+
+    Opens focused on one category (default_cat) rather than showing all 118
+    nodes at once, which was an unreadable cloud. An "All concepts" chip clears
+    the filter. (2026-07-21, Jaco's call.)
+    """
+    cats = graph["categories"]
+    if default_cat not in cats:
+        # fall back to the smallest sensible starting cluster
+        default_cat = "Personal data model" if "Personal data model" in cats else cats[0]
+    chips = ['<button class="cmap-chip cmap-all" data-cat="">All concepts</button>']
+    for c in cats:
+        on = " on" if c == default_cat else ""
+        chips.append(
+            f'<button class="cmap-chip{on}" data-cat="{html.escape(c)}">{html.escape(c)}</button>')
     return (
-        f'<div class="cmap-wrap" data-src="cmap-full-data" data-base="{html.escape(base)}" data-h="900">'
-        f'<div class="cmap-filters">{chips}</div><svg></svg></div>'
+        f'<div class="cmap-wrap" data-src="cmap-full-data" data-base="{html.escape(base)}"'
+        f' data-h="900" data-default-cat="{html.escape(default_cat)}">'
+        f'<div class="cmap-filters">{"".join(chips)}</div><svg></svg></div>'
         + graph_json_script(graph, "cmap-full-data")
     )
 
