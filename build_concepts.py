@@ -283,6 +283,7 @@ class Concept:
     references: list = field(default_factory=list)          # [{title,url}]
     hero_image: str = ""     # filename in the concept's assets/ (ADR-080 + ADR-075)
     hero_caption: str = ""   # optional caption rendered under the hero
+    sites: list = field(default_factory=lambda: ["sbm"])  # which brand sites publish it (ADR-093)
 
 
 def _norm_reflist(val) -> list:
@@ -396,8 +397,17 @@ def parse_concepts(src: Path) -> list[Concept]:
             # <slug>/assets/<file>, copied into the site assets/ at build time.
             hero_image=str(meta.get("hero_image") or (md.get("hero_image") if isinstance(md, dict) else "") or "").strip().strip('"'),
             hero_caption=str(meta.get("hero_caption") or (md.get("hero_caption") if isinstance(md, dict) else "") or "").strip().strip('"'),
+            # ADR-093: which brand site(s) publish this concept. Absent -> [sbm],
+            # so every existing concept and the live SBM site are unaffected until
+            # a concept opts into another site. Life-only concepts (sites: [life])
+            # are parsed but filtered out of the SBM build below.
+            sites=[str(x).strip().lower() for x in (
+                _norm_reflist(meta.get("sites") or (md.get("sites") if isinstance(md, dict) else None)) or ["sbm"])],
         ))
-    return concepts
+    # This is the SBM builder: publish only concepts routed to 'sbm'. A concept
+    # routed to 'life' only lives in the shared source but renders on the life
+    # site's builder instead (ADR-093 shared-source model).
+    return [c for c in concepts if "sbm" in c.sites]
 
 
 def group_concepts(concepts: list[Concept]) -> list[tuple[str, list[Concept]]]:
@@ -999,6 +1009,18 @@ def render_static(concepts: list[Concept]) -> None:
     for c in concepts:
         (OUT / f"{c.slug}.html").write_text(
             render_detail(c, by_slug, by_name, graph), encoding="utf-8")
+    # Remove orphan detail pages: a <slug>.html with no live concept behind it.
+    # This happens when a concept is re-routed away from this site (ADR-093
+    # sites: field) or deleted -- the page would otherwise linger, drop out of
+    # the index but STAY in the sitemap, and keep being indexed as a ghost.
+    # (Found 2026-07-21 when portfolio-life + self-destructive-spiral moved to
+    # the life site: index dropped them, sitemap and files did not.)
+    live_pages = {f"{c.slug}.html" for c in concepts}
+    keep = live_pages | {"index.html", "map.html"}
+    for f in OUT.glob("*.html"):
+        if f.name not in keep:
+            f.unlink()
+            print(f"  - removed orphan page: {f.name}")
     # the full concept map
     (OUT / "map.html").write_text(render_map(graph), encoding="utf-8")
     # cross-cutting group pages -> concepts/groups/<slug>.html
