@@ -254,6 +254,11 @@
   /* why next-level */
   .nl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
   .nl-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
+  /* nl-cards are links to their concept pages — make that legible + interactive */
+  a.nl-card{display:block;text-decoration:none;transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+  a.nl-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 6px 20px rgba(15,23,42,.10)}
+  a.nl-card::after{content:"→";float:right;color:var(--accent);opacity:0;transition:opacity .12s ease}
+  a.nl-card:hover::after{opacity:1}
   .nl-card.nl-accent{border:1.5px solid var(--accent)}
   .nl-k{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
   .nl-card p{margin:0;color:var(--ink-soft);font-size:.97rem}
