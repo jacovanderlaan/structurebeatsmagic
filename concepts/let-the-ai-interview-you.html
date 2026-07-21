@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>There's a compounding move hiding in it too: the interview's answers don't have to evaporate with the session. Route them into the standing structure — the context file, the preferences, the profile — and each interview permanently shrinks the territory the next one has to cover. The questions get more specific over time because the obvious ones are already answered on disk.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="stop-prompting-start-directing.html">Stop Prompting, Start Directing</a></li><li><a href="claude-md-as-operating-system.html">CLAUDE.md as Operating System</a></li><li><a href="the-voice-layer.html">The Voice Layer</a></li><li><a href="honesty-over-helpfulness.html">Honesty Over Helpfulness</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"claude-md-as-operating-system","title":"CLAUDE.md as Operating System","cat":"Method & workflow","desc":"Standing rules the AI reads before it acts — a layered OS for how the assistant behaves in your world."},{"slug":"honesty-over-helpfulness","title":"Honesty Over Helpfulness","cat":"Method & workflow","desc":"A confident wrong answer costs more than an honest 'I don't know' — so make honesty a standing rule: only report work you have evidence for."},{"slug":"let-the-ai-interview-you","title":"Let the AI Interview You","cat":"Method & workflow","desc":"Reverse the roles before the work starts: the AI studies what exists, then asks you what it can't infer — the gaps it fills silently are where it fail"},{"slug":"self-models","title":"Self Models","cat":"Personal data model","desc":"The parts of you an AI can't infer — your taste, your limits, your voice, your history — written down as durable data the system reads instead of gues"},{"slug":"stop-prompting-start-directing","title":"Stop Prompting, Start Directing","cat":"Method & workflow","desc":"Set up a system before the task; give AI an outcome, context, constraints and a way to validate."},{"slug":"the-voice-layer","title":"The Voice Layer","cat":"Method & workflow","desc":"Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources."}],"edges":[["claude-md-as-operating-system","honesty-over-helpfulness"],["claude-md-as-operating-system","let-the-ai-interview-you"],["honesty-over-helpfulness","let-the-ai-interview-you"],["let-the-ai-interview-you","stop-prompting-start-directing"],["let-the-ai-interview-you","the-voice-layer"],["self-models","the-voice-layer"],["let-the-ai-interview-you","self-models"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"let-the-ai-interview-you"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

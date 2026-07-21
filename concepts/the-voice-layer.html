@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>And the hard rule is load-bearing: <strong>AI text is the anti-example, never the source.</strong> Let generated prose back into the corpus and the system starts learning from its own output — voice-flavoured sludge, converging on the average it was supposed to escape. The corpus only stays yours if everything in it was written by you.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="self-models.html">Self Models</a></li><li><a href="grounded-skills.html">Grounded Skills</a></li><li><a href="let-the-ai-interview-you.html">Let the AI Interview You</a></li><li><a href="the-reasoning-layer.html">The Reasoning Layer</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"grounded-skills","title":"Grounded Skills","cat":"Method & workflow","desc":"Build reusable instructions only from your own sources, with receipts: every line cited to something you wrote or vetted — no citation, no line."},{"slug":"let-the-ai-interview-you","title":"Let the AI Interview You","cat":"Method & workflow","desc":"Reverse the roles before the work starts: the AI studies what exists, then asks you what it can't infer — the gaps it fills silently are where it fail"},{"slug":"self-models","title":"Self Models","cat":"Personal data model","desc":"The parts of you an AI can't infer — your taste, your limits, your voice, your history — written down as durable data the system reads instead of gues"},{"slug":"the-reasoning-layer","title":"The Reasoning Layer","cat":"System architecture","desc":"The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever."},{"slug":"the-voice-layer","title":"The Voice Layer","cat":"Method & workflow","desc":"Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources."}],"edges":[["grounded-skills","the-voice-layer"],["let-the-ai-interview-you","the-voice-layer"],["self-models","the-voice-layer"],["let-the-ai-interview-you","self-models"],["the-reasoning-layer","the-voice-layer"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-voice-layer"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

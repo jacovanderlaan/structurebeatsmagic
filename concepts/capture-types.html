@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>The vocabulary is deliberately small — a handful of types, not a taxonomy. A type system nobody can remember gets ignored at exactly the moment it's needed: when you're in a hurry.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="grounded-skills.html">Grounded Skills</a></li><li><a href="the-daily-note.html">The Daily Note</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"capture-types","title":"Capture Types","cat":"Method & workflow","desc":"A systematic vocabulary of typed captures: idea_, question_, decision_, action_ …"},{"slug":"grounded-skills","title":"Grounded Skills","cat":"Method & workflow","desc":"Build reusable instructions only from your own sources, with receipts: every line cited to something you wrote or vetted — no citation, no line."},{"slug":"inbox-triage","title":"Inbox Triage","cat":"Method & workflow","desc":"Every place loose input arrives needs a fast per-item sort — process, archive, discard, defer — before anything reaches the vault."},{"slug":"the-daily-note","title":"The Daily Note","cat":"System architecture","desc":"One note per day, auto-filled from your own data, that rolls up over time."},{"slug":"folder-note","title":"The Folder Note","cat":"System architecture","desc":"A note that lives inside a folder and carries its name — the folder's own description, so a directory can say what it is."}],"edges":[["capture-types","grounded-skills"],["capture-types","the-daily-note"],["capture-types","folder-note"],["capture-types","inbox-triage"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"capture-types"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

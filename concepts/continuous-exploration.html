@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -109,6 +111,7 @@
 <p>Related: <a href="curated-sources.html">Curated sources</a> · <a href="recommendation-affinity-matching.html">Recommendation affinity matching</a> · <a href="anti-interests.html">Anti interests</a> · <a href="intelligence-systems.html">Intelligence systems</a> · <a href="collecting-is-not-capability.html">Collecting is not capability</a></p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="recommendation-affinity-matching.html">Recommendation (Affinity Matching)</a></li><li><a href="anti-interests.html">Anti-Interests</a></li><li><a href="intelligence-systems.html">Intelligence Systems</a></li><li><a href="collecting-is-not-capability.html">Collecting Is Not Capability</a></li><li><a href="the-experiment-loop.html">The Experiment Loop</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"anti-interests","title":"Anti-Interests","cat":"Filtering & identity","desc":"A declared list of what you're not interested in — a veto over recommendations."},{"slug":"collecting-is-not-capability","title":"Collecting Is Not Capability","cat":"Filtering & identity","desc":"The prompt library you never open and the hacks you screenshot but never run are consumption in a productivity costume — only applied structure counts"},{"slug":"continuous-exploration","title":"Continuous Exploration","cat":"Filtering & identity","desc":"Standing outward search through your own filters — the system keeps looking when you aren't, and reports back."},{"slug":"continuous-learning","title":"Continuous Learning","cat":"Method & workflow","desc":"Learning as a standing process rather than a course you finish — the system keeps feeding you and keeps score."},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"intelligence-systems","title":"Intelligence Systems","cat":"Intelligence systems","desc":"Curate sources, structure them, let AI extract and validate — applied to a whole domain."},{"slug":"recommendation-affinity-matching","title":"Recommendation (Affinity Matching)","cat":"Filtering & identity","desc":"Scoring what's new against what you've already proven you love — the engine that anti-interests puts a veto on."},{"slug":"the-experiment-loop","title":"The Experiment Loop","cat":"Brand & stance","desc":"Play with a hypothesis: hypothesize → experiment → learn → decide. The mechanism that turns tinkering into a proven block."}],"edges":[["anti-interests","curated-sources"],["collecting-is-not-capability","curated-sources"],["collecting-is-not-capability","the-experiment-loop"],["continuous-exploration","curated-sources"],["continuous-exploration","recommendation-affinity-matching"],["anti-interests","continuous-exploration"],["continuous-exploration","intelligence-systems"],["collecting-is-not-capability","continuous-exploration"],["continuous-exploration","the-experiment-loop"],["continuous-learning","the-experiment-loop"],["continuous-exploration","continuous-learning"],["curated-sources","intelligence-systems"],["anti-interests","recommendation-affinity-matching"],["curated-sources","recommendation-affinity-matching"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"continuous-exploration"}</script></div>
   </div>
 </section>
 
@@ -125,5 +128,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

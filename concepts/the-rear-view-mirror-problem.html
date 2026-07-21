@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -96,6 +98,7 @@
 <p>The sticky one-line hook for why reporting/BI isn't intelligence. A system of record is a rear-view mirror: accurate, detailed, essential — and entirely about what's already behind you. Most organisations, for all their expensive systems, steer forward by looking backward. The intelligence layer is the rest of the dashboard: detect + validate turn the records into a windscreen (what's ahead), and sensing outward adds the side mirrors (what's coming up alongside). You need all three to have a sense of your surroundings rather than a precise picture of the road you've already driven. An accessible on-ramp to The Missing System for non-technical decision-makers.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-missing-system.html">The Missing System</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"the-missing-system","title":"The Missing System","cat":"Umbrella thesis","desc":"Orgs have systems of record; almost none have the intelligence layer on top — data + AI + rules."},{"slug":"the-rear-view-mirror-problem","title":"The Rear-View Mirror Problem","cat":"Umbrella thesis","desc":"A system of record shows what's behind you; steer by it alone and you drive forward looking backward."},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["the-missing-system","the-rear-view-mirror-problem"],["the-missing-system","the-validation-loop"],["the-rear-view-mirror-problem","the-validation-loop"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-rear-view-mirror-problem"}</script></div>
   </div>
 </section>
 
@@ -112,5 +115,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -98,6 +100,7 @@
 <p>A display case is <em>supposed</em> to be limited. It shows a bounded slice, arranged for whoever's looking, frozen at the moment you published it. That's not a defect — it's the job. The mistake is expecting a display case to also be a workbench: the moment someone starts editing inside the case, you have two workshops and no source of truth.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="a-brain-that-publishes-itself.html">A Brain That Publishes Itself</a></li><li><a href="one-way-publishing.html">One-Way Publishing</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-brain-that-publishes-itself","title":"A Brain That Publishes Itself","cat":"Method & workflow","desc":"One source of truth in a database; a website derived from it at build time."},{"slug":"one-way-publishing","title":"One-Way Publishing","cat":"Method & workflow","desc":"You don't sync systems — you publish from one. Sync is where rot starts."},{"slug":"the-workshop-and-the-display-case","title":"The Workshop and the Display Case","cat":"Method & workflow","desc":"The vault is the living workshop; everything published from it is a frozen display case."}],"edges":[["a-brain-that-publishes-itself","one-way-publishing"],["a-brain-that-publishes-itself","the-workshop-and-the-display-case"],["one-way-publishing","the-workshop-and-the-display-case"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-workshop-and-the-display-case"}</script></div>
   </div>
 </section>
 
@@ -114,5 +117,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

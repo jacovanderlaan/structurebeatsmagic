@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>They compound with AI, too: a model reading your decision records inherits your reasoning, not just your conclusions.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"decision-records","title":"Decision Records","cat":"Method & workflow","desc":"Big choices written down with options and reasoning (ADR/PDR/IDR/BDR)."},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"your-risk-profile","title":"Your Risk Profile","cat":"Personal data model","desc":"Define, once and in writing, how much risk you actually accept — so any activity, at home or on holiday, can be tested against it instead of decided i"}],"edges":[["decision-records","rules-you-can-verify"],["decision-records","your-risk-profile"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"decision-records"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

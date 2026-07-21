@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -103,6 +105,7 @@
 <p>Anti-interests zijn geen negatieve lijst maar een vorm van <strong>curatie</strong>. Ze definiëren de buitengrens van je aandachtsruimte net zo goed als je interesses het centrum bepalen. Samen — motor en rem — geven ze een systeem dat verbreedt zonder te verdwalen en verdiept zonder te vernauwen.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="anti-interests.html">Anti-Interests</a></li><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="recommendation-affinity-matching.html">Recommendation (Affinity Matching)</a></li><li><a href="via-negativa.html">Via Negativa</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"anti-interest-filtering","title":"Anti-Interest Filtering","cat":"Filtering & identity","desc":"Defining what you are not interested in, so the system can filter to what matters — focus lives in the negative space."},{"slug":"anti-interests","title":"Anti-Interests","cat":"Filtering & identity","desc":"A declared list of what you're not interested in — a veto over recommendations."},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"recommendation-affinity-matching","title":"Recommendation (Affinity Matching)","cat":"Filtering & identity","desc":"Scoring what's new against what you've already proven you love — the engine that anti-interests puts a veto on."},{"slug":"via-negativa","title":"Via Negativa","cat":"Filtering & identity","desc":"You are also defined by what you are not."}],"edges":[["anti-interest-filtering","anti-interests"],["anti-interest-filtering","curated-sources"],["anti-interest-filtering","recommendation-affinity-matching"],["anti-interest-filtering","via-negativa"],["anti-interests","curated-sources"],["anti-interests","via-negativa"],["curated-sources","via-negativa"],["anti-interests","recommendation-affinity-matching"],["curated-sources","recommendation-affinity-matching"],["recommendation-affinity-matching","via-negativa"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"anti-interest-filtering"}</script></div>
   </div>
 </section>
 
@@ -119,5 +122,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

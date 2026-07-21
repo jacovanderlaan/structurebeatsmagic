@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>Which is why it only works on a spine (<a href="the-calendar-is-the-spine.html">the calendar</a>). One predictable axis means every level knows exactly what to read. Cleverness fragments; a spine cascades.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="living-timeline.html">Living Timeline</a></li><li><a href="life-domains.html">Life Domains</a></li><li><a href="the-calendar-is-the-spine.html">The Calendar Is the Spine</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"cascade-roll-ups","title":"Cascade Roll-ups","cat":"Method & workflow","desc":"Automatic aggregation: Day → Week → Month → Quarter → Year."},{"slug":"life-domains","title":"Life Domains","cat":"Life design","desc":"The handful of distinct areas a life runs on — health, work, relationships, finances — each modeled and reviewed on its own."},{"slug":"living-timeline","title":"Living Timeline","cat":"System architecture","desc":"The calendar spine isn't an archive — it's a timeline that keeps summarizing itself."},{"slug":"the-calendar-is-the-spine","title":"The Calendar Is the Spine","cat":"System architecture","desc":"One time-axis is the backbone of a second brain — everything dated hangs off it."},{"slug":"the-life-debrief","title":"The Life Debrief","cat":"Filtering & identity","desc":"A debrief scaled up to a whole period of life — a periodic, cross-domain look at where you're actually heading, run against your data, not your memory"},{"slug":"the-story-of-your-life","title":"The Story of Your Life","cat":"Personal data model","desc":"A structured life isn't an archive of facts — it's a story you can read back, search, and that keeps writing itself."}],"edges":[["cascade-roll-ups","living-timeline"],["cascade-roll-ups","life-domains"],["cascade-roll-ups","the-calendar-is-the-spine"],["living-timeline","the-calendar-is-the-spine"],["life-domains","the-life-debrief"],["cascade-roll-ups","the-life-debrief"],["living-timeline","the-story-of-your-life"],["the-calendar-is-the-spine","the-story-of-your-life"],["cascade-roll-ups","the-story-of-your-life"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"cascade-roll-ups"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

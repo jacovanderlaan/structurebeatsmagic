@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -100,6 +102,7 @@
 <p>The distinction cuts through most AI discourse. Demos show toys; the interesting question is always what happens on the fiftieth use, on an ordinary Tuesday, when nobody's watching.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="deterministic-by-design.html">Deterministic by Design</a></li><li><a href="rent-the-ai-own-the-structure.html">Rent the AI; Own the Structure</a></li><li><a href="ai-roi.html">AI ROI</a></li><li><a href="red-team-your-ai.html">Red-Team Your AI</a></li><li><a href="structure-beats-magic.html">Structure Beats Magic</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/red-team-your-ai-plan.html">Red-Team Your Own AI (Before It Just Flatters You)</a></li><li><a href="https://structurebeatsmagic.com/articles/structure-beats-magic-at-every-scale.html">Structure Beats Magic at Every Scale</a></li><li><a href="https://structurebeatsmagic.com/articles/why-structure-beats-magic.html">Why Structure Beats Magic</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-toy-vs-an-instrument","title":"A Toy vs an Instrument","cat":"Brand & stance","desc":"Without structure AI is a toy; with structure it becomes an instrument."},{"slug":"ai-roi","title":"AI ROI","cat":"Intelligence systems","desc":"AI only pays back on top of structure. The return isn't in the model — it's in what the model can rely on."},{"slug":"deterministic-by-design","title":"Deterministic by Design","cat":"Umbrella thesis","desc":"Deliberate is whether the structure was chosen; deterministic is whether the output repeats. A toy is neither on the second try."},{"slug":"red-team-your-ai","title":"Red-Team Your AI","cat":"Method & workflow","desc":"A synthesis of your own material flatters you; assign a second AI to attack it."},{"slug":"rent-the-ai-own-the-structure","title":"Rent the AI; Own the Structure","cat":"Brand & stance","desc":"Models are swappable commodities; your structure is the durable asset."},{"slug":"structure-beats-magic","title":"Structure Beats Magic","cat":"Umbrella thesis","desc":"The magic isn't in the model; it's in the structure you give it."}],"edges":[["a-toy-vs-an-instrument","deterministic-by-design"],["a-toy-vs-an-instrument","rent-the-ai-own-the-structure"],["a-toy-vs-an-instrument","ai-roi"],["a-toy-vs-an-instrument","red-team-your-ai"],["a-toy-vs-an-instrument","structure-beats-magic"],["ai-roi","rent-the-ai-own-the-structure"],["deterministic-by-design","structure-beats-magic"],["red-team-your-ai","structure-beats-magic"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"a-toy-vs-an-instrument"}</script></div>
   </div>
 </section>
 
@@ -116,5 +119,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

@@ -39,6 +39,8 @@ import html
 from pathlib import Path
 
 from image_pipeline import copy_optimised
+from concept_graph import (build_graph, full_map_container, mini_map_container,
+                           GRAPH_CSS, GRAPH_JS)
 from dataclasses import dataclass, field
 
 try:
@@ -640,6 +642,7 @@ gtag('config', 'G-P7W9B34R1Z');
   <div class="eyebrow">The vocabulary</div>
   <h1>Concepts &amp; vocabulary</h1>
   <p class="lede">A thesis earns its own words. These are the named concepts behind Structure Beats Magic — one memorable name per idea, so it can be pointed at, reused, and built on. Click any concept for the full picture. Not jargon for its own sake; a shared language for a system you can actually run.</p>
+  <p class="lede" style="margin-top:.8rem"><a href="map.html"><strong>See the concept map &#8594;</strong></a> &mdash; every idea and how it connects, in one interactive view.</p>
 </div>
 
 <section id="concepts">
@@ -803,7 +806,7 @@ def _render_rel_block(concepts_by_slug, concepts_by_name, c: Concept) -> str:
     return '<div class="c-rel">' + "".join(blocks) + '</div>'
 
 
-def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
+def render_detail(c: Concept, concepts_by_slug, concepts_by_name, graph=None) -> str:
     body_html = md_to_html(c.body_md)
     # "Where it lives" (c.where) is an internal/technical note and is intentionally NOT
     # published on concept pages. The field is still parsed and kept on the Concept for
@@ -827,6 +830,21 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
                      f'alt="{esc(c.name)}" loading="eager"/>{cap}</figure>')
         # the concept's own hero makes a far richer social card than the generic one
         og_image = f"{BASE_URL}/assets/{c.hero_image}"
+    # Mini concept-map: this concept's immediate neighbourhood (ADR — 2026-07-21).
+    # Rendered only when the neighbourhood is worth drawing (>= 3 nodes).
+    minimap_html = ""
+    minimap_script = ""
+    if graph is not None:
+        container = mini_map_container(graph, c.slug, base="")
+        if container:
+            minimap_html = (
+                '<div class="c-map">'
+                '<div class="section-eyebrow">The neighbourhood</div>'
+                '<h3>How this connects</h3>'
+                f'{container}</div>'
+            )
+            minimap_script = '<script src="../assets/concept-map.js"></script>'
+
     canonical = f"{BASE_URL}/concepts/{c.slug}.html"
     return f"""<!doctype html>
 <html lang="en">
@@ -848,6 +866,8 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
 <link rel="stylesheet" href="../assets/site.css" />
 {DETAIL_STYLE}
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{{margin-top:3rem}}.c-map h3{{margin:.2rem 0 1rem;font-size:1.3rem}}</style>
 </head>
 <body>
 
@@ -867,12 +887,14 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name) -> str:
 {body_html}
     </div>
     {rel_html}
+    {minimap_html}
   </div>
 </section>
 
 {FOOTER}
 
 {NAV_SCRIPT}
+{minimap_script}
 </body>
 </html>
 """
@@ -900,6 +922,60 @@ def copy_concept_assets(concepts: list[Concept]) -> int:
     return copied
 
 
+def render_map(graph: dict) -> str:
+    """The full interactive concept map -> concepts/map.html (2026-07-21)."""
+    container = full_map_container(graph, base="")
+    canonical = f"{BASE_URL}/concepts/map.html"
+    n_nodes, n_edges = len(graph["nodes"]), len(graph["edges"])
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concept map · Structure Beats Magic</title>
+<meta name="description" content="Every Structure Beats Magic concept and how it connects — an interactive map. Drag a node, hover for the idea, click to open the page." />
+<meta property="og:title" content="Concept map · Structure Beats Magic" />
+<meta property="og:description" content="Every concept and how it connects — {n_nodes} ideas, {n_edges} links, one interactive map." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{esc(canonical)}" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="{esc(canonical)}" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.map-head{{max-width:64ch;margin:0 auto 1.5rem;text-align:center}}
+.map-head p{{color:var(--ink-soft);font-size:1.05rem;margin-top:.5rem}}</style>
+</head>
+<body>
+
+{NAV}
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="section-eyebrow">Concept map</div>
+  <h1>The whole thesis, connected</h1>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="map-head">
+      <p>Every concept and how it links to the others — {n_nodes} ideas, {n_edges} connections. Drag a node to rearrange, hover for the idea, click to open the page. Filter by category with the chips.</p>
+    </div>
+    {container}
+  </div>
+</section>
+
+{FOOTER}
+
+{NAV_SCRIPT}
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>
+"""
+
+
 def render_static(concepts: list[Concept]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     n = copy_concept_assets(concepts)
@@ -909,12 +985,22 @@ def render_static(concepts: list[Concept]) -> None:
     xgroups = collect_groups(concepts)
     by_slug = {c.slug: c for c in concepts}
     by_name = {c.name.lower(): c for c in concepts}
+    # One graph, two surfaces (2026-07-21): the /map/ page and each page's mini-map.
+    # The client JS/CSS live in concept_graph.py (single source) and are written
+    # to assets/ every build, so the pages link one shared copy instead of
+    # inlining it 95 times, and the asset can't drift from the source.
+    site_assets = HERE / "assets"
+    (site_assets / "concept-map.js").write_text(GRAPH_JS, encoding="utf-8")
+    (site_assets / "concept-map.css").write_text(GRAPH_CSS, encoding="utf-8")
+    graph = build_graph(concepts)
     # index (with cross-cutting group chips)
     (OUT / "index.html").write_text(render_index(groups, xgroups), encoding="utf-8")
-    # detail pages
+    # detail pages (each gets its own neighbourhood mini-map)
     for c in concepts:
         (OUT / f"{c.slug}.html").write_text(
-            render_detail(c, by_slug, by_name), encoding="utf-8")
+            render_detail(c, by_slug, by_name, graph), encoding="utf-8")
+    # the full concept map
+    (OUT / "map.html").write_text(render_map(graph), encoding="utf-8")
     # cross-cutting group pages -> concepts/groups/<slug>.html
     if xgroups:
         gdir = OUT / "groups"

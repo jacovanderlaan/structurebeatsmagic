@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -96,6 +98,7 @@
 <p>The layer everyone mistakes for magic. When AI gives a good answer, it feels like the model reasoned its way there. But the reasoning is only as good as what sits beneath it: the context it can reach, the memory across sessions, the rules that say how things must be done, the voice that makes the output yours. Drop a question in cold and the reasoning is a gamble. Give it a structured system to reason over, and good conclusions stop being luck — they become repeatable. That is the whole Structure Beats Magic thesis, named as a layer: reasoning is the top of the stack, and it is only reliable because of the layers under it. So the way to improve the reasoning is never 'prompt harder' — it's to strengthen the layer below: better context, cleaner rules, a memory it can trust. Direct the system, don't coax the model.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="derived-insight.html">Derived Insight</a></li><li><a href="stop-prompting-start-directing.html">Stop Prompting, Start Directing</a></li><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="the-voice-layer.html">The Voice Layer</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"derived-insight","title":"Derived Insight","cat":"Method & workflow","desc":"The highest-value data is the data you never typed — rules generate it from existing data plus context."},{"slug":"stop-prompting-start-directing","title":"Stop Prompting, Start Directing","cat":"Method & workflow","desc":"Set up a system before the task; give AI an outcome, context, constraints and a way to validate."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"},{"slug":"the-reasoning-layer","title":"The Reasoning Layer","cat":"System architecture","desc":"The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever."},{"slug":"the-voice-layer","title":"The Voice Layer","cat":"Method & workflow","desc":"Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources."}],"edges":[["derived-insight","the-reasoning-layer"],["stop-prompting-start-directing","the-reasoning-layer"],["the-context-graph","the-reasoning-layer"],["the-reasoning-layer","the-voice-layer"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-reasoning-layer"}</script></div>
   </div>
 </section>
 
@@ -112,5 +115,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

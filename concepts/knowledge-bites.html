@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -113,6 +115,7 @@
 <p>The two layers coexist over one source without competing. A scanned book gets a representation sidecar (whole-book, searchable, bibliographic) <em>and</em> a scatter of knowledge bites (per idea, in your words, linked). The representation makes the book <strong>findable</strong>; the bites make its ideas <strong>yours</strong>. Same source, two kinds of markdown beside it, each doing what only it can — and both, having frontmatter, are first-class governable vault citizens under the same publish/private gates as everything else.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="articulation-as-learning.html">Articulation as Learning</a></li><li><a href="atomic-documents.html">Atomic Documents</a></li><li><a href="find-the-essence-first.html">Find the Essence First</a></li><li><a href="spaced-repetition.html">Spaced Repetition (Flashcards)</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"articulation-as-learning","title":"Articulation as Learning","cat":"Method & workflow","desc":"You do not know it until you have written it in your own words — articulation is the test, not the record of learning."},{"slug":"atomic-documents","title":"Atomic Documents","cat":"System architecture","desc":"One document is one thing — the indivisible unit you can share, version, validate and link without tearing it apart."},{"slug":"find-the-essence-first","title":"Find the Essence First","cat":"Umbrella thesis","desc":"Before you structure anything, find its essence — the one core it's actually about. Everything else is ballast."},{"slug":"knowledge-bites","title":"Knowledge Bites","cat":"Method & workflow","desc":"Your summary of a chapter is not the chapter — it is a new, standalone unit of your understanding, and it should be stored as one."},{"slug":"spaced-repetition","title":"Spaced Repetition (Flashcards)","cat":"Method & workflow","desc":"Recall scheduled against forgetting: the interval widens as the memory holds, so review time goes where it is actually needed."}],"edges":[["articulation-as-learning","find-the-essence-first"],["articulation-as-learning","spaced-repetition"],["articulation-as-learning","knowledge-bites"],["atomic-documents","knowledge-bites"],["find-the-essence-first","knowledge-bites"],["knowledge-bites","spaced-repetition"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"knowledge-bites"}</script></div>
   </div>
 </section>
 
@@ -129,5 +132,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

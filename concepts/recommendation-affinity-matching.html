@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -107,6 +109,7 @@
 <p>Related: <a href="anti-interests.html">Anti interests</a> · <a href="curated-sources.html">Curated sources</a> · <a href="a-modeled-self.html">A modeled self</a> · <a href="via-negativa.html">Via negativa</a> · <a href="derived-insight.html">Derived insight</a></p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="anti-interests.html">Anti-Interests</a></li><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="a-modeled-self.html">A Modeled Self</a></li><li><a href="via-negativa.html">Via Negativa</a></li><li><a href="derived-insight.html">Derived Insight</a></li><li><a href="trip-intelligence.html">Trip Intelligence</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-modeled-self","title":"A Modeled Self","cat":"Personal data model","desc":"Your history, desires and lessons captured as structured data — not left to chance."},{"slug":"anti-interest-filtering","title":"Anti-Interest Filtering","cat":"Filtering & identity","desc":"Defining what you are not interested in, so the system can filter to what matters — focus lives in the negative space."},{"slug":"anti-interests","title":"Anti-Interests","cat":"Filtering & identity","desc":"A declared list of what you're not interested in — a veto over recommendations."},{"slug":"continuous-exploration","title":"Continuous Exploration","cat":"Filtering & identity","desc":"Standing outward search through your own filters — the system keeps looking when you aren't, and reports back."},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"derived-insight","title":"Derived Insight","cat":"Method & workflow","desc":"The highest-value data is the data you never typed — rules generate it from existing data plus context."},{"slug":"recommendation-affinity-matching","title":"Recommendation (Affinity Matching)","cat":"Filtering & identity","desc":"Scoring what's new against what you've already proven you love — the engine that anti-interests puts a veto on."},{"slug":"trip-intelligence","title":"Trip Intelligence","cat":"Intelligence systems","desc":"Daily notes plus curated photos become a trips database you can share."},{"slug":"via-negativa","title":"Via Negativa","cat":"Filtering & identity","desc":"You are also defined by what you are not."}],"edges":[["anti-interest-filtering","anti-interests"],["anti-interest-filtering","curated-sources"],["anti-interest-filtering","recommendation-affinity-matching"],["anti-interest-filtering","via-negativa"],["anti-interests","curated-sources"],["anti-interests","via-negativa"],["continuous-exploration","curated-sources"],["continuous-exploration","recommendation-affinity-matching"],["anti-interests","continuous-exploration"],["curated-sources","via-negativa"],["anti-interests","recommendation-affinity-matching"],["curated-sources","recommendation-affinity-matching"],["a-modeled-self","recommendation-affinity-matching"],["recommendation-affinity-matching","via-negativa"],["derived-insight","recommendation-affinity-matching"],["recommendation-affinity-matching","trip-intelligence"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"recommendation-affinity-matching"}</script></div>
   </div>
 </section>
 
@@ -123,5 +126,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

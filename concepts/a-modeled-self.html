@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>It's your data model of the one entity nobody else can model for you. And it's portable: the model outlives the assistant reading it, which is precisely why it belongs in your files rather than in a vendor's memory feature.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="self-models.html">Self Models</a></li><li><a href="personal-data-warehouse.html">Personal Data Warehouse</a></li><li><a href="personas.html">Personas</a></li><li><a href="intentions-over-goals.html">Intentions over Goals</a></li><li><a href="life-design.html">Life Design</a></li><li><a href="life-domains.html">Life Domains</a></li><li><a href="the-digital-twin.html">The Digital Twin</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/what-youre-not-is-also-who-you-are.html">What You're Not Is Also Who You Are</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-modeled-self","title":"A Modeled Self","cat":"Personal data model","desc":"Your history, desires and lessons captured as structured data — not left to chance."},{"slug":"intentions-over-goals","title":"Intentions over Goals","cat":"Life design","desc":"Intentions give direction and stay flexible; goals fix rigid endpoints with pass/fail pressure. Structure the direction, not the deadline."},{"slug":"life-design","title":"Life Design","cat":"Life design","desc":"Treat your life like a design problem: prototype, test, iterate — instead of planning it once and hoping."},{"slug":"life-domains","title":"Life Domains","cat":"Life design","desc":"The handful of distinct areas a life runs on — health, work, relationships, finances — each modeled and reviewed on its own."},{"slug":"personal-data-warehouse","title":"Personal Data Warehouse","cat":"Personal data model","desc":"One structured store for your knowledge: sources → integration → delivery."},{"slug":"personas","title":"Personas","cat":"System architecture","desc":"One engine, many selves — the vault stays the same, the persona on top is swappable."},{"slug":"recommendation-affinity-matching","title":"Recommendation (Affinity Matching)","cat":"Filtering & identity","desc":"Scoring what's new against what you've already proven you love — the engine that anti-interests puts a veto on."},{"slug":"self-models","title":"Self Models","cat":"Personal data model","desc":"The parts of you an AI can't infer — your taste, your limits, your voice, your history — written down as durable data the system reads instead of gues"},{"slug":"the-digital-twin","title":"The Digital Twin","cat":"Personal data model","desc":"A living, structured model of your world — private and under your control."},{"slug":"your-risk-profile","title":"Your Risk Profile","cat":"Personal data model","desc":"Define, once and in writing, how much risk you actually accept — so any activity, at home or on holiday, can be tested against it instead of decided i"}],"edges":[["a-modeled-self","self-models"],["a-modeled-self","personal-data-warehouse"],["a-modeled-self","personas"],["a-modeled-self","intentions-over-goals"],["a-modeled-self","life-design"],["a-modeled-self","life-domains"],["a-modeled-self","the-digital-twin"],["intentions-over-goals","life-design"],["life-design","life-domains"],["life-domains","personal-data-warehouse"],["personal-data-warehouse","the-digital-twin"],["a-modeled-self","recommendation-affinity-matching"],["self-models","your-risk-profile"],["a-modeled-self","your-risk-profile"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"a-modeled-self"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

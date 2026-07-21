@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -107,6 +109,7 @@
 <p>An inbox without triage is where capture goes to die: everything is saved, nothing is sorted, and the pile grows until searching it is worse than not having it. Triage is the cheap, repeated act that keeps capture worth doing — the guarantee that what you took in actually reaches the ordered part of the system, in a shape you can use.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="capture-types.html">Capture Types</a></li><li><a href="the-controlled-front-door.html">The Controlled Front Door</a></li><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="atomic-documents.html">Atomic Documents</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"atomic-documents","title":"Atomic Documents","cat":"System architecture","desc":"One document is one thing — the indivisible unit you can share, version, validate and link without tearing it apart."},{"slug":"capture-types","title":"Capture Types","cat":"Method & workflow","desc":"A systematic vocabulary of typed captures: idea_, question_, decision_, action_ …"},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"inbox-triage","title":"Inbox Triage","cat":"Method & workflow","desc":"Every place loose input arrives needs a fast per-item sort — process, archive, discard, defer — before anything reaches the vault."},{"slug":"the-controlled-front-door","title":"The Controlled Front Door","cat":"System architecture","desc":"A node never exposes its vault — only a small, declared set of data it chooses to share, governed by rules, on request or on schedule."}],"edges":[["capture-types","inbox-triage"],["inbox-triage","the-controlled-front-door"],["curated-sources","inbox-triage"],["atomic-documents","inbox-triage"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"inbox-triage"}</script></div>
   </div>
 </section>
 
@@ -123,5 +126,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

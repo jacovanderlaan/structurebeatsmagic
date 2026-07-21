@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -100,6 +102,7 @@
 <p>Held as structured data, the profile becomes a <strong>gate you can point at</strong>. Before an activity, you don't ask "do I feel like it?" — you check it against the recorded appetite: is this inside my line, at its edge, or past it? Inside, proceed. At the edge, decide deliberately and write down <em>why</em>, because that's a real decision worth a record. Past it, the answer is already made and you've saved yourself the argument. That's the payoff of taking your own risk seriously: not caution for its own sake, but the freedom to say yes quickly to what fits and no cleanly to what doesn't — because you settled the hard part in advance, once, instead of every single time.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="self-models.html">Self Models</a></li><li><a href="a-modeled-self.html">A Modeled Self</a></li><li><a href="anti-interests.html">Anti-Interests</a></li><li><a href="deliberate-by-design.html">Deliberate by Design</a></li><li><a href="the-cut-test.html">The Cut Test</a></li><li><a href="decision-records.html">Decision Records</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-modeled-self","title":"A Modeled Self","cat":"Personal data model","desc":"Your history, desires and lessons captured as structured data — not left to chance."},{"slug":"anti-interests","title":"Anti-Interests","cat":"Filtering & identity","desc":"A declared list of what you're not interested in — a veto over recommendations."},{"slug":"decision-records","title":"Decision Records","cat":"Method & workflow","desc":"Big choices written down with options and reasoning (ADR/PDR/IDR/BDR)."},{"slug":"deliberate-by-design","title":"Deliberate by Design","cat":"Umbrella thesis","desc":"Structure isn't what happens to your data — it's what you choose. The opposite of accidental."},{"slug":"self-models","title":"Self Models","cat":"Personal data model","desc":"The parts of you an AI can't infer — your taste, your limits, your voice, your history — written down as durable data the system reads instead of gues"},{"slug":"the-cut-test","title":"The Cut Test","cat":"Method & workflow","desc":"One question decides what stays in your rules: would a future session get something wrong without this line? If not, cut it. Bloat isn't structure."},{"slug":"your-risk-profile","title":"Your Risk Profile","cat":"Personal data model","desc":"Define, once and in writing, how much risk you actually accept — so any activity, at home or on holiday, can be tested against it instead of decided i"}],"edges":[["a-modeled-self","self-models"],["anti-interests","self-models"],["deliberate-by-design","the-cut-test"],["self-models","your-risk-profile"],["a-modeled-self","your-risk-profile"],["anti-interests","your-risk-profile"],["deliberate-by-design","your-risk-profile"],["the-cut-test","your-risk-profile"],["decision-records","your-risk-profile"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"your-risk-profile"}</script></div>
   </div>
 </section>
 
@@ -116,5 +119,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

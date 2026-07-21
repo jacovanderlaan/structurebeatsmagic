@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>Think of it that way and the questions change. Not <em>"where should this note go?"</em> but <em>"what does this change about the whole?"</em> — which is a data-modelling question, and always was.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="deliberate-by-design.html">Deliberate by Design</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"deliberate-by-design","title":"Deliberate by Design","cat":"Umbrella thesis","desc":"Structure isn't what happens to your data — it's what you choose. The opposite of accidental."},{"slug":"knowledge-management-vs-knowledge-engineering","title":"Knowledge Management vs Knowledge Engineering","cat":"Umbrella thesis","desc":"Managing knowledge keeps it findable for people; engineering it makes it computable for machines. The second is the shift."},{"slug":"systemic-knowledge","title":"Systemic Knowledge","cat":"Umbrella thesis","desc":"Knowledge treated as a system, not a pile of notes."}],"edges":[["deliberate-by-design","systemic-knowledge"],["knowledge-management-vs-knowledge-engineering","systemic-knowledge"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"systemic-knowledge"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

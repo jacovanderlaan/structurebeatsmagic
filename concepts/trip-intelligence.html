@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>And because it's structured rather than remembered, it survives being shared. A travel companion gets the same view you have — not your whole vault, just the trip data, published one way.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="intelligence-systems.html">Intelligence Systems</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"intelligence-systems","title":"Intelligence Systems","cat":"Intelligence systems","desc":"Curate sources, structure them, let AI extract and validate — applied to a whole domain."},{"slug":"recommendation-affinity-matching","title":"Recommendation (Affinity Matching)","cat":"Filtering & identity","desc":"Scoring what's new against what you've already proven you love — the engine that anti-interests puts a veto on."},{"slug":"trip-intelligence","title":"Trip Intelligence","cat":"Intelligence systems","desc":"Daily notes plus curated photos become a trips database you can share."}],"edges":[["intelligence-systems","trip-intelligence"],["recommendation-affinity-matching","trip-intelligence"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"trip-intelligence"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

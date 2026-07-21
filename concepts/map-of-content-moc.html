@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -96,6 +98,7 @@
 <p>A Map of Content is a note whose job is to point at other notes: a curated index for one topic, project or domain, linking the pieces that belong together. Unlike a tag (a flat label you hope to match later), a MOC is an authored map with structure and intent — it says not just what's related but how, and in what order. It's how you navigate a large vault by topic instead of by folder. Crucially it's a map the LLM can traverse too: give an AI the MOC and it can follow the links to exactly the relevant notes, instead of guessing or grepping blind. Maps beat search when the territory is big — for humans and for agents alike.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="the-missing-system.html">The Missing System</a></li><li><a href="the-structure-pyramid.html">The Structure Pyramid</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"map-of-content-moc","title":"Map of Content (MOC)","cat":"System architecture","desc":"A hand-made map that gathers the notes on one topic — navigation for you AND for the AI."},{"slug":"the-missing-system","title":"The Missing System","cat":"Umbrella thesis","desc":"Orgs have systems of record; almost none have the intelligence layer on top — data + AI + rules."},{"slug":"the-structure-pyramid","title":"The Structure Pyramid","cat":"Personal data model","desc":"Raw data → metadata → entities → relationships → knowledge graph → understanding."}],"edges":[["knowledge-graph","map-of-content-moc"],["knowledge-graph","the-structure-pyramid"],["map-of-content-moc","the-missing-system"],["map-of-content-moc","the-structure-pyramid"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"map-of-content-moc"}</script></div>
   </div>
 </section>
 
@@ -112,5 +115,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

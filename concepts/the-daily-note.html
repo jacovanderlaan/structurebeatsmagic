@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -96,6 +98,7 @@
 <p>One note per day, largely auto-filled from your own data — where you were, what you spent, what you captured — that then rolls up from day to year. Each daily note is an atomic unit that carries its own properties (frontmatter) and links out to the domains, projects, work, personal, family and business it touches. Because it's typed and linked, it aggregates cleanly over any span: query a domain across a year, or roll a week of days into a summary. The atom of the Living Timeline.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="capture-types.html">Capture Types</a></li><li><a href="derived-insight.html">Derived Insight</a></li><li><a href="living-timeline.html">Living Timeline</a></li><li><a href="the-calendar-is-the-spine.html">The Calendar Is the Spine</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"capture-types","title":"Capture Types","cat":"Method & workflow","desc":"A systematic vocabulary of typed captures: idea_, question_, decision_, action_ …"},{"slug":"derived-insight","title":"Derived Insight","cat":"Method & workflow","desc":"The highest-value data is the data you never typed — rules generate it from existing data plus context."},{"slug":"living-timeline","title":"Living Timeline","cat":"System architecture","desc":"The calendar spine isn't an archive — it's a timeline that keeps summarizing itself."},{"slug":"the-calendar-is-the-spine","title":"The Calendar Is the Spine","cat":"System architecture","desc":"One time-axis is the backbone of a second brain — everything dated hangs off it."},{"slug":"the-daily-note","title":"The Daily Note","cat":"System architecture","desc":"One note per day, auto-filled from your own data, that rolls up over time."},{"slug":"the-story-of-your-life","title":"The Story of Your Life","cat":"Personal data model","desc":"A structured life isn't an archive of facts — it's a story you can read back, search, and that keeps writing itself."}],"edges":[["capture-types","the-daily-note"],["derived-insight","the-daily-note"],["living-timeline","the-calendar-is-the-spine"],["living-timeline","the-daily-note"],["the-calendar-is-the-spine","the-daily-note"],["living-timeline","the-story-of-your-life"],["the-calendar-is-the-spine","the-story-of-your-life"],["derived-insight","the-story-of-your-life"],["the-daily-note","the-story-of-your-life"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-daily-note"}</script></div>
   </div>
 </section>
 
@@ -112,5 +115,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

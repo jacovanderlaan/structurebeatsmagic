@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>The discipline transfers straight from data-quality work, where it's decades old: a quality rule without a measurable condition is a slogan. "Customer records must be accurate" audits nothing; "customer email must match RFC format and be non-null" audits itself. Same move, new reader — whether the rule is read by a data steward or a language model, it only exists if it can be broken.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-validation-loop.html">The Validation Loop</a></li><li><a href="claude-md-as-operating-system.html">CLAUDE.md as Operating System</a></li><li><a href="decision-records.html">Decision Records</a></li><li><a href="agreement-centered-governance.html">Agreement-Centered Governance</a></li><li><a href="deterministic-by-design.html">Deterministic by Design</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/almost-everything-is-an-agreement.html">Almost Everything Is an Agreement</a></li><li><a href="https://structurebeatsmagic.com/articles/hooks-not-hopes.html">Hooks, Not Hopes</a></li><li><a href="https://structurebeatsmagic.com/articles/mirror-backup-history.html">Mirror, Backup, History — Three Jobs, Three Tools, One File-Set</a></li><li><a href="https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html">Reach the Machine, Not the Copy</a></li><li><a href="https://structurebeatsmagic.com/articles/sidecar-markdown.html">Sidecar Markdown — Giving a PDF the Thing It Can Never Have</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"agreement-centered-governance","title":"Agreement-Centered Governance","cat":"System architecture","desc":"Almost everything in life is an agreement — with companies, within a family, with yourself. Model them and check them against evidence: an agreement n"},{"slug":"claude-md-as-operating-system","title":"CLAUDE.md as Operating System","cat":"Method & workflow","desc":"Standing rules the AI reads before it acts — a layered OS for how the assistant behaves in your world."},{"slug":"decision-records","title":"Decision Records","cat":"Method & workflow","desc":"Big choices written down with options and reasoning (ADR/PDR/IDR/BDR)."},{"slug":"deterministic-by-design","title":"Deterministic by Design","cat":"Umbrella thesis","desc":"Deliberate is whether the structure was chosen; deterministic is whether the output repeats. A toy is neither on the second try."},{"slug":"gates","title":"Gates","cat":"System architecture","desc":"A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin."},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["agreement-centered-governance","the-validation-loop"],["agreement-centered-governance","rules-you-can-verify"],["claude-md-as-operating-system","rules-you-can-verify"],["claude-md-as-operating-system","the-validation-loop"],["decision-records","rules-you-can-verify"],["deterministic-by-design","rules-you-can-verify"],["deterministic-by-design","the-validation-loop"],["deterministic-by-design","gates"],["gates","rules-you-can-verify"],["rules-you-can-verify","the-validation-loop"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"rules-you-can-verify"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>The counter-intuitive part is who does which job. The machine compiles; the human reads. That's backwards from the instinct — surely the human organizes and the AI fetches? — but it's exactly right: compiling is tedious, mechanical, endless (the reason hand-built wikis die), while reading a well-organized page is the human's actual work. Hand the compilation to the agent and keep the judgement, and you get the thing every knowledge system promised and few delivered: notes that organize themselves and stay worth reading. The format that makes this work is the plainest one — markdown a person can audit, not a store only a machine can see.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="a-brain-that-publishes-itself.html">A Brain That Publishes Itself</a></li><li><a href="the-compounding-brain.html">The Compounding Brain</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-brain-that-publishes-itself","title":"A Brain That Publishes Itself","cat":"Method & workflow","desc":"One source of truth in a database; a website derived from it at build time."},{"slug":"compile-dont-retrieve","title":"Compile, Don't Retrieve","cat":"System architecture","desc":"RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time"},{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"the-compounding-brain","title":"The Compounding Brain","cat":"Umbrella thesis","desc":"Every piece of work feeds back in, so the system is smarter next time than last."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"}],"edges":[["a-brain-that-publishes-itself","compile-dont-retrieve"],["compile-dont-retrieve","the-context-graph"],["compile-dont-retrieve","knowledge-graph"],["compile-dont-retrieve","the-compounding-brain"],["knowledge-graph","the-context-graph"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"compile-dont-retrieve"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

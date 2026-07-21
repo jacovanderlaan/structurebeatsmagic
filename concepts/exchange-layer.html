@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>The payoff is that the inside stays clean. When every crossing happens somewhere named, the vault never fills with things that merely <em>drifted</em> in — and that's the difference between a system that stays trustworthy and one that slowly becomes a junk drawer.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="a-brain-that-publishes-itself.html">A Brain That Publishes Itself</a></li><li><a href="connect-and-dispatch.html">Connect &amp; Dispatch</a></li><li><a href="one-way-publishing.html">One-Way Publishing</a></li><li><a href="the-validated-exchange-layer.html">The Validated Exchange Layer</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-brain-that-publishes-itself","title":"A Brain That Publishes Itself","cat":"Method & workflow","desc":"One source of truth in a database; a website derived from it at build time."},{"slug":"connect-and-dispatch","title":"Connect & Dispatch","cat":"System architecture","desc":"Capture anywhere, dispatch to where the power is, commit back to the one vault."},{"slug":"exchange-layer","title":"Exchange Layer","cat":"System architecture","desc":"A controlled front door (inbound) and publication layer (outbound)."},{"slug":"one-way-publishing","title":"One-Way Publishing","cat":"Method & workflow","desc":"You don't sync systems — you publish from one. Sync is where rot starts."},{"slug":"the-validated-exchange-layer","title":"The Validated Exchange Layer","cat":"System architecture","desc":"Vaults never read each other directly — what crosses the boundary is validated on the way out and in."}],"edges":[["a-brain-that-publishes-itself","exchange-layer"],["a-brain-that-publishes-itself","one-way-publishing"],["connect-and-dispatch","exchange-layer"],["exchange-layer","one-way-publishing"],["exchange-layer","the-validated-exchange-layer"],["one-way-publishing","the-validated-exchange-layer"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"exchange-layer"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

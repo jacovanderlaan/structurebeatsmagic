@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>That's the real dividing line between setups that compound and setups that decay: not how much structure you started with, but whether corrections have somewhere to go. A mistakes file is the smallest possible version of a system that learns — one file, one rule per burn, read every run.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-compounding-brain.html">The Compounding Brain</a></li><li><a href="claude-md-as-operating-system.html">CLAUDE.md as Operating System</a></li><li><a href="reinforcing-loop.html">Reinforcing Loop</a></li><li><a href="the-experiment-loop.html">The Experiment Loop</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"claude-md-as-operating-system","title":"CLAUDE.md as Operating System","cat":"Method & workflow","desc":"Standing rules the AI reads before it acts — a layered OS for how the assistant behaves in your world."},{"slug":"reinforcing-loop","title":"Reinforcing Loop","cat":"Life design","desc":"A feedback loop where each turn amplifies the next — the engine behind both compounding growth and destructive spirals."},{"slug":"the-compounding-brain","title":"The Compounding Brain","cat":"Umbrella thesis","desc":"Every piece of work feeds back in, so the system is smarter next time than last."},{"slug":"the-experiment-loop","title":"The Experiment Loop","cat":"Brand & stance","desc":"Play with a hypothesis: hypothesize → experiment → learn → decide. The mechanism that turns tinkering into a proven block."},{"slug":"the-mistakes-file","title":"The Mistakes File","cat":"Method & workflow","desc":"Same mistake twice = a new rule. Corrections you'd otherwise repeat forever get written into a file the AI reads every run."}],"edges":[["claude-md-as-operating-system","the-mistakes-file"],["reinforcing-loop","the-compounding-brain"],["reinforcing-loop","the-mistakes-file"],["the-compounding-brain","the-mistakes-file"],["the-experiment-loop","the-mistakes-file"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-mistakes-file"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

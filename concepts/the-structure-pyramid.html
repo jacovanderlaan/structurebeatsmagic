@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>The honest limit: you don't need every rung for every question. Climb until it answers, then stop — over-structuring is its own kind of clutter.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="map-of-content-moc.html">Map of Content (MOC)</a></li><li><a href="personal-data-warehouse.html">Personal Data Warehouse</a></li><li><a href="visual-thinking.html">Visual Thinking</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/the-vault-is-the-data-model.html">The Vault Is the Data Model</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"map-of-content-moc","title":"Map of Content (MOC)","cat":"System architecture","desc":"A hand-made map that gathers the notes on one topic — navigation for you AND for the AI."},{"slug":"personal-data-warehouse","title":"Personal Data Warehouse","cat":"Personal data model","desc":"One structured store for your knowledge: sources → integration → delivery."},{"slug":"the-structure-pyramid","title":"The Structure Pyramid","cat":"Personal data model","desc":"Raw data → metadata → entities → relationships → knowledge graph → understanding."},{"slug":"visual-thinking","title":"Visual Thinking","cat":"Brand & stance","desc":"The other half of structure — making the model seen, not just real. Structure makes knowledge exist; visual thinking makes it visible enough to trust,"}],"edges":[["knowledge-graph","map-of-content-moc"],["knowledge-graph","personal-data-warehouse"],["knowledge-graph","the-structure-pyramid"],["map-of-content-moc","the-structure-pyramid"],["personal-data-warehouse","the-structure-pyramid"],["the-structure-pyramid","visual-thinking"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-structure-pyramid"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

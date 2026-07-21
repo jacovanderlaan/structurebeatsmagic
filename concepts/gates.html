@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -113,6 +115,7 @@
 <p>Seen this way, a gate is a small act of design against entropy. Left alone, flows leak: bad data spreads, private things surface, dead projects continue. A gate is where you decide, on purpose and in one readable place, what is allowed to go on. The cost is the discipline of defining the condition and placing the checkpoint; the return is a system you can trust without watching every item cross.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="deterministic-by-design.html">Deterministic by Design</a></li><li><a href="never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="the-controlled-front-door.html">The Controlled Front Door</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"deterministic-by-design","title":"Deterministic by Design","cat":"Umbrella thesis","desc":"Deliberate is whether the structure was chosen; deterministic is whether the output repeats. A toy is neither on the second try."},{"slug":"gates","title":"Gates","cat":"System architecture","desc":"A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin."},{"slug":"never-marks-its-own-homework","title":"Never Marks Its Own Homework","cat":"Method & workflow","desc":"The judge must be separate from the builder, and the score is the off-switch: a loop only stops when an independent evaluator says the rubric is met."},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"the-controlled-front-door","title":"The Controlled Front Door","cat":"System architecture","desc":"A node never exposes its vault — only a small, declared set of data it chooses to share, governed by rules, on request or on schedule."}],"edges":[["deterministic-by-design","never-marks-its-own-homework"],["deterministic-by-design","rules-you-can-verify"],["deterministic-by-design","gates"],["gates","never-marks-its-own-homework"],["gates","rules-you-can-verify"],["gates","the-controlled-front-door"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"gates"}</script></div>
   </div>
 </section>
 
@@ -129,5 +132,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

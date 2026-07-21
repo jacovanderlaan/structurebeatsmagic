@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>It's a mitigation, not a guarantee — a standing instruction is still an instruction, still a probability. That's why it pairs with external verification rather than replacing it: honesty-over-helpfulness reduces how often the output lies; the validation loop catches the times it still does. But as a single structural move — one paragraph, added once — trading polish for truth is the best deal in the whole prompting literature.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="red-team-your-ai.html">Red-Team Your AI</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li><li><a href="flattery-is-failure.html">Flattery Is Failure</a></li><li><a href="grounded-skills.html">Grounded Skills</a></li><li><a href="let-the-ai-interview-you.html">Let the AI Interview You</a></li><li><a href="claude-md-as-operating-system.html">CLAUDE.md as Operating System</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"claude-md-as-operating-system","title":"CLAUDE.md as Operating System","cat":"Method & workflow","desc":"Standing rules the AI reads before it acts — a layered OS for how the assistant behaves in your world."},{"slug":"flattery-is-failure","title":"Flattery Is Failure","cat":"Method & workflow","desc":"When AI output makes you feel smart, treat that as a warning signal, not a reward. Agreement is the cheapest thing a model produces — and the most exp"},{"slug":"grounded-skills","title":"Grounded Skills","cat":"Method & workflow","desc":"Build reusable instructions only from your own sources, with receipts: every line cited to something you wrote or vetted — no citation, no line."},{"slug":"honesty-over-helpfulness","title":"Honesty Over Helpfulness","cat":"Method & workflow","desc":"A confident wrong answer costs more than an honest 'I don't know' — so make honesty a standing rule: only report work you have evidence for."},{"slug":"let-the-ai-interview-you","title":"Let the AI Interview You","cat":"Method & workflow","desc":"Reverse the roles before the work starts: the AI studies what exists, then asks you what it can't infer — the gaps it fills silently are where it fail"},{"slug":"red-team-your-ai","title":"Red-Team Your AI","cat":"Method & workflow","desc":"A synthesis of your own material flatters you; assign a second AI to attack it."},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["claude-md-as-operating-system","honesty-over-helpfulness"],["claude-md-as-operating-system","let-the-ai-interview-you"],["claude-md-as-operating-system","the-validation-loop"],["flattery-is-failure","red-team-your-ai"],["flattery-is-failure","honesty-over-helpfulness"],["flattery-is-failure","the-validation-loop"],["grounded-skills","honesty-over-helpfulness"],["honesty-over-helpfulness","red-team-your-ai"],["honesty-over-helpfulness","the-validation-loop"],["honesty-over-helpfulness","let-the-ai-interview-you"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"honesty-over-helpfulness"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

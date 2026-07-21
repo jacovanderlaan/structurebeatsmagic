@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>This is provenance thinking applied to instructions — the same lineage reflex data engineers apply to pipelines, pointed at the one artifact most people write from vibes. Nobody serious runs a data platform where numbers can't say where they came from; a standing instruction the AI executes daily deserves the same standard. If a line in the skill were challenged, could it produce its source? If not, it was never yours to begin with.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="the-voice-layer.html">The Voice Layer</a></li><li><a href="honesty-over-helpfulness.html">Honesty Over Helpfulness</a></li><li><a href="capture-types.html">Capture Types</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"capture-types","title":"Capture Types","cat":"Method & workflow","desc":"A systematic vocabulary of typed captures: idea_, question_, decision_, action_ …"},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"grounded-skills","title":"Grounded Skills","cat":"Method & workflow","desc":"Build reusable instructions only from your own sources, with receipts: every line cited to something you wrote or vetted — no citation, no line."},{"slug":"honesty-over-helpfulness","title":"Honesty Over Helpfulness","cat":"Method & workflow","desc":"A confident wrong answer costs more than an honest 'I don't know' — so make honesty a standing rule: only report work you have evidence for."},{"slug":"the-voice-layer","title":"The Voice Layer","cat":"Method & workflow","desc":"Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources."}],"edges":[["capture-types","grounded-skills"],["curated-sources","grounded-skills"],["grounded-skills","the-voice-layer"],["grounded-skills","honesty-over-helpfulness"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"grounded-skills"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

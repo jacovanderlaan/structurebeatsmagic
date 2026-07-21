@@ -1,0 +1,32 @@
+
+.cmap-wrap{position:relative;width:100%;background:var(--bg,#f7f8fa);
+  border:1px solid var(--line,#e2e8f0);border-radius:16px;overflow:hidden}
+.cmap-wrap svg{display:block;width:100%;cursor:grab;touch-action:none}
+.cmap-wrap svg:active{cursor:grabbing}
+.cmap-edge{stroke:var(--line,#e2e8f0);stroke-width:1.4;transition:stroke .15s,stroke-width .15s}
+.cmap-edge.hot{stroke:var(--accent,#2563eb);stroke-width:2.2}
+.cmap-node{cursor:pointer}
+.cmap-node circle{fill:#fff;stroke:var(--accent,#2563eb);stroke-width:1.6;transition:stroke-width .15s,filter .15s}
+.cmap-node text{fill:var(--ink,#0f172a);font-size:12.5px;font-weight:600;pointer-events:none;text-anchor:middle}
+.cmap-node.center circle{fill:#fff7e6;stroke:var(--gold,#b88a1b);stroke-width:2.6}
+.cmap-node.center text{font-weight:800}
+.cmap-node.dim{opacity:.26}
+.cmap-node:hover circle{stroke-width:3;filter:drop-shadow(0 3px 8px rgba(37,99,235,.25))}
+.cmap-tip{position:fixed;pointer-events:none;background:#fff;border:1px solid var(--line,#e2e8f0);
+  border-radius:10px;padding:9px 12px;max-width:260px;box-shadow:0 8px 24px rgba(15,23,42,.14);
+  font-size:.84rem;color:var(--ink-soft,#475569);opacity:0;transition:opacity .12s;z-index:60;line-height:1.4}
+.cmap-tip b{color:var(--ink,#0f172a);display:block;margin-bottom:2px;font-size:.92rem}
+.cmap-tip .go{color:var(--accent,#2563eb);font-weight:600;margin-top:5px;display:block;font-size:.78rem}
+.cmap-filters{display:flex;flex-wrap:wrap;gap:.5rem;padding:.9rem 1rem;border-bottom:1px solid var(--line,#e2e8f0)}
+.cmap-chip{font-size:.8rem;font-weight:600;padding:.3rem .7rem;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line,#e2e8f0);background:#fff;color:var(--ink-soft,#475569);transition:all .12s}
+.cmap-chip.on{background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:#fff}
+@media (prefers-color-scheme:dark){
+  .cmap-wrap{background:#0f172a;border-color:#334155}
+  .cmap-node circle{fill:#1e293b;stroke:#60a5fa}
+  .cmap-node.center circle{fill:#3a2f12;stroke:#d4a53a}
+  .cmap-node text{fill:#e2e8f0}
+  .cmap-tip,.cmap-chip{background:#1e293b;border-color:#334155;color:#94a3b8}
+  .cmap-tip b{color:#e2e8f0}
+  .cmap-filters{border-color:#334155}
+}

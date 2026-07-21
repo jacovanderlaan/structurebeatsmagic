@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>What's different at personal scale is only ownership. There's no vendor, no seat licence, no export negotiation. The sources are yours, the store is a folder of files you control, and the delivery layer is whatever you point at it. Sources in, structure in the middle, answers out.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="a-modeled-self.html">A Modeled Self</a></li><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="notes-organize-architecture-personalizes.html">Notes Organize. Architecture Personalizes.</a></li><li><a href="the-digital-twin.html">The Digital Twin</a></li><li><a href="life-domains.html">Life Domains</a></li><li><a href="the-structure-pyramid.html">The Structure Pyramid</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-modeled-self","title":"A Modeled Self","cat":"Personal data model","desc":"Your history, desires and lessons captured as structured data — not left to chance."},{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"life-domains","title":"Life Domains","cat":"Life design","desc":"The handful of distinct areas a life runs on — health, work, relationships, finances — each modeled and reviewed on its own."},{"slug":"notes-organize-architecture-personalizes","title":"Notes Organize. Architecture Personalizes.","cat":"Personal data model","desc":"Storing notes is where most advice stops; AI needs a model of you."},{"slug":"personal-data-warehouse","title":"Personal Data Warehouse","cat":"Personal data model","desc":"One structured store for your knowledge: sources → integration → delivery."},{"slug":"the-digital-twin","title":"The Digital Twin","cat":"Personal data model","desc":"A living, structured model of your world — private and under your control."},{"slug":"the-structure-pyramid","title":"The Structure Pyramid","cat":"Personal data model","desc":"Raw data → metadata → entities → relationships → knowledge graph → understanding."}],"edges":[["a-modeled-self","personal-data-warehouse"],["a-modeled-self","life-domains"],["a-modeled-self","the-digital-twin"],["knowledge-graph","personal-data-warehouse"],["knowledge-graph","the-structure-pyramid"],["life-domains","personal-data-warehouse"],["notes-organize-architecture-personalizes","personal-data-warehouse"],["personal-data-warehouse","the-digital-twin"],["personal-data-warehouse","the-structure-pyramid"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"personal-data-warehouse"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -103,6 +105,7 @@
 <p>Dagelijkse knowledge bites worden pas echt leren als ze getimed zijn. Losse herhaling zonder ritme is ruis. Het onderliggende concept dat er kracht aan geeft is Spaced Repetition (Flashcards): iets net vóór je het vergeet opnieuw zien, zodat het met minimale moeite blijft hangen. Continuous Learning is de dagelijkse vorm; spaced repetition is de motor die bepaalt wat er die dag langs mag komen.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-experiment-loop.html">The Experiment Loop</a></li><li><a href="reading-intelligence.html">Reading Intelligence</a></li><li><a href="continuous-exploration.html">Continuous Exploration</a></li><li><a href="a-compounding-asset.html">A Compounding Asset</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-compounding-asset","title":"A Compounding Asset","cat":"Umbrella thesis","desc":"A structured second brain gains value with every note — like reinvested capital."},{"slug":"articulation-as-learning","title":"Articulation as Learning","cat":"Method & workflow","desc":"You do not know it until you have written it in your own words — articulation is the test, not the record of learning."},{"slug":"continuous-exploration","title":"Continuous Exploration","cat":"Filtering & identity","desc":"Standing outward search through your own filters — the system keeps looking when you aren't, and reports back."},{"slug":"continuous-learning","title":"Continuous Learning","cat":"Method & workflow","desc":"Learning as a standing process rather than a course you finish — the system keeps feeding you and keeps score."},{"slug":"reading-intelligence","title":"Reading Intelligence","cat":"Intelligence systems","desc":"Your reading history read back as synthesized insight — highlights and saves curated, structured by domain and date, and reasoned over by AI."},{"slug":"spaced-repetition","title":"Spaced Repetition (Flashcards)","cat":"Method & workflow","desc":"Recall scheduled against forgetting: the interval widens as the memory holds, so review time goes where it is actually needed."},{"slug":"the-experiment-loop","title":"The Experiment Loop","cat":"Brand & stance","desc":"Play with a hypothesis: hypothesize → experiment → learn → decide. The mechanism that turns tinkering into a proven block."}],"edges":[["articulation-as-learning","continuous-learning"],["articulation-as-learning","spaced-repetition"],["continuous-exploration","the-experiment-loop"],["continuous-learning","the-experiment-loop"],["continuous-learning","reading-intelligence"],["continuous-exploration","continuous-learning"],["a-compounding-asset","continuous-learning"],["continuous-learning","spaced-repetition"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"continuous-learning"}</script></div>
   </div>
 </section>
 
@@ -119,5 +122,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

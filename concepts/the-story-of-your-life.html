@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -105,6 +107,7 @@
 <p>That's the fuller payoff of taking your own knowledge seriously: not productivity, not a tidier drive, but the ability to <em>ask your own life questions and get honest answers</em>. Where did the money actually go. When were you happiest, by the evidence and not the mood. What did that person mean to you, across all the years you knew them. A life you can query is a life you can understand — and a story you can read back is the closest thing there is to living it twice.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="living-timeline.html">Living Timeline</a></li><li><a href="the-calendar-is-the-spine.html">The Calendar Is the Spine</a></li><li><a href="derived-insight.html">Derived Insight</a></li><li><a href="the-daily-note.html">The Daily Note</a></li><li><a href="cascade-roll-ups.html">Cascade Roll-ups</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"cascade-roll-ups","title":"Cascade Roll-ups","cat":"Method & workflow","desc":"Automatic aggregation: Day → Week → Month → Quarter → Year."},{"slug":"derived-insight","title":"Derived Insight","cat":"Method & workflow","desc":"The highest-value data is the data you never typed — rules generate it from existing data plus context."},{"slug":"living-timeline","title":"Living Timeline","cat":"System architecture","desc":"The calendar spine isn't an archive — it's a timeline that keeps summarizing itself."},{"slug":"the-calendar-is-the-spine","title":"The Calendar Is the Spine","cat":"System architecture","desc":"One time-axis is the backbone of a second brain — everything dated hangs off it."},{"slug":"the-daily-note","title":"The Daily Note","cat":"System architecture","desc":"One note per day, auto-filled from your own data, that rolls up over time."},{"slug":"the-story-of-your-life","title":"The Story of Your Life","cat":"Personal data model","desc":"A structured life isn't an archive of facts — it's a story you can read back, search, and that keeps writing itself."}],"edges":[["cascade-roll-ups","living-timeline"],["cascade-roll-ups","the-calendar-is-the-spine"],["derived-insight","the-daily-note"],["living-timeline","the-calendar-is-the-spine"],["living-timeline","the-daily-note"],["the-calendar-is-the-spine","the-daily-note"],["living-timeline","the-story-of-your-life"],["the-calendar-is-the-spine","the-story-of-your-life"],["derived-insight","the-story-of-your-life"],["the-daily-note","the-story-of-your-life"],["cascade-roll-ups","the-story-of-your-life"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-story-of-your-life"}</script></div>
   </div>
 </section>
 
@@ -121,5 +124,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

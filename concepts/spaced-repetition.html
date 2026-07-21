@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -102,6 +104,7 @@
 <p>Dit is het bewezen, generieke mechanisme; Continuous Learning is de dagelijkse toepassing ervan op je eigen vault. De vault levert het materiaal (knowledge bites uit wat je hebt vastgelegd), spaced repetition bepaalt de timing, de flashcard is de vorm waarin je het terugziet. Samen maken ze van een vault die je <em>hebt</em> kennis die je <em>bezit</em>.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="continuous-learning.html">Continuous Learning</a></li><li><a href="articulation-as-learning.html">Articulation as Learning</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"articulation-as-learning","title":"Articulation as Learning","cat":"Method & workflow","desc":"You do not know it until you have written it in your own words — articulation is the test, not the record of learning."},{"slug":"continuous-learning","title":"Continuous Learning","cat":"Method & workflow","desc":"Learning as a standing process rather than a course you finish — the system keeps feeding you and keeps score."},{"slug":"knowledge-bites","title":"Knowledge Bites","cat":"Method & workflow","desc":"Your summary of a chapter is not the chapter — it is a new, standalone unit of your understanding, and it should be stored as one."},{"slug":"spaced-repetition","title":"Spaced Repetition (Flashcards)","cat":"Method & workflow","desc":"Recall scheduled against forgetting: the interval widens as the memory holds, so review time goes where it is actually needed."}],"edges":[["articulation-as-learning","continuous-learning"],["articulation-as-learning","spaced-repetition"],["articulation-as-learning","knowledge-bites"],["knowledge-bites","spaced-repetition"],["continuous-learning","spaced-repetition"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"spaced-repetition"}</script></div>
   </div>
 </section>
 
@@ -118,5 +121,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

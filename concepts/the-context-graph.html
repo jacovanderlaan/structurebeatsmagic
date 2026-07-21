@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>If you run a structured personal system, you already do this without the name. The vault is the knowledge graph; every session works from a slice — the routing file points at the relevant domain, the day-folder supplies the moment, and the assistant reasons over a context small enough to actually hold. Big structure exists so that small, relevant context can be cut from it per task. That's the whole design: build the haystack deliberately, then never hand anyone the haystack.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="company-brain.html">Company Brain</a></li><li><a href="the-reasoning-layer.html">The Reasoning Layer</a></li><li><a href="compile-dont-retrieve.html">Compile, Don't Retrieve</a></li><li><a href="find-the-essence-first.html">Find the Essence First</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"company-brain","title":"Company Brain","cat":"Intelligence systems","desc":"The org-scale second brain: shared, structured, permission-aware knowledge AI can rely on. Wiring tools together isn't it — access is not memory."},{"slug":"compile-dont-retrieve","title":"Compile, Don't Retrieve","cat":"System architecture","desc":"RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time"},{"slug":"find-the-essence-first","title":"Find the Essence First","cat":"Umbrella thesis","desc":"Before you structure anything, find its essence — the one core it's actually about. Everything else is ballast."},{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"},{"slug":"the-reasoning-layer","title":"The Reasoning Layer","cat":"System architecture","desc":"The layer where the AI actually thinks — reliable conclusions come from the structure underneath it, not from the model being clever."}],"edges":[["company-brain","knowledge-graph"],["company-brain","the-context-graph"],["compile-dont-retrieve","the-context-graph"],["compile-dont-retrieve","knowledge-graph"],["find-the-essence-first","the-context-graph"],["knowledge-graph","the-context-graph"],["the-context-graph","the-reasoning-layer"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"the-context-graph"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

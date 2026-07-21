@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -97,6 +99,7 @@
 <p>Most life planning assumes you can think your way to the right answer, commit, and execute. Life Design borrows from design practice instead: you don't know the answer up front, so you prototype it. You run small, cheap experiments, gather real evidence from lived experience, and iterate toward a life that fits — rather than locking in a single plan and treating any deviation as failure. It reframes uncertainty as information, not risk. In the SBM frame this is the <em>self</em> version of Structure Beats Magic: the structure isn't a fixed blueprint but a repeatable design loop — capture where you are, prototype a direction, test it against real data (your daily notes, transactions, how the week actually felt), and adjust. A structured second brain makes the loop possible, because you have evidence to iterate on instead of memory and hope.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="life-domains.html">Life Domains</a></li><li><a href="intentions-over-goals.html">Intentions over Goals</a></li><li><a href="portfolio-life.html">Portfolio Life</a></li><li><a href="self-destructive-spiral.html">Self-Destructive Spiral</a></li><li><a href="a-modeled-self.html">A Modeled Self</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-modeled-self","title":"A Modeled Self","cat":"Personal data model","desc":"Your history, desires and lessons captured as structured data — not left to chance."},{"slug":"intentions-over-goals","title":"Intentions over Goals","cat":"Life design","desc":"Intentions give direction and stay flexible; goals fix rigid endpoints with pass/fail pressure. Structure the direction, not the deadline."},{"slug":"life-design","title":"Life Design","cat":"Life design","desc":"Treat your life like a design problem: prototype, test, iterate — instead of planning it once and hoping."},{"slug":"life-domains","title":"Life Domains","cat":"Life design","desc":"The handful of distinct areas a life runs on — health, work, relationships, finances — each modeled and reviewed on its own."},{"slug":"portfolio-life","title":"Portfolio Life","cat":"Life design","desc":"A life composed of several parallel pursuits — work, projects, learning, purpose — rather than one job that defines you."},{"slug":"self-destructive-spiral","title":"Self-Destructive Spiral","cat":"Life design","desc":"A reinforcing loop where a bad state feeds behaviour that deepens it — the negative twin of the compounding brain."},{"slug":"the-life-debrief","title":"The Life Debrief","cat":"Filtering & identity","desc":"A debrief scaled up to a whole period of life — a periodic, cross-domain look at where you're actually heading, run against your data, not your memory"}],"edges":[["a-modeled-self","intentions-over-goals"],["a-modeled-self","life-design"],["a-modeled-self","life-domains"],["intentions-over-goals","life-design"],["intentions-over-goals","portfolio-life"],["life-design","life-domains"],["life-design","portfolio-life"],["life-design","self-destructive-spiral"],["life-domains","portfolio-life"],["life-domains","self-destructive-spiral"],["life-design","the-life-debrief"],["life-domains","the-life-debrief"],["intentions-over-goals","the-life-debrief"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"life-design"}</script></div>
   </div>
 </section>
 
@@ -113,5 +116,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

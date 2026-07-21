@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -97,6 +99,7 @@
 <p>Some declines aren't a straight slide; they're a loop. A bad state prompts a response that makes the state worse, which prompts more of the same — stress erodes sleep, poor sleep worsens judgement, bad decisions add stress. It's the same reinforcing-feedback machinery as <a href="the-compounding-brain.html">The Compounding Brain</a>, just running the wrong way: compounding is a spiral that builds, a self-destructive spiral is one that erodes, and both gain speed the longer they run. Naming it matters because spirals are hard to feel from inside — each step looks small and locally reasonable, and only the trend reveals the loop. This is where structure earns its keep: a modeled self reviewed across life domains surfaces the slope early, while it's still cheap to interrupt, instead of at the bottom. You break a spiral the way you start a good one — with a single deliberate structural change to the loop, not willpower against its momentum.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-compounding-brain.html">The Compounding Brain</a></li><li><a href="life-domains.html">Life Domains</a></li><li><a href="reinforcing-loop.html">Reinforcing Loop</a></li><li><a href="life-design.html">Life Design</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"life-design","title":"Life Design","cat":"Life design","desc":"Treat your life like a design problem: prototype, test, iterate — instead of planning it once and hoping."},{"slug":"life-domains","title":"Life Domains","cat":"Life design","desc":"The handful of distinct areas a life runs on — health, work, relationships, finances — each modeled and reviewed on its own."},{"slug":"reinforcing-loop","title":"Reinforcing Loop","cat":"Life design","desc":"A feedback loop where each turn amplifies the next — the engine behind both compounding growth and destructive spirals."},{"slug":"self-destructive-spiral","title":"Self-Destructive Spiral","cat":"Life design","desc":"A reinforcing loop where a bad state feeds behaviour that deepens it — the negative twin of the compounding brain."},{"slug":"the-compounding-brain","title":"The Compounding Brain","cat":"Umbrella thesis","desc":"Every piece of work feeds back in, so the system is smarter next time than last."}],"edges":[["life-design","life-domains"],["life-design","self-destructive-spiral"],["life-domains","reinforcing-loop"],["life-domains","self-destructive-spiral"],["reinforcing-loop","the-compounding-brain"],["reinforcing-loop","self-destructive-spiral"],["self-destructive-spiral","the-compounding-brain"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"self-destructive-spiral"}</script></div>
   </div>
 </section>
 
@@ -113,5 +116,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

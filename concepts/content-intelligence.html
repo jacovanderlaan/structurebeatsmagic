@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>So the chain runs: curated sources in → AI extracts candidate highlights → rules and you validate → what survives becomes a reusable block for writing, talks and training. Zettelkasten with the tedium removed and the judgement kept.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="intelligence-systems.html">Intelligence Systems</a></li><li><a href="zettelkasten.html">Zettelkasten</a></li><li><a href="reading-intelligence.html">Reading Intelligence</a></li><li><a href="curated-sources.html">Curated Sources</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/reading-intelligence.html">Reading Intelligence</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"content-intelligence","title":"Content Intelligence","cat":"Intelligence systems","desc":"Zettelkasten for the AI age — curated sources to validated building blocks."},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"intelligence-systems","title":"Intelligence Systems","cat":"Intelligence systems","desc":"Curate sources, structure them, let AI extract and validate — applied to a whole domain."},{"slug":"reading-intelligence","title":"Reading Intelligence","cat":"Intelligence systems","desc":"Your reading history read back as synthesized insight — highlights and saves curated, structured by domain and date, and reasoned over by AI."},{"slug":"zettelkasten","title":"Zettelkasten","cat":"System architecture","desc":"Luhmann's slip-box: atomic, linked notes that let ideas collide. The insight was never the box — it was the structure. The labour is what killed it; A"}],"edges":[["content-intelligence","intelligence-systems"],["content-intelligence","zettelkasten"],["content-intelligence","reading-intelligence"],["content-intelligence","curated-sources"],["curated-sources","intelligence-systems"],["curated-sources","reading-intelligence"],["intelligence-systems","reading-intelligence"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"content-intelligence"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

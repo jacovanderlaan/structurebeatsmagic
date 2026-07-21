@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -99,6 +101,7 @@
 <p>This is deterministic-by-design given its concrete mechanism. The system doesn't become reliable because the model got more obedient; it becomes reliable because the load-bearing rules were moved to where obedience isn't a variable.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="deterministic-by-design.html">Deterministic by Design</a></li><li><a href="claude-md-as-operating-system.html">CLAUDE.md as Operating System</a></li><li><a href="never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li></ul><h3>Related writing</h3><ul><li><a href="https://structurebeatsmagic.com/articles/reach-the-machine-not-the-copy.html">Reach the Machine, Not the Copy</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"claude-md-as-operating-system","title":"CLAUDE.md as Operating System","cat":"Method & workflow","desc":"Standing rules the AI reads before it acts — a layered OS for how the assistant behaves in your world."},{"slug":"deterministic-by-design","title":"Deterministic by Design","cat":"Umbrella thesis","desc":"Deliberate is whether the structure was chosen; deterministic is whether the output repeats. A toy is neither on the second try."},{"slug":"hooks-over-hopes","title":"Hooks Over Hopes","cat":"System architecture","desc":"Every instruction to a model is a probability, not a promise. Rules that must always run belong in deterministic automation the model can't skip."},{"slug":"never-marks-its-own-homework","title":"Never Marks Its Own Homework","cat":"Method & workflow","desc":"The judge must be separate from the builder, and the score is the off-switch: a loop only stops when an independent evaluator says the rubric is met."},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["claude-md-as-operating-system","hooks-over-hopes"],["claude-md-as-operating-system","the-validation-loop"],["deterministic-by-design","hooks-over-hopes"],["deterministic-by-design","never-marks-its-own-homework"],["deterministic-by-design","the-validation-loop"],["hooks-over-hopes","never-marks-its-own-homework"],["hooks-over-hopes","the-validation-loop"],["never-marks-its-own-homework","the-validation-loop"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"hooks-over-hopes"}</script></div>
   </div>
 </section>
 
@@ -115,5 +118,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>

@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -97,6 +99,7 @@
 <p>A document isn't just its current state; it holds a <strong>log of its own changes</strong> (a <code>## History</code> / change-log section, or structured <code>updated:</code> + revision entries in frontmatter). This is quiet housekeeping in a single vault, but it becomes essential the moment documents are shared (<a href="federated-brains.html">Federated brains</a>): a sync needs to know <em>what</em> changed and <em>when</em> to send only the delta, to detect conflicts, and to resolve them fairly. When two vaults hold views of the same record, the change-log is what makes a conflict traceable instead of a mystery — you can see whose edit came first and what it touched. Provenance travels with the atom. Pairs with <a href="atomic-documents.html">Atomic documents</a> (the unit that has a history) and the ownership rule (the owner's log is authoritative).</p>
     </div>
     
+    
   </div>
 </section>
 
@@ -113,5 +116,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+
 </body>
 </html>

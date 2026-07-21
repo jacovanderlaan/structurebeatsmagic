@@ -42,6 +42,8 @@
   .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
   .c-rel li { font-size:15px; margin:.3rem 0; }
 </style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
 </head>
 <body>
 
@@ -103,6 +105,7 @@
 <p>The deeper point is where these models come from. The most valuable parts of a self model are exactly the parts you never wrote down — the constraint so obvious to you it never seemed worth stating, the line you'd only notice being crossed. No amount of reading your files extracts what isn't in them, which is why the reliable way to build a self model is to <a href="let-the-ai-interview-you.html">let the AI interview you</a>: each question converts a silent assumption into an explicit answer, and the answer goes into the model where it stops having to be re-explained. That's the quiet compounding of taking yourself seriously as data — the system's picture of you gets sharper every time, and the territory it has to guess at gets smaller.</p>
     </div>
     <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="a-modeled-self.html">A Modeled Self</a></li><li><a href="anti-interests.html">Anti-Interests</a></li><li><a href="your-risk-profile.html">Your Risk Profile</a></li><li><a href="the-voice-layer.html">The Voice Layer</a></li><li><a href="let-the-ai-interview-you.html">Let the AI Interview You</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-modeled-self","title":"A Modeled Self","cat":"Personal data model","desc":"Your history, desires and lessons captured as structured data — not left to chance."},{"slug":"anti-interests","title":"Anti-Interests","cat":"Filtering & identity","desc":"A declared list of what you're not interested in — a veto over recommendations."},{"slug":"let-the-ai-interview-you","title":"Let the AI Interview You","cat":"Method & workflow","desc":"Reverse the roles before the work starts: the AI studies what exists, then asks you what it can't infer — the gaps it fills silently are where it fail"},{"slug":"self-models","title":"Self Models","cat":"Personal data model","desc":"The parts of you an AI can't infer — your taste, your limits, your voice, your history — written down as durable data the system reads instead of gues"},{"slug":"the-voice-layer","title":"The Voice Layer","cat":"Method & workflow","desc":"Make AI write like you, not like AI — a standing voice corpus mined from your unpolished sources."},{"slug":"your-risk-profile","title":"Your Risk Profile","cat":"Personal data model","desc":"Define, once and in writing, how much risk you actually accept — so any activity, at home or on holiday, can be tested against it instead of decided i"}],"edges":[["a-modeled-self","self-models"],["anti-interests","self-models"],["let-the-ai-interview-you","the-voice-layer"],["self-models","your-risk-profile"],["self-models","the-voice-layer"],["let-the-ai-interview-you","self-models"],["a-modeled-self","your-risk-profile"],["anti-interests","your-risk-profile"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"self-models"}</script></div>
   </div>
 </section>
 
@@ -119,5 +122,6 @@
     a.addEventListener('click', function(){ if (t) t.checked = false; });
   });
 </script>
+<script src="../assets/concept-map.js"></script>
 </body>
 </html>
