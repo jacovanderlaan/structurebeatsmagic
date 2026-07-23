@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Markdown Is Already the Graph · Concepts · Structure Beats Magic</title>
+<meta name="description" content="You keep being told to load your notes into a vector database or a graph database. If they&#x27;re structured and linked, you already have the graph — the agent can walk the files." />
+<meta property="og:title" content="Markdown Is Already the Graph · Structure Beats Magic" />
+<meta property="og:description" content="You keep being told to load your notes into a vector database or a graph database. If they&#x27;re structured and linked, you already have the graph — the agent can walk the files." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/markdown-is-already-the-graph.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/markdown-is-already-the-graph.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>Markdown Is Already the Graph</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">You keep being told to load your notes into a vector database or a graph database. If they're structured and linked, you already have the graph — the agent can walk the files.</p>
+    
+    <div class="c-body">
+<p>The standard advice for making your notes useful to an AI is to move them somewhere else: chunk them, embed them, load them into a vector database, or stand up a graph database and import them. It sounds like the serious version of the work. Often it's the unnecessary version.</p>
+<p>If your notes are structured — each file a unit, with frontmatter that types it and links that connect it — you already have a graph. Not a metaphor for one; the actual thing. A folder of linked markdown is nodes and edges, and an agent can walk it directly: open a file, follow its links, read the ones that matter, reason across the small set it gathered. The links you wrote by hand are the edges a vector database spends compute trying to reconstruct by similarity — except yours already declare what they mean. You didn't skip the graph. You wrote it in a format a human can also read.</p>
+<p>The vector database earns its place under one condition, and it's worth stating plainly so this doesn't become dogma: when the collection is genuinely too large to read, similarity search is how you find the candidates worth looking at. That's a real job. But it's a narrower job than the pitch implies, and it arrives later than people think — usually well after the point where a walkable set of well-linked files would have answered the question faster and with fewer moving parts. Reach for the heavy infrastructure when reading breaks down, not before, and not because a diagram made it look like the grown-up choice.</p>
+<p>The reason this matters beyond saving a database is that it changes what you're building on. Markdown you can open, read, edit and version yourself is structure you own; a proprietary index is structure you rent, and it locks your understanding inside a tool. Keep the graph in files and the same asset works for you today and survives the next tool you try — which is the whole point of putting the value in the structure rather than the machinery that reads it.</p>
+<p>So before you embed anything: check whether you're solving a real too-big-to-read problem or performing rigor. Structure and link your files well, and the graph everyone tells you to go build is the one you've been writing all along.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="files-for-facts-skills-for-behavior.html">Files for Facts, Skills for Behavior</a></li><li><a href="rent-the-ai-own-the-structure.html">Rent the AI; Own the Structure</a></li><li><a href="structure-beats-magic.html">Structure Beats Magic</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"files-for-facts-skills-for-behavior","title":"Files for Facts, Skills for Behavior","cat":"System architecture","desc":"One filing test for every piece of context: does it change weekly? Yes → it's a fact, keep it in a file. No → it's behavior, make it a standing rule o"},{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"markdown-is-already-the-graph","title":"Markdown Is Already the Graph","cat":"System architecture","desc":"You keep being told to load your notes into a vector database or a graph database. If they're structured and linked, you already have the graph — the "},{"slug":"rent-the-ai-own-the-structure","title":"Rent the AI; Own the Structure","cat":"Brand & stance","desc":"Models are swappable commodities; your structure is the durable asset."},{"slug":"structure-beats-magic","title":"Structure Beats Magic","cat":"Umbrella thesis","desc":"The magic isn't in the model; it's in the structure you give it."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"}],"edges":[["knowledge-graph","the-context-graph"],["knowledge-graph","markdown-is-already-the-graph"],["markdown-is-already-the-graph","the-context-graph"],["files-for-facts-skills-for-behavior","markdown-is-already-the-graph"],["markdown-is-already-the-graph","rent-the-ai-own-the-structure"],["markdown-is-already-the-graph","structure-beats-magic"]],"categories":["Method & workflow","Umbrella thesis","Personal data model","Brand & stance","System architecture","Intelligence systems","Filtering & identity","Life design"],"center":"markdown-is-already-the-graph"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>
