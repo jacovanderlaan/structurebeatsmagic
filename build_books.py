@@ -285,7 +285,7 @@ INDEX_PAGE = """<!doctype html>
 <link rel="canonical" href="{canonical}"/>
 <meta property="og:title" content="My library — Structure Beats Magic"/>
 <meta property="og:description" content="The books behind the method — a curated shelf, each read through the Structure-Beats-Magic lens."/>
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="{canonical}"/>
 <meta property="og:site_name" content="Structure Beats Magic"/>
@@ -443,7 +443,7 @@ def main() -> None:
         meta_desc = f"{title} by {authors} — why it's in Jaco van der Laan's Structure-Beats-Magic library, the ideas worth stealing, and what he built with it."[:300]
         canonical = f"{BASE_URL}/books/{slug}.html"
         cover_file = copy_cover(folder, slug)
-        og_image_abs = f"{BASE_URL}/assets/{cover_file}" if cover_file else f"{BASE_URL}/assets/sbm-og-card.svg"
+        og_image_abs = f"{BASE_URL}/assets/{cover_file}" if cover_file else f"{BASE_URL}/assets/sbm-og-card.png"
         cover_html = (
             f'<figure class="book-cover"><img src="../assets/{cover_file}" alt="{html.escape(title, quote=True)} cover"/></figure>'
             if cover_file else ""

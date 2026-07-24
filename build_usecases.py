@@ -244,7 +244,7 @@ def render_index(ucs: list[UseCase]) -> str:
 <meta property="og:description" content="Proof, not slides — the thesis applied to concrete situations." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{BASE_URL}/use-cases/" />
-<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.png" />
 <link rel="canonical" href="{BASE_URL}/use-cases/" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -316,7 +316,7 @@ def render_detail(u: UseCase, article_titles: dict) -> str:
 <meta property="og:description" content="{html.escape(u.summary, quote=True)}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{BASE_URL}/use-cases/{esc(u.slug)}.html" />
-<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.png" />
 <link rel="canonical" href="{BASE_URL}/use-cases/{esc(u.slug)}.html" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>

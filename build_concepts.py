@@ -626,7 +626,7 @@ def render_index(groups: list[tuple[str, list[Concept]]],
 <meta property="og:description" content="The coined vocabulary behind the thesis — one memorable name per idea, each with its own page." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{BASE_URL}/concepts/" />
-<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="{BASE_URL}/concepts/" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -706,7 +706,7 @@ def render_group(slug: str, gmeta: dict, members: list[Concept]) -> str:
 <meta property="og:description" content="{html.escape(blurb, quote=True)}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{BASE_URL}/concepts/groups/{esc(slug)}.html" />
-<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="{BASE_URL}/concepts/groups/{esc(slug)}.html" />
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"/>
@@ -833,7 +833,7 @@ def render_detail(c: Concept, concepts_by_slug, concepts_by_name, graph=None) ->
     # before the image is generated, and an <img> at a missing file would ship a
     # broken image to the site.
     hero_html = ""
-    og_image = f"{BASE_URL}/assets/sbm-og-card.svg"
+    og_image = f"{BASE_URL}/assets/sbm-og-card.png"
     if c.hero_image and (SRC / c.slug / "assets" / c.hero_image).is_file():
         cap = f"<figcaption>{esc(c.hero_caption)}</figcaption>" if c.hero_caption else ""
         hero_html = (f'<figure class="c-hero"><img src="../assets/{esc(c.hero_image)}" '
@@ -948,7 +948,7 @@ def render_map(graph: dict) -> str:
 <meta property="og:description" content="Every concept and how it connects — {n_nodes} ideas, {n_edges} links, one interactive map." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{esc(canonical)}" />
-<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.svg" />
+<meta property="og:image" content="{BASE_URL}/assets/sbm-og-card.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="{esc(canonical)}" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>

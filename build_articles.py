@@ -991,7 +991,7 @@ def main() -> None:
         # (Medium etc.) safe — it tells Google this site is the original home.
         canonical = f"{BASE_URL}/articles/{slug}.html"
         og_image_abs = (f"{BASE_URL}/assets/{hi}" if hi
-                        else f"{BASE_URL}/assets/sbm-og-card.svg")
+                        else f"{BASE_URL}/assets/sbm-og-card.png")
         published_meta = (f'\n<meta property="article:published_time" content="{created}"/>'
                           if created else "")
         json_ld = build_article_jsonld(title, subtitle, canonical, og_image_abs, created)
@@ -1157,7 +1157,7 @@ def write_writing_index(cards: list) -> None:
         )
     page = WRITING_INDEX.format(
         canonical=f"{BASE_URL}/writing/",
-        og_image_abs=f"{BASE_URL}/assets/sbm-og-card.svg",
+        og_image_abs=f"{BASE_URL}/assets/sbm-og-card.png",
         css="../assets/site.css",
         cards="\n".join(rows),
     )

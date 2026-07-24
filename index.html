@@ -10,7 +10,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://structurebeatsmagic.com/" />
 <meta property="og:site_name" content="Structure Beats Magic" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.svg" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
 <meta name="author" content="Jaco van der Laan" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/" />
@@ -22,22 +22,38 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Structure Beats Magic",
-  "url": "https://structurebeatsmagic.com/",
-  "description": "Knowledge Management, re-architected for the AI era.",
-  "author": {
-    "@type": "Person",
-    "name": "Jaco van der Laan",
-    "url": "https://jacovanderlaan.com",
-    "jobTitle": "Data Solution Architect — Knowledge Architecture & AI",
-    "sameAs": [
-      "https://jacovanderlaan.com",
-      "https://www.linkedin.com/in/jacovanderlaan",
-      "https://medium.com/@jacovanderlaan",
-      "https://medium.com/structure-beats-magic"
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://structurebeatsmagic.com/#website",
+      "name": "Structure Beats Magic",
+      "url": "https://structurebeatsmagic.com/",
+      "description": "Knowledge Management, re-architected for the AI era.",
+      "publisher": { "@id": "https://structurebeatsmagic.com/#org" },
+      "author": { "@id": "https://jacovanderlaan.com/#person" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://structurebeatsmagic.com/#org",
+      "name": "Structure Beats Magic",
+      "url": "https://structurebeatsmagic.com/",
+      "logo": "https://structurebeatsmagic.com/assets/sbm-og-card.png",
+      "founder": { "@id": "https://jacovanderlaan.com/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jacovanderlaan.com/#person",
+      "name": "Jaco van der Laan",
+      "url": "https://jacovanderlaan.com",
+      "jobTitle": "Data Solution Architect — Knowledge Architecture & AI",
+      "sameAs": [
+        "https://jacovanderlaan.com",
+        "https://www.linkedin.com/in/jacovanderlaan",
+        "https://medium.com/@jacovanderlaan",
+        "https://medium.com/structure-beats-magic"
+      ]
+    }
+  ]
 }
 </script>
 <!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
