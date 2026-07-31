@@ -1,0 +1,23 @@
+<div id="browse" data-page-type="articles"></div>
+<div class="bw-fallback">
+  <p class="muted">All items:</p>
+  <ul class="artlist">
+    <li><a href="../articles/almost-everything-is-an-agreement.html">Almost Everything Is an Agreement</a> &mdash; <span class="muted">Contracts, subscriptions, family arrangements, the promise you made yourself about the gym — model them as one</span></li>
+    <li><a href="../articles/google-standardized-my-vault.html">Google Standardized the Thing I&#x27;ve Been Building — And Left Out the One Layer That Matters</a> &mdash; <span class="muted">Google Cloud&#x27;s Open Knowledge Format turns your data&#x27;s context into a folder of markdown files with frontmatte</span></li>
+    <li><a href="../articles/governing-what-your-ai-can-touch.html">Governing What Your AI Can Touch</a> &mdash; <span class="muted">An agent with access to your whole machine is a power tool with no guard. Here&#x27;s how I put the guard back — pe</span></li>
+    <li><a href="../articles/reading-intelligence.html">Reading Intelligence</a> &mdash; <span class="muted">Your reading history is already a dataset. Stop treating it as a queue and it will tell you what you think.</span></li>
+    <li><a href="../articles/the-other-half-of-structure-visual-thinking.html">The Other Half of Structure: Where Visual Thinking Meets the Data Model</a> &mdash; <span class="muted">Structure Beats Magic is usually about the invisible half — the model under your knowledge. But structure only</span></li>
+    <li><a href="../articles/the-pkm-and-ai-dividing-line.html">The PKM-and-AI Dividing Line — and the Third Position Nobody&#x27;s Taking</a> &mdash; <span class="muted">The two biggest names in PKM both bet on AI in 2026 — in opposite directions. Both are half right. The missing</span></li>
+    <li><a href="../articles/personal-asset-management.html">Your Stuff Is a Database (You Just Haven&#x27;t Modelled It Yet)</a> &mdash; <span class="muted">Photograph what you own, tag where it lives, and the vault packs your suitcase for you — by trip type, with bo</span></li>
+    <li><a href="../articles/zettelkasten-2-0.html">Zettelkasten 2.0: Let the AI Do the Labor, Keep the Judgment</a> &mdash; <span class="muted">Manual Zettelkasten died of one disease — labor. The AI age cures exactly that disease, if you keep the one jo</span></li>
+  </ul>
+</div>
+<script type="module">
+  import { initBrowse } from "../assets/browse.js";
+  initBrowse("#browse", {
+    data: "../data/content_item.parquet",
+    base: "../",
+    assets: "../concepts/assets/",
+    pageType: "articles"
+  }).then(() => document.body.classList.add("bw-ready"));
+</script>

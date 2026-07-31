@@ -1,0 +1,34 @@
+<div id="browse" data-page-type="skills"></div>
+<div class="bw-fallback">
+  <p class="muted">All items:</p>
+  <ul class="artlist">
+    <li>/vault-query — retrieve from the vault via the introspected data model &mdash; <span class="muted">name: vault-query</span></li>
+    <li>Article Skill &mdash; <span class="muted">Create and manage technical articles for Medium and other publication platforms.</span></li>
+    <li>Brochure Skill &mdash; <span class="muted">Create business-friendly solution brochures that explain features and capabilities for stakeholders.</span></li>
+    <li>Chat-Import Skill &mdash; <span class="muted">Bring exported AI chat history (ChatGPT, Claude) under structure — parse the export,</span></li>
+    <li>Cleanup Skill &mdash; <span class="muted">Perform a structured cleanup and code review of the repository.</span></li>
+    <li>Cloze CRM Skill &mdash; <span class="muted">Interact with Cloze CRM data - contacts, companies, and agreements.</span></li>
+    <li>Documentation Skill &mdash; <span class="muted">Generate and maintain project documentation including ADRs, READMEs, release notes, and folder-level instructi</span></li>
+    <li>Duckdb Attach Db &mdash; <span class="muted">name: duckdb-attach-db</span></li>
+    <li>Duckdb Docs &mdash; <span class="muted">name: duckdb-docs</span></li>
+    <li>Duckdb Install &mdash; <span class="muted">name: duckdb-install</span></li>
+    <li>Duckdb Query &mdash; <span class="muted">name: duckdb-query</span></li>
+    <li>Duckdb Read File &mdash; <span class="muted">name: duckdb-read-file</span></li>
+    <li>Duckdb Read Memories &mdash; <span class="muted">name: duckdb-read-memories</span></li>
+    <li>Export to Project &mdash; <span class="muted">name: export-to-project</span></li>
+    <li>Profile Skill &mdash; <span class="muted">Query and explore Jaco&#x27;s personal profile data from the D:/ vault.</span></li>
+    <li>Remind Skill &mdash; <span class="muted">Track tasks, questions, and things to remember — routed into Jaco&#x27;s vault</span></li>
+    <li>Runbook Skill &mdash; <span class="muted">Create and maintain operational runbooks for incident response, change management, and standard procedures.</span></li>
+    <li>Skill (skill-authoring) &mdash; <span class="muted">Scaffold, review, and improve Claude Code skills — so new skills match the house</span></li>
+    <li>VSCode Extension Skill &mdash; <span class="muted">Create and extend VSCode extensions for MDDE metadata editing.</span></li>
+  </ul>
+</div>
+<script type="module">
+  import { initBrowse } from "../assets/browse.js";
+  initBrowse("#browse", {
+    data: "../data/content_item.parquet",
+    base: "../",
+    assets: "../concepts/assets/",
+    pageType: "skills"
+  }).then(() => document.body.classList.add("bw-ready"));
+</script>

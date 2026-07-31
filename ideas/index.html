@@ -2,12 +2,12 @@
 <html lang="en"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" /><!-- TESTPHASE-NOINDEX -->
-<title>Terms — Structure Beats Magic</title>
-<meta name="description" content="Terms on Structure Beats Magic — filter, sort and browse." />
-<link rel="canonical" href="https://structurebeatsmagic.com/glossary/" />
-<meta property="og:title" content="Terms — Structure Beats Magic" />
+<title>Ideas — Structure Beats Magic</title>
+<meta name="description" content="Ideas on Structure Beats Magic — filter, sort and browse." />
+<link rel="canonical" href="https://structurebeatsmagic.com/ideas/" />
+<meta property="og:title" content="Ideas — Structure Beats Magic" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://structurebeatsmagic.com/glossary/" />
+<meta property="og:url" content="https://structurebeatsmagic.com/ideas/" />
 <meta name="twitter:card" content="summary" />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="../assets/site.css" /></head>
@@ -38,15 +38,28 @@
 <a class="cta" href="https://jacovanderlaan.com">For enterprises &rarr;</a></nav></div></header>
 <div class="hero wrap" style="padding-bottom:16px">
   <div class="eyebrow">Listing</div>
-  <h1>Terms</h1>
+  <h1>Ideas</h1>
 </div>
 <section class="wrap">
-<div id="browse" data-page-type="glossary"></div>
+<div id="browse" data-page-type="ideas"></div>
 <div class="bw-fallback">
   <p class="muted">All items:</p>
   <ul class="artlist">
-    <li>glossary-sbm &mdash; <span class="muted">SBM-only glossary terms — the non-concept vocabulary specific to Structure Beats Magic (personal knowledge, se</span></li>
-    <li>glossary-shared &mdash; <span class="muted">Shared SBM/MDDE glossary — the non-concept vocabulary both audiences need. Substrate terms (markdown, YAML, da</span></li>
+    <li>Article footers — related articles / concepts / terms &mdash; <span class="muted">Jaco&#x27;s convention; applies to every site in the family</span></li>
+    <li>BUILD.md runbook &mdash; <span class="muted">done 31 jul — and it records that SBM&#x27;s generators are the pattern to copy: no positional args, env-var overri</span></li>
+    <li>Collapsible left TOC</li>
+    <li>Concept → article cross-linking at build time &mdash; <span class="muted">Currently manual; the generator already knows both sets</span></li>
+    <li>Glossary section — terms vs concepts</li>
+    <li>Medium URLs for published pieces without mediumurl in frontmatter</li>
+    <li>Multi-page IA (ADR-127) — grouped menus + page per section</li>
+    <li>NOINDEX removal — decide when SBM goes live to search</li>
+    <li>Orphan-page pruning in buildconcepts.py &mdash; <span class="muted">Fixed for SD on 31 jul; port it. An untagged concept currently stays live and unreachable.</span></li>
+    <li>PKM outreach — the invitation list is written, not sent</li>
+    <li>Publication pipeline — vault → site → Medium/Substack, one source &mdash; <span class="muted">The content-publishing-engine vision; partly built</span></li>
+    <li>Publication schedule — publication-schedule-medium.csv needs a decision on cadence</li>
+    <li>Research section — questions investigated, published as artifacts</li>
+    <li>Site link-validation over /.html &mdash; <span class="muted">done 31 jul — W:/systems/code/rules/checksitelinks.py. SBM: 272 pages, 4,718 links, 2 broken (item 0). Handles</span></li>
+    <li>Two articles are linked but do not exist &mdash; <span class="muted">Found 31 jul by checksitelinks.py. the-interview-is-the-escalation (a series &quot;← Previous&quot; link from hooks-not-</span></li>
   </ul>
 </div>
 <script type="module">
@@ -55,7 +68,7 @@
     data: "../data/content_item.parquet",
     base: "../",
     assets: "../concepts/assets/",
-    pageType: "glossary"
+    pageType: "ideas"
   }).then(() => document.body.classList.add("bw-ready"));
 </script>
 </section>
