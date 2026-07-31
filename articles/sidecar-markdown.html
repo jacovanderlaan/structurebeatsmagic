@@ -74,15 +74,18 @@ gtag('config', 'G-P7W9B34R1Z');
   <h1>Sidecar Markdown — Giving a PDF the Thing It Can Never Have</h1>
   <p class="subtitle">A binary file can&#x27;t be searched, can&#x27;t be queried, and can&#x27;t hold a single link. Put a markdown note beside it and all three problems go away at once.</p>
   <div class="byline">By Jaco van der Laan · 2026-07-19</div>
+  
   <figure class="article-hero"><img src="../assets/sidecar-markdown-hero.png" alt="Sidecar Markdown — Giving a PDF the Thing It Can Never Have" loading="eager"/><figcaption>Two files, one document. The PDF holds the record and can hold nothing else — no links, no fields, no searchable text. The markdown beside it carries the structure, the extracted content and the connections, and it is the one the vault actually works with.</figcaption></figure>
-  <article>
-  <hr/>
-<h2>Three things a PDF cannot do</h2>
+  <div class="article-layout">
+    <nav class="article-toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="toc-h2"><a href="#three-things-a-pdf-cannot-do">Three things a PDF cannot do</a></li><li class="toc-h2"><a href="#what-one-actually-looks-like">What one actually looks like</a></li><li class="toc-h2"><a href="#this-is-not-a-proposal">This is not a proposal</a></li><li class="toc-h2"><a href="#where-the-real-upgrade-is">Where the real upgrade is</a></li><li class="toc-h2"><a href="#one-source-two-kinds-of-sidecar">One source, two kinds of sidecar</a></li><li class="toc-h2"><a href="#frontmatter-is-a-latent-table">Frontmatter is a latent table</a></li><li class="toc-h2"><a href="#the-naming-detail-that-decides-whether-it-survives">The naming detail that decides whether it survives</a></li><li class="toc-h2"><a href="#a-note-on-the-word">A note on the word</a></li><li class="toc-h2"><a href="#why-this-is-the-same-move-as-a-folder-note">Why this is the same move as a folder note</a></li></ul></nav>
+    <article>
+    <hr/>
+<h2 id="three-things-a-pdf-cannot-do">Three things a PDF cannot do</h2>
 <p>Put a scanned document into a text-based vault and it lands like a stone. It's stored, it's safe, and it's inert.</p>
 <p>It can't be <strong>searched</strong> — the words are pixels, not text. It can't be <strong>queried</strong> — there's no "all invoices over €500 from this supplier in Q2," because there are no fields, just a picture of a page. And the one almost nobody names: it can't be <strong>linked</strong>. You cannot put <code>[[wikilinks]]</code> inside a PDF. It has no way to point at anything else in your system, and nothing about it points back.</p>
 <p>The first two are inconveniences. The third is what makes the document an island. A vault's value comes from things being connected; a file that structurally cannot connect is outside the system even while sitting inside the folder.</p>
 <p>The sidecar pattern solves all three with one move, and it's almost embarrassingly simple: <strong>put a markdown note next to the binary.</strong> The PDF stays the untouchable original. The markdown becomes the thing the vault actually works with.</p>
-<h2>What one actually looks like</h2>
+<h2 id="what-one-actually-looks-like">What one actually looks like</h2>
 <p>Not hypothetically. This is a real note from my vault — the RDW clearance certificate for a caravan my company sold in July:</p>
 <pre><code>---
 title: Vrijwaringsbewijs caravan WE-56-00 (RDW)
@@ -103,37 +106,39 @@ related: "[[transaction_caravan-verkoop-daniel-wouters]]"
 <p><strong>It's connected</strong> — <code>related:</code> points at the sale transaction. The chain from <em>sold the caravan</em> to <em>here's the proof of transfer</em> is walkable in both directions.</p>
 <p><strong>It's governed</strong> — <code>visibility: private</code> is the same gate every other note uses. The document became a first-class citizen of the system the moment it had a sidecar.</p>
 <p>None of that lives in the PDF. All of it lives beside it.</p>
-<h2>This is not a proposal</h2>
+<h2 id="this-is-not-a-proposal">This is not a proposal</h2>
 <p>Worth being plain: I'm describing what's already running, not sketching an idea. There are <strong>14,774 scanned PDFs in my vault, about 23 GB</strong>, and the wrapper-beside-the-scan convention has been the filing rule for years. Every receipt, contract, and official letter that matters arrives, gets OCR'd, gets a wrapper, and gets filed in the day-folder it belongs to.</p>
 <p>The pattern earned its name late. It ran for a long time as "that's just how I file scans" before it was worth calling anything.</p>
-<h2>Where the real upgrade is</h2>
+<h2 id="where-the-real-upgrade-is">Where the real upgrade is</h2>
 <p>The searchability is nice. The <strong>structured query</strong> is the categorical change, and it's easy to undersell.</p>
 <p>Full-text search over documents — even good search — only ever answers "which documents contain these words." That's a fundamentally different question from "which documents have these <em>properties</em>." Google Drive could search my receipts; it could never tell me total spend per category per quarter, because it had text and no fields.</p>
 <p>Sidecar frontmatter turns a pile of documents into a dataset. And the fields aren't decoration — they're a small type system. A receipt carries amount, VAT, category, supplier, date. A contract carries party, start date, term. A scan of an official letter carries issuer and document type. Consistency per type is what makes queries trustworthy; inconsistent fields produce silent gaps, which are worse than missing data because they look like answers.</p>
 <p>That's data modelling, applied to your own paperwork. For anyone who models data professionally, it's home ground — the same discipline, minus the stakeholders.</p>
-<h2>One source, two kinds of sidecar</h2>
+<h2 id="one-source-two-kinds-of-sidecar">One source, two kinds of sidecar</h2>
 <p>A source doesn't get exactly one companion, and the distinction between the kinds is worth keeping sharp.</p>
 <p>A <strong>representation</strong> stands <em>for</em> the source: derived, regenerable, mechanical, one-to-one. OCR text plus extracted fields. If you lost it you could remake it from the original.</p>
 <p>A <strong>distillate</strong> is <em>your thought about</em> the source: a summary in your own words, an argument you extracted, a note that stands on its own. Not regenerable — nobody can reconstruct your thinking from the PDF.</p>
 <p>Keep them typed differently and, ideally, filed separately. The moment "what the document says" blurs into "what I concluded," you've lost the ability to trust either one. A scanned book might carry one bibliographic representation and twenty idea-notes; those twenty are a different species and belong in the part of the system that handles your own thinking.</p>
-<h2>Frontmatter is a latent table</h2>
+<h2 id="frontmatter-is-a-latent-table">Frontmatter is a latent table</h2>
 <p>Every sidecar of the same type shares the same fields. Same fields across many notes is a table: each field a column, each note a row.</p>
 <p>Which means the sidecars can be exported to a database — and the export doesn't <em>impose</em> structure, it <strong>surfaces structure that was already there</strong>. The markdown was a table all along; the database just makes it queryable in a form markdown handles badly.</p>
 <p>One rule keeps this honest: the direction of truth is <strong>markdown → database, one-way</strong>. The files are the source. The database is a derived, regenerable view you rebuild when you want to ask something, and never edit back. Break that rule and you now have two sources of truth and no way to tell which one is lying.</p>
-<h2>The naming detail that decides whether it survives</h2>
+<h2 id="the-naming-detail-that-decides-whether-it-survives">The naming detail that decides whether it survives</h2>
 <p>Two ways to bind a sidecar to its source: convention (<code>receipt-2026-03.pdf</code> ↔ <code>receipt-2026-03.md</code>) or an explicit <code>source:</code> field in the frontmatter.</p>
 <p>Use the field. Convention breaks the first time someone renames a file, and it breaks silently. An explicit pointer survives renaming and — more usefully — makes the relationship <em>queryable</em>: you can ask which sources lack sidecars, which is exactly the audit you'll want once you have a few thousand of these.</p>
 <p>And a caveat that costs nothing to state and a lot to discover: <strong>the sidecar is only as good as the extraction that filled it.</strong> Clean digital PDFs are trivial. Photographed receipts at an angle in bad light are the weak link. A low-confidence extraction is a low-confidence search result, and it will fail you quietly rather than loudly.</p>
-<h2>A note on the word</h2>
+<h2 id="a-note-on-the-word">A note on the word</h2>
 <p>If you've used a photo DAM, you've met sidecars already — XMP files carrying ratings and tags beside a RAW image. Same instinct, narrower mechanism: XMP is a fixed metadata standard for image tools.</p>
 <p>What's described here is the general case. Any binary, any document type, arbitrary fields you define, plus the two things XMP was never for: extracted body text, and links into the rest of your knowledge.</p>
-<h2>Why this is the same move as a folder note</h2>
+<h2 id="why-this-is-the-same-move-as-a-folder-note">Why this is the same move as a folder note</h2>
 <p>A folder can't describe itself. A PDF can't link to anything. In both cases the answer is identical — <strong>put a markdown file beside the thing that can't speak, and let it speak on the thing's behalf.</strong></p>
 <p>That's the whole pattern, and it generalizes further than documents. Anything in your system that can't carry structure, can't carry links, or can't carry text gets a small markdown companion that can. The heavy original stays exactly as it is, authoritative and untouched. The lightweight note beside it does all the work of being part of a system.</p>
 <p>The PDF is still the record. The sidecar is what makes it <em>yours</em>.</p>
 <hr/>
 <p><em>Part of the <a href="../concepts/structure-beats-magic.html">Structure Beats Magic</a> series. Pairs with <a href="self-contained-atomic-units.html">Everything Is a Folder</a> on self-contained units, and <a href="your-database-is-a-view.html">Your Database Is a View</a> on why the files stay the source of truth.</em></p><aside class="article-related"><h2>Related</h2><h3>Related concepts</h3><ul><li><a href="../concepts/loosely-coupled-documents.html">Loosely Coupled Documents</a></li><li><a href="../concepts/atomic-documents.html">Atomic Documents</a></li><li><a href="../concepts/document-vault.html">Document Vault</a></li><li><a href="../concepts/rules-you-can-verify.html">Rules You Can Verify</a></li></ul></aside>
-  </article>
+    </article>
+  </div>
+  
   <div class="article-cta">
     <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
     <a class="btn" href="../writing/">← More writing</a>

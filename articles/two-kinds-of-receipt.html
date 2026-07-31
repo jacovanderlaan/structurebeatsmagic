@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow" /><!-- TESTPHASE-NOINDEX: remove at go-live -->
+<title>Two Kinds of Receipt — Structure Beats Magic</title>
+<meta name="description" content="A dinner bill and a phone invoice look alike. One belongs to a day you lived; the other to a contract you signed. Filing them the same way is the mistake."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/two-kinds-of-receipt.html"/>
+<meta property="og:title" content="Two Kinds of Receipt"/>
+<meta property="og:description" content="A dinner bill and a phone invoice look alike. One belongs to a day you lived; the other to a contract you signed. Filing them the same way is the mistake."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/two-kinds-of-receipt.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-24"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Two Kinds of Receipt"/>
+<meta name="twitter:description" content="A dinner bill and a phone invoice look alike. One belongs to a day you lived; the other to a contract you signed."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Modelling your own life</p>
+  <h1>Two Kinds of Receipt</h1>
+  <p class="subtitle">A dinner bill and a phone invoice are both scanned PDFs with a date and an amount. But one belongs to a day I lived and the other to a contract I signed — and filing them in the same place is the mistake that makes a personal archive rot.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-24</div>
+  <article>
+  <hr/>
+
+<p>I was sorting scanned receipts into a calendar — every document dropped into the folder for the day it was dated. It's the obvious move, and for a while it worked. Then it started to feel wrong, and it took me a minute to see why.</p>
+
+<p>A restaurant bill from Tuesday belongs to Tuesday. I was there; the meal happened; the scan is evidence of a moment. But a phone invoice dated the fourteenth doesn't belong to the fourteenth in any real sense. It arrived on the fourteenth. It could have arrived on the twelfth or the sixteenth and nothing about my life would have been different. The date is an accident of the billing cycle, not a fact about me.</p>
+
+<p>Those two documents look identical — PDF, date, amount, vendor — but they are <strong>different kinds of thing</strong>, and the calendar was flattening the difference.</p>
+
+<h2>The axis that actually matters</h2>
+
+<p>The distinction isn't "bill versus invoice," and it isn't "one-off versus recurring." It's this: <strong>is the document evidence of an activity, or evidence of an agreement?</strong></p>
+
+<p><strong>Activity-related</strong> — the dinner, the museum ticket, the tank of fuel. Also, and this surprised me, the purchase invoice: buying a television is something I <em>did</em>, on a day, often in a place. A purchase is an activity, not an agreement. So the furniture I ordered files next to the photos of the day I ordered it, and quietly becomes an asset too.</p>
+
+<p><strong>Agreement-related</strong> — the phone subscription, the insurance premium, the energy bill, the tax notice. None of these is a moment. Each is the monthly shedding of a <em>standing relationship</em>. One KPN invoice is interchangeable with the next; what they have in common isn't a date, it's a contract.</p>
+
+<blockquote>Activity receipts answer "what did I do?" Agreement receipts answer "what am I committed to?" File them by the question they answer, not by the date they carry.</blockquote>
+
+<h2>Why the date lies</h2>
+
+<p>The calendar is the right spine for a life, because a life is lived in days. But an agreement isn't lived in days — it's held across them. Pinning a recurring invoice to its billing date is <em>false precision</em>: it dresses an arbitrary timestamp up as a meaningful one, and the cost is that your telecom relationship ends up scattered across twelve day-folders a year, invisible as the single thing it actually is.</p>
+
+<p>So agreement-related documents don't go to a day at all. They go to the <strong>year</strong> — the finest grain that still means something for a thing that repeats identically every month — grouped by category, and under it by party: <code>2022/admin/telecom/KPN/</code>. Now the KPN relationship is one place, one folder, one story. The drift you couldn't see when it was smeared across the calendar becomes a thing you can read in a single glance.</p>
+
+<h2>This is just modelling, wearing ordinary clothes</h2>
+
+<p>Here's the part I find quietly funny. Deciding where a scanned receipt lives is not filing. It's <strong>data modelling</strong> — the same work I do for a living, on enterprise systems, dressed down in a hoodie.</p>
+
+<p>"Is this an activity or an agreement?" is an <em>entity</em> question: two documents with the same shape belong to different tables because they mean different things. Routing the purchase to the day and the subscription to the agreement is choosing the right <em>grain</em> and the right <em>dimension</em>. And the reason it feels important out of all proportion to a pile of PDFs is that it <em>is</em> important — get the entity wrong and everything downstream inherits the error, whether the downstream is a data warehouse or a shoebox.</p>
+
+<p>The agreement itself is already a first-class entity in my vault — contracts, subscriptions, the promise I made myself about the gym, all modelled as one thing with the evidence linked to it. The scans are simply that evidence arriving over time. Filing an invoice under its agreement isn't a new idea; it's connecting a document to the entity it was always about.</p>
+
+<h2>How to make the cut</h2>
+
+<p>You don't need a system to start. You need one question, asked of every document before it's filed:</p>
+
+<ul>
+  <li><strong>Did I do this, or did I sign it?</strong> A thing I did — a meal, a visit, a purchase — is activity. A thing I signed — a subscription, a policy, a plan — is agreement.</li>
+  <li><strong>Activity → the day.</strong> Next to the photos, the ticket, the memory. It's part of a moment.</li>
+  <li><strong>Agreement → the year, by party.</strong> Not the billing date. The relationship. Twelve invoices from one vendor are one story, not twelve events.</li>
+  <li><strong>When in doubt, ask what changes if the date moves.</strong> If moving the date by a week changes nothing about your life, it's an agreement, and the date was never the point.</li>
+</ul>
+
+<h2>The small idea underneath</h2>
+
+<p>Most of the mess in a personal archive isn't too little structure — it's <em>one</em> structure asked to carry two meanings. The calendar is a beautiful spine for what you lived. It's the wrong home for what you're bound to. Separate the two and each becomes legible: your days stay a record of life, and your agreements stop hiding in plain sight, one arbitrary invoice date at a time.</p>
+
+<p>Two documents. Same shape. Different truth. The whole discipline is noticing the difference before you file.</p>
+
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+
+<!--
+DRAFT v1 — 24 jul 2026. Awaiting Jaco's pass + slop-check.
+Kern: activity-related vs contract/agreement-related routing van scans/kosten. Bouwt voort op bestaand concept almost-everything-is-an-agreement (agreement = first-class entity) — dit is de ROUTING-toepassing ervan. Anker uit eigen praktijk: calendar-spine foto/scan-systeem, KPN-voorbeeld, La Forma-meubels als aanschaf→dag→asset. Cross-link almost-everything-is-an-agreement + data-driven-daily-notes.
+"Activity-based costing"-echo bewust NIET expliciet ingezet (zou jargon worden); wel de geest ervan. Open voor human pass: of de accounting-brug expliciet moet.
+NOINDEX aan. OG-image = sbm-og-card.png (generiek) tot er een hero is.
+-->
+</body>
+</html>

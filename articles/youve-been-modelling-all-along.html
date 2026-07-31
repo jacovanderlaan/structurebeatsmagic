@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow" /><!-- TESTPHASE-NOINDEX: remove at go-live -->
+<title>You've Been Modelling All Along — Structure Beats Magic</title>
+<meta name="description" content="Organising your own photos and receipts feels like tidying. It isn't. It's data modelling — the same discipline that runs enterprises — and your life is the sample landscape."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/youve-been-modelling-all-along.html"/>
+<meta property="og:title" content="You've Been Modelling All Along"/>
+<meta property="og:description" content="Organising your own photos and receipts feels like tidying. It isn't. It's data modelling — the same discipline that runs enterprises — and your life is the sample landscape."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/youve-been-modelling-all-along.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-24"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="You've Been Modelling All Along"/>
+<meta name="twitter:description" content="Organising your own photos and receipts feels like tidying. It isn't. It's data modelling — and your life is the sample landscape."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">The thesis, up close</p>
+  <h1>You've Been Modelling All Along</h1>
+  <p class="subtitle">Sorting your own photos and receipts feels like tidying up. It isn't. It's the same data modelling that runs banks and supply chains — and the reason it's hard is the reason it matters. Your life is the honest sample landscape the discipline never gives you.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-24</div>
+  <article>
+  <hr/>
+
+<p>For twenty-odd years my job has been data modelling: deciding what the entities are, how they relate, at what grain the facts live, which dimensions you slice them by. It sounds abstract until it isn't — until a wrong entity quietly corrupts a decade of reporting and everyone wonders why the numbers never quite reconcile.</p>
+
+<p>This month I've been doing something that looks nothing like that job. I've been feeding my own photos and scanned receipts into a calendar — tens of thousands of images, years of paper. And somewhere around the third evening I realised I wasn't tidying. I was <strong>building an information architecture</strong>, making exactly the decisions I make for a living, on the most familiar dataset I'll ever own.</p>
+
+<h2>The calendar is a star schema</h2>
+
+<p>Look at what the structure actually is, once you stop calling it "folders."</p>
+
+<p>The calendar spine — year, quarter, month, week, day — is a <strong>date dimension</strong>. Every serious warehouse has one; here it's the backbone of the whole thing. A photo has a timestamp and a location, so it's a <strong>fact</strong>: a measured event, dropped onto the date dimension at day grain. The activity folders that cluster a day's photos by place — "the market," "the restaurant," "the overlook" — are a <strong>location dimension</strong>, resolved from GPS the way you'd conform a dimension from a messy source. And the little YAML file beside each photo, holding its metadata and its meaning, is the <strong>fact row</strong> made durable and queryable.</p>
+
+<p>I didn't set out to build a star schema for my holidays. But attention keeps converging on the same shape, because the shape is what the problem <em>is</em>. When you have events with a time, a place, and some measures, and you want to ask questions across them, you get a fact table on conformed dimensions — whether the events are sales orders or Sunday afternoons.</p>
+
+<blockquote>The structures that run enterprises aren't enterprise structures. They're the structures that fit the problem. Your life has the same problem, so it wants the same structures.</blockquote>
+
+<h2>Every hard call was a modelling call</h2>
+
+<p>The moments where I got stuck were never about software. They were the classic modelling questions, in disguise.</p>
+
+<p>When a scanned receipt refused to sit still — dinner bill or phone invoice? — that was an <strong>entity</strong> question: same shape, different meaning, so different tables. When a purchase invoice wanted to live next to the day I bought the thing, that was <strong>grain</strong>: a moment belongs to a day, a standing agreement belongs to a year. When photos from a place with no GPS still needed a name, that was <strong>conformance</strong>: reach for a second source — the location timeline — and reconcile. Every one of these has a boardroom equivalent that costs six figures when you get it wrong.</p>
+
+<p>And the failure modes rhymed too. A file dropped into the wrong folder is a row loaded against the wrong key. A receipt smeared across twelve billing dates is a slowly-changing dimension nobody designed. The archive rots for exactly the reasons a data platform rots: not too little data, but meaning filed against the wrong structure, compounding quietly until no query can find the truth.</p>
+
+<h2>Why doing it on your own life is the unfair advantage</h2>
+
+<p>Here's what the enterprise version never gives you: <strong>ground truth you can feel</strong>. When I model a client's domain, I'm modelling their understanding of their business — I'm one interview removed from the thing itself. When I model my own life, I <em>am</em> the domain expert. I know the purchase was a purchase and the subscription was a subscription, because I was there. The sample landscape isn't a sanitised extract; it's the messiest, most honest dataset I have access to, and I can check every modelling decision against a memory instead of a stakeholder.</p>
+
+<p>That's why I keep saying the personal work isn't a hobby beside the profession. It's the profession with the training wheels off — a place to feel, at human scale and with instant feedback, the same judgement calls that are invisible and expensive at enterprise scale. The stakes are a shoebox instead of a company, but the discipline is identical, and the feedback loop is a hundred times tighter.</p>
+
+<h2>The move you can steal</h2>
+
+<p>You don't have to be a modeller to use this. You have to notice that you're already doing it, and start doing it on purpose.</p>
+
+<ul>
+  <li><strong>Name your entities.</strong> Before you decide where something goes, decide <em>what it is</em>. A photo, a receipt, an agreement, a purchase — different things, different homes. Most filing mistakes are entity mistakes.</li>
+  <li><strong>Pick the grain honestly.</strong> Does this belong to a day, a month, a year, or a relationship? Filing at the wrong grain is the quietest, most expensive error there is.</li>
+  <li><strong>Conform your dimensions.</strong> "Rotterdam" and "Rotterdam, Netherlands" are the same place; make them the same value once, and everything downstream lines up.</li>
+  <li><strong>Then, and only then, worry about tools.</strong> The database, the app, the AI — those are downstream of the model. Get the entities and the grain right and the plumbing is easy. Get them wrong and no tool will save you.</li>
+</ul>
+
+<h2>Structure was always the work</h2>
+
+<p>The magic people chase — the AI that finds anything, the system that runs itself — is all downstream of one unglamorous act: deciding what things are and where they belong. That's data modelling. It's what builds an information architecture worth pointing an AI at, and it's what turns a pile of images into something you can actually ask questions of.</p>
+
+<p>You've been doing it every time you moved a file with a small nagging sense that it mattered where it went. That instinct was right. It's not tidying. It's modelling — and your own life is the best classroom the craft will ever hand you.</p>
+
+  </article>
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+
+<!--
+DRAFT v1 — 24 jul 2026. Awaiting Jaco's pass + slop-check.
+Kern: het organiseren van eigen foto's/scans = data modelling = information architecture = Jaco's kern-vak. Calendar-spine = star schema (date-dim), foto = fact, activiteit-map = location-dim, YAML-sidecar = fact-row. Elke lastige routing-call = entity/grain/conformance-vraag. USP: eigen leven = ground truth sample landscape (jij BENT de domain expert, geen interview-afstand). Companion van two-kinds-of-receipt (dat is de entity-vraag uitgewerkt) + almost-everything-is-an-agreement.
+Open voor human pass: warehouse-jargon (star schema/grain/conformed dim) is bewust ingezet want doelgroep = deels vakgenoten; check of het voor de bredere SBM-lezer niet te dicht wordt. Sluit aan op vault-datamodel-mdde-sample (het reverse-engineerde vault-datamodel).
+NOINDEX aan.
+-->
+</body>
+</html>

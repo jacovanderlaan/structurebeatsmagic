@@ -257,12 +257,39 @@ def strip_private_sections(body: str) -> str:
     return body
 
 
-def md_to_html(md: str) -> str:
+def _slugify_heading(text: str, used: set) -> str:
+    """A stable, unique URL anchor for a heading (for the article TOC).
+
+    Strips inline markdown/HTML, lowercases, keeps word chars + hyphens. On a
+    collision (two headings slugify the same) appends -2, -3, … so every anchor
+    is unique on the page — a TOC link that points at the wrong section is worse
+    than none.
+    """
+    s = re.sub(r"`[^`]*`", "", text)                 # drop inline-code
+    s = re.sub(r"\*{1,2}([^*]+)\*{1,2}", r"\1", s)     # drop bold/italic markers
+    s = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", s)     # link -> its text
+    s = re.sub(r"<[^>]+>", "", s)                      # any stray html
+    s = html.unescape(s).lower()
+    s = re.sub(r"[^\w\s-]", "", s).strip()
+    s = re.sub(r"[\s_]+", "-", s).strip("-") or "section"
+    base, n = s, 2
+    while s in used:
+        s = f"{base}-{n}"; n += 1
+    used.add(s)
+    return s
+
+
+def md_to_html(md: str, headings: list | None = None) -> str:
     """Minimal, dependency-free markdown -> HTML for our article style.
 
     Supports: # ## ### headings, **bold**, *italic*, [text](url), --- rules,
     paragraphs. Deliberately small — our drafts use a narrow markdown subset.
+
+    If `headings` is provided, each rendered ## / ### heading is given a unique
+    `id` anchor and appended as (level, plain_text, id) so the caller can build
+    an in-page table of contents.
     """
+    _toc_used: set = set()
     # strip the leading H1 (we render title from frontmatter) + leading italic lede
     lines = md.split("\n")
     out: list[str] = []
@@ -404,11 +431,25 @@ def md_to_html(md: str) -> str:
                        f'alt="{cap or fn}" loading="lazy"/>{cap_html}</figure>')
             continue
         if st.startswith("### "):
-            flush(); out.append(f"<h3>{inline(st[4:])}</h3>"); continue
-        if st.startswith("## "):
-            flush(); out.append(f"<h2>{inline(st[3:])}</h2>"); continue
-        if st.startswith("# "):
-            flush(); out.append(f"<h2>{inline(st[2:])}</h2>"); continue
+            flush()
+            txt = st[4:]
+            if headings is not None:
+                hid = _slugify_heading(txt, _toc_used)
+                headings.append((3, re.sub(r"[*`]", "", txt).strip(), hid))
+                out.append(f'<h3 id="{hid}">{inline(txt)}</h3>')
+            else:
+                out.append(f"<h3>{inline(txt)}</h3>")
+            continue
+        if st.startswith("## ") or st.startswith("# "):
+            flush()
+            txt = st[3:] if st.startswith("## ") else st[2:]
+            if headings is not None:
+                hid = _slugify_heading(txt, _toc_used)
+                headings.append((2, re.sub(r"[*`]", "", txt).strip(), hid))
+                out.append(f'<h2 id="{hid}">{inline(txt)}</h2>')
+            else:
+                out.append(f"<h2>{inline(txt)}</h2>")
+            continue
         # blockquote: "> text" (consecutive lines group; a bare ">" is a paragraph
         # break inside the quote). Renders as <blockquote> — NOT a literal ">".
         if st == ">" or st.startswith("> "):
@@ -489,10 +530,15 @@ gtag('config', 'G-P7W9B34R1Z');
   <h1>{title}</h1>
   <p class="subtitle">{subtitle}</p>
   <div class="byline">By Jaco van der Laan{date}</div>
+  {series_top}
   {hero}
-  <article>
-  {body}
-  </article>
+  <div class="article-layout">
+    {toc}
+    <article>
+    {body}
+    </article>
+  </div>
+  {series_bottom}
   <div class="article-cta">
     <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
     <a class="btn" href="../writing/">← More writing</a>
@@ -939,8 +985,207 @@ def _article_titles() -> dict:
     return titles
 
 
+def build_toc(headings: list) -> str:
+    """An in-page table of contents from collected (level, text, id) headings.
+
+    Rendered as a left-rail <nav> the reader can use to jump between sections.
+    Skipped entirely when an article has fewer than 3 headings — a TOC for one
+    or two sections is noise, not navigation. h2 = top level, h3 = nested.
+    """
+    tops = [h for h in headings if h[0] == 2]
+    if len(headings) < 3 or len(tops) < 2:
+        return ""
+    items = []
+    for level, text, hid in headings:
+        cls = "toc-h3" if level == 3 else "toc-h2"
+        items.append(f'<li class="{cls}"><a href="#{hid}">{html.escape(text)}</a></li>')
+    return ('<nav class="article-toc" aria-label="On this page">'
+            '<p class="toc-title">On this page</p>'
+            f'<ul>{"".join(items)}</ul></nav>')
+
+
+def _load_series_index() -> dict:
+    """Map each series-part slug -> its navigation context.
+
+    Reads every series folder-note (ADR-067: ARTICLES_ROOT/series/<slug>/<slug>.md,
+    type: series, parts: [{slug, part, title, status}, ...]). Returns
+    slug -> {series_slug, series_title, part, total, prev, next, home_url} where
+    prev/next are {slug, title} of the neighbouring parts (or None at the ends).
+    home_url points at the series overview page (series/<slug>.html). Empty dict
+    if there is no series/ tree yet — series-nav is then a no-op.
+    """
+    idx: dict = {}
+    series_root = ARTICLES_ROOT / "series"
+    if not series_root.is_dir():
+        return idx
+    for series_dir in sorted(series_root.iterdir()):
+        if not series_dir.is_dir():
+            continue
+        note = series_dir / f"{series_dir.name}.md"
+        if not note.exists():
+            continue
+        meta, _ = split_frontmatter(note.read_text(encoding="utf-8"))
+        if str(meta.get("type", "")).strip() != "series":
+            continue
+        parts = meta.get("parts") or []
+        # normalise + order by declared part number (falls back to list order)
+        norm = []
+        for i, p in enumerate(parts):
+            if not isinstance(p, dict) or not p.get("slug"):
+                continue
+            norm.append({"slug": str(p["slug"]).strip(),
+                         "part": int(p.get("part", i + 1)),
+                         "title": str(p.get("title", "")).strip()})
+        norm.sort(key=lambda p: p["part"])
+        series_slug = series_dir.name
+        series_title = str(meta.get("title", series_slug)).strip().strip('"')
+        for i, p in enumerate(norm):
+            idx[p["slug"]] = {
+                "series_slug": series_slug,
+                "series_title": series_title,
+                "part": p["part"],
+                "total": len(norm),
+                "prev": norm[i - 1] if i > 0 else None,
+                "next": norm[i + 1] if i < len(norm) - 1 else None,
+                "home_url": f"../series/{series_slug}.html",
+            }
+    return idx
+
+
+def build_series_nav(ctx: dict | None, position: str) -> str:
+    """Prev · series-home · next navigation for a series part (ADR-067).
+
+    `position` is "top" (a compact series banner: "Part X of N in <series>") or
+    "bottom" (the full prev/home/next control). Returns "" when the article is
+    not part of a series, so non-series articles are unaffected.
+    """
+    if not ctx:
+        return ""
+    if position == "top":
+        return ('<nav class="series-banner">'
+                f'<a href="{ctx["home_url"]}">{html.escape(ctx["series_title"])}</a>'
+                f'<span class="series-progress">Part {ctx["part"]} of {ctx["total"]}</span>'
+                '</nav>')
+    # bottom: prev · series overview · next
+    def link(part, rel, label_prefix):
+        if not part:
+            return '<span class="series-link disabled"></span>'
+        return (f'<a class="series-link {rel}" href="{part["slug"]}.html">'
+                f'<span class="series-dir">{label_prefix}</span>'
+                f'<span class="series-name">{html.escape(part["title"] or part["slug"])}</span></a>')
+    prev_html = link(ctx["prev"], "prev", "← Previous")
+    next_html = link(ctx["next"], "next", "Next →")
+    return ('<nav class="series-nav" aria-label="Series navigation">'
+            f'{prev_html}'
+            f'<a class="series-link home" href="{ctx["home_url"]}">'
+            f'<span class="series-dir">Series</span>'
+            f'<span class="series-name">All {ctx["total"]} parts</span></a>'
+            f'{next_html}</nav>')
+
+
+SERIES_PAGE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>{title} — Structure Beats Magic</title>
+<meta name="description" content="{subtitle}"/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="{canonical}"/>
+<meta property="og:title" content="{title}"/>
+<meta property="og:description" content="{subtitle}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="stylesheet" href="{css}"/>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">Series · {total} parts</p>
+  <h1>{title}</h1>
+  <p class="subtitle">{subtitle}</p>
+  <div class="byline">By Jaco van der Laan{date}</div>
+  <ol class="series-list">
+  {parts}
+  </ol>
+  <div class="article-cta">
+    <a class="btn" href="../writing/">← All writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
+"""
+
+
+def build_series_pages(published: dict) -> int:
+    """Render a series-overview page (series/<slug>.html) per series (ADR-067).
+
+    This is the "series home" the per-part prev/next nav points at — the kapstok
+    landing that lists every part in order. `published` maps slug -> title for
+    articles that actually built, so a not-yet-published part shows greyed and
+    unlinked instead of as a dead link. Returns the number of series pages built.
+    """
+    series_root = ARTICLES_ROOT / "series"
+    if not series_root.is_dir():
+        return 0
+    out_dir = HERE / "series"
+    out_dir.mkdir(exist_ok=True)
+    built = 0
+    for series_dir in sorted(series_root.iterdir()):
+        if not series_dir.is_dir():
+            continue
+        note = series_dir / f"{series_dir.name}.md"
+        if not note.exists():
+            continue
+        meta, _ = split_frontmatter(note.read_text(encoding="utf-8"))
+        if str(meta.get("type", "")).strip() != "series":
+            continue
+        parts = meta.get("parts") or []
+        norm = []
+        for i, p in enumerate(parts):
+            if isinstance(p, dict) and p.get("slug"):
+                norm.append({"slug": str(p["slug"]).strip(),
+                             "part": int(p.get("part", i + 1)),
+                             "title": str(p.get("title", "")).strip()})
+        norm.sort(key=lambda p: p["part"])
+        li = []
+        for p in norm:
+            slug = p["slug"]
+            title = published.get(slug) or p["title"] or slug.replace("-", " ").title()
+            if slug in published:
+                li.append(f'<li><a href="../articles/{slug}.html">'
+                          f'<span class="series-list-n">{p["part"]}</span>'
+                          f'<span class="series-list-t">{html.escape(title)}</span></a></li>')
+            else:
+                li.append(f'<li class="pending"><span class="series-list-n">{p["part"]}</span>'
+                          f'<span class="series-list-t">{html.escape(title)} '
+                          f'<em>· coming soon</em></span></li>')
+        stitle = str(meta.get("title", series_dir.name)).strip().strip('"')
+        ssub = str(meta.get("subtitle", "")).strip().strip('"')
+        created = str(meta.get("created", "")).strip().strip("'\"")
+        (out_dir / f"{series_dir.name}.html").write_text(SERIES_PAGE.format(
+            title=html.escape(stitle, quote=True),
+            subtitle=html.escape(ssub, quote=True),
+            total=len(norm),
+            date=f" · {created}" if created else "",
+            canonical=f"{BASE_URL}/series/{series_dir.name}.html",
+            css="../assets/article.css",
+            parts="\n".join(li),
+        ), encoding="utf-8")
+        built += 1
+        print(f"  + series/{series_dir.name}.html  ({len(norm)} parts)")
+    return built
+
+
 def main() -> None:
     OUT.mkdir(exist_ok=True)
+    series_index = _load_series_index()
     article_titles = _article_titles()
     concept_map = _load_concept_map()  # name -> concept page; for inline auto-linking
     # slug -> display name for the Related section. concept_map is sorted longest-
@@ -954,6 +1199,7 @@ def main() -> None:
             continue
         concept_names.setdefault(slug, name)
     cards = []
+    published: dict = {}  # slug -> title, for the series-overview pages
     image_problems: list[str] = []
     privacy_problems: list[str] = []
     for slug in ARTICLES:
@@ -995,6 +1241,11 @@ def main() -> None:
         published_meta = (f'\n<meta property="article:published_time" content="{created}"/>'
                           if created else "")
         json_ld = build_article_jsonld(title, subtitle, canonical, og_image_abs, created)
+        # collect headings while rendering → in-page TOC; series context → prev/next nav
+        headings: list = []
+        body_html = md_to_html(body, headings)
+        toc_html = build_toc(headings)
+        series_ctx = series_index.get(slug)
         out_path.write_text(PAGE.format(
             title=html.escape(title, quote=True),
             subtitle=html.escape(subtitle, quote=True),
@@ -1005,11 +1256,18 @@ def main() -> None:
             og_image_abs=og_image_abs,
             published_meta=published_meta,
             json_ld=json_ld,
-            body=md_to_html(body) + build_related_section(meta, article_titles, concept_names),
+            toc=toc_html,
+            series_top=build_series_nav(series_ctx, "top"),
+            series_bottom=build_series_nav(series_ctx, "bottom"),
+            body=body_html + build_related_section(meta, article_titles, concept_names),
             css=CSS,
         ), encoding="utf-8")
         print(f"  + articles/{slug}.html  ({copied} assets)")
         cards.append((created, title, subtitle, f"articles/{slug}.html", face_label(meta)))
+        published[slug] = title
+
+    # Series-overview pages (ADR-067): the "series home" the per-part nav links to.
+    build_series_pages(published)
 
     # Image-integrity gate (2026-07-15): fail the build on any image reference
     # that points at a file which isn't there. The renderer emits <img> blindly,

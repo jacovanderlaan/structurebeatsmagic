@@ -74,48 +74,53 @@ gtag('config', 'G-P7W9B34R1Z');
   <h1>Prompts, Skills, Plugins, MCP — Which Tool, When</h1>
   <p class="subtitle">By now you know what a skill is and how to build one. But a skill is one option among four, and reaching for the wrong one is how people either overbuild a one-off or underbuild something they&#x27;ll repeat forever. Here&#x27;s how I actually decide.</p>
   <div class="byline">By Jaco van der Laan · 2026-07-04</div>
+  
   <figure class="article-hero"><img src="../assets/prompts-skills-plugins-mcp-which-tool-when-hero.png" alt="Prompts, Skills, Plugins, MCP — Which Tool, When" loading="eager"/><figcaption>Two questions decide which of the four tools you reach for: how often will you need this, and does it touch your real data? Prompts for one-offs, skills for repeated procedures, plugins to share a skill, MCP to let the AI see your data. The deeper split — what the AI can do vs what it can see — is where most people stop, and where the leverage actually lives.</figcaption></figure>
-  <article>
-  <h2>Four tools, one question</h2>
+  <div class="article-layout">
+    <nav class="article-toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="toc-h2"><a href="#four-tools-one-question">Four tools, one question</a></li><li class="toc-h2"><a href="#prompt-the-right-tool-for-the-one-off">Prompt: the right tool for the one-off</a></li><li class="toc-h2"><a href="#skill-the-right-tool-for-the-repeated-procedure">Skill: the right tool for the repeated procedure</a></li><li class="toc-h2"><a href="#plugin-the-right-tool-for-sharing">Plugin: the right tool for sharing</a></li><li class="toc-h2"><a href="#mcp-the-right-tool-for-what-the-ai-can-see">MCP: the right tool for what the AI can see</a></li><li class="toc-h2"><a href="#the-map-on-one-page">The map, on one page</a></li><li class="toc-h2"><a href="#where-i-actually-am-on-this-map">Where I actually am on this map</a></li><li class="toc-h2"><a href="#the-recipe-ends-here-the-kitchen-is-the-system">The recipe ends here. The kitchen is the system.</a></li></ul></nav>
+    <article>
+    <h2 id="four-tools-one-question">Four tools, one question</h2>
 <p>When you want the AI to do something, you're really choosing between four things. They're not competitors — they're a ladder, and the rung you want depends on one question: <strong>how often will I need this, and does it touch my real data?</strong></p>
 <ul><li><strong>A prompt</strong> — you type the instruction, right now, in the conversation.</li><li><strong>A skill</strong> — you save the procedure once; the AI runs it on command, the same way every time.</li><li><strong>A plugin</strong> — you bundle skills (and more) to <em>share</em> across projects or with a team.</li><li><strong>An MCP server</strong> — you connect the AI to a live data source or system it can <em>see</em> and query.</li></ul>
 <p>Two of these are about what the AI can <strong>do</strong> (prompts, skills). Two are about distribution and reach (plugins) and about what the AI can <strong>see</strong> (MCP). Get the axes right and the choice makes itself.</p>
 <hr/>
-<h2>Prompt: the right tool for the one-off</h2>
+<h2 id="prompt-the-right-tool-for-the-one-off">Prompt: the right tool for the one-off</h2>
 <p>A prompt is perfect when you'll do the thing <em>once</em>. "Rewrite this paragraph." "What's wrong with this query?" "Summarize this thread." There's no procedure worth saving, no repetition to amortize. Typing it is faster than filing it.</p>
 <p>The failure mode is using a prompt for something you do <em>every week</em>. If you've pasted roughly the same instruction three times, you've diagnosed a skill. The third repetition is the signal — stop paying the tax and write the file.</p>
 <blockquote><p><strong>Rule of thumb:</strong> Done once → prompt. Done repeatedly → skill.</p></blockquote>
 <hr/>
-<h2>Skill: the right tool for the repeated procedure</h2>
+<h2 id="skill-the-right-tool-for-the-repeated-procedure">Skill: the right tool for the repeated procedure</h2>
 <p>A skill is what a prompt becomes when it stops being a one-off. It's the unit that compounds (Part 1): written once, owned forever, improved in place. Reach for a skill the moment a procedure has a <em>shape</em> you'd otherwise re-explain — the steps, the constraints, the where-things-go.</p>
 <p>The failure mode here is the opposite: overbuilding. Not everything deserves a skill. A procedure you'll run twice a year, with no fixed shape, is fine as a prompt you rewrite. Skills earn their keep through <em>repetition</em> — no repetition, no payoff.</p>
 <blockquote><p><strong>Rule of thumb:</strong> A procedure with a stable shape you'd re-explain → skill. A vague thing you'll do rarely → leave it a prompt.</p></blockquote>
 <hr/>
-<h2>Plugin: the right tool for sharing</h2>
+<h2 id="plugin-the-right-tool-for-sharing">Plugin: the right tool for sharing</h2>
 <p>A plugin is a <em>distribution</em> mechanism. It bundles one or more skills (plus other machinery) so they can be installed elsewhere — another project, a teammate's setup, a public marketplace. The skill inside a plugin is the same kind of thing you built in Part 2; the plugin is just the box it ships in.</p>
 <p>Here's the nuance people miss: <strong>you don't need a plugin to use a skill.</strong> A single-file skill in your own project works perfectly, forever, un-bundled. Reach for a plugin only when the skill is good enough that <em>someone else</em> should have it, or you want it versioned across many of your own repos. Distribution is the trigger, not usage.</p>
 <blockquote><p><strong>Rule of thumb:</strong> Keep it personal → single-file skill. Worth sharing or versioning across projects → promote it to a plugin.</p></blockquote>
 <hr/>
-<h2>MCP: the right tool for what the AI can see</h2>
+<h2 id="mcp-the-right-tool-for-what-the-ai-can-see">MCP: the right tool for what the AI can see</h2>
 <p>The first three are all about what the AI can <em>do</em>. MCP is the other axis entirely: what it can <strong>see.</strong> An MCP server connects the AI to a live system — your calendar, your mail, your CRM, a database — so it can query real, current data instead of guessing or asking you to paste it in.</p>
 <p>This is the half most people never build, and it's the half that changes everything. A skill that files a task is useful; a skill that files a task <em>and can check your actual calendar for conflicts</em> is a different category of useful, because it can <em>see</em>. Skills without data sources are a very organized way of working blind.</p>
 <blockquote><p><strong>Rule of thumb:</strong> The AI needs to <em>act</em> a certain way → skill. The AI needs to <em>see</em> your real data → MCP.</p></blockquote>
 <hr/>
-<h2>The map, on one page</h2>
+<h2 id="the-map-on-one-page">The map, on one page</h2>
 <div class="table-wrap"><table><thead><tr><th>You want to…</th><th>Reach for</th><th>Because</th></tr></thead><tbody><tr><td>Do a thing once</td><td><strong>Prompt</strong></td><td>No repetition to amortize</td></tr><tr><td>Repeat a procedure the same way</td><td><strong>Skill</strong></td><td>Written once, compounds, improves in place</td></tr><tr><td>Share a skill / version it across repos</td><td><strong>Plugin</strong></td><td>Distribution box around skills</td></tr><tr><td>Let the AI see your live data</td><td><strong>MCP server</strong></td><td>Connects it to real systems it can query</td></tr></tbody></table></div>
 <p>Most people live entirely on the first row — every interaction a fresh prompt — and wonder why the AI never seems to <em>know</em> them or get better. The leverage is on the lower rows: procedures it runs the same way (skills), and real data it can see (MCP). That's the difference between renting ten smart minutes and owning a system that compounds.</p>
 <figure class="article-fig"><img src="../assets/prompts-skills-plugins-mcp-which-tool-when-01.png" alt="The same map, split down the middle. On the left, what the AI can *do* — prompt (you ask), skill (you teach), plugin (you extend). On the right, what it can *see* — MCP wiring it to your databases, APIs, files and events. Most people live on the left and write better prompts; the leverage is the rows on the right that most people never build. Doing without seeing is guessing; combine both, and the gains compound." loading="lazy"/><figcaption>The same map, split down the middle. On the left, what the AI can <em>do</em> — prompt (you ask), skill (you teach), plugin (you extend). On the right, what it can <em>see</em> — MCP wiring it to your databases, APIs, files and events. Most people live on the left and write better prompts; the leverage is the rows on the right that most people never build. Doing without seeing is guessing; combine both, and the gains compound.</figcaption></figure>
 <hr/>
-<h2>Where I actually am on this map</h2>
+<h2 id="where-i-actually-am-on-this-map">Where I actually am on this map</h2>
 <p>To show the machinery, not just describe it: my own system leans hard on the lower two rows. Dozens of skills for the things I repeat, and a couple of dozen live data sources the AI can see — calendar, mail, CRM, finances, reading, health, travel, messages. Prompts are for genuine one-offs. Plugins, so far, only for the handful of skills worth sharing beyond one repo.</p>
 <p>That mix isn't a recommendation to copy the <em>numbers</em> — it's the shape that emerged from years of asking, each time, "will I do this again, and does it need my data?" and letting the answer pick the rung. The map is the same for everyone. Where you land on it is a function of how much you repeat and how much of your real life you want the AI to see.</p>
 <hr/>
-<h2>The recipe ends here. The kitchen is the system.</h2>
+<h2 id="the-recipe-ends-here-the-kitchen-is-the-system">The recipe ends here. The kitchen is the system.</h2>
 <p>Across three parts I've given you the whole recipe: what a skill is, how to build one, and how it fits alongside prompts, plugins, and data sources. All of it, freely — because knowing <em>which tool when</em> is exactly the kind of thing that should be common knowledge, not a paywall.</p>
 <p>And here's where I'll be straight with you, one more time. The recipe is the easy half. Anyone can learn that a repeated procedure wants a skill and live data wants an MCP server. <strong>The hard half — the kitchen — is designing a whole system where dozens of skills and dozens of data sources actually hold together:</strong> where the skills stand on consistent conventions, the data sources feed the right structure, nothing collides, and the whole thing compounds instead of turning into a sprawl of half-overlapping tools. That's not a template you download. It's an architecture you design for a specific world — your life, or your organization's.</p>
 <p>That design is what I do. The recipe I'll give away all day. Building the kitchen — the structured system, tuned to how <em>you</em> actually work, so the AI stops resetting to zero and starts compounding — is the part worth sitting down together for.</p>
 <p>Next, and last in the series: the payoff. <strong>Taking the messiest pile you own — years of AI chat history exported from ChatGPT and Claude — and bringing it under structure</strong> with a skill that does the filing. Watch a heap become an asset.</p>
-  </article>
+    </article>
+  </div>
+  
   <div class="article-cta">
     <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
     <a class="btn" href="../writing/">← More writing</a>
