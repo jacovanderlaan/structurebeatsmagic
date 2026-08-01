@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>An AI-Ready Vault — Structure Beats Magic</title>
+<meta name="description" content="Everything built into a vault to serve a human — self-describing folders, explicit links, per-type schemas — turns out to be exactly what makes it legible to a machine. You do not build an AI-ready vault; you build a well-structured one."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/articles/an-ai-ready-vault.html"/>
+<meta property="og:title" content="An AI-Ready Vault"/>
+<meta property="og:description" content="Everything built into a vault to serve a human — self-describing folders, explicit links, per-type schemas — turns out to be exactly what makes it legible to a machine. You do not build an AI-ready vault; you build a well-structured one."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/articles/an-ai-ready-vault.html"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/an-ai-ready-vault-hero.png"/>
+<meta property="article:author" content="Jaco van der Laan"/>
+<meta property="article:published_time" content="2026-07-19"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="An AI-Ready Vault"/>
+<meta name="twitter:description" content="Everything built into a vault to serve a human — self-describing folders, explicit links, per-type schemas — turns out to be exactly what makes it legible to a machine. You do not build an AI-ready vault; you build a well-structured one."/>
+<meta name="twitter:image" content="https://structurebeatsmagic.com/assets/an-ai-ready-vault-hero.png"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/article.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "An AI-Ready Vault",
+  "description": "Everything built into a vault to serve a human — self-describing folders, explicit links, per-type schemas — turns out to be exactly what makes it legible to a machine. You do not build an AI-ready vault; you build a well-structured one.",
+  "image": "https://structurebeatsmagic.com/assets/an-ai-ready-vault-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Jaco van der Laan",
+    "url": "https://jacovanderlaan.com",
+    "sameAs": [
+      "https://jacovanderlaan.com",
+      "https://www.linkedin.com/in/jacovanderlaan",
+      "https://medium.com/@jacovanderlaan"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Structure Beats Magic",
+    "url": "https://structurebeatsmagic.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://structurebeatsmagic.com/articles/an-ai-ready-vault.html"
+  },
+  "url": "https://structurebeatsmagic.com/articles/an-ai-ready-vault.html",
+  "datePublished": "2026-07-19",
+  "dateModified": "2026-07-19"
+}
+</script>
+<!-- Google Analytics (GA4) — shared property with jacovanderlaan.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../writing/">← All writing</a>
+</div></header>
+<main class="wrap article">
+  <p class="eyebrow">For knowledge workers</p>
+  <h1>An AI-Ready Vault</h1>
+  <p class="subtitle">Everything built into a vault to serve a human — self-describing folders, explicit links, per-type schemas — turns out to be exactly what makes it legible to a machine. You do not build an AI-ready vault; you build a well-structured one.</p>
+  <div class="byline">By Jaco van der Laan · 2026-07-19</div>
+  
+  <figure class="article-hero"><img src="../assets/an-ai-ready-vault-hero.png" alt="An AI-Ready Vault" loading="eager"/><figcaption>Magic drifts away — luck, hope — and a structured flow takes its place, opening a clear path forward. A scene-hero sample (ADR-075 tier 3).</figcaption></figure>
+  <div class="article-layout">
+    <nav class="article-toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="toc-h2"><a href="#two-halves-readable-and-reasonable">Two halves: readable, and reasonable</a></li><li class="toc-h2"><a href="#why-the-structure-keeps-paying-off-twice">Why the structure keeps paying off twice</a></li><li class="toc-h2"><a href="#the-one-hard-constraint-the-ai-access-gate">The one hard constraint: the AI-access gate</a></li></ul></nav>
+    <article>
+    <p>Everything built into this vault to serve a human — self-describing folders, explicit links, per-type schemas, a structured data layer — turns out to be exactly what AI tools need to work with it well. Structure that is good for people, for navigation, for search, and for analysis is repeatedly also good for machines. You build well, and AI-readiness falls out.</p>
+<p>But AI-readiness has two distinct halves that are worth separating, because they come from different places — and one hard constraint the rest of the vault already enforces.</p>
+<h2 id="two-halves-readable-and-reasonable">Two halves: readable, and reasonable</h2>
+<p><strong>Readable — navigation and understanding.</strong> An AI agent working over the vault benefits from the same things a person does: [[Folder Note|folder notes]] that say what a folder is, concepts that act as a kapstok, <code>[[wikilinks]]</code> that make the knowledge network explicit, frontmatter that makes each file self-describing. A well-structured markdown vault is legible to a model in a way a pile of PDFs or a proprietary database never is — it's plain text, explicitly linked, self-describing. The structure made for human readers serves the agent for free. (This was the point of the very first folder-note idea: one artefact serving the human eye and the machine agent in the same breath.)</p>
+<p><strong>Reasonable — grounding and inference.</strong> This is the deeper half, and it's where <a href="../concepts/knowledge-management-vs-knowledge-engineering.html">[[Knowledge Management vs Knowledge Engineering</a>|knowledge engineering]] earns its place. An AI asked to analyse your receipts or query your books can either wade through loose markdown (slow, imprecise, context-expensive) or run a [[DuckDB Analysis Layer|DuckDB query]] against the structured sidecar data (fast, exact, compact). The second wins, and concretely so: "what did I spend on category X in Q2" becomes a precise query with an exact answer, not a hallucination-prone summary. The frontmatter schemas don't just make the vault readable — they make it <em>reasonable</em>, something an AI can draw reliable conclusions from rather than guess about. Readability is KM; reasonability is KE. Both together are what "AI-ready" actually means.</p>
+<h2 id="why-the-structure-keeps-paying-off-twice">Why the structure keeps paying off twice</h2>
+<p>Self-describing structure, explicit relationships, and separated concerns make a system legible to <em>any</em> careful reader — the human eye and the machine agent alike. You never had to choose between building for people and building for AI, because the same properties serve both. Grounding an AI in exact, structured data is the same act as making your own analysis reliable; navigable-for-you is navigable-for-the-agent. The work compounds instead of splitting.</p>
+<p>This is also why the [[One Foundation, Three Destinations|company-brains]] offering is more than search. A knowledge base an AI can <em>reason over</em> — not just retrieve from — needs exactly what this vault has: structure, schemas, explicit relationships. Good knowledge engineering produces AI-readiness as a byproduct.</p>
+<h2 id="the-one-hard-constraint-the-ai-access-gate">The one hard constraint: the AI-access gate</h2>
+<p>The moment an AI tool reads the vault, the question that has governed every layer today returns: <strong>which AI, and where does it run?</strong> This is the same <a href="../concepts/gates.html">[[Gates</a>|gate]] question as Notion and the mobile vault — what may leave, and where is the boundary.</p>
+<p>A locally-run model (on the home-lab, or a local LLM) reads even sensitive sidecars without anything leaving the house — consistent with the whole architecture. A cloud AI reading the entire vault ships receipts, finances, health notes to a server outside your control. So AI access respects the same boundary as everything else: the <code>publish</code>/<code>private</code> (and now <code>audience</code>/<code>tier</code>) frontmatter flags are the gate. <strong>Local AI may see everything; external AI sees only what the gate clears.</strong> The vault's existing privacy machinery extends to AI access unchanged — a new consumer, the same door.</p>
+<p>This closes the loop with the vault's founding principle: keep the readable copy local, let only cleared or encrypted material travel. An AI-ready vault is not one that hands everything to a model — it's one structured well enough that a model can reason over it, and gated well enough that you decide which model gets to.</p>
+    </article>
+  </div>
+  
+  <div class="article-cta">
+    <p class="formula-mini">Structure + Data + AI + Rules + Skills → Systems</p>
+    <a class="btn" href="../writing/">← More writing</a>
+    <a class="btn btn-ghost" href="https://jacovanderlaan.com">Work with Jaco →</a>
+  </div>
+</main>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>
