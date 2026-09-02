@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Facts Expire · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Knowledge doesn&#x27;t become false, it becomes superseded. A store that only accumulates is a store that quietly gets less true." />
+<meta property="og:title" content="Facts Expire · Structure Beats Magic" />
+<meta property="og:description" content="Knowledge doesn&#x27;t become false, it becomes superseded. A store that only accumulates is a store that quietly gets less true." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/facts-expire.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/facts-expire.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Personal data model</div>
+  <h1>Facts Expire</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Knowledge doesn't become false, it becomes superseded. A store that only accumulates is a store that quietly gets less true.</p>
+    
+    <div class="c-body">
+<p>Most knowledge bases are built as if facts were permanent. They are not. An employer, a price, a policy, a preference, an address — each was true, then something replaced it, and the old version did not become nonsense. It became <strong>superseded</strong>, which is a different and more useful state than either "true" or "deleted."</p>
+<p>The distinction has teeth once a machine is reading. Delete the old fact and you lose the ability to answer historical questions and to explain how the current answer came to be. Keep it with equal standing and retrieval treats both as live, so the system confidently returns whichever happens to match the query better — which may well be the one that stopped being true two years ago. Neither behaviour is acceptable in a system anyone relies on.</p>
+<p>What works is validity: every fact carries the interval over which it held, and supersession is recorded rather than performed by overwriting. Then "where did they work in June 2024?" has one correct answer, "what do we believe now?" has another, and both come from the same store without contradiction. This is not exotic — it is bi-temporal modelling, decades old in data warehousing, arriving in AI systems under new names because the same problem was rediscovered.</p>
+<p>For a personal system the practical translation is small but strict: date what you capture, mark what replaces what, and treat expiry as a first-class event rather than a cleanup chore. A note that was accurate when written and is silently wrong now is worse than no note, because it carries the authority of your own handwriting. Pruning is not tidying; it is the maintenance that keeps a growing store trustworthy.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="retrieval-is-not-memory.html">Retrieval Is Not Memory</a></li><li><a href="living-timeline.html">Living Timeline</a></li><li><a href="document-change-log.html">Document Change-Log</a></li><li><a href="the-compounding-brain.html">The Compounding Brain</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"document-change-log","title":"Document Change-Log","cat":"System architecture","desc":"Each document carries its own history of changes — so a shared record is traceable, and a sync knows what changed, when, and by whom."},{"slug":"facts-expire","title":"Facts Expire","cat":"Personal data model","desc":"Knowledge doesn't become false, it becomes superseded. A store that only accumulates is a store that quietly gets less true."},{"slug":"living-timeline","title":"Living Timeline","cat":"System architecture","desc":"The calendar spine isn't an archive — it's a timeline that keeps summarizing itself."},{"slug":"retrieval-is-not-memory","title":"Retrieval Is Not Memory","cat":"System architecture","desc":"A vector store answers questions; memory decides what to keep, update and forget. Fetching on demand is not remembering — and the difference is a poli"},{"slug":"the-compounding-brain","title":"The Compounding Brain","cat":"Umbrella thesis","desc":"Every piece of work feeds back in, so the system is smarter next time than last."}],"edges":[["facts-expire","retrieval-is-not-memory"],["facts-expire","living-timeline"],["document-change-log","facts-expire"],["facts-expire","the-compounding-brain"],["retrieval-is-not-memory","the-compounding-brain"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"facts-expire"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

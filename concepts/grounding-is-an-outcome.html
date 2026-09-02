@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grounding Is an Outcome · Concepts · Structure Beats Magic</title>
+<meta name="description" content="RAG is a technique; grounding is a result. You can run retrieval perfectly and still be ungrounded — relevance is not the same as support." />
+<meta property="og:title" content="Grounding Is an Outcome · Structure Beats Magic" />
+<meta property="og:description" content="RAG is a technique; grounding is a result. You can run retrieval perfectly and still be ungrounded — relevance is not the same as support." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/grounding-is-an-outcome.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/grounding-is-an-outcome.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Semantics</div>
+  <h1>Grounding Is an Outcome</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">RAG is a technique; grounding is a result. You can run retrieval perfectly and still be ungrounded — relevance is not the same as support.</p>
+    
+    <div class="c-body">
+<p>The two words are used interchangeably and they are not the same kind of thing. RAG is a <strong>technique</strong>: fetch documents, put them in the prompt. Grounding is an <strong>outcome</strong>: the answer is verifiably tied to a trusted source. Running the technique does not guarantee the outcome, and the gap between them is where most disappointing AI projects live.</p>
+<p>The mechanism of the gap is worth stating plainly. Similarity search returns chunks that resemble the question. Resembling the question is not the same as containing the answer, and a chunk can be topically perfect while supporting nothing. Worse, the failure is silent: the model receives plausible-looking context, writes a fluent answer, and nothing in the output marks which sentence came from evidence and which came from the model's own priors. A confidently wrong answer and a correct one arrive in the same shape.</p>
+<p>What closes the gap is not better retrieval but an explicit test applied after it. Does each claim trace to a retrieved passage? Is that passage current? Does the answer carry a citation a reader can follow back? These are checks with pass/fail answers, and they are the difference between "the pipeline ran" and "this answer is supported." Systems that take grounding seriously add a step nobody demos: reject weak claims, and say so, rather than smoothing them into prose.</p>
+<p>The distinction matters most when the answer lives in a document nobody asked about. Ask about a policy by name and retrieval finds it; ask a question whose answer sits in a <em>different</em> document than the one the question resembles, and similarity quietly fails while confidence stays high. That is the case worth designing for, and it is the case that reveals whether you built a retrieval pipeline or a grounded one.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li><li><a href="honesty-over-helpfulness.html">Honesty Over Helpfulness</a></li><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="chunking-is-a-design-decision.html">Chunking Is a Design Decision</a></li><li><a href="a-confident-error-has-no-tell.html">A Confident Error Has No Tell</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-confident-error-has-no-tell","title":"A Confident Error Has No Tell","cat":"Method & workflow","desc":"A hallucination arrives in exactly the same shape as a correct answer. That is the whole problem — and why fluency is not evidence."},{"slug":"chunking-is-a-design-decision","title":"Chunking Is a Design Decision","cat":"System architecture","desc":"How you cut a document sets the ceiling on every answer drawn from it. It is the first production bottleneck and the largest quality lever — and it is"},{"slug":"grounding-is-an-outcome","title":"Grounding Is an Outcome","cat":"Semantics","desc":"RAG is a technique; grounding is a result. You can run retrieval perfectly and still be ungrounded — relevance is not the same as support."},{"slug":"honesty-over-helpfulness","title":"Honesty Over Helpfulness","cat":"Method & workflow","desc":"A confident wrong answer costs more than an honest 'I don't know' — so make honesty a standing rule: only report work you have evidence for."},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["a-confident-error-has-no-tell","honesty-over-helpfulness"],["a-confident-error-has-no-tell","grounding-is-an-outcome"],["chunking-is-a-design-decision","grounding-is-an-outcome"],["grounding-is-an-outcome","rules-you-can-verify"],["grounding-is-an-outcome","the-validation-loop"],["grounding-is-an-outcome","honesty-over-helpfulness"],["grounding-is-an-outcome","the-context-graph"],["honesty-over-helpfulness","the-validation-loop"],["rules-you-can-verify","the-validation-loop"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"grounding-is-an-outcome"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

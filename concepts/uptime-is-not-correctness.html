@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Uptime Is Not Correctness · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Monitoring proves the system ran. Observability for AI has to prove the answer was right — and those are different instruments." />
+<meta property="og:title" content="Uptime Is Not Correctness · Structure Beats Magic" />
+<meta property="og:description" content="Monitoring proves the system ran. Observability for AI has to prove the answer was right — and those are different instruments." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/uptime-is-not-correctness.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/uptime-is-not-correctness.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>Uptime Is Not Correctness</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Monitoring proves the system ran. Observability for AI has to prove the answer was right — and those are different instruments.</p>
+    
+    <div class="c-body">
+<p>Traditional monitoring answers questions with binary, mechanical answers: is it up, how fast, did it error. Every one of those can be green while the system produces confidently wrong output, because none of them looks at the <em>content</em> of what was produced. A pipeline that completes successfully and emits nonsense is, by conventional instrumentation, a healthy pipeline.</p>
+<p>AI observability therefore has to measure a different class of thing: is the answer grounded in its sources, is it relevant to the question, is it drifting from what it produced last month, is it biased in some systematic direction, did it cost what it should have. These are properties of the output, not of the process, and they require a different apparatus — evaluation sets, groundedness scoring, drift detection, an audit trail per answer rather than per request.</p>
+<p>The connection back to data is the part most teams miss. Output degradation usually starts upstream: a source went stale, a schema shifted, a definition changed, a feed stopped arriving. The model faithfully reasons over worse inputs and produces worse answers with unchanged fluency. So observability that stops at the model is watching the wrong end of the pipe — the feedback loop has to reach back to source quality, or you will keep diagnosing the symptom.</p>
+<p>The uncomfortable implication is that "it ran" and "it worked" are two claims requiring two proofs, and most systems collect evidence for only the first. That is the same error as reading a status code as a statement about the world, scaled up: activity, faithfully logged, mistaken for outcome. An agent that reports success is reporting that it finished — nothing about whether it was right.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-verifier-is-the-bottleneck.html">The Verifier Is the Bottleneck</a></li><li><a href="never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li><li><a href="show-the-machinery.html">Show the Machinery</a></li><li><a href="silence-is-not-absence-of-failure.html">Silence Is Not Absence of Failure</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"never-marks-its-own-homework","title":"Never Marks Its Own Homework","cat":"Method & workflow","desc":"The judge must be separate from the builder, and the score is the off-switch: a loop only stops when an independent evaluator says the rubric is met."},{"slug":"show-the-machinery","title":"Show the Machinery","cat":"Brand & stance","desc":"Don't describe the result — open the hood and show the working system that produced it."},{"slug":"silence-is-not-absence-of-failure","title":"Silence Is Not Absence of Failure","cat":"Method & workflow","desc":"No complaints does not mean no problems. It usually means people adapted to the errors and stopped mentioning them."},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."},{"slug":"the-verifier-is-the-bottleneck","title":"The Verifier Is the Bottleneck","cat":"Method & workflow","desc":"Agents don't fail at generating, they fail at checking. Throughput is set by how fast you can prove an output is right — not by how fast you can produ"},{"slug":"uptime-is-not-correctness","title":"Uptime Is Not Correctness","cat":"Method & workflow","desc":"Monitoring proves the system ran. Observability for AI has to prove the answer was right — and those are different instruments."}],"edges":[["never-marks-its-own-homework","the-validation-loop"],["never-marks-its-own-homework","the-verifier-is-the-bottleneck"],["never-marks-its-own-homework","uptime-is-not-correctness"],["show-the-machinery","uptime-is-not-correctness"],["silence-is-not-absence-of-failure","the-verifier-is-the-bottleneck"],["silence-is-not-absence-of-failure","uptime-is-not-correctness"],["the-validation-loop","the-verifier-is-the-bottleneck"],["the-validation-loop","uptime-is-not-correctness"],["the-verifier-is-the-bottleneck","uptime-is-not-correctness"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"uptime-is-not-correctness"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

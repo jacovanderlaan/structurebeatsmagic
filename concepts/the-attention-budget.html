@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Attention Budget · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one." />
+<meta property="og:title" content="The Attention Budget · Structure Beats Magic" />
+<meta property="og:description" content="Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-attention-budget.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-attention-budget.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>The Attention Budget</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one.</p>
+    
+    <div class="c-body">
+<p>A large context window reads like an invitation to fill it, and that instinct is wrong in a specific way. Attention is a budget with <strong>two</strong> failure modes, not one. Spend too little — omit the policy, the prior decision, the definition — and the model fills the gap by guessing, fluently. Spend too much and the signal you needed sits somewhere in fifty pages of padding, competing with everything else for the same finite attention. Recall degrades in the middle of long contexts; relevant facts get outvoted by volume.</p>
+<p>This makes "just paste everything" a strategy with a ceiling, and the ceiling arrives sooner than the token limit suggests. The discipline is not compression for its own sake but <strong>selection</strong>: what does this specific decision need, in what order, and what can be left out without changing the answer? A short, precisely assembled context routinely beats a long, complete one — not because less is virtuous, but because attention spent on irrelevant material is attention withdrawn from relevant material.</p>
+<p>The economics point the same way. Long contexts are re-read on every turn, so a conversation that grows unbounded pays for its whole history at each step. Rebuilding context per prompt rather than reusing a prepared, indexed slice is one of the largest hidden costs in production AI — and one of the easiest to remove, because the fix is structural rather than clever: assemble once, reuse, cut per task.</p>
+<p>Which is why the budget is an argument for structure rather than against context. You cannot cut a precise slice from an undifferentiated pile; you can cut one from a graph with types, domains and dates. The vault exists so that the working set can be small — big structure at rest, small context in motion. Context engineering is the discipline of spending an attention budget well, and it only becomes possible once the material has shape.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="harness-engineering.html">Harness Engineering</a></li><li><a href="compile-dont-retrieve.html">Compile, Don't Retrieve</a></li><li><a href="the-cut-test.html">The Cut Test</a></li><li><a href="chunking-is-a-design-decision.html">Chunking Is a Design Decision</a></li><li><a href="mcp-is-plumbing-not-magic.html">MCP Is Plumbing, Not Magic</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"chunking-is-a-design-decision","title":"Chunking Is a Design Decision","cat":"System architecture","desc":"How you cut a document sets the ceiling on every answer drawn from it. It is the first production bottleneck and the largest quality lever — and it is"},{"slug":"compile-dont-retrieve","title":"Compile, Don't Retrieve","cat":"System architecture","desc":"RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time"},{"slug":"harness-engineering","title":"Harness Engineering","cat":"Method & workflow","desc":"The third level of getting real work from AI — building the system around the model (tools, checks, memory, retries, escalation) so it can finish long"},{"slug":"mcp-is-plumbing-not-magic","title":"MCP Is Plumbing, Not Magic","cat":"System architecture","desc":"One protocol replaces N×M integrations. That's the whole trick — and the token tax nobody mentions means you still can't expose everything."},{"slug":"the-attention-budget","title":"The Attention Budget","cat":"System architecture","desc":"Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"},{"slug":"the-cut-test","title":"The Cut Test","cat":"Method & workflow","desc":"One question decides what stays in your rules: would a future session get something wrong without this line? If not, cut it. Bloat isn't structure."}],"edges":[["chunking-is-a-design-decision","the-attention-budget"],["compile-dont-retrieve","the-context-graph"],["compile-dont-retrieve","the-attention-budget"],["harness-engineering","the-context-graph"],["harness-engineering","the-attention-budget"],["mcp-is-plumbing-not-magic","the-attention-budget"],["the-attention-budget","the-context-graph"],["the-attention-budget","the-cut-test"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"the-attention-budget"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

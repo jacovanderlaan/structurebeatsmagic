@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meaning Belongs in the Data · Concepts · Structure Beats Magic</title>
+<meta name="description" content="When the rules live in application code, only the application can act on them. An agent hits a wall it cannot see — and that wall used to be merely expensive." />
+<meta property="og:title" content="Meaning Belongs in the Data · Structure Beats Magic" />
+<meta property="og:description" content="When the rules live in application code, only the application can act on them. An agent hits a wall it cannot see — and that wall used to be merely expensive." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/meaning-belongs-in-the-data.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/meaning-belongs-in-the-data.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>Meaning Belongs in the Data</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">When the rules live in application code, only the application can act on them. An agent hits a wall it cannot see — and that wall used to be merely expensive.</p>
+    
+    <div class="c-body">
+<p>Application-centric design starts from screens: what will the user do, what fields does that need, build a database to persist it. Meaning ends up distributed through validation functions, automations and conditionals — a rule written in 2019 by someone who left, encoded in a method nobody reads. The data underneath records <em>what</em> happened without carrying <em>what it means</em> or <em>what is allowed</em>.</p>
+<p>Data-centric design inverts the starting question from "what will the user do" to "what is true". Entities and relationships first, then attributes and constraints, and the screens become a projection of that model rather than its cause. The effort curves differ characteristically: application-first is fast to a first screen and slow to scale, because each new surface re-implements meaning; data-first is slower to start and close to free to extend, because the meaning is already there to project from.</p>
+<p>This was a defensible trade-off when humans were the only consumers, since a person can read the code, ask a colleague, or absorb the rule by osmosis. An agent cannot. Semantics buried in a validation function are invisible to it — not hard to find, <em>unreachable</em>. It will act confidently on the data it can see while remaining ignorant of the constraint that governs it, and produce output that is structurally valid and organisationally wrong.</p>
+<p>That turns an old architectural preference into a current requirement. The phrase worth keeping is <strong>rules are rows</strong>: if a constraint matters, it should live where anything can read it, not compiled into one consumer. Structure, meaning and rules travelling with the data is what lets a second consumer — a report, a model, an agent — arrive later and behave correctly without re-deriving the business from source code.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="an-ontology-is-a-contract.html">An Ontology Is a Contract</a></li><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="deterministic-by-design.html">Deterministic by Design</a></li><li><a href="the-missing-system.html">The Missing System</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"an-ontology-is-a-contract","title":"An Ontology Is a Contract","cat":"Semantics","desc":"Not a taxonomy, not a schema: a machine-checkable agreement about what exists, how it connects, and what must hold. It is what lets a model reason ins"},{"slug":"deterministic-by-design","title":"Deterministic by Design","cat":"Umbrella thesis","desc":"Deliberate is whether the structure was chosen; deterministic is whether the output repeats. A toy is neither on the second try."},{"slug":"meaning-belongs-in-the-data","title":"Meaning Belongs in the Data","cat":"System architecture","desc":"When the rules live in application code, only the application can act on them. An agent hits a wall it cannot see — and that wall used to be merely ex"},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"the-missing-system","title":"The Missing System","cat":"Umbrella thesis","desc":"Orgs have systems of record; almost none have the intelligence layer on top — data + AI + rules."}],"edges":[["an-ontology-is-a-contract","rules-you-can-verify"],["an-ontology-is-a-contract","meaning-belongs-in-the-data"],["deterministic-by-design","rules-you-can-verify"],["deterministic-by-design","meaning-belongs-in-the-data"],["meaning-belongs-in-the-data","rules-you-can-verify"],["meaning-belongs-in-the-data","the-missing-system"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"meaning-belongs-in-the-data"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

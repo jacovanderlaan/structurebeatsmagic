@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Keep the Work That Was Done · Concepts · Structure Beats Magic</title>
+<meta name="description" content="When a step fails, replan — don&#x27;t restart. The difference between an agent that finishes and one that burns tokens in circles is what survives a mistake." />
+<meta property="og:title" content="Keep the Work That Was Done · Structure Beats Magic" />
+<meta property="og:description" content="When a step fails, replan — don&#x27;t restart. The difference between an agent that finishes and one that burns tokens in circles is what survives a mistake." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/keep-the-work-that-was-done.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/keep-the-work-that-was-done.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>Keep the Work That Was Done</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">When a step fails, replan — don't restart. The difference between an agent that finishes and one that burns tokens in circles is what survives a mistake.</p>
+    
+    <div class="c-body">
+<p>Two agent patterns look similar and behave nothing alike under failure. In the simpler loop, the agent thinks, acts, observes — and when the observation says the attempt failed, it begins again from the top. Everything already established is re-derived, every prior step repeated, and the cost of a single wrong turn is the whole task so far.</p>
+<p>The alternative splits the roles. A planner produces a sequence of steps; an executor runs them; when a step fails, only the <em>plan</em> goes back for revision. The work already completed stays completed. This sounds like a minor architectural preference and is actually the difference between an agent that converges on long tasks and one that thrashes — because on any task of real length, failure is not exceptional, it is the normal case that has to be absorbed rather than avoided.</p>
+<p>The generalisation is worth stating: <strong>recovery cost, not reasoning quality, is what makes long-horizon agent work viable.</strong> A slightly weaker model that loses nothing when it stumbles will outperform a stronger one that restarts, because the number of stumbles grows with task length while the value of raw capability does not. Designing for the failure path is designing for the common path.</p>
+<p>Which is why the surrounding controls matter more than they look. State that persists across cycles, checkpoints you can roll back to, a retry cap so a loop cannot spiral, and an explicit stop rule. None of it is intelligence; all of it determines whether intelligence gets to finish. The model generates — the loop governs, and governance here means preserving what was already earned.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-verifier-is-the-bottleneck.html">The Verifier Is the Bottleneck</a></li><li><a href="harness-engineering.html">Harness Engineering</a></li><li><a href="the-experiment-loop.html">The Experiment Loop</a></li><li>concept-first-time-right</li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"harness-engineering","title":"Harness Engineering","cat":"Method & workflow","desc":"The third level of getting real work from AI — building the system around the model (tools, checks, memory, retries, escalation) so it can finish long"},{"slug":"keep-the-work-that-was-done","title":"Keep the Work That Was Done","cat":"Method & workflow","desc":"When a step fails, replan — don't restart. The difference between an agent that finishes and one that burns tokens in circles is what survives a mista"},{"slug":"the-experiment-loop","title":"The Experiment Loop","cat":"Brand & stance","desc":"Play with a hypothesis: hypothesize → experiment → learn → decide. The mechanism that turns tinkering into a proven block."},{"slug":"the-verifier-is-the-bottleneck","title":"The Verifier Is the Bottleneck","cat":"Method & workflow","desc":"Agents don't fail at generating, they fail at checking. Throughput is set by how fast you can prove an output is right — not by how fast you can produ"}],"edges":[["harness-engineering","the-verifier-is-the-bottleneck"],["harness-engineering","keep-the-work-that-was-done"],["keep-the-work-that-was-done","the-verifier-is-the-bottleneck"],["keep-the-work-that-was-done","the-experiment-loop"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"keep-the-work-that-was-done"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

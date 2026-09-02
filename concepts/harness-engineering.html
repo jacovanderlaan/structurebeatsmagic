@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Harness Engineering · Concepts · Structure Beats Magic</title>
+<meta name="description" content="The third level of getting real work from AI — building the system around the model (tools, checks, memory, retries, escalation) so it can finish long tasks, not just answer." />
+<meta property="og:title" content="Harness Engineering · Structure Beats Magic" />
+<meta property="og:description" content="The third level of getting real work from AI — building the system around the model (tools, checks, memory, retries, escalation) so it can finish long tasks, not just answer." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/harness-engineering.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/harness-engineering-hero.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/harness-engineering.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>Harness Engineering</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">The third level of getting real work from AI — building the system around the model (tools, checks, memory, retries, escalation) so it can finish long tasks, not just answer.</p>
+    <figure class="c-hero"><img src="../assets/harness-engineering-hero.png" alt="Harness Engineering" loading="eager"/><figcaption>Prompt engineering is the instruction. Context engineering is the briefing pack. Harness engineering is the working environment the AI needs around it to finish the job.</figcaption></figure>
+    <div class="c-body">
+<blockquote><p>⚠️ <strong>Attribution.</strong> "Harness engineering" is Clare Kitching's term (LinkedIn, 2026), as the third of three levels: <strong>prompt engineering → context engineering → harness engineering</strong>. The contribution here is not the term but the <em>worked examples</em> — what the harness looks like when you actually build one. Cite her when writing about it. (Consistent with the tool-extender-not-framework-owner positioning.)</p></blockquote>
+<h2>The three levels</h2>
+<p>| level | question it answers | |---|---| | <strong>Prompt engineering</strong> | What should the AI <em>do</em>? — the instruction | | <strong>Context engineering</strong> | What does it need to <em>know</em>? — the briefing pack | | <strong>Harness engineering</strong> | What does it need <em>around it</em> to finish the job? — the working environment |</p>
+<p>The first two are covered in <a href="stop-prompting-start-directing.html">Stop Prompting, Start Directing</a> and <a href="the-context-graph.html">The Context Graph</a>. Harness engineering is the layer those two stop short of.</p>
+<h2>What it is</h2>
+<p>Building the system that lets a model finish real work: tools, workflow, permissions, checks, memory, retries, and escalation <em>around</em> the AI. Not the words you send and not the documents you attach — the machinery that turns an answer into a completed task.</p>
+<h2>Why it matters</h2>
+<p>Without a harness, even frontier models fail long tasks: they do too much at once, or declare victory early. The harness is what catches the failure the model can't see itself — a check that flags a wrong result, a retry that survives a dropped connection, an escalation that sends the uncertain case to a human.</p>
+<p>⭐ <strong>This is the same claim as "structure beats magic," one level up.</strong> The result comes from the structure around the model, not from the model.</p>
+<h2>What it looks like — worked examples</h2>
+<p>A week of building a personal system produced five concrete harnesses, each now its own article:</p>
+<ul><li><strong>A test that runs the real thing</strong>, not one that only checks the code parses — because "it compiles" is not "it works." → <em>The Test That Says It Parses Says Nothing</em></li><li><strong>A backup you've actually restored from</strong>, because an untested backup is an assumption. → <em>Your Backup Is an Assumption Until You Restore It</em></li><li><strong>A check that measures the outcome, not the operation</strong> — count what should be true at the end, not what the process claims it did. → <em>Nothing Was Broken, So Nobody Told Me</em></li><li><strong>Meaning in metadata, not in folder names</strong>, so the harness survives a rename. → <em>The Folder Is an Address, Not a Meaning</em></li><li><strong>One shared component every screen inherits</strong>, instead of a contract honoured by hand thirty times. → <em>You Copied the Row, Not the Toolbar</em></li></ul>
+<p>⭐ Each is a small harness: the thing around the work that makes the work trustworthy.</p>
+<h2>The bridge to data work</h2>
+<p>Harness engineering for <em>data</em> is close to what model-driven data engineering already is — the harness around the modelling: generated transformations, validation, lineage, the checks that make a pipeline trustworthy rather than merely running. That connection is worth developing separately (candidate frame for the breakthrough-modeling article).</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="stop-prompting-start-directing.html">Stop Prompting, Start Directing</a></li><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="the-verifier-is-the-bottleneck.html">The Verifier Is the Bottleneck</a></li><li><a href="the-attention-budget.html">The Attention Budget</a></li><li><a href="escalate-by-exception.html">Escalate by Exception</a></li><li><a href="keep-the-work-that-was-done.html">Keep the Work That Was Done</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"escalate-by-exception","title":"Escalate by Exception","cat":"Method & workflow","desc":"Route the easy work to the cheap path and reserve the expensive one for what actually needs it. Power by exception, not by default."},{"slug":"harness-engineering","title":"Harness Engineering","cat":"Method & workflow","desc":"The third level of getting real work from AI — building the system around the model (tools, checks, memory, retries, escalation) so it can finish long"},{"slug":"keep-the-work-that-was-done","title":"Keep the Work That Was Done","cat":"Method & workflow","desc":"When a step fails, replan — don't restart. The difference between an agent that finishes and one that burns tokens in circles is what survives a mista"},{"slug":"stop-prompting-start-directing","title":"Stop Prompting, Start Directing","cat":"Method & workflow","desc":"Set up a system before the task; give AI an outcome, context, constraints and a way to validate."},{"slug":"the-attention-budget","title":"The Attention Budget","cat":"System architecture","desc":"Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"},{"slug":"the-verifier-is-the-bottleneck","title":"The Verifier Is the Bottleneck","cat":"Method & workflow","desc":"Agents don't fail at generating, they fail at checking. Throughput is set by how fast you can prove an output is right — not by how fast you can produ"}],"edges":[["escalate-by-exception","harness-engineering"],["harness-engineering","stop-prompting-start-directing"],["harness-engineering","the-context-graph"],["harness-engineering","the-verifier-is-the-bottleneck"],["harness-engineering","the-attention-budget"],["harness-engineering","keep-the-work-that-was-done"],["keep-the-work-that-was-done","the-verifier-is-the-bottleneck"],["the-attention-budget","the-context-graph"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"harness-engineering"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

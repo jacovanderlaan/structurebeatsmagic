@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A Dataset Is Not a Data Product · Concepts · Structure Beats Magic</title>
+<meta name="description" content="The difference is the contract: schema, ownership, SLAs, access policy, docs. Without those you shipped a file and called it a product." />
+<meta property="og:title" content="A Dataset Is Not a Data Product · Structure Beats Magic" />
+<meta property="og:description" content="The difference is the contract: schema, ownership, SLAs, access policy, docs. Without those you shipped a file and called it a product." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/a-dataset-is-not-a-data-product.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/a-dataset-is-not-a-data-product.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>A Dataset Is Not a Data Product</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">The difference is the contract: schema, ownership, SLAs, access policy, docs. Without those you shipped a file and called it a product.</p>
+    
+    <div class="c-body">
+<p>A dataset is data that exists. A data product is data plus the commitments that make it dependable: a declared schema, a named owner, a service level, an access policy, and documentation someone can act on. The distinction sounds bureaucratic until you consume one of each — the difference shows up the first time something changes upstream.</p>
+<p>The contract is doing the real work, and every clause answers a question a consumer would otherwise have to answer by asking around. What shape is it, and will that shape change without warning? Who do I talk to when it breaks? How fresh is it meant to be, and how would I know if it stopped? Am I allowed to use this for that purpose? A dataset leaves each of these to tribal knowledge; a product answers them in a form that survives the author leaving.</p>
+<p>This is why product thinking is a prerequisite for AI rather than an adjacent nicety. An agent consuming an unowned, undocumented, silently-drifting table cannot ask around. It will faithfully reason over whatever arrives and produce output whose quality tracks a schema change nobody announced. Reliability downstream is bounded by the contracts upstream, and no model improvement raises that bound.</p>
+<p>There is a further step worth naming: usable is not the same as understandable. A well-governed table with clean data and a real owner is usable — a consumer can trust it. Understandable means the <em>meaning</em> travels too: the entities, the relationships, the rules. That is the point at which data stops being a dependable input and starts being something an agent can reason across rather than merely retrieve.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="agreement-centered-governance.html">Agreement-Centered Governance</a></li><li><a href="metadata-says-where-ontology-says-what.html">Metadata Says Where, Ontology Says What</a></li><li><a href="an-ontology-is-a-contract.html">An Ontology Is a Contract</a></li><li><a href="the-validated-exchange-layer.html">The Validated Exchange Layer</a></li><li><a href="resolve-the-entity-first.html">Resolve the Entity First</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-dataset-is-not-a-data-product","title":"A Dataset Is Not a Data Product","cat":"System architecture","desc":"The difference is the contract: schema, ownership, SLAs, access policy, docs. Without those you shipped a file and called it a product."},{"slug":"agreement-centered-governance","title":"Agreement-Centered Governance","cat":"System architecture","desc":"Almost everything in life is an agreement — with companies, within a family, with yourself. Model them and check them against evidence: an agreement n"},{"slug":"an-ontology-is-a-contract","title":"An Ontology Is a Contract","cat":"Semantics","desc":"Not a taxonomy, not a schema: a machine-checkable agreement about what exists, how it connects, and what must hold. It is what lets a model reason ins"},{"slug":"metadata-says-where-ontology-says-what","title":"Metadata Says Where, Ontology Says What","cat":"Semantics","desc":"A catalogue tells you the table exists and who owns it. It cannot tell you what the word means. Two layers, two failure modes, and you need both."},{"slug":"resolve-the-entity-first","title":"Resolve the Entity First","cat":"Personal data model","desc":"Two spellings of the same customer are two customers to a machine. Every graph, every join and every count is wrong until identity is settled."},{"slug":"the-validated-exchange-layer","title":"The Validated Exchange Layer","cat":"System architecture","desc":"Vaults never read each other directly — what crosses the boundary is validated on the way out and in."}],"edges":[["a-dataset-is-not-a-data-product","agreement-centered-governance"],["a-dataset-is-not-a-data-product","metadata-says-where-ontology-says-what"],["a-dataset-is-not-a-data-product","an-ontology-is-a-contract"],["a-dataset-is-not-a-data-product","the-validated-exchange-layer"],["a-dataset-is-not-a-data-product","resolve-the-entity-first"],["an-ontology-is-a-contract","metadata-says-where-ontology-says-what"],["an-ontology-is-a-contract","resolve-the-entity-first"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"a-dataset-is-not-a-data-product"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

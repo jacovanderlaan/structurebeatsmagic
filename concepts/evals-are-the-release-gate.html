@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Evals Are the Release Gate · Concepts · Structure Beats Magic</title>
+<meta name="description" content="An eval suite that doesn&#x27;t block a release isn&#x27;t a gate, it&#x27;s a report. No evals, no ship." />
+<meta property="og:title" content="Evals Are the Release Gate · Structure Beats Magic" />
+<meta property="og:description" content="An eval suite that doesn&#x27;t block a release isn&#x27;t a gate, it&#x27;s a report. No evals, no ship." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/evals-are-the-release-gate.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/evals-are-the-release-gate.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>Evals Are the Release Gate</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">An eval suite that doesn't block a release isn't a gate, it's a report. No evals, no ship.</p>
+    
+    <div class="c-body">
+<p>Everyone agrees evaluation matters and almost nobody wires it to a decision. The suite runs, produces a dashboard, someone glances at it, and the change ships regardless. At that point evaluation is documentation of what happened — informative, and structurally identical to having none, because nothing was prevented.</p>
+<p>A gate is different in exactly one respect: it can say no. The suite is versioned, runs in CI, and a regression fails the build the way a broken test does. That single property converts a metric into a control, and it is the property that gets negotiated away first, because a blocking check is inconvenient precisely when you most want to ship. The honest question for any team is not "do we evaluate?" but "when did evaluation last stop something?"</p>
+<p>Building the gate needs two datasets doing different jobs. A golden set of cases with known-good answers measures whether you are getting better. A regression set of previously-fixed failures measures whether you are breaking what already worked — and it is the one usually missing, which is why systems improve on the demo and quietly degrade at the edges. Without it you are measuring progress while blind to damage.</p>
+<p>The best-designed suites also score the <em>path</em>, not just the answer. Trajectory accuracy — did the agent take a sensible route to the result — catches the case where the output happened to be right for the wrong reasons, which is the failure that generalises worst. Judging only final answers rewards luck; judging the route rewards method. Both are checkable, and neither is checkable against a vague standard, which puts the whole apparatus back on the same floor: rules with a pass/fail answer.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-verifier-is-the-bottleneck.html">The Verifier Is the Bottleneck</a></li><li><a href="gates.html">Gates</a></li><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li><li><a href="write-the-spec-not-the-prompt.html">Write the Spec, Not the Prompt</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"evals-are-the-release-gate","title":"Evals Are the Release Gate","cat":"Method & workflow","desc":"An eval suite that doesn't block a release isn't a gate, it's a report. No evals, no ship."},{"slug":"gates","title":"Gates","cat":"System architecture","desc":"A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin."},{"slug":"never-marks-its-own-homework","title":"Never Marks Its Own Homework","cat":"Method & workflow","desc":"The judge must be separate from the builder, and the score is the off-switch: a loop only stops when an independent evaluator says the rubric is met."},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"the-verifier-is-the-bottleneck","title":"The Verifier Is the Bottleneck","cat":"Method & workflow","desc":"Agents don't fail at generating, they fail at checking. Throughput is set by how fast you can prove an output is right — not by how fast you can produ"},{"slug":"write-the-spec-not-the-prompt","title":"Write the Spec, Not the Prompt","cat":"Method & workflow","desc":"A prompt is a request you repeat. A spec is a contract the work is checked against — and it is the artefact that survives the session."}],"edges":[["evals-are-the-release-gate","the-verifier-is-the-bottleneck"],["evals-are-the-release-gate","gates"],["evals-are-the-release-gate","rules-you-can-verify"],["evals-are-the-release-gate","never-marks-its-own-homework"],["evals-are-the-release-gate","write-the-spec-not-the-prompt"],["gates","never-marks-its-own-homework"],["gates","rules-you-can-verify"],["never-marks-its-own-homework","the-verifier-is-the-bottleneck"],["rules-you-can-verify","the-verifier-is-the-bottleneck"],["rules-you-can-verify","write-the-spec-not-the-prompt"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"evals-are-the-release-gate"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

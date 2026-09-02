@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Retrieval Is Not Memory · Concepts · Structure Beats Magic</title>
+<meta name="description" content="A vector store answers questions; memory decides what to keep, update and forget. Fetching on demand is not remembering — and the difference is a policy, not a database." />
+<meta property="og:title" content="Retrieval Is Not Memory · Structure Beats Magic" />
+<meta property="og:description" content="A vector store answers questions; memory decides what to keep, update and forget. Fetching on demand is not remembering — and the difference is a policy, not a database." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/retrieval-is-not-memory.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/retrieval-is-not-memory.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>Retrieval Is Not Memory</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">A vector store answers questions; memory decides what to keep, update and forget. Fetching on demand is not remembering — and the difference is a policy, not a database.</p>
+    
+    <div class="c-body">
+<p>Ask most teams where their AI's memory lives and they point at a vector database. It isn't memory. It's a search index — it answers when asked and does nothing in between. Between the moment a fact is embedded and the moment someone happens to retrieve it, no work occurs: nothing is reconciled, nothing supersedes anything, nothing is dropped. That is the defining property, and it is passive by design.</p>
+<p>Memory is the opposite: an active policy about what to keep, what to update, what to promote, and above all what to <strong>forget</strong>. A system that only accumulates is a system that gets slower and less true over time, because the stale facts sit alongside the current ones with equal standing and equal retrieval odds. The question "what did we decide about this customer?" has one right answer and a dozen historical near-misses, and similarity search cannot tell them apart — similarity is not recency, and it is certainly not truth.</p>
+<p>The sharpest version of the distinction is temporal. A fact does not simply become false; it <strong>expires</strong>, and something else becomes true in its place. An employee worked at company A until May 2024 and at company B after. A flat store holds both and retrieves whichever embeds closer to the question; a memory holds both <em>with their validity intervals</em> and can answer "where did they work in June 2024?" correctly. Marking facts as superseded rather than deleting them is what makes a knowledge base survive contact with time.</p>
+<p>The practical consequence is architectural, not tooling. If the only thing standing between your notes and your agent is an embedding step, you have retrieval and you have called it memory. Adding a memory layer means adding the unglamorous parts: a rule for what gets written, a rule for what expires, a consolidation pass that runs when nobody is asking, and a way to promote what proved useful. Those are decisions you make and encode — no vector database ships them, and no amount of better embeddings substitutes for them.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-context-graph.html">The Context Graph</a></li><li><a href="compile-dont-retrieve.html">Compile, Don't Retrieve</a></li><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="the-compounding-brain.html">The Compounding Brain</a></li><li><a href="facts-expire.html">Facts Expire</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"compile-dont-retrieve","title":"Compile, Don't Retrieve","cat":"System architecture","desc":"RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time"},{"slug":"facts-expire","title":"Facts Expire","cat":"Personal data model","desc":"Knowledge doesn't become false, it becomes superseded. A store that only accumulates is a store that quietly gets less true."},{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"retrieval-is-not-memory","title":"Retrieval Is Not Memory","cat":"System architecture","desc":"A vector store answers questions; memory decides what to keep, update and forget. Fetching on demand is not remembering — and the difference is a poli"},{"slug":"the-compounding-brain","title":"The Compounding Brain","cat":"Umbrella thesis","desc":"Every piece of work feeds back in, so the system is smarter next time than last."},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"}],"edges":[["compile-dont-retrieve","the-context-graph"],["compile-dont-retrieve","knowledge-graph"],["compile-dont-retrieve","the-compounding-brain"],["compile-dont-retrieve","retrieval-is-not-memory"],["facts-expire","retrieval-is-not-memory"],["facts-expire","the-compounding-brain"],["knowledge-graph","the-context-graph"],["knowledge-graph","retrieval-is-not-memory"],["retrieval-is-not-memory","the-context-graph"],["retrieval-is-not-memory","the-compounding-brain"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"retrieval-is-not-memory"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>
