@@ -124,6 +124,11 @@
 <div class="gl-term"><div class="t">Master data vs reference data</div><p class="d">Master data are the core business entities (customer, product); reference data are the value lists that qualify them (country codes, currencies) — the latter usually adopted from standards, not invented. → Resolve The Entity First.</p></div>
 <div class="gl-term"><div class="t">Bi-temporal</div><p class="d">Modelling both when something was true in the world and when the system recorded it — what lets a store answer historical questions correctly. → Facts Expire.</p></div>
 <div class="gl-term"><div class="t">Medallion (bronze/silver/gold)</div><p class="d">A storage-refinement convention, frequently mis-sold as an architecture: it addresses <em>where</em> data sits, not integration, meaning or governance. → Meaning Belongs In The Data.</p></div>
+<div class="gl-term"><div class="t">DCAT</div><p class="d">W3C-standaard om datasets, distributies en catalogi te beschrijven. Het punt is interoperabiliteit: je vindt hem al, dus verzin geen eigen metadataschema. → Meaning Before Mechanism.</p></div>
+<div class="gl-term"><div class="t">PROV-O</div><p class="d">W3C-vocabulaire voor herkomst — wie of wat een gegeven heeft voortgebracht, waaruit en wanneer. Zet lineage in de metadata zelf in plaats van in een apart hulpmiddel.</p></div>
+<div class="gl-term"><div class="t">SBVR</div><p class="d">OMG-standaard voor bedrijfsvocabulaire en -regels, expliciet ontworpen voor natuurlijke taal. De uitzondering op grafen die taal niet kennen. → An Ontology Is A Contract.</p></div>
+<div class="gl-term"><div class="t">Normal form (1NF/2NF/3NF)</div><p class="d">Opeenvolgende eisen die redundantie en update-anomalieën uit een relationeel model halen: atomaire waarden, geen partiële en geen transitieve afhankelijkheden. Ideaal voor OLTP; in analytics is denormaliseren vaak een bewuste keuze.</p></div>
+<div class="gl-term"><div class="t">Semantic medallion</div><p class="d">Bronze/silver/gold heruitgelegd als semantiek-gradatie — geen, lokale, globale betekenis — in plaats van als schoonmaak-gradatie. → Meaning Belongs In The Data.</p></div>
 </div></div>
 <div class="gl-group">
 <h2>AI &amp; tooling</h2>
@@ -173,6 +178,18 @@
 <div class="gl-term"><div class="t">Mixture of Experts (MoE)</div><p class="d">Routing each input to a few specialist sub-networks instead of the whole model — capacity without proportional compute.</p></div>
 <div class="gl-term"><div class="t">RLHF</div><p class="d">Reinforcement learning from human feedback: teaching a model which answers people prefer. Why models are agreeable, and why agreeableness needs guarding against. → <a href="../concepts/flattery-is-failure.html">Flattery Is Failure</a>.</p></div>
 <div class="gl-term"><div class="t">Inference-time compute</div><p class="d">Spending more reasoning steps at answer time rather than more training beforehand. The 'think longer' dial.</p></div>
+<div class="gl-term"><div class="t">Primacy en recency</div><p class="d">Wat vooraan en achteraan in een reeks staat wordt het best onthouden; het midden het slechtst. Geldt voor mensen (Glanzer &amp; Cunitz, 1966) én voor lange contexten. → The Middle Is Where Things Are Lost.</p></div>
+<div class="gl-term"><div class="t">Episodic memory</div><p class="d">Wat er eerder GEBEURDE — samengevatte sessies die later worden teruggehaald voor continuïteit. Iets anders dan feiten. → Retrieval Is Not Memory.</p></div>
+<div class="gl-term"><div class="t">Semantic memory (agent)</div><p class="d">De feiten en relaties die een agent over jou of je domein bewaart, meestal als key-value of graaf. Stabiele kennis, geen gespreksgeschiedenis.</p></div>
+<div class="gl-term"><div class="t">Procedural memory</div><p class="d">Geleerde toolsequenties: niet wat waar is, maar hoe iets werkte. De laag die van een agent een vakman maakt in plaats van een lezer. → The Demo Agent And The Production Agent.</p></div>
+<div class="gl-term"><div class="t">Working memory (scratchpad)</div><p class="d">De state van de taak die nu loopt. Verdwijnt na afloop, tenzij expliciet gepersisteerd.</p></div>
+<div class="gl-term"><div class="t">Context fork</div><p class="d">Een skill of subagent in een geïsoleerd contextvenster draaien, zodat de hoofdcontext schoon blijft. Waarom een skill iets anders is dan een lange regel in CLAUDE.md. → The Attention Budget.</p></div>
+<div class="gl-term"><div class="t">Stateless (MCP)</div><p class="d">Onafhankelijke requests met metadata in headers, in plaats van sessie-gebonden verbindingen. Maakt serverless en edge mogelijk; vraagt dat connection-state naar externe stores verhuist. → Mcp Is Plumbing Not Magic.</p></div>
+<div class="gl-term"><div class="t">Capability negotiation</div><p class="d">Client en server spreken bij het verbinden af wat elk ondersteunt, zodat versieverschillen geen stille fouten worden.</p></div>
+<div class="gl-term"><div class="t">DAG (agent-planning)</div><p class="d">Gerichte acyclische graaf van deelstappen met opgeloste afhankelijkheden — het verschil tussen een plan en one-shot redeneren. → Keep The Work That Was Done.</p></div>
+<div class="gl-term"><div class="t">Circuit breaker</div><p class="d">Stopt aanroepen naar een falende dienst zodra een drempel is bereikt, om cascadefouten te voorkomen. In agent-lussen het tegengif tegen retry-spiralen. → Keep The Work That Was Done.</p></div>
+<div class="gl-term"><div class="t">Saga (compensatie)</div><p class="d">Een gedistribueerde transactie opgedeeld in lokale stappen die elk een compenserende actie hebben. Het antwoord op 'wat als stap 4 van 6 faalt'.</p></div>
+<div class="gl-term"><div class="t">Human-in-the-loop gate</div><p class="d">Een poort die alleen opengaat na menselijke goedkeuring, geplaatst op de onomkeerbare stap in plaats van bij elke actie. → Escalate By Exception.</p></div>
 </div></div>
 <div class="gl-group">
 <h2>Security &amp; governance</h2>

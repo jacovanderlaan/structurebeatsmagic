@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Own the Layer or Rent the Feature · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Every knowledge product answers two questions: who maintains it, and is it a layer of its own or a feature of something else. The answers decide what you can build on." />
+<meta property="og:title" content="Own the Layer or Rent the Feature · Structure Beats Magic" />
+<meta property="og:description" content="Every knowledge product answers two questions: who maintains it, and is it a layer of its own or a feature of something else. The answers decide what you can build on." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/own-the-layer-or-rent-the-feature.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/own-the-layer-or-rent-the-feature.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Umbrella thesis</div>
+  <h1>Own the Layer or Rent the Feature</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Every knowledge product answers two questions: who maintains it, and is it a layer of its own or a feature of something else. The answers decide what you can build on.</p>
+    
+    <div class="c-body">
+<p>The market for organisational knowledge splits cleanly on two axes, and almost every disappointment traces to not having asked them. First: who does the upkeep — you, or a vendor? Second: is the knowledge its own layer, or a feature inside a suite you already run? Four families fall out, and they are not competing versions of the same thing.</p>
+<p>A <strong>dedicated</strong> product is someone else's layer: they connect your sources, own the architecture, and hand you answers. Fast to value, and the meaning of your business now lives in their model. <strong>Self-hosted</strong> is your own layer: full control over modality, routing and cost, paid for with your engineering team owning accuracy and maintenance forever. <strong>Memory SDKs</strong> give developers blocks to add memory to the product they are building — but that memory stays bound to that product's users and sessions, and never becomes shared organisational context. <strong>Bundled incumbents</strong> add a brain-like layer to a suite you already use; easy to switch on, and designed to make <em>that suite</em> smarter rather than to span your stack.</p>
+<p>The last two are where expectations break, because both look like a company brain from the outside. A memory SDK produces per-product recall, not shared meaning. A bundled feature produces a smarter suite, not an independent knowledge layer — and the moment the question crosses a tool boundary, it stops answering.</p>
+<p>None of the four is wrong; choosing without naming the trade is. A personal system built on your own files sits squarely in self-hosted: nothing is rented, the structure is yours, and the price is that maintenance is yours too. Saying that out loud is what makes it a decision rather than a default.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="rent-the-ai-own-the-structure.html">Rent the AI; Own the Structure</a></li><li><a href="company-brain.html">Company Brain</a></li><li><a href="sovereign-personal-system.html">Sovereign Personal System</a></li><li><a href="the-model-is-the-easy-part.html">The Model Is the Easy Part</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"company-brain","title":"Company Brain","cat":"Intelligence systems","desc":"The org-scale second brain: shared, structured, permission-aware knowledge AI can rely on. Wiring tools together isn't it — access is not memory."},{"slug":"own-the-layer-or-rent-the-feature","title":"Own the Layer or Rent the Feature","cat":"Umbrella thesis","desc":"Every knowledge product answers two questions: who maintains it, and is it a layer of its own or a feature of something else. The answers decide what "},{"slug":"rent-the-ai-own-the-structure","title":"Rent the AI; Own the Structure","cat":"Brand & stance","desc":"Models are swappable commodities; your structure is the durable asset."},{"slug":"sovereign-personal-system","title":"Sovereign Personal System","cat":"System architecture","desc":"Sovereignty, privacy and backup are the foundation, not an afterthought."},{"slug":"the-model-is-the-easy-part","title":"The Model Is the Easy Part","cat":"Umbrella thesis","desc":"Everyone can rent the same model. What surrounds it — context, rules, memory, verification — is the only part that can be yours."}],"edges":[["company-brain","sovereign-personal-system"],["company-brain","own-the-layer-or-rent-the-feature"],["own-the-layer-or-rent-the-feature","rent-the-ai-own-the-structure"],["own-the-layer-or-rent-the-feature","sovereign-personal-system"],["own-the-layer-or-rent-the-feature","the-model-is-the-easy-part"],["rent-the-ai-own-the-structure","the-model-is-the-easy-part"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"own-the-layer-or-rent-the-feature"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>
