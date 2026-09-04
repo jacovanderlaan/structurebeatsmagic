@@ -9,7 +9,7 @@
 <meta property="og:description" content="Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-attention-budget.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/the-attention-budget-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-attention-budget.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">Context is not free space. Too little and the model guesses; too much and it loses what mattered — the budget has two failure modes, not one.</p>
-    
+    <figure class="c-hero"><img src="../assets/the-attention-budget-hero.png" alt="The Attention Budget" loading="eager"/></figure>
     <div class="c-body">
 <p>A large context window reads like an invitation to fill it, and that instinct is wrong in a specific way. Attention is a budget with <strong>two</strong> failure modes, not one. Spend too little — omit the policy, the prior decision, the definition — and the model fills the gap by guessing, fluently. Spend too much and the signal you needed sits somewhere in fifty pages of padding, competing with everything else for the same finite attention. Recall degrades in the middle of long contexts; relevant facts get outvoted by volume.</p>
 <p>This makes "just paste everything" a strategy with a ceiling, and the ceiling arrives sooner than the token limit suggests. The discipline is not compression for its own sake but <strong>selection</strong>: what does this specific decision need, in what order, and what can be left out without changing the answer? A short, precisely assembled context routinely beats a long, complete one — not because less is virtuous, but because attention spent on irrelevant material is attention withdrawn from relevant material.</p>

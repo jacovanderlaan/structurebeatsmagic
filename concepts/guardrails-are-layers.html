@@ -9,7 +9,7 @@
 <meta property="og:description" content="A guardrail is not one filter at the end. It&#x27;s seven checkpoints with different jobs — and the one everyone skips is memory." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/guardrails-are-layers.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/guardrails-are-layers-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/guardrails-are-layers.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">A guardrail is not one filter at the end. It's seven checkpoints with different jobs — and the one everyone skips is memory.</p>
-    
+    <figure class="c-hero"><img src="../assets/guardrails-are-layers-hero.png" alt="Guardrails Are Layers" loading="eager"/></figure>
     <div class="c-body">
 <p>Guardrails get imagined as a filter bolted onto the output: catch the toxic answer, mask the personal data, ship it. That is one checkpoint out of several, and by the time it runs most of the interesting failures have already happened upstream, invisibly.</p>
 <p>The layers have genuinely different jobs. <strong>Input</strong> validates what arrives — size, schema, injection attempts. <strong>Prompt</strong> protects the instructions themselves from being overridden. <strong>Retrieval</strong> decides which sources are trusted and how fresh they must be. <strong>Memory</strong> governs what may be written, how long it lives and what must never be recalled. <strong>Tool</strong> constrains what the system may actually <em>do</em> — allowlists, sandboxes, limits, and human confirmation on the irreversible step. <strong>Runtime</strong> watches for loops, latency and anomalies while the work is happening. <strong>Output</strong> is the last check, not the only one.</p>

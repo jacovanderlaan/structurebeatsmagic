@@ -9,7 +9,7 @@
 <meta property="og:description" content="How you cut a document sets the ceiling on every answer drawn from it. It is the first production bottleneck and the largest quality lever — and it is usually an afterthought." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/chunking-is-a-design-decision.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/chunking-is-a-design-decision-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/chunking-is-a-design-decision.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">How you cut a document sets the ceiling on every answer drawn from it. It is the first production bottleneck and the largest quality lever — and it is usually an afterthought.</p>
-    
+    <figure class="c-hero"><img src="../assets/chunking-is-a-design-decision-hero.png" alt="Chunking Is a Design Decision" loading="eager"/></figure>
     <div class="c-body">
 <p>Splitting a document into pieces looks like plumbing, and it is treated accordingly: pick a chunk size, add some overlap, move on to the interesting parts. That ordering is backwards. Whatever the cut destroys is unavailable to every later stage — no reranker, no larger model and no better prompt recovers a distinction that was severed before retrieval began.</p>
 <p>The two failure modes are symmetrical and both are quiet. Cut too small and each piece loses the context that made it meaningful; the retriever returns fragments that are individually on-topic and collectively insufficient. Cut too large and precision collapses: the relevant sentence arrives buried in padding, competing for attention with everything else in the chunk, and costing tokens for the privilege. Neither produces an error message. Both produce answers that are merely worse.</p>

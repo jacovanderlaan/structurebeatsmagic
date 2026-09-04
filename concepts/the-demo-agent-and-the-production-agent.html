@@ -9,7 +9,7 @@
 <meta property="og:description" content="The demo is one prompt, one tool call, one context window. Production is planning, layered memory, guardrails, observability and eval loops — and the gap is not model quality." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-demo-agent-and-the-production-agent.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/the-demo-agent-and-the-production-agent-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-demo-agent-and-the-production-agent.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">The demo is one prompt, one tool call, one context window. Production is planning, layered memory, guardrails, observability and eval loops — and the gap is not model quality.</p>
-    
+    <figure class="c-hero"><img src="../assets/the-demo-agent-and-the-production-agent-hero.png" alt="The Demo Agent and the Production Agent" loading="eager"/></figure>
     <div class="c-body">
 <p>A working demo and a working system look alike for about five minutes. The demo does one-shot reasoning against a hardcoded tool list, keeps history in a fixed context window until it truncates, and on failure retries the same call and hands the error to the user. Each of those is fine at the scale of a demonstration and none survives contact with real work.</p>
 <p>What production adds is not intelligence but structure, in five places. <strong>Planning</strong> decomposes intent into sub-tasks with resolved dependencies rather than reasoning in one shot. <strong>Memory</strong> becomes layered — a scratchpad for the current task, episodic recall of past interactions, and a procedural library of tool sequences that worked — with summarisation and compaction so it survives the session. <strong>Guardrails</strong> wrap input, execution and output, plus a human gate and a circuit breaker when failures cross a threshold. <strong>Observability</strong> traces every call and tracks latency, cost, success rate and drift. <strong>Eval loops</strong> close it, feeding what was learned back in.</p>

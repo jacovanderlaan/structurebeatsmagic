@@ -9,7 +9,7 @@
 <meta property="og:description" content="Give the model no direct external actions. It reasons and suggests; the surrounding layer validates, executes and records — that split is what makes an agent governable." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-model-proposes-the-harness-disposes.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/the-model-proposes-the-harness-disposes-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-model-proposes-the-harness-disposes.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">Give the model no direct external actions. It reasons and suggests; the surrounding layer validates, executes and records — that split is what makes an agent governable.</p>
-    
+    <figure class="c-hero"><img src="../assets/the-model-proposes-the-harness-disposes-hero.png" alt="The Model Proposes, the Harness Disposes" loading="eager"/></figure>
     <div class="c-body">
 <p>The instinct when wiring an agent is to hand the model the tools and let it act. That single decision determines whether the system can be governed, because once the model executes directly there is no place left to stand between intention and effect. Every check becomes a request to the model to please behave.</p>
 <p>The alternative is a hard architectural split: the model reasons, decides and <em>generates a proposal</em> — and holds no capability to reach the outside world. Around it sits the harness, which owns every call: guardrails on what may be attempted, budgets and retries, a sandbox for execution, routing, an evaluator on the result, observability and an audit trail. Around that sits governance, which gates the steps that need a human or an access decision.</p>

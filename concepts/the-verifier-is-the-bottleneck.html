@@ -9,7 +9,7 @@
 <meta property="og:description" content="Agents don&#x27;t fail at generating, they fail at checking. Throughput is set by how fast you can prove an output is right — not by how fast you can produce one." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-verifier-is-the-bottleneck.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/the-verifier-is-the-bottleneck-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-verifier-is-the-bottleneck.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">Agents don't fail at generating, they fail at checking. Throughput is set by how fast you can prove an output is right — not by how fast you can produce one.</p>
-    
+    <figure class="c-hero"><img src="../assets/the-verifier-is-the-bottleneck-hero.png" alt="The Verifier Is the Bottleneck" loading="eager"/></figure>
     <div class="c-body">
 <p>Every agent loop has the same shape: decide, act, observe, verify. Attention goes almost entirely to the first two — better models, better tools, better prompts — while the constraint sits in the fourth. Generation is cheap and getting cheaper. Establishing that a given output is actually correct is neither, and it is the step that decides whether the loop can be trusted to run without you watching it.</p>
 <p>This inverts the usual optimisation instinct. Making the generator twice as fast doubles the rate at which unverified work arrives; if verification is manual, you have doubled your own workload, not the system's output. The only changes that raise real throughput are the ones that make checking cheaper: rules with a pass/fail answer, schemas a validator can enforce, tests that run without a human, a golden dataset that says whether this release got worse. Where a check can be automated, the loop can be left alone. Where it cannot, a person is inside the loop whether or not the architecture admits it.</p>
