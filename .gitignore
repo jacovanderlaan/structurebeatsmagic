@@ -11,3 +11,14 @@ DOMAIN.md
 **/IMAGE-CATALOG.md
 **/BRAND-ASSETS.md
 **/briefs.md
+
+# ADR-126: generators and page sources live in W:, not in the public site repo.
+# The files stay on disk (the builder reads _src/ from here) but are not published.
+build_*.py
+*_pipeline.py
+STYLEGUIDE.md
+DOMAIN.md
+**/IMAGE-CATALOG.md
+**/BRAND-ASSETS.md
+**/briefs.md
+_src/
