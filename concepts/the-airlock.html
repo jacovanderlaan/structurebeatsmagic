@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Airlock · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Your data and the AI model never touch directly — every crossing passes a chamber where it is checked, stripped and minimised, and the answer is restored on your side. A data firewall for AI, built as structure." />
+<meta property="og:title" content="The Airlock · Structure Beats Magic" />
+<meta property="og:description" content="Your data and the AI model never touch directly — every crossing passes a chamber where it is checked, stripped and minimised, and the answer is restored on your side. A data firewall for AI, built as structure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/the-airlock.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/the-airlock.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div> <a class="c-chip c-chip-group" href="groups/layer-types.html">Layer types</a>
+  <h1>The Airlock</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Your data and the AI model never touch directly — every crossing passes a chamber where it is checked, stripped and minimised, and the answer is restored on your side. A data firewall for AI, built as structure.</p>
+    
+    <div class="c-body">
+<p>An airlock is the small chamber between two spaces that must not mix — a spacecraft and space, a cleanroom and the corridor. It works by two rules: the two doors are never open at the same time, and whatever passes is checked or cleaned in the chamber first.</p>
+<p>Applied to AI, the inside is your raw data — or your clients': names, account numbers, amounts, files. The outside is a model running on someone else's servers. <strong>The airlock is the layer between them.</strong> Nothing goes straight from the data to the model. Every request passes the chamber, where it is checked against what may leave, stripped of identities (names and numbers become placeholders), and cut down to the minimum the question needs. The answer comes back through the same chamber, and the placeholders are turned back into real names on your side, where the key never left.</p>
+<p>In a sales conversation the recognisable label is <strong>a data firewall for AI</strong>. The airlock is the better picture, because a firewall only lets things through or blocks them, while an airlock <em>transforms</em> what crosses, in both directions. (Note: security vendors use "AI firewall" for a different job — filtering attacks <em>on</em> the model. The airlock guards the other direction: what data leaves <em>for</em> the model. The inbound threat has its own concept: <a href="content-is-an-attack-surface.html">Content Is an Attack Surface</a>.)</p>
+<p>The best airlock lets almost nothing through: often the model needs only the shape of the data, not the data itself — see <a href="the-menu-not-the-kitchen.html">The Menu, Not the Kitchen</a>. And it is structural, not behavioural: it does not depend on people remembering a rule — see <a href="the-policy-wall.html">The Policy Wall</a>.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="the-menu-not-the-kitchen.html">The Menu, Not the Kitchen</a></li><li><a href="the-information-barrier.html">The Information Barrier</a></li><li><a href="the-policy-wall.html">The Policy Wall</a></li><li><a href="the-validated-exchange-layer.html">The Validated Exchange Layer</a></li><li><a href="exchange-layer.html">Exchange Layer</a></li><li><a href="sovereign-personal-system.html">Sovereign Personal System</a></li><li><a href="the-controlled-front-door.html">The Controlled Front Door</a></li><li><a href="guardrails-are-layers.html">Guardrails Are Layers</a></li><li><a href="content-is-an-attack-surface.html">Content Is an Attack Surface</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"content-is-an-attack-surface","title":"Content Is an Attack Surface","cat":"System architecture","desc":"The moment an agent reads untrusted text, that text can issue instructions. Prompt injection is not a bug in the model — it's a consequence of mixing "},{"slug":"exchange-layer","title":"Exchange Layer","cat":"System architecture","desc":"A controlled front door (inbound) and publication layer (outbound)."},{"slug":"guardrails-are-layers","title":"Guardrails Are Layers","cat":"System architecture","desc":"A guardrail is not one filter at the end. It's seven checkpoints with different jobs — and the one everyone skips is memory."},{"slug":"sovereign-personal-system","title":"Sovereign Personal System","cat":"System architecture","desc":"Sovereignty, privacy and backup are the foundation, not an afterthought."},{"slug":"the-airlock","title":"The Airlock","cat":"System architecture","desc":"Your data and the AI model never touch directly — every crossing passes a chamber where it is checked, stripped and minimised, and the answer is resto"},{"slug":"the-controlled-front-door","title":"The Controlled Front Door","cat":"System architecture","desc":"A node never exposes its vault — only a small, declared set of data it chooses to share, governed by rules, on request or on schedule."},{"slug":"the-information-barrier","title":"The Information Barrier","cat":"System architecture","desc":"A boundary between contexts that must not mix — clients, people, roles — built into the structure. Only approved, generalised knowledge crosses; the d"},{"slug":"the-menu-not-the-kitchen","title":"The Menu, Not the Kitchen","cat":"System architecture","desc":"Give the AI the shape of your data, not the data: it reads the schema, writes the query, the query runs locally, and only the result goes back. The st"},{"slug":"the-policy-wall","title":"The Policy Wall","cat":"Method & workflow","desc":"A boundary that exists only as a rule people must remember. It holds until someone is busy — then it leaks. Policy describes the boundary; only struct"},{"slug":"the-validated-exchange-layer","title":"The Validated Exchange Layer","cat":"System architecture","desc":"Vaults never read each other directly — what crosses the boundary is validated on the way out and in."}],"edges":[["content-is-an-attack-surface","guardrails-are-layers"],["content-is-an-attack-surface","the-controlled-front-door"],["exchange-layer","the-validated-exchange-layer"],["guardrails-are-layers","the-controlled-front-door"],["sovereign-personal-system","the-validated-exchange-layer"],["the-airlock","the-menu-not-the-kitchen"],["the-airlock","the-information-barrier"],["the-airlock","the-policy-wall"],["the-airlock","the-validated-exchange-layer"],["exchange-layer","the-airlock"],["sovereign-personal-system","the-airlock"],["the-airlock","the-controlled-front-door"],["guardrails-are-layers","the-airlock"],["content-is-an-attack-surface","the-airlock"],["the-information-barrier","the-policy-wall"],["the-information-barrier","the-validated-exchange-layer"],["sovereign-personal-system","the-menu-not-the-kitchen"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"the-airlock"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Asserted vs Inferred · Concepts · Structure Beats Magic</title>
+<meta name="description" content="A modeled relationship is a business rule; a scored relationship is a guess with a number on it. Keep them visibly apart, so an agent knows which one it is acting on." />
+<meta property="og:title" content="Asserted vs Inferred · Structure Beats Magic" />
+<meta property="og:description" content="A modeled relationship is a business rule; a scored relationship is a guess with a number on it. Keep them visibly apart, so an agent knows which one it is acting on." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/asserted-vs-inferred.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/asserted-vs-inferred.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>Asserted vs Inferred</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">A modeled relationship is a business rule; a scored relationship is a guess with a number on it. Keep them visibly apart, so an agent knows which one it is acting on.</p>
+    
+    <div class="c-body">
+<p>A knowledge graph holds two kinds of edges that look the same. One is <strong>asserted</strong>: an order belongs to a customer, a contract has an end date, this person is my sister. Someone with the authority to decide wrote it down, and it is true until they change it. The other is <strong>inferred</strong>: customers who buy X also buy Y, strength 0.7; these two documents are similar; this supplier is probably the same company as that one. A model or a rule computed it, and it is true only as far as the method and the data behind it.</p>
+<p>The market's context-layer pictures put both in one graph and give every edge "a type and a strength score". That makes the difference disappear. A business rule with a score of 1.0 and a correlation with a score of 0.95 now look almost alike, and an agent that acts on the edge cannot tell whether it follows policy or a pattern. When the correlation is wrong, the error arrives in the same shape as the rule (<a href="a-confident-error-has-no-tell.html">a confident error has no tell</a>).</p>
+<p>The fix is structural, not clever: give every edge a <strong>provenance</strong>. Asserted edges carry who decided, where it is written and from when to when it holds: a rule that was true at nine can be revoked at five past. Inferred edges carry the method, the input data, the date computed and the score, and they are rebuilt when their inputs change, because <a href="facts-expire.html">inferred facts expire</a> faster than asserted ones. Then the agent's rule is simple: act on asserted edges, propose on inferred ones, and escalate when the two disagree.</p>
+<p>In a structured personal system this already runs. The curated <code>.md</code> and <code>.yaml</code> files are the asserted layer; the DuckDB tables generated from them, and the <a href="derived-insight.html">derived insights</a> rules add on top, are the inferred layer. When they disagree, the file wins and the database is rebuilt. Nobody has to remember which is which, because the location says it.</p>
+<p><strong>Boundary:</strong> inferred is not inferior. Most of the value of a graph is in what it can infer. The point is that the edge says which kind it is, so trust follows the label, not the score.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="a-graph-is-a-model-not-a-database.html">A Graph Is a Model, Not a Database</a></li><li><a href="derived-insight.html">Derived Insight</a></li><li><a href="meaning-belongs-in-the-data.html">Meaning Belongs in the Data</a></li><li><a href="a-confident-error-has-no-tell.html">A Confident Error Has No Tell</a></li><li><a href="facts-expire.html">Facts Expire</a></li><li><a href="knowledge-graph.html">Knowledge Graph</a></li><li><a href="the-context-graph.html">The Context Graph</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-confident-error-has-no-tell","title":"A Confident Error Has No Tell","cat":"Method & workflow","desc":"A hallucination arrives in exactly the same shape as a correct answer. That is the whole problem — and why fluency is not evidence."},{"slug":"a-graph-is-a-model-not-a-database","title":"A Graph Is a Model, Not a Database","cat":"System architecture","desc":"Graph is a way of shaping data, not a product you must buy. Most workloads need the model and not the engine."},{"slug":"asserted-vs-inferred","title":"Asserted vs Inferred","cat":"System architecture","desc":"A modeled relationship is a business rule; a scored relationship is a guess with a number on it. Keep them visibly apart, so an agent knows which one "},{"slug":"derived-insight","title":"Derived Insight","cat":"Method & workflow","desc":"The highest-value data is the data you never typed — rules generate it from existing data plus context."},{"slug":"facts-expire","title":"Facts Expire","cat":"Personal data model","desc":"Knowledge doesn't become false, it becomes superseded. A store that only accumulates is a store that quietly gets less true."},{"slug":"knowledge-graph","title":"Knowledge Graph","cat":"Personal data model","desc":"A living graph of your life you can ask natural questions."},{"slug":"meaning-belongs-in-the-data","title":"Meaning Belongs in the Data","cat":"System architecture","desc":"When the rules live in application code, only the application can act on them. An agent hits a wall it cannot see — and that wall used to be merely ex"},{"slug":"the-context-graph","title":"The Context Graph","cat":"System architecture","desc":"The knowledge graph knows what exists; the context graph is what this decision needs — scoped at runtime, small enough to reason across, not search th"}],"edges":[["a-graph-is-a-model-not-a-database","knowledge-graph"],["a-graph-is-a-model-not-a-database","the-context-graph"],["a-graph-is-a-model-not-a-database","asserted-vs-inferred"],["asserted-vs-inferred","derived-insight"],["asserted-vs-inferred","meaning-belongs-in-the-data"],["a-confident-error-has-no-tell","asserted-vs-inferred"],["asserted-vs-inferred","facts-expire"],["asserted-vs-inferred","knowledge-graph"],["asserted-vs-inferred","the-context-graph"],["knowledge-graph","the-context-graph"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"asserted-vs-inferred"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI at Build Time, Rules at Run Time · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Use AI to write the code, then let the code run. Call a model at run time only where every input needs fresh judgment — and then store the answer." />
+<meta property="og:title" content="AI at Build Time, Rules at Run Time · Structure Beats Magic" />
+<meta property="og:description" content="Use AI to write the code, then let the code run. Call a model at run time only where every input needs fresh judgment — and then store the answer." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/ai-at-build-time-rules-at-run-time.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/ai-at-build-time-rules-at-run-time.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">System architecture</div>
+  <h1>AI at Build Time, Rules at Run Time</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Use AI to write the code, then let the code run. Call a model at run time only where every input needs fresh judgment — and then store the answer.</p>
+    
+    <div class="c-body">
+<p>"I built an app with AI" describes two different systems. In the first, the AI wrote the code: a script, a query, a set of rules. Once it's written, the model is gone, and the app runs on plain code that gives the same answer on every run, costs nothing per run and can be tested like any other software. In the second, the app calls a model through an API every time it runs. That app pays per call, can give a different answer to the same input, and sends its data to a provider on every request. Both are valid. They are not the same thing, and most people who build with AI can't tell you which one they built.</p>
+<p>The difference is <em>when the AI does its work</em>. At build time, the AI's output is code, and code is deterministic. At run time, the AI's output is the answer itself, and that answer is probabilistic. An invoice total, a roster, a date calculation, a file rename: none of these need judgment on each run, so a model call there buys you cost and variance for nothing. Reading a free-text customer email, describing a photo, judging tone: here the input is new every time and no rule you can write covers it, so the model belongs in the running system.</p>
+<p>The test is one question per step: <strong>does this step need judgment on unseen, unstructured input every time it runs?</strong> If not, have the AI write the code and keep the model out of the loop. If yes, call the model, but give the call structure: a fixed output schema, a validation check, and storage of the result so you never pay for the same interpretation twice. The best systems mix the two. One paid model pass turns raw material into data, and cheap rules derive everything else from that data.</p>
+<p>This is where modeling earns its place. You can only move logic out of the model and into code when the data and the rules are written down. Skip the model of the domain and every decision stays a prompt, so you pay for it on every run and it can drift between runs. A clear model of the domain is what lets you remove the AI from the running system.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="deterministic-by-design.html">Deterministic by Design</a></li><li><a href="compile-dont-retrieve.html">Compile, Don't Retrieve</a></li><li><a href="a-toy-vs-an-instrument.html">A Toy vs an Instrument</a></li><li><a href="structure-beats-magic.html">Structure Beats Magic</a></li><li><a href="rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="structure-lets-a-cheaper-model-win.html">Structure Lets a Cheaper Model Win</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-toy-vs-an-instrument","title":"A Toy vs an Instrument","cat":"Brand & stance","desc":"Without structure AI is a toy; with structure it becomes an instrument."},{"slug":"ai-at-build-time-rules-at-run-time","title":"AI at Build Time, Rules at Run Time","cat":"System architecture","desc":"Use AI to write the code, then let the code run. Call a model at run time only where every input needs fresh judgment — and then store the answer."},{"slug":"compile-dont-retrieve","title":"Compile, Don't Retrieve","cat":"System architecture","desc":"RAG retrieves chunks per query and hopes; a wiki compiles knowledge once, structured, so the answer is read not reassembled. Do the work at write time"},{"slug":"deterministic-by-design","title":"Deterministic by Design","cat":"Umbrella thesis","desc":"Deliberate is whether the structure was chosen; deterministic is whether the output repeats. A toy is neither on the second try."},{"slug":"rules-you-can-verify","title":"Rules You Can Verify","cat":"Method & workflow","desc":"'2-space indent' is a rule; 'format code properly' is a wish. A rule the system can't check is decoration."},{"slug":"structure-beats-magic","title":"Structure Beats Magic","cat":"Umbrella thesis","desc":"The magic isn't in the model; it's in the structure you give it."},{"slug":"structure-lets-a-cheaper-model-win","title":"Structure Lets a Cheaper Model Win","cat":"Umbrella thesis","desc":"The thesis priced: good context and skills make a cheaper model perform near the top tier. If quality survives a downgrade, the value was your structu"},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["a-toy-vs-an-instrument","deterministic-by-design"],["a-toy-vs-an-instrument","structure-beats-magic"],["ai-at-build-time-rules-at-run-time","deterministic-by-design"],["ai-at-build-time-rules-at-run-time","compile-dont-retrieve"],["a-toy-vs-an-instrument","ai-at-build-time-rules-at-run-time"],["ai-at-build-time-rules-at-run-time","structure-beats-magic"],["ai-at-build-time-rules-at-run-time","rules-you-can-verify"],["ai-at-build-time-rules-at-run-time","structure-lets-a-cheaper-model-win"],["ai-at-build-time-rules-at-run-time","the-validation-loop"],["deterministic-by-design","structure-beats-magic"],["deterministic-by-design","rules-you-can-verify"],["deterministic-by-design","structure-lets-a-cheaper-model-win"],["deterministic-by-design","the-validation-loop"],["rules-you-can-verify","the-validation-loop"],["structure-beats-magic","structure-lets-a-cheaper-model-win"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"ai-at-build-time-rules-at-run-time"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

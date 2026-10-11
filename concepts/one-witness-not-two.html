@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>One Witness, Not Two · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Two AI models agreeing is one witness, not two. They learned from much of the same data and fail in the same places — when both are wrong, they pick the same wrong answer most of the time." />
+<meta property="og:title" content="One Witness, Not Two · Structure Beats Magic" />
+<meta property="og:description" content="Two AI models agreeing is one witness, not two. They learned from much of the same data and fail in the same places — when both are wrong, they pick the same wrong answer most of the time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/one-witness-not-two.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/one-witness-not-two.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>One Witness, Not Two</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Two AI models agreeing is one witness, not two. They learned from much of the same data and fail in the same places — when both are wrong, they pick the same wrong answer most of the time.</p>
+    
+    <div class="c-body">
+<p><strong>When two AI models give the same answer, it feels like confirmation. It is closer to one witness repeating itself.</strong> Two witnesses only count as two when they saw the event independently. Large language models did not: they were trained on much of the same text, with similar methods, and they share its gaps and its stale facts.</p>
+<p>The research is blunt. A 2025 study of more than 350 models found that when two models both get a question wrong, they choose the <em>same</em> wrong answer about 60% of the time — and the more accurate the models, the more their errors line up. A restaurant that closed last year is still open in both models' memory, because both read the same old reviews.</p>
+<p>That does not make a second model useless. A second model <em>from another provider</em> catches errors the first one missed, because its blind spots differ — one 2026 experiment found a cross-model reviewer raised error detection from about 43% to 57%. The value is in <strong>where they disagree and in what only one of them found</strong>, not in where they agree.</p>
+<p>So treat agreement as "not yet contradicted", never as "verified". Verification means checking against a source that saw the event: the park's alert feed, the operator's website, the business status in a maps database. See <a href="consensus-is-not-a-source.html">Consensus Is Not a Source</a>.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="consensus-is-not-a-source.html">Consensus Is Not a Source</a></li><li><a href="four-eyes-one-source.html">Four Eyes, One Source</a></li><li><a href="a-confident-error-has-no-tell.html">A Confident Error Has No Tell</a></li><li><a href="never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"a-confident-error-has-no-tell","title":"A Confident Error Has No Tell","cat":"Method & workflow","desc":"A hallucination arrives in exactly the same shape as a correct answer. That is the whole problem — and why fluency is not evidence."},{"slug":"bought-sources-break-the-echo","title":"Bought Sources Break the Echo","cat":"Intelligence systems","desc":"Public AI models answer from the same public web, so they repeat each other. A source you bought — a recent guidebook, a paid report, your own documen"},{"slug":"consensus-is-not-a-source","title":"Consensus Is Not a Source","cat":"Method & workflow","desc":"Never settle a factual dispute between AI answers by majority vote or by asking a third model. Settle it by looking it up — in a source ranked by how "},{"slug":"four-eyes-one-source","title":"Four Eyes, One Source","cat":"Method & workflow","desc":"Let two different AI models answer independently, break both answers into claims, and use their disagreements and unique finds to decide what to check"},{"slug":"never-marks-its-own-homework","title":"Never Marks Its Own Homework","cat":"Method & workflow","desc":"The judge must be separate from the builder, and the score is the off-switch: a loop only stops when an independent evaluator says the rubric is met."},{"slug":"one-witness-not-two","title":"One Witness, Not Two","cat":"Method & workflow","desc":"Two AI models agreeing is one witness, not two. They learned from much of the same data and fail in the same places — when both are wrong, they pick t"}],"edges":[["bought-sources-break-the-echo","one-witness-not-two"],["bought-sources-break-the-echo","four-eyes-one-source"],["consensus-is-not-a-source","one-witness-not-two"],["consensus-is-not-a-source","four-eyes-one-source"],["four-eyes-one-source","one-witness-not-two"],["four-eyes-one-source","never-marks-its-own-homework"],["a-confident-error-has-no-tell","four-eyes-one-source"],["a-confident-error-has-no-tell","one-witness-not-two"],["never-marks-its-own-homework","one-witness-not-two"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"one-witness-not-two"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Consensus Is Not a Source · Concepts · Structure Beats Magic</title>
+<meta name="description" content="Never settle a factual dispute between AI answers by majority vote or by asking a third model. Settle it by looking it up — in a source ranked by how close it stands to the fact." />
+<meta property="og:title" content="Consensus Is Not a Source · Structure Beats Magic" />
+<meta property="og:description" content="Never settle a factual dispute between AI answers by majority vote or by asking a third model. Settle it by looking it up — in a source ranked by how close it stands to the fact." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://structurebeatsmagic.com/concepts/consensus-is-not-a-source.html" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://structurebeatsmagic.com/concepts/consensus-is-not-a-source.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"/>
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .c-detail { max-width:760px; }
+  .c-crumb { font-size:14px; margin-bottom:1rem; }
+  .c-chip { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); background:rgba(37,99,235,.08); border-radius:999px; padding:4px 12px; margin-bottom:1rem; }
+  a.c-chip-group { text-decoration:none; border:1px solid rgba(37,99,235,.25); background:transparent; transition:background .15s ease; }
+  a.c-chip-group:hover { background:rgba(37,99,235,.10); }
+  a.c-chip-group::before { content:"◆ "; opacity:.55; }
+  .c-tagline { font-size:20px; font-weight:600; color:var(--ink); border-left:3px solid var(--accent); padding-left:16px; margin:0 0 1.5rem; }
+  .c-hero { margin:0 0 2rem; }
+  .c-hero img { width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); box-shadow:0 10px 30px rgba(15,23,42,.07); }
+  .c-hero figcaption { font-size:.85rem; color:var(--ink-faint); margin-top:.7rem; text-align:center; line-height:1.5; }
+  /* the concept's own namesake article -- the way in, not a "related" link */
+  .c-canonical { margin:0 0 1.15rem; font-size:17px; line-height:1.6; }
+  .c-canonical a { font-weight:600; }
+  .c-body { font-size:17px; line-height:1.75; color:var(--ink-soft); }
+  .c-body p { margin:0 0 1.15rem; }
+  .c-body p:last-child { margin-bottom:0; }
+  .c-body ul { margin:0 0 1.15rem; padding-left:1.15rem; }
+  .c-body li { margin:.35rem 0; }
+  .c-body h2 { font-size:20px; color:var(--ink); margin-top:2rem; margin-bottom:.6rem; }
+  .c-rel { margin-top:2rem; border-top:1px solid var(--line); padding-top:1.5rem; }
+  .c-rel h3 { font-size:14px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-faint); margin:0 0 .6rem; }
+  .c-rel ul { margin:0 0 1.2rem; padding-left:1.1rem; }
+  .c-rel li { font-size:15px; margin:.3rem 0; }
+</style>
+<link rel="stylesheet" href="../assets/concept-map.css"/>
+<style>.c-map{margin-top:3rem}.c-map h3{margin:.2rem 0 1rem;font-size:1.3rem}</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="main">
+      <span class="navgroup">
+        <button class="navtop" type="button">Thesis</button>
+        <span class="navmenu">
+          <a href="../#principles">Principles</a>
+          <a href="../concepts/">Concepts</a>
+          <a href="../glossary/">Glossary</a>
+          <a href="../#play">Play</a>
+          <a href="../#why-structure">Why structure</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">System</button>
+        <span class="navmenu">
+          <a href="../system/">How the system works</a>
+          <a href="../intelligence/">Intelligence systems</a>
+        </span>
+      </span>
+      <span class="navgroup">
+        <button class="navtop" type="button">Proof</button>
+        <span class="navmenu">
+          <a href="../#use-cases">Sample systems</a>
+          <a href="../influences/">Influences</a>
+          <a href="../#about">About Jaco</a>
+        </span>
+      </span>
+      <a href="../#writing">Writing</a>
+      <a class="nav-cta" href="https://jacovanderlaan.com">For enterprises &#8594;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="c-crumb"><a href="./">&#8592; All concepts</a></div>
+  <div class="c-chip">Method &amp; workflow</div>
+  <h1>Consensus Is Not a Source</h1>
+</div>
+
+<section>
+  <div class="wrap c-detail">
+    <p class="c-tagline">Never settle a factual dispute between AI answers by majority vote or by asking a third model. Settle it by looking it up — in a source ranked by how close it stands to the fact.</p>
+    
+    <div class="c-body">
+<p>When two AI answers disagree, the tempting fixes are to ask a third model, to let them debate, or to go with the majority. All three replace a fact with an opinion about a fact. Andrej Karpathy's <em>llm-council</em> (2025), a weekend hack he shared for inspiration, is the best-known version: every model answers, every model ranks the others, and a "chairman" model compiles the final answer — useful for taste and options, but a vote, not a lookup. Research on model debate shows why that is dangerous: models switch from a correct answer to a wrong one under peer pressure, and by the third round a meaningful share of disputes ends in unanimous wrong agreement.</p>
+<p><strong>A factual dispute is settled by a lookup, not a vote.</strong> Is the visitor centre open on Monday? Ask the park's own alert feed. Is the restaurant still in business? Ask the business status in a maps database, then the restaurant's own site. Is there road work on the route? Ask the state's road-condition feed — and check the direction.</p>
+<p>That only works with an explicit <strong>source hierarchy</strong>, decided before the dispute: official feeds and operator sites first, then structured place data, then recent reviews, and model memory last. A review site is not evidence that a place is open; it keeps closed places listed for years.</p>
+<p>Every resolved claim gets the source and the time it was checked. A claim no source can confirm is not quietly kept — it is marked <strong>unknown</strong>, and for anything that matters (a closure, a road, a permit, a booking) a person calls ahead. Flag, don't guess.</p>
+    </div>
+    <div class="c-rel"><h3>Related concepts</h3><ul><li><a href="one-witness-not-two.html">One Witness, Not Two</a></li><li><a href="four-eyes-one-source.html">Four Eyes, One Source</a></li><li><a href="curated-sources.html">Curated Sources</a></li><li><a href="the-validation-loop.html">The Validation Loop</a></li><li><a href="gates.html">Gates</a></li></ul></div>
+    <div class="c-map"><div class="section-eyebrow">The neighbourhood</div><h3>How this connects</h3><div class="cmap-wrap" data-src="cmap-mini-data" data-base="" data-h="380"><svg></svg></div><script type="application/json" id="cmap-mini-data">{"nodes":[{"slug":"consensus-is-not-a-source","title":"Consensus Is Not a Source","cat":"Method & workflow","desc":"Never settle a factual dispute between AI answers by majority vote or by asking a third model. Settle it by looking it up — in a source ranked by how "},{"slug":"curated-sources","title":"Curated Sources","cat":"Filtering & identity","desc":"A person or publication you've deliberately judged worth trusting, fed to the system as a filter. (aka Handpicked Sources.)"},{"slug":"four-eyes-one-source","title":"Four Eyes, One Source","cat":"Method & workflow","desc":"Let two different AI models answer independently, break both answers into claims, and use their disagreements and unique finds to decide what to check"},{"slug":"gates","title":"Gates","cat":"System architecture","desc":"A conditional control point: nothing passes by default, it passes because it qualified — quality you can point at instead of hope spread thin."},{"slug":"one-witness-not-two","title":"One Witness, Not Two","cat":"Method & workflow","desc":"Two AI models agreeing is one witness, not two. They learned from much of the same data and fail in the same places — when both are wrong, they pick t"},{"slug":"the-validation-loop","title":"The Validation Loop","cat":"Method & workflow","desc":"Generate → validate → flag, don't guess → improve — and improve the checks too."}],"edges":[["consensus-is-not-a-source","one-witness-not-two"],["consensus-is-not-a-source","four-eyes-one-source"],["consensus-is-not-a-source","curated-sources"],["consensus-is-not-a-source","the-validation-loop"],["consensus-is-not-a-source","gates"],["four-eyes-one-source","one-witness-not-two"],["four-eyes-one-source","the-validation-loop"]],"categories":["Method & workflow","Umbrella thesis","System architecture","Personal data model","Brand & stance","Intelligence systems","Semantics","Filtering & identity","Life design","Signature principle"],"center":"consensus-is-not-a-source"}</script></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="formula-mini">Structure + Data + AI + Rules + Skills &#8594; Systems</div>
+    <div>Structure Beats Magic — a thesis by <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div>
+  </div>
+</footer>
+
+<script>
+  var t = document.getElementById('nav-toggle');
+  document.querySelectorAll('nav.main a').forEach(function(a){
+    a.addEventListener('click', function(){ if (t) t.checked = false; });
+  });
+</script>
+<script src="../assets/concept-map.js"></script>
+</body>
+</html>
