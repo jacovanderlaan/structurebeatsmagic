@@ -8,17 +8,18 @@
   <!-- accent corner bar (SBM blue) -->
   <rect x="0" y="0" width="1200" height="8" fill="#2563eb"/>
 
-  <!-- brand mark: the favicon grid, gold centre = structure resolves to the payoff -->
+  <!-- brand mark: the canonical 3x3 SBM mark (same as header, favicon, sbm-logo.svg;
+       aligned 12 Oct 2026). Gold centre = structure resolves to the payoff. -->
   <g>
-    <rect x="561" y="118" width="24" height="24" rx="5" fill="#2563eb"/>
-    <rect x="591" y="118" width="24" height="24" rx="5" fill="#1e3a8a"/>
-    <rect x="621" y="118" width="24" height="24" rx="5" fill="#2563eb"/>
-    <rect x="561" y="148" width="24" height="24" rx="5" fill="#1e3a8a"/>
+    <rect x="561" y="118" width="24" height="24" rx="5" fill="#0f172a"/>
+    <rect x="591" y="118" width="24" height="24" rx="5" fill="#2563eb"/>
+    <rect x="621" y="118" width="24" height="24" rx="5" fill="#0f172a" opacity="0.35"/>
+    <rect x="561" y="148" width="24" height="24" rx="5" fill="#2563eb" opacity="0.6"/>
     <rect x="591" y="148" width="24" height="24" rx="5" fill="#b88a1b"/>
-    <rect x="621" y="148" width="24" height="24" rx="5" fill="#1e3a8a"/>
-    <rect x="561" y="178" width="24" height="24" rx="5" fill="#2563eb"/>
-    <rect x="591" y="178" width="24" height="24" rx="5" fill="#1e3a8a"/>
-    <rect x="621" y="178" width="24" height="24" rx="5" fill="#2563eb"/>
+    <rect x="621" y="148" width="24" height="24" rx="5" fill="#0f172a"/>
+    <rect x="561" y="178" width="24" height="24" rx="5" fill="#0f172a" opacity="0.35"/>
+    <rect x="591" y="178" width="24" height="24" rx="5" fill="#0f172a"/>
+    <rect x="621" y="178" width="24" height="24" rx="5" fill="#2563eb" opacity="0.6"/>
   </g>
 
   <!-- statement -->

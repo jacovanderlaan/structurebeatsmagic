@@ -1,30 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Structure Beats Magic">
-  <!-- AVATAR alt: light background variant (off-white field, navy/blue grid + gold payoff). -->
-  <!-- Brand palette: navy #0f172a · off-white #f7f8fa · accent #2563eb · gold #b88a1b -->
-  <defs><clipPath id="roundL"><circle cx="500" cy="500" r="500"/></clipPath></defs>
-  <g clip-path="url(#roundL)">
+  <!-- Medium publication AVATAR alt: light background variant (square, 1000px, shows as a circle). -->
+  <!-- The canonical 3x3 SBM mark (header, favicon, sbm-logo.svg), aligned 12 Oct 2026;
+       replaced the earlier irregular 4x4 grid. Ink cells = #0f172a on this background. -->
+  <defs><clipPath id="r"><circle cx="500" cy="500" r="500"/></clipPath></defs>
+  <g clip-path="url(#r)">
     <rect width="1000" height="1000" fill="#f7f8fa"/>
-    <g>
-      <!-- row 1 -->
-      <rect x="180" y="180" width="140" height="140" rx="24" fill="#0f172a" opacity="0.9"/>
-      <rect x="360" y="180" width="140" height="140" rx="24" fill="#2563eb"/>
-      <rect x="540" y="180" width="140" height="140" rx="24" fill="#0f172a" opacity="0.35"/>
-      <rect x="720" y="180" width="100" height="140" rx="24" fill="#2563eb" opacity="0.6"/>
-      <!-- row 2 -->
-      <rect x="180" y="360" width="140" height="140" rx="24" fill="#2563eb" opacity="0.6"/>
-      <rect x="360" y="360" width="140" height="140" rx="24" fill="#b88a1b"/>
-      <rect x="540" y="360" width="140" height="140" rx="24" fill="#0f172a" opacity="0.9"/>
-      <rect x="720" y="360" width="100" height="140" rx="24" fill="#0f172a" opacity="0.2"/>
-      <!-- row 3 -->
-      <rect x="180" y="540" width="140" height="140" rx="24" fill="#0f172a" opacity="0.35"/>
-      <rect x="360" y="540" width="140" height="140" rx="24" fill="#0f172a" opacity="0.9"/>
-      <rect x="540" y="540" width="140" height="140" rx="24" fill="#2563eb"/>
-      <rect x="720" y="540" width="100" height="140" rx="24" fill="#2563eb" opacity="0.4"/>
-      <!-- row 4 -->
-      <rect x="180" y="720" width="140" height="100" rx="24" fill="#2563eb" opacity="0.4"/>
-      <rect x="360" y="720" width="140" height="100" rx="24" fill="#0f172a" opacity="0.35"/>
-      <rect x="540" y="720" width="140" height="100" rx="24" fill="#0f172a" opacity="0.2"/>
-      <rect x="720" y="720" width="100" height="100" rx="24" fill="#2563eb" opacity="0.6"/>
-    </g>
+    <rect x="200" y="200" width="180" height="180" rx="30" fill="#0f172a"/>
+    <rect x="410" y="200" width="180" height="180" rx="30" fill="#2563eb"/>
+    <rect x="620" y="200" width="180" height="180" rx="30" fill="#0f172a" opacity="0.35"/>
+    <rect x="200" y="410" width="180" height="180" rx="30" fill="#2563eb" opacity="0.6"/>
+    <rect x="410" y="410" width="180" height="180" rx="30" fill="#b88a1b"/>
+    <rect x="620" y="410" width="180" height="180" rx="30" fill="#0f172a"/>
+    <rect x="200" y="620" width="180" height="180" rx="30" fill="#0f172a" opacity="0.35"/>
+    <rect x="410" y="620" width="180" height="180" rx="30" fill="#0f172a"/>
+    <rect x="620" y="620" width="180" height="180" rx="30" fill="#2563eb" opacity="0.6"/>
   </g>
 </svg>
