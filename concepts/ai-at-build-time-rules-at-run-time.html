@@ -9,7 +9,7 @@
 <meta property="og:description" content="Use AI to write the code, then let the code run. Call a model at run time only where every input needs fresh judgment — and then store the answer." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/ai-at-build-time-rules-at-run-time.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/ai-at-build-time-rules-at-run-time-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/ai-at-build-time-rules-at-run-time.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">Use AI to write the code, then let the code run. Call a model at run time only where every input needs fresh judgment — and then store the answer.</p>
-    
+    <figure class="c-hero"><img src="../assets/ai-at-build-time-rules-at-run-time-hero.png" alt="AI at Build Time, Rules at Run Time" loading="eager"/><figcaption>The model writes the code at build time; at run time the same input gives the same output, and a model is called only in the one lane that needs judgment.</figcaption></figure>
     <div class="c-body">
 <p>"I built an app with AI" describes two different systems. In the first, the AI wrote the code: a script, a query, a set of rules. Once it's written, the model is gone, and the app runs on plain code that gives the same answer on every run, costs nothing per run and can be tested like any other software. In the second, the app calls a model through an API every time it runs. That app pays per call, can give a different answer to the same input, and sends its data to a provider on every request. Both are valid. They are not the same thing, and most people who build with AI can't tell you which one they built.</p>
 <p>The difference is <em>when the AI does its work</em>. At build time, the AI's output is code, and code is deterministic. At run time, the AI's output is the answer itself, and that answer is probabilistic. An invoice total, a roster, a date calculation, a file rename: none of these need judgment on each run, so a model call there buys you cost and variance for nothing. Reading a free-text customer email, describing a photo, judging tone: here the input is new every time and no rule you can write covers it, so the model belongs in the running system.</p>

@@ -9,7 +9,7 @@
 <meta property="og:description" content="A modeled relationship is a business rule; a scored relationship is a guess with a number on it. Keep them visibly apart, so an agent knows which one it is acting on." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://structurebeatsmagic.com/concepts/asserted-vs-inferred.html" />
-<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png" />
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/asserted-vs-inferred-hero.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://structurebeatsmagic.com/concepts/asserted-vs-inferred.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
@@ -93,7 +93,7 @@
 <section>
   <div class="wrap c-detail">
     <p class="c-tagline">A modeled relationship is a business rule; a scored relationship is a guess with a number on it. Keep them visibly apart, so an agent knows which one it is acting on.</p>
-    
+    <figure class="c-hero"><img src="../assets/asserted-vs-inferred-hero.png" alt="Asserted vs Inferred" loading="eager"/><figcaption>A modeled edge carries an owner and a source, so the agent can act on it. A scored edge carries a method and a score, so the agent can only propose.</figcaption></figure>
     <div class="c-body">
 <p>A knowledge graph holds two kinds of edges that look the same. One is <strong>asserted</strong>: an order belongs to a customer, a contract has an end date, this person is my sister. Someone with the authority to decide wrote it down, and it is true until they change it. The other is <strong>inferred</strong>: customers who buy X also buy Y, strength 0.7; these two documents are similar; this supplier is probably the same company as that one. A model or a rule computed it, and it is true only as far as the method and the data behind it.</p>
 <p>The market's context-layer pictures put both in one graph and give every edge "a type and a strength score". That makes the difference disappear. A business rule with a score of 1.0 and a correlation with a score of 0.95 now look almost alike, and an agent that acts on the edge cannot tell whether it follows policy or a pattern. When the correlation is wrong, the error arrives in the same shape as the rule (<a href="a-confident-error-has-no-tell.html">a confident error has no tell</a>).</p>
