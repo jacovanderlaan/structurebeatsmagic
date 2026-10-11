@@ -1168,3 +1168,10 @@ img,svg,video{max-width:100%;height:auto}
 .lib-card h3{font-size:1rem;margin:0 0 .35rem;line-height:1.3}
 .lib-card .muted{font-size:.82rem;color:var(--ink-faint);margin:0}
 .lib-card .book-rating{color:var(--gold);letter-spacing:1px;font-size:.85rem}
+
+/* Brand mark in the header (12 Oct 2026) — same pattern as buildingyourown.ai. */
+a.brand{display:inline-flex;align-items:center}
+a.brand svg{width:24px;height:24px;flex:0 0 auto;display:block;margin-right:10px}
+/* Flex would turn the "Magic" span into its own item and the gap would split the
+   wordmark; spacing lives on the mark only. The space before Magic must be &nbsp; (a plain space collapses at the end of a flex item). */
+header.site .wrap > a.brand,a.brand{gap:0}

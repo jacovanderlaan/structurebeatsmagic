@@ -157,3 +157,10 @@ article pre code{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consola
 .series-list li.pending .series-list-n{background:var(--ink-faint)}
 .series-list-t{font-weight:600;color:var(--ink);line-height:1.35}
 .series-list-t em{color:var(--ink-faint);font-weight:500;font-style:normal;font-size:.85rem}
+
+/* Brand mark in the header (12 Oct 2026) — same pattern as buildingyourown.ai. */
+a.brand{display:inline-flex;align-items:center}
+a.brand svg{width:24px;height:24px;flex:0 0 auto;display:block;margin-right:10px}
+/* Flex would turn the "Magic" span into its own item and the gap would split the
+   wordmark; spacing lives on the mark only. The space before Magic must be &nbsp; (a plain space collapses at the end of a flex item). */
+header.site .wrap > a.brand,a.brand{gap:0}
