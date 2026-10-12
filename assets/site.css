@@ -1246,3 +1246,10 @@ a.card:hover,a.stage:hover{transform:translateY(-2px);border-color:var(--accent)
   background:#f7f8fa;border:1px solid var(--line);margin:0 0 .9rem}
 .stage .card-thumb{margin:0 0 .6rem}
 .card .more,.stage .more{display:inline-block;margin-top:.6rem;font-size:.9rem;font-weight:600;color:var(--accent)}
+/* A taller band for photos whose subject needs height (the whole Erasmus Bridge, 2.6:1). */
+.subject-band.tall img{height:auto;aspect-ratio:2.6/1;max-height:520px}
+/* Two photos side by side in one band, each 2:1 so neither becomes a thin strip. */
+.subject-band.duo{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.subject-band.duo img{height:auto;aspect-ratio:2/1;max-height:440px}
+/* Next-level cards: the concept's own hero on top, as on the principle cards. */
+.nl-card .card-thumb{aspect-ratio:16/9}
