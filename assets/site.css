@@ -1253,3 +1253,8 @@ a.card:hover,a.stage:hover{transform:translateY(-2px);border-color:var(--accent)
 .subject-band.duo img{height:auto;aspect-ratio:2/1;max-height:440px}
 /* Next-level cards: the concept's own hero on top, as on the principle cards. */
 .nl-card .card-thumb{aspect-ratio:16/9}
+/* Use-case cards on the homepage: the whole card is the link, with a small image on top. */
+a.sample{display:block;color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
+a.sample:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
+a.sample .card-thumb{aspect-ratio:12/5;object-fit:cover}
+.sample .more{display:inline-block;margin-top:.6rem;font-weight:600;color:var(--accent)}
