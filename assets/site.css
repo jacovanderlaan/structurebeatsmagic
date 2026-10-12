@@ -1263,3 +1263,4 @@ a.sample .card-thumb{aspect-ratio:12/5;object-fit:cover}
   aspect-ratio:12/5;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;border-bottom:1px solid var(--line);background:#f7f8fa}
 .post{overflow:hidden}
 .impl .card-thumb{aspect-ratio:16/9}
+.fit .fit-thumb{aspect-ratio:12/5;margin-bottom:1rem}

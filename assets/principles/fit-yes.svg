@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- homepage fit-yes card. Story: Structure first: a foundation that gives the same checked result every time. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<rect x="150" y="380" width="380" height="60" rx="10" fill="#dbe4f3" stroke="#0f172a"/>
+<rect x="170" y="310" width="160" height="60" rx="10" fill="#ffffff" stroke="#0f172a"/>
+<rect x="350" y="310" width="160" height="60" rx="10" fill="#ffffff" stroke="#0f172a"/>
+<rect x="250" y="240" width="160" height="60" rx="10" fill="#ffffff" stroke="#2563eb"/>
+<path d="M560 300 Q620.0 300.0 680 300" stroke="#2563eb"/><path d="M664 308 L680 300 L664 292" stroke="#2563eb"/>
+<g><path d="M700 200 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M776 200 v24 h24"/>
+<path d="M715 242 h70" stroke="#0f172a"/>
+<path d="M715 259 h70" stroke="#0f172a"/>
+<path d="M715 276 h70" stroke="#0f172a"/>
+<path d="M715 293 h42" stroke="#0f172a"/>
+</g>
+<g><path d="M830 200 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M906 200 v24 h24"/>
+<path d="M845 242 h70" stroke="#0f172a"/>
+<path d="M845 259 h70" stroke="#0f172a"/>
+<path d="M845 276 h70" stroke="#0f172a"/>
+<path d="M845 293 h42" stroke="#0f172a"/>
+</g>
+<g><path d="M960 200 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M1036 200 v24 h24"/>
+<path d="M975 242 h70" stroke="#0f172a"/>
+<path d="M975 259 h70" stroke="#0f172a"/>
+<path d="M975 276 h70" stroke="#0f172a"/>
+<path d="M975 293 h42" stroke="#0f172a"/>
+</g>
+<path d="M725 360 l12 14 l24 -28 M855 360 l12 14 l24 -28 M985 360 l12 14 l24 -28" stroke="#2563eb"/>
+<path d="M1060 168 Q1062.112 187.888 1082 190 Q1062.112 192.112 1060 212 Q1057.888 192.112 1038 190 Q1057.888 187.888 1060 168 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>

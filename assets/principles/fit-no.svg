@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- homepage fit-no card. Story: The magic box: impressive outside, nothing you can explain coming out. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M360 220 h260 v190 h-260 z" fill="#ffffff"/>
+<path d="M360 220 l40 -50 h260 l-40 50" fill="#dbe4f3"/><path d="M620 220 l40 -50 v190 l-40 50"/>
+<path d="M330 150 l8 20 l20 8 l-20 8 l-8 20 l-8 -20 l-20 -8 l20 -8 z" stroke-width="3"/>
+<path d="M700 120 l6 15 l15 6 l-15 6 l-6 15 l-6 -15 l-15 -6 l15 -6 z" stroke-width="3"/>
+<path d="M280 300 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5 z" stroke-width="3"/>
+<path d="M690 320 Q750.0 320.0 810 320" stroke="#0f172a"/><path d="M794 328 L810 320 L794 312" stroke="#0f172a"/>
+<rect x="830" y="240" width="150" height="160" rx="12" fill="none" stroke-dasharray="10 10"/>
+<path d="M880 295 q0 -30 25 -30 q25 0 25 25 q0 18 -25 28 v18" stroke="#2563eb" stroke-width="6"/>
+<circle cx="905" cy="365" r="5" fill="#2563eb" stroke="#2563eb"/>
+</g>
+</svg>
