@@ -1258,3 +1258,7 @@ a.sample{display:block;color:inherit;text-decoration:none;transition:transform .
 a.sample:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
 a.sample .card-thumb{aspect-ratio:12/5;object-fit:cover}
 .sample .more{display:inline-block;margin-top:.6rem;font-weight:600;color:var(--accent)}
+/* Writing subject pages: each article card shows its own hero, small, on top. */
+.post .post-thumb{display:block;width:calc(100% + 3.2rem);max-width:none;margin:-1.6rem -1.6rem 1rem;height:auto;
+  aspect-ratio:12/5;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;border-bottom:1px solid var(--line);background:#f7f8fa}
+.post{overflow:hidden}
