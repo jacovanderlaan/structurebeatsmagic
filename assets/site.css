@@ -1274,3 +1274,14 @@ a.sample .card-thumb{aspect-ratio:12/5;object-fit:cover}
 .enterprise .cta-visual{display:block;width:min(100%,520px);height:auto;margin:0 auto 1.2rem;opacity:.95}
 /* Duo bands: same height as a single band, so every band lines up (Jaco, 12 Oct). */
 .subject-band.duo img{aspect-ratio:auto;max-height:none;height:clamp(130px,21vw,300px)}
+/* Photo bands as wide as the content column, with rounded corners — the same as
+   buildingyourown.ai (Jaco, 13 Oct 2026: "use the same width for the header photos").
+   Replaces the full-bleed bands; stated last so it wins over the rules above. */
+.subject-band{max-width:var(--maxw);margin:2.4rem auto 0;padding:0 24px;box-sizing:border-box}
+.subject-band img{border-radius:var(--radius);height:clamp(120px,18vw,240px)}
+.subject-band.tall img{height:auto;aspect-ratio:2.6/1;max-height:420px}
+.subject-band.duo{gap:12px}
+.subject-band.duo img{height:clamp(120px,16vw,220px);border-radius:var(--radius)}
+.subject-band + section{padding-top:2.4rem}
+@media(max-width:560px){.subject-band{padding:0 16px;margin-top:1.4rem}}
+.subject-band + section{border-top:0}

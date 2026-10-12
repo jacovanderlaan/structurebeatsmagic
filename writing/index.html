@@ -50,6 +50,23 @@ gtag('config', 'G-P7W9B34R1Z');
     </div>
   </div>
 </section>
+<section id="all-writing">
+  <div class="wrap">
+    <div class="section-eyebrow">Every article</div>
+    <h2 class="section-title">Search and filter</h2>
+    <div id="browse"></div>
+  </div>
+</section>
+<script type="module">
+  import { initBrowse } from "../assets/browse.js";
+  initBrowse("#browse", {
+    data: "../data/content_item.parquet",
+    base: "../", assets: "../assets/",
+    pageType: "articles",
+    itemTypes: ["post"],
+    defaults: { view: "cards", sort: "newest" }
+  }).catch((e) => console.warn("browse:", e));
+</script>
 
 <footer><div class="wrap">Structure Beats Magic — a thesis by
   <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
