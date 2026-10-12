@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 885">
+  <!-- Hybrid layer over assets/jaco-lounge-hybrid.jpg (own photo, 1180x885, cropped from the left so no
+       stranger is in frame). Story: while Jaco works on the laptop, his life as data rises above it —
+       photos, trips, books, health, finances — all hanging from one structure.
+       Family line-art: navy #0f172a, blue #2563eb, one gold #b88a1b spark. White halo under every
+       stroke. Nothing covers his head or hands. Pattern: hybrid-photo-line-art.md (family design folder) -->
+
+  <!-- the trunk: from the laptop up to the structure -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M700 446 L700 318" stroke="#ffffff" stroke-width="12" opacity=".9"/>
+    <path d="M700 446 L700 318" stroke="#2563eb" stroke-width="5"/>
+  </g>
+
+  <!-- structure and life domains, scaled up 1.35x around the spine so they read at hero size -->
+  <g transform="translate(720 300) scale(1.35) translate(-720 -300)">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- the spine: one structure everything hangs from -->
+    <path d="M480 300 L960 300" stroke="#ffffff" stroke-width="14" opacity=".9"/>
+    <path d="M480 300 L960 300" stroke="#0f172a" stroke-width="6"/>
+    <path d="M480 300 L480 270 M600 300 L600 270 M720 300 L720 270 M840 300 L840 270 M960 300 L960 270" stroke="#ffffff" stroke-width="12" opacity=".9"/>
+    <path d="M480 300 L480 270 M600 300 L600 270 M720 300 L720 270 M840 300 L840 270 M960 300 L960 270" stroke="#2563eb" stroke-width="5"/>
+    <circle cx="700" cy="300" r="9" fill="#2563eb" stroke="#ffffff" stroke-width="4"/>
+  </g>
+
+  <g stroke-linejoin="round" stroke-linecap="round">
+    <!-- photos -->
+    <rect x="434" y="186" width="92" height="84" rx="12" fill="#f7f8fa" fill-opacity=".95" stroke="#0f172a" stroke-width="4"/>
+    <rect x="450" y="202" width="60" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <path d="M452 244 L470 224 L482 236 L492 226 L508 244" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <circle cx="496" cy="213" r="5" fill="#0f172a"/>
+    <line x1="458" y1="258" x2="502" y2="258" stroke="#0f172a" stroke-width="4"/>
+
+    <!-- trips: a route with a pin -->
+    <rect x="554" y="186" width="92" height="84" rx="12" fill="#f7f8fa" fill-opacity=".95" stroke="#0f172a" stroke-width="4"/>
+    <path d="M572 254 C 590 230, 608 250, 622 226" fill="none" stroke="#2563eb" stroke-width="4" stroke-dasharray="6 7"/>
+    <circle cx="572" cy="254" r="5" fill="#2563eb"/>
+    <path d="M626 230 C 614 216, 616 200, 626 198 C 636 200, 638 216, 626 230 Z" fill="#0f172a"/>
+    <circle cx="626" cy="207" r="3.5" fill="#f7f8fa"/>
+
+    <!-- books -->
+    <rect x="674" y="186" width="92" height="84" rx="12" fill="#f7f8fa" fill-opacity=".95" stroke="#0f172a" stroke-width="4"/>
+    <rect x="692" y="202" width="14" height="54" rx="2" fill="#2563eb"/>
+    <rect x="710" y="206" width="14" height="50" rx="2" fill="none" stroke="#0f172a" stroke-width="4"/>
+    <path d="M730 210 L742 206 L754 252 L742 256 Z" fill="none" stroke="#2563eb" stroke-width="4"/>
+
+    <!-- health: a heart with a pulse -->
+    <rect x="794" y="186" width="92" height="84" rx="12" fill="#f7f8fa" fill-opacity=".95" stroke="#0f172a" stroke-width="4"/>
+    <path d="M840 256 C 812 238, 806 222, 814 212 C 822 202, 836 206, 840 216 C 844 206, 858 202, 866 212 C 874 222, 868 238, 840 256 Z" fill="none" stroke="#0f172a" stroke-width="4"/>
+    <path d="M812 230 L826 230 L832 220 L840 242 L848 226 L868 226" fill="none" stroke="#2563eb" stroke-width="4"/>
+
+    <!-- finances: coins and a rising bar -->
+    <rect x="914" y="186" width="92" height="84" rx="12" fill="#f7f8fa" fill-opacity=".95" stroke="#0f172a" stroke-width="4"/>
+    <ellipse cx="944" cy="248" rx="16" ry="6" fill="#f7f8fa" stroke="#0f172a" stroke-width="4"/>
+    <ellipse cx="944" cy="238" rx="16" ry="6" fill="#f7f8fa" stroke="#0f172a" stroke-width="4"/>
+    <ellipse cx="944" cy="228" rx="16" ry="6" fill="#f7f8fa" stroke="#0f172a" stroke-width="4"/>
+    <rect x="970" y="230" width="10" height="24" fill="#2563eb"/>
+    <rect x="984" y="214" width="10" height="40" fill="#2563eb"/>
+  </g>
+
+  </g>
+
+  <!-- the one gold spark: where it starts, at the laptop -->
+  <path d="M664 410 L670 426 L686 432 L670 438 L664 454 L658 438 L642 432 L658 426 Z" fill="#b88a1b" stroke="#ffffff" stroke-width="3" paint-order="stroke"/>
+</svg>
