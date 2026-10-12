@@ -1195,3 +1195,25 @@ header.site .wrap > a.brand,a.brand{gap:0}
   .hero-photo.hybrid{aspect-ratio:auto;height:clamp(240px,62vw,360px)}
   .hero-photo.hybrid img{height:100%}
 }
+
+/* Writing subject pages (12 Oct 2026): a photo band on top, subject cards on /writing/. */
+.subject-band{margin:0}
+.subject-band img{display:block;width:100%;height:clamp(130px,21vw,300px);object-fit:cover}
+.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1.4rem}
+a.subject-card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
+a.subject-card:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
+a.subject-card img{display:block;width:100%;height:auto;aspect-ratio:4/1.5;object-fit:cover}
+.subject-card .sc-body{display:block;padding:1.2rem 1.4rem 1.5rem}
+.subject-card .sc-count{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.subject-card h3{margin:.45rem 0 .45rem;font-size:1.25rem;line-height:1.25;color:var(--ink)}
+.subject-card p{margin:0;color:var(--ink-soft);font-size:.95rem}
+.subject-band img{border-radius:0;box-shadow:none;max-width:none}
+/* ⚠️ The phone-width header fix near the top (max-width:560px) never took effect:
+   the base rule `header.site .wrap{height:64px}` comes LATER in this file and wins
+   at equal specificity, so on phones the wrapped "← Home" line spilled out of the
+   header onto whatever came next (12 Oct 2026, found under the new photo band).
+   Restated here, after the base rule. */
+@media(max-width:560px){
+  header.site .wrap{height:auto;min-height:0;flex-wrap:wrap}
+}
