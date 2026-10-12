@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/structure/ hero. Story: Folders and notes linked into one graph around a central idea. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M300 250 L470 150" stroke="#2563eb" stroke-width="3"/>
+<path d="M300 250 L470 350" stroke="#2563eb" stroke-width="3"/>
+<path d="M470 150 L650 250" stroke="#2563eb" stroke-width="3"/>
+<path d="M470 350 L650 250" stroke="#2563eb" stroke-width="3"/>
+<path d="M650 250 L830 150" stroke="#2563eb" stroke-width="3"/>
+<path d="M650 250 L830 360" stroke="#2563eb" stroke-width="3"/>
+<path d="M830 150 L990 230" stroke="#2563eb" stroke-width="3"/>
+<path d="M830 360 L990 230" stroke="#2563eb" stroke-width="3"/>
+<path d="M470 150 L470 350" stroke="#2563eb" stroke-width="3"/>
+<path d="M240 224 v70 h120 v-60 h-66 l-12 -14 h-42 z" fill="#ffffff" stroke="#0f172a"/>
+<g><path d="M425 95 h66 l24 24 v86 h-90 z" fill="#ffffff"/>
+<path d="M491 95 v24 h24"/>
+<path d="M440 137 h60" stroke="#0f172a"/>
+<path d="M440 154 h60" stroke="#0f172a"/>
+<path d="M440 171 h36" stroke="#0f172a"/>
+</g>
+<g><path d="M425 300 h66 l24 24 v86 h-90 z" fill="#ffffff"/>
+<path d="M491 300 v24 h24"/>
+<path d="M440 342 h60" stroke="#0f172a"/>
+<path d="M440 359 h60" stroke="#0f172a"/>
+<path d="M440 376 h36" stroke="#0f172a"/>
+</g>
+<circle cx="650" cy="250" r="34" fill="#2563eb"/>
+<path d="M770 124 v70 h120 v-60 h-66 l-12 -14 h-42 z" fill="#ffffff" stroke="#0f172a"/>
+<g><path d="M785 300 h66 l24 24 v86 h-90 z" fill="#ffffff"/>
+<path d="M851 300 v24 h24"/>
+<path d="M800 342 h60" stroke="#0f172a"/>
+<path d="M800 359 h60" stroke="#0f172a"/>
+<path d="M800 376 h36" stroke="#0f172a"/>
+</g>
+<path d="M940 204 v70 h120 v-60 h-66 l-12 -14 h-42 z" fill="#ffffff" stroke="#0f172a"/>
+<path d="M700 178 Q702.112 197.888 722 200 Q702.112 202.112 700 222 Q697.888 202.112 678 200 Q697.888 197.888 700 178 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>

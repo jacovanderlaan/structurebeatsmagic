@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/ai/ hero. Story: Identical model blocks; the one plugged into your structure is the one that counts. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<rect x="110" y="90" width="90" height="90" rx="10" fill="#ffffff" stroke="#0f172a"/><rect x="135" y="115" width="40" height="40" rx="6" stroke-width="3"/>
+<rect x="230" y="90" width="90" height="90" rx="10" fill="#ffffff" stroke="#0f172a"/><rect x="255" y="115" width="40" height="40" rx="6" stroke-width="3"/>
+<rect x="350" y="90" width="90" height="90" rx="10" fill="#ffffff" stroke="#0f172a"/><rect x="375" y="115" width="40" height="40" rx="6" stroke-width="3"/>
+<rect x="470" y="90" width="90" height="90" rx="10" fill="#ffffff" stroke="#0f172a"/><rect x="495" y="115" width="40" height="40" rx="6" stroke-width="3"/>
+<path d="M155 180 v30" stroke-width="3"/>
+<path d="M275 180 v30" stroke-width="3"/>
+<path d="M395 180 v30" stroke-width="3"/>
+<path d="M515 180 v30" stroke-width="3"/>
+<path d="M515 220 Q577.5 265.0 640 290" stroke="#2563eb"/><path d="M622 291 L640 290 L628 277" stroke="#2563eb"/>
+<rect x="660" y="230" width="90" height="90" rx="10" fill="#dbe4f3" stroke="#2563eb"/>
+<rect x="685" y="255" width="40" height="40" rx="6" stroke="#2563eb" stroke-width="3"/>
+<path d="M750 275 h70" stroke="#2563eb"/>
+<path d="M830 194 v70 h120 v-60 h-66 l-12 -14 h-42 z" fill="#ffffff" stroke="#0f172a"/>
+<path d="M830 314 v70 h120 v-60 h-66 l-12 -14 h-42 z" fill="#ffffff" stroke="#0f172a"/>
+<path d="M990 254 v70 h120 v-60 h-66 l-12 -14 h-42 z" fill="#ffffff" stroke="#0f172a"/>
+<path d="M950 230 L990 270 M950 340 L990 300" stroke="#2563eb" stroke-width="3"/>
+<path d="M790 223 Q792.112 242.888 812 245 Q792.112 247.112 790 267 Q787.888 247.112 768 245 Q787.888 242.888 790 223 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/rules/ hero. Story: Generate, validate against what you know, flag what fails instead of guessing. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<g><path d="M130 150 h96 l24 24 v136 h-120 z" fill="#ffffff"/>
+<path d="M226 150 v24 h24"/>
+<path d="M145 192 h90" stroke="#0f172a"/>
+<path d="M145 209 h90" stroke="#0f172a"/>
+<path d="M145 226 h90" stroke="#0f172a"/>
+<path d="M145 243 h90" stroke="#0f172a"/>
+<path d="M145 260 h90" stroke="#0f172a"/>
+<path d="M145 277 h54" stroke="#0f172a"/>
+</g>
+<path d="M280 230 Q335.0 230.0 390 230" stroke="#2563eb"/><path d="M374 238 L390 230 L374 222" stroke="#2563eb"/>
+<rect x="410" y="150" width="190" height="142" rx="10" fill="#ffffff"/>
+<rect x="428" y="172" width="20" height="20" rx="4" stroke-width="3"/>
+<path d="M432 182 l5 6 l10 -12" stroke="#2563eb"/>
+<path d="M462 182 h118" stroke-width="3"/>
+<rect x="428" y="208" width="20" height="20" rx="4" stroke-width="3"/>
+<path d="M432 218 l5 6 l10 -12" stroke="#2563eb"/>
+<path d="M462 218 h118" stroke-width="3"/>
+<rect x="428" y="244" width="20" height="20" rx="4" stroke-width="3"/>
+<path d="M432 248 l12 12 M444 248 l-12 12" stroke="#0f172a"/>
+<path d="M462 254 h118" stroke-width="3"/>
+<path d="M630 230 Q685.0 230.0 740 230" stroke="#2563eb"/><path d="M724 238 L740 230 L724 222" stroke="#2563eb"/>
+<path d="M790 110 v260" stroke-width="6"/>
+<path d="M790 115 h150 l-30 45 l30 45 h-150 z" fill="#dbe4f3" stroke="#2563eb"/>
+<g><path d="M930 260 h86 l24 24 v116 h-110 z" fill="#ffffff"/>
+<path d="M1016 260 v24 h24"/>
+<path d="M945 302 h80" stroke="#0f172a"/>
+<path d="M945 319 h80" stroke="#0f172a"/>
+<path d="M945 336 h80" stroke="#0f172a"/>
+<path d="M945 353 h80" stroke="#0f172a"/>
+<path d="M945 370 h48" stroke="#0f172a"/>
+</g>
+<path d="M980 88 Q982.112 107.888 1002 110 Q982.112 112.112 980 132 Q977.888 112.112 958 110 Q977.888 107.888 980 88 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>

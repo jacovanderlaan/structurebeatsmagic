@@ -1217,3 +1217,32 @@ a.subject-card img{display:block;width:100%;height:auto;aspect-ratio:4/1.5;objec
 @media(max-width:560px){
   header.site .wrap{height:auto;min-height:0;flex-wrap:wrap}
 }
+
+/* Universal principles pages (12 Oct 2026): /principles/ + one page per homepage card. */
+.pr-head{padding-bottom:1rem}
+.pr-hero{margin:0 auto 2rem}
+.pr-hero img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--radius);background:#f7f8fa}
+.pr-body{max-width:760px}
+.pr-body h2{font-size:1.45rem;margin:2.2rem 0 .6rem;color:var(--ink)}
+.pr-body p{font-size:1.06rem;color:var(--ink-soft);line-height:1.7}
+.pr-go{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1.2rem;margin-top:.6rem}
+.pr-related h3{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 .5rem}
+.pr-related ul{margin:0;padding-left:1.1rem}
+.pr-related li{margin:.35rem 0}
+.pr-pager{display:flex;justify-content:space-between;gap:1rem;margin:3rem 0 4rem;padding-top:1.4rem;border-top:1px solid var(--line);font-weight:600}
+.pr-section{padding:1.5rem 0 2.5rem}
+.pr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1.3rem}
+a.pr-card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);color:inherit;text-decoration:none;padding:0 0 1.3rem;transition:transform .15s,border-color .15s}
+a.pr-card:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
+a.pr-card img{display:block;width:100%;height:auto;aspect-ratio:12/5;object-fit:cover;background:#f7f8fa;border-bottom:1px solid var(--line)}
+.pr-card .pr-k{display:block;margin:1rem 1.3rem .3rem;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.pr-card h3{margin:0 1.3rem .4rem;font-size:1.2rem;color:var(--ink)}
+.pr-card p{margin:0 1.3rem;color:var(--ink-soft);font-size:.95rem}
+/* homepage: the principle cards and pipeline stages became links with a small hero */
+a.card,a.stage{display:block;color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
+a.card:hover,a.stage:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
+.card-thumb{display:block;width:100%;height:auto;aspect-ratio:12/5;object-fit:cover;border-radius:10px;
+  background:#f7f8fa;border:1px solid var(--line);margin:0 0 .9rem}
+.stage .card-thumb{margin:0 0 .6rem}
+.card .more,.stage .more{display:inline-block;margin-top:.6rem;font-size:.9rem;font-weight:600;color:var(--accent)}

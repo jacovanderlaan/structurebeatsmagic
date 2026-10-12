@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/delivery/ hero. Story: One table feeds three outputs; the answer is the one you can trust. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<rect x="170" y="175" width="224" height="150" rx="8" fill="#ffffff"/>
+<rect x="170" y="175" width="224" height="30" rx="8" fill="#dbe4f3"/>
+<path d="M226 175 v150" stroke-width="3"/>
+<path d="M282 175 v150" stroke-width="3"/>
+<path d="M338 175 v150" stroke-width="3"/>
+<path d="M170 205 h224" stroke-width="3"/>
+<path d="M170 235 h224" stroke-width="3"/>
+<path d="M170 265 h224" stroke-width="3"/>
+<path d="M170 295 h224" stroke-width="3"/>
+<path d="M410 215 Q485.0 137.5 560 110" stroke="#2563eb"/><path d="M547 123 L560 110 L542 108" stroke="#2563eb"/>
+<path d="M410 250 Q485.0 250.0 560 250" stroke="#2563eb"/><path d="M544 258 L560 250 L544 242" stroke="#2563eb"/>
+<path d="M410 285 Q485.0 365.0 560 395" stroke="#2563eb"/><path d="M542 396 L560 395 L548 382" stroke="#2563eb"/>
+<rect x="580" y="40" width="200" height="140" rx="10" fill="#ffffff"/><path d="M580 68 h200"/><circle cx="596" cy="54" r="4" stroke-width="3"/><circle cx="610" cy="54" r="4" stroke-width="3"/><rect x="596" y="82" width="168" height="44" rx="5" fill="#dbe4f3" stroke-width="3"/><path d="M596 144 h160 M596 164 h130" stroke-width="3"/>
+<rect x="580" y="195" width="200" height="110" rx="10" fill="#ffffff"/><path d="M605 265 a40 40 0 0 1 80 0"/><path d="M645 265 l22 -26" stroke="#2563eb"/><path d="M705 290 v-30 M720 290 v-50 M735 290 v-20" stroke="#2563eb"/><path d="M600 293 h70" stroke-width="3"/>
+<path d="M594 340 h172 q14 0 14 14 v60 q0 14 -14 14 h-130 l-26 24 v-24 h-2 q-14 0 -14 -14 v-60 q0 -14 14 -14 z" fill="#ffffff"/><path d="M602 372 h150 M602 394 h120" stroke-width="3"/>
+<path d="M800 318 Q802.112 337.888 822 340 Q802.112 342.112 800 362 Q797.888 342.112 778 340 Q797.888 337.888 800 318 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>

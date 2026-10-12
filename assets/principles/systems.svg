@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/systems/ hero. Story: Five parts stacked into one building, with the payoff on top. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<rect x="330" y="380" width="540" height="70" rx="10" fill="#dbe4f3" stroke="#0f172a"/>
+<rect x="380" y="300" width="210" height="70" rx="10" fill="#ffffff" stroke="#0f172a"/>
+<rect x="610" y="300" width="210" height="70" rx="10" fill="#ffffff" stroke="#0f172a"/>
+<rect x="430" y="220" width="160" height="70" rx="10" fill="#ffffff" stroke="#0f172a"/>
+<rect x="610" y="220" width="160" height="70" rx="10" fill="#ffffff" stroke="#0f172a"/>
+<rect x="520" y="140" width="160" height="70" rx="10" fill="#ffffff" stroke="#2563eb"/>
+<rect x="560" y="70" width="80" height="60" rx="10" fill="#b88a1b" stroke="#b88a1b"/>
+<path d="M260 450 h680" stroke-width="3"/>
+</g>
+</svg>

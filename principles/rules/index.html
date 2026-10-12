@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The missing word · Structure Beats Magic</title>
+<meta name="description" content="Data plus AI produces output. Rules decide whether that output can be trusted. They are the step most AI projects skip, and the reason so many of them work in the demo and fail in daily use."/>
+<meta name="author" content="Jaco van der Laan"/>
+<link rel="canonical" href="https://structurebeatsmagic.com/principles/rules/"/>
+<meta property="og:title" content="The missing word · Structure Beats Magic"/>
+<meta property="og:description" content="Data plus AI produces output. Rules decide whether that output can be trusted. They are the step most AI projects skip, and the reason so many of them work in the demo and fail in daily use."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://structurebeatsmagic.com/principles/rules/"/>
+<meta property="og:site_name" content="Structure Beats Magic"/>
+<meta property="og:image" content="https://structurebeatsmagic.com/assets/sbm-og-card.png"/>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"/>
+<link rel="stylesheet" href="../../assets/site.css"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7W9B34R1Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P7W9B34R1Z');
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../../"><svg viewBox="30 40 148 148" aria-hidden="true" focusable="false"><rect x="30" y="40" width="44" height="44" rx="9" fill="currentColor"/><rect x="82" y="40" width="44" height="44" rx="9" fill="#2563eb"/><rect x="134" y="40" width="44" height="44" rx="9" fill="currentColor" opacity=".35"/><rect x="30" y="92" width="44" height="44" rx="9" fill="#2563eb" opacity=".6"/><rect x="82" y="92" width="44" height="44" rx="9" fill="#b88a1b"/><rect x="134" y="92" width="44" height="44" rx="9" fill="currentColor"/><rect x="30" y="144" width="44" height="44" rx="9" fill="currentColor" opacity=".35"/><rect x="82" y="144" width="44" height="44" rx="9" fill="currentColor"/><rect x="134" y="144" width="44" height="44" rx="9" fill="#2563eb" opacity=".6"/></svg>Structure&nbsp;Beats&nbsp;<span>Magic</span></a>
+  <a class="back" href="../">← All principles</a>
+</div></header>
+
+<div class="hero wrap pr-head">
+  <div class="eyebrow">Universal principles · Rules</div>
+  <h1>The missing word</h1>
+  <p class="lede">Data plus AI produces output. Rules decide whether that output can be trusted. They are the step most AI projects skip, and the reason so many of them work in the demo and fail in daily use.</p>
+</div>
+<figure class="pr-hero wrap"><img src="../../assets/principles/rules.svg" alt="Line drawing of a three-step flow: a generated document, a checklist that validates it, and a flag raised on the one item that fails; the flag carries a gold spark." width="1200" height="500"/></figure>
+<article class="pr-body wrap">
+<h2>What it is</h2>
+<p>A rule is a check that runs the same way every time: this field must be a date, this person must exist in the people list, this page may not go live without an image. Some rules guide the AI while it works. Others check its output afterwards and flag what does not fit, instead of letting a guess through.</p>
+<h2>Why it matters</h2>
+<p>An AI error looks exactly like a correct answer. It has no tell. The only defence is a check against something you already know: the source record, the agreed vocabulary, the expected shape. Without rules you are trusting a confident voice. With rules you can show why an answer is right, or see at once that it is not.</p>
+<p>Rules also make a system explainable. When a result is questioned, you can point at the rule that produced or passed it.</p>
+<h2>What it looks like</h2>
+<p><strong>At home.</strong> The build of this site has gates: one stops a page that links to an article that does not exist yet, one stops an image that is missing, one stops an article that still contains working notes. Hooks in my AI setup run checks automatically instead of hoping the model remembers them.</p>
+<p><strong>At work.</strong> The same thing is data-quality rules and validation in a data platform, and evaluations that must pass before an AI feature is released.</p>
+<h2>The usual mistake</h2>
+<p>Writing rules as wishes. "Format it properly" is a hope; "dates as YYYY-MM-DD" is a rule a machine can check. If you cannot verify a rule, it will not be followed reliably.</p>
+<h2>Go further</h2>
+<div class="pr-go"><div class="pr-related"><h3>Concepts</h3><ul><li><a href="../../concepts/rules-you-can-verify.html">Rules You Can Verify</a></li><li><a href="../../concepts/the-validation-loop.html">The Validation Loop</a></li><li><a href="../../concepts/hooks-over-hopes.html">Hooks Over Hopes</a></li><li><a href="../../concepts/deterministic-by-design.html">Deterministic by Design</a></li><li><a href="../../concepts/never-marks-its-own-homework.html">Never Marks Its Own Homework</a></li><li><a href="../../concepts/a-confident-error-has-no-tell.html">A Confident Error Has No Tell</a></li></ul></div><div class="pr-related"><h3>Articles</h3><ul><li><a href="../../articles/rules-before-models.html">Rules Before Models — The Word Every &#x27;Data + AI&#x27; Pitch Forgets</a></li><li><a href="../../articles/hooks-not-hopes.html">Hooks, Not Hopes</a></li><li><a href="../../articles/governing-what-your-ai-can-touch.html">Governing What Your AI Can Touch</a></li><li><a href="../../articles/the-image-integrity-gate.html">The Image-Integrity Gate: I Caught My Own Site Faking It</a></li></ul></div></div>
+<nav class="pr-pager"><a class="prev" href="../ai/">← AI</a><a class="all" href="../">All principles</a><a class="next" href="../skills/">Skills →</a></nav>
+</article>
+<footer><div class="wrap">Structure Beats Magic — a thesis by
+  <a href="https://jacovanderlaan.com">Jaco van der Laan</a></div></footer>
+</body></html>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/skills/ hero. Story: A recipe card of numbered steps produces the same good result, again and again. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<rect x="140" y="110" width="220" height="280" rx="12" fill="#ffffff"/>
+<path d="M140 160 h220" stroke="#2563eb"/>
+<circle cx="172" cy="200" r="13" stroke-width="3"/><path d="M200 200 h130" stroke-width="3"/>
+<circle cx="172" cy="250" r="13" stroke-width="3"/><path d="M200 250 h130" stroke-width="3"/>
+<circle cx="172" cy="300" r="13" stroke-width="3"/><path d="M200 300 h130" stroke-width="3"/>
+<circle cx="172" cy="350" r="13" stroke-width="3"/><path d="M200 350 h130" stroke-width="3"/>
+<path d="M390 250 Q445.0 250.0 500 250" stroke="#2563eb"/><path d="M484 258 L500 250 L484 242" stroke="#2563eb"/>
+<g><path d="M530 170 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M606 170 v24 h24"/>
+<path d="M545 212 h70" stroke="#0f172a"/>
+<path d="M545 229 h70" stroke="#0f172a"/>
+<path d="M545 246 h70" stroke="#0f172a"/>
+<path d="M545 263 h42" stroke="#0f172a"/>
+</g>
+<g><path d="M665 180 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M741 180 v24 h24"/>
+<path d="M680 222 h70" stroke="#0f172a"/>
+<path d="M680 239 h70" stroke="#0f172a"/>
+<path d="M680 256 h70" stroke="#0f172a"/>
+<path d="M680 273 h42" stroke="#0f172a"/>
+</g>
+<g><path d="M800 170 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M876 170 v24 h24"/>
+<path d="M815 212 h70" stroke="#0f172a"/>
+<path d="M815 229 h70" stroke="#0f172a"/>
+<path d="M815 246 h70" stroke="#0f172a"/>
+<path d="M815 263 h42" stroke="#0f172a"/>
+</g>
+<g><path d="M935 180 h76 l24 24 v106 h-100 z" fill="#ffffff"/>
+<path d="M1011 180 v24 h24"/>
+<path d="M950 222 h70" stroke="#0f172a"/>
+<path d="M950 239 h70" stroke="#0f172a"/>
+<path d="M950 256 h70" stroke="#0f172a"/>
+<path d="M950 273 h42" stroke="#0f172a"/>
+</g>
+<path d="M360 88 Q362.112 107.888 382 110 Q362.112 112.112 360 132 Q357.888 112.112 338 110 Q357.888 107.888 360 88 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-hidden="true">
+<!-- /principles/integration/ hero. Story: Mixed records pass a checking gate and leave as orderly rows. -->
+<rect width="1200" height="500" fill="#f7f8fa"/>
+<g fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<g transform="rotate(-10 155.0 167.5)"><path d="M110 110 h66 l24 24 v91 h-90 z" fill="#ffffff"/>
+<path d="M176 110 v24 h24"/>
+<path d="M125 152 h60" stroke="#0f172a"/>
+<path d="M125 169 h60" stroke="#0f172a"/>
+<path d="M125 186 h60" stroke="#0f172a"/>
+<path d="M125 203 h36" stroke="#0f172a"/>
+</g>
+<g transform="rotate(8 145.0 306.0)"><rect x="90" y="270" width="110" height="72" rx="6" fill="#ffffff"/><path d="M90 274 L145.0 311.76 L200 274"/></g>
+<g transform="rotate(-6 285.0 232.0)"><rect x="230" y="190" width="110" height="84" rx="6" fill="#ffffff"/><path d="M240 262 l28 -30 l20 20 l16 -14 l36 24" stroke="#2563eb"/><circle cx="314" cy="214" r="9"/></g>
+<path d="M360 250 Q410.0 250.0 460 250" stroke="#2563eb"/><path d="M444 258 L460 250 L444 242" stroke="#2563eb"/>
+<rect x="480" y="165" width="150" height="142" rx="10" fill="#ffffff"/>
+<rect x="498" y="187" width="20" height="20" rx="4" stroke-width="3"/>
+<path d="M502 197 l5 6 l10 -12" stroke="#2563eb"/>
+<path d="M532 197 h78" stroke-width="3"/>
+<rect x="498" y="223" width="20" height="20" rx="4" stroke-width="3"/>
+<path d="M502 233 l5 6 l10 -12" stroke="#2563eb"/>
+<path d="M532 233 h78" stroke-width="3"/>
+<rect x="498" y="259" width="20" height="20" rx="4" stroke-width="3"/>
+<path d="M502 269 l5 6 l10 -12" stroke="#2563eb"/>
+<path d="M532 269 h78" stroke-width="3"/>
+<path d="M650 250 Q695.0 250.0 740 250" stroke="#2563eb"/><path d="M724 258 L740 250 L724 242" stroke="#2563eb"/>
+<rect x="760" y="180" width="280" height="120" rx="8" fill="#ffffff"/>
+<rect x="760" y="180" width="280" height="30" rx="8" fill="#dbe4f3"/>
+<rect x="763" y="243" width="274" height="24" rx="4" fill="none" stroke="#2563eb"/>
+<path d="M816 180 v120" stroke-width="3"/>
+<path d="M872 180 v120" stroke-width="3"/>
+<path d="M928 180 v120" stroke-width="3"/>
+<path d="M984 180 v120" stroke-width="3"/>
+<path d="M760 210 h280" stroke-width="3"/>
+<path d="M760 240 h280" stroke-width="3"/>
+<path d="M760 270 h280" stroke-width="3"/>
+<path d="M640 138 Q642.112 157.888 662 160 Q642.112 162.112 640 182 Q637.888 162.112 618 160 Q637.888 157.888 640 138 z" fill="#b88a1b" stroke="#b88a1b" stroke-width="2"/>
+</g>
+</svg>
