@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260" role="img" aria-hidden="true">
+<!-- homepage enterprise CTA: build the foundation, not buy the magic box -->
+<g fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <g opacity=".45" stroke-dasharray="10 9">
+    <path d="M150 110 h160 v120 h-160 z"/><path d="M150 110 l30 -35 h160 l-30 35"/><path d="M310 110 l30 -35 v120 l-30 35"/>
+  </g>
+  <g opacity=".45" stroke-width="3">
+    <path d="M120 70 l6 15 l15 6 l-15 6 l-6 15 l-6 -15 l-15 -6 l15 -6 z"/><path d="M380 50 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5 z"/>
+  </g>
+  <path d="M215 160 l40 40 M255 160 l-40 40" stroke-width="5" opacity=".7"/>
+  <path d="M430 150 h70 M485 135 l15 15 l-15 15"/>
+  <rect x="540" y="200" width="300" height="36" rx="8"/>
+  <rect x="560" y="156" width="125" height="36" rx="8"/><rect x="695" y="156" width="125" height="36" rx="8"/>
+  <rect x="600" y="112" width="180" height="36" rx="8"/>
+  <rect x="650" y="62" width="80" height="42" rx="8" fill="#b88a1b" stroke="#b88a1b"/>
+</g>
+</svg>
