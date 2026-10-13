@@ -1285,3 +1285,4 @@ a.sample .card-thumb{aspect-ratio:12/5;object-fit:cover}
 .subject-band + section{padding-top:2.4rem}
 @media(max-width:560px){.subject-band{padding:0 16px;margin-top:1.4rem}}
 .subject-band + section{border-top:0}
+.isys .card-thumb{aspect-ratio:16/9;object-fit:cover;margin-bottom:.8rem}
