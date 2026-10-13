@@ -64,11 +64,17 @@ function boot(root){
   }
   buildEls();
 
-  function tick(){
+  // One physics step. Split out of tick() (13 Oct 2026) so the layout can be
+  // settled BEFORE the first paint: nodes start at random spots and move at most
+  // 8px per step, so with 8+ large circles the first view showed them stacked.
+  function settle(){
     for(const n of N){if(!n.on)continue;
       for(const m of N){if(n===m||!m.on)continue;let dx=n.x-m.x,dy=n.y-m.y,d=Math.hypot(dx,dy)||.1;const min=n.r+m.r+26;const f=min*min/(d*d)*2.2;n.vx+=dx/d*f;n.vy+=dy/d*f;if(d<min){const p=(min-d)*.5;n.vx+=dx/d*p;n.vy+=dy/d*p;}}}
     for(const e of E){if(!e.a.on||!e.b.on)continue;let dx=e.b.x-e.a.x,dy=e.b.y-e.a.y,d=Math.hypot(dx,dy)||.1;const rest=e.a.r+e.b.r+70;const f=(d-rest)*.01;e.a.vx+=dx/d*f;e.a.vy+=dy/d*f;e.b.vx-=dx/d*f;e.b.vy-=dy/d*f;}
     for(const n of N){if(!n.on)continue;n.vx+=(W/2-n.x)*.0016;n.vy+=(H/2-n.y)*.0016;if(n===drag.node)continue;n.vx*=.86;n.vy*=.86;n.x+=Math.max(-8,Math.min(8,n.vx));n.y+=Math.max(-8,Math.min(8,n.vy));n.x=Math.max(n.r,Math.min(W-n.r,n.x));n.y=Math.max(n.r,Math.min(H-n.r,n.y));}
+  }
+  function tick(){
+    settle();
     E.forEach((e,i)=>{const l=edgeEls[i];const v=e.a.on&&e.b.on;l.style.display=v?'':'none';if(v){l.setAttribute('x1',e.a.x);l.setAttribute('y1',e.a.y);l.setAttribute('x2',e.b.x);l.setAttribute('y2',e.b.y);}});
     N.forEach((n,i)=>{nodeEls[i].style.display=n.on?'':'none';if(n.on)nodeEls[i].setAttribute('transform',`translate(${n.x},${n.y})`);});
     requestAnimationFrame(tick);
@@ -98,6 +104,7 @@ function boot(root){
       filt.querySelector('.cmap-all')?.classList.toggle('on', active.length===0);
       // re-scatter the now-visible nodes so a filtered view spreads out
       N.forEach(n=>{ if(n.on){ n.x=W/2+(Math.random()-.5)*W*.4; n.y=H/2+(Math.random()-.5)*H*.4; } });
+      for(let k=0;k<700;k++)settle(); // a filter click re-scatters: settle before the next paint too
     }
     filt.querySelectorAll('.cmap-chip').forEach(ch=>ch.addEventListener('click',()=>{
       if(ch.dataset.cat===''){ filt.querySelectorAll('.cmap-chip.on').forEach(c=>c.classList.remove('on')); }
@@ -106,6 +113,7 @@ function boot(root){
     }));
     apply(); // honour the default-cat set in HTML
   }
+  for(let k=0;k<700;k++)settle(); // lay out before the first paint, so nodes never start on top of each other
   tick();
 }
 document.querySelectorAll('.cmap-wrap').forEach(boot);
