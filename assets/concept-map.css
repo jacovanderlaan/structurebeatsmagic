@@ -1,4 +1,7 @@
-
+/* Neighbourhood / concept graph — shared styles (W:/systems/design/concept-map.css).
+   Copied into <site>/assets/ by graph_map.install(); never edit a site's copy.
+   Every colour comes from the family tokens (tokens.css), so each site's own accent applies:
+   SBM blue, Deliberate Way teal. Light mode renders exactly as SBM's original (21 Jul 2026). */
 .cmap-wrap{position:relative;width:100%;background:var(--bg,#f7f8fa);
   border:1px solid var(--line,#e2e8f0);border-radius:16px;overflow:hidden}
 .cmap-wrap svg{display:block;width:100%;cursor:grab;touch-action:none}
@@ -6,27 +9,57 @@
 .cmap-edge{stroke:var(--line,#e2e8f0);stroke-width:1.4;transition:stroke .15s,stroke-width .15s}
 .cmap-edge.hot{stroke:var(--accent,#2563eb);stroke-width:2.2}
 .cmap-node{cursor:pointer}
-.cmap-node circle{fill:#fff;stroke:var(--accent,#2563eb);stroke-width:1.6;transition:stroke-width .15s,filter .15s}
+.cmap-node.nolink{cursor:default}
+.cmap-node:focus{outline:none}
+.cmap-node:focus-visible circle{stroke-width:3.4}
+.cmap-node circle{fill:var(--surface,#fff);stroke:var(--accent,#2563eb);stroke-width:1.6;transition:stroke-width .15s,filter .15s}
 .cmap-node text{fill:var(--ink,#0f172a);font-size:12.5px;font-weight:600;pointer-events:none;text-anchor:middle}
 .cmap-node.center circle{fill:#fff7e6;stroke:var(--gold,#b88a1b);stroke-width:2.6}
 .cmap-node.center text{font-weight:800}
 .cmap-node.dim{opacity:.26}
-.cmap-node:hover circle{stroke-width:3;filter:drop-shadow(0 3px 8px rgba(37,99,235,.25))}
-.cmap-tip{position:fixed;pointer-events:none;background:#fff;border:1px solid var(--line,#e2e8f0);
+.cmap-node:hover circle{stroke-width:3;filter:drop-shadow(0 3px 8px rgba(37,99,235,.25));
+  filter:drop-shadow(0 3px 8px color-mix(in srgb,var(--accent,#2563eb) 25%,transparent))}
+/* node kinds (optional `kind` on a node): a container (country, region, section), a piece of writing
+   or a book, and a page on another site */
+.cmap-node.k-group circle{fill:var(--surface,#fff);fill:color-mix(in srgb,var(--accent,#2563eb) 11%,var(--surface,#fff))}
+.cmap-node.k-text circle{stroke:var(--ink-soft,#475569)}
+.cmap-node.k-ext circle{stroke-dasharray:5 4}
+.cmap-tip{position:fixed;pointer-events:none;background:var(--surface,#fff);border:1px solid var(--line,#e2e8f0);
   border-radius:10px;padding:9px 12px;max-width:260px;box-shadow:0 8px 24px rgba(15,23,42,.14);
   font-size:.84rem;color:var(--ink-soft,#475569);opacity:0;transition:opacity .12s;z-index:60;line-height:1.4}
 .cmap-tip b{color:var(--ink,#0f172a);display:block;margin-bottom:2px;font-size:.92rem}
 .cmap-tip .go{color:var(--accent,#2563eb);font-weight:600;margin-top:5px;display:block;font-size:.78rem}
 .cmap-filters{display:flex;flex-wrap:wrap;gap:.5rem;padding:.9rem 1rem;border-bottom:1px solid var(--line,#e2e8f0)}
 .cmap-chip{font-size:.8rem;font-weight:600;padding:.3rem .7rem;border-radius:999px;cursor:pointer;
-  border:1px solid var(--line,#e2e8f0);background:#fff;color:var(--ink-soft,#475569);transition:all .12s}
+  border:1px solid var(--line,#e2e8f0);background:var(--surface,#fff);color:var(--ink-soft,#475569);transition:all .12s}
 .cmap-chip.on{background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:#fff}
+/* legend (graph_map.legend_html): the same node classes, drawn small */
+.cmap-legend{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;list-style:none;margin:.6rem .2rem 0;padding:0;font-size:.82rem;color:var(--muted,#64748b)}
+.cmap-legend li{display:flex;align-items:center;gap:.4rem;margin:0}
+.cmap-legend svg{width:16px;height:16px;flex:none;overflow:visible}
+.cmap-legend .cmap-node{cursor:default}
+.cmap-legend .cmap-node circle{stroke-width:1.6;filter:none}
 @media (prefers-color-scheme:dark){
-  .cmap-wrap{background:#0f172a;border-color:#334155}
-  .cmap-node circle{fill:#1e293b;stroke:#60a5fa}
-  .cmap-node.center circle{fill:#3a2f12;stroke:#d4a53a}
-  .cmap-node text{fill:#e2e8f0}
-  .cmap-tip,.cmap-chip{background:#1e293b;border-color:#334155;color:#94a3b8}
-  .cmap-tip b{color:#e2e8f0}
-  .cmap-filters{border-color:#334155}
+  :root:not([data-theme="light"]) .cmap-wrap{background:var(--bg,#0f172a);border-color:var(--line,#334155)}
+  :root:not([data-theme="light"]) .cmap-node circle{fill:var(--surface2,#1e293b)}
+  :root:not([data-theme="light"]) .cmap-node.k-group circle{fill:color-mix(in srgb,var(--accent,#3b82f6) 22%,var(--surface2,#1e293b))}
+  :root:not([data-theme="light"]) .cmap-node.k-text circle{stroke:var(--muted,#94a3b8)}
+  :root:not([data-theme="light"]) .cmap-node.center circle{fill:#3a2f12;stroke:#d4a53a}
+  :root:not([data-theme="light"]) .cmap-node text{fill:var(--ink,#e2e8f0)}
+  :root:not([data-theme="light"]) .cmap-tip,:root:not([data-theme="light"]) .cmap-chip{background:var(--surface2,#1e293b);border-color:var(--line,#334155);color:var(--muted,#94a3b8)}
+  :root:not([data-theme="light"]) .cmap-tip b{color:var(--ink,#e2e8f0)}
+  :root:not([data-theme="light"]) .cmap-filters{border-color:var(--line,#334155)}
 }
+:root[data-theme="dark"] .cmap-wrap{background:var(--bg,#0f172a);border-color:var(--line,#334155)}
+:root[data-theme="dark"] .cmap-node circle{fill:var(--surface2,#1e293b)}
+:root[data-theme="dark"] .cmap-node.k-group circle{fill:color-mix(in srgb,var(--accent,#3b82f6) 22%,var(--surface2,#1e293b))}
+:root[data-theme="dark"] .cmap-node.k-text circle{stroke:var(--muted,#94a3b8)}
+:root[data-theme="dark"] .cmap-node.center circle{fill:#3a2f12;stroke:#d4a53a}
+:root[data-theme="dark"] .cmap-node text{fill:var(--ink,#e2e8f0)}
+:root[data-theme="dark"] .cmap-tip,:root[data-theme="dark"] .cmap-chip{background:var(--surface2,#1e293b);border-color:var(--line,#334155);color:var(--muted,#94a3b8)}
+:root[data-theme="dark"] .cmap-tip b{color:var(--ink,#e2e8f0)}
+:root[data-theme="dark"] .cmap-filters{border-color:var(--line,#334155)}
+/* the block a page puts the graph in (eyebrow + heading + graph + legend) */
+.cmap-section{margin:2.8rem 0 0}
+.cmap-section .cmap-h{margin:.2rem 0 1rem}
+.cmap-section .cmap-intro{margin:0 0 .8rem}
