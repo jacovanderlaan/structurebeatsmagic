@@ -64,7 +64,8 @@ gtag('config', 'G-P7W9B34R1Z');
     base: "../", assets: "../assets/",
     pageType: "articles",
     itemTypes: ["post"],
-    defaults: { view: "cards", sort: "newest" }
+    defaults: { view: "cards", sort: "newest" },
+    facets: [{ key: "category", label: "Subject" }]
   }).catch((e) => console.warn("browse:", e));
 </script>
 

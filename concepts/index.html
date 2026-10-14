@@ -341,7 +341,8 @@ gtag('config', 'G-P7W9B34R1Z');
     base: "../", assets: "../assets/",
     pageType: "concepts",
     itemTypes: ["concept", "activity"],
-    defaults: { view: "cards", sort: "title" }
+    defaults: { view: "cards", sort: "title" },
+    facets: [{ key: "category", label: "Category" }]
   }).then(() => document.body.classList.add("bw-ready"))
     .catch((e) => console.warn("browse:", e));
 </script>
